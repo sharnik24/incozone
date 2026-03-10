@@ -35,7 +35,7 @@ const CSS = `
   --fb:'Libre Baskerville',Georgia,serif;
   --fs:'DM Sans',system-ui,sans-serif;
   --fc:'Cormorant Garamond',Georgia,serif;
-  --ff:'Times New Roman',serif;
+  --ff:'UnifrakturMaguntia',cursive;
 
   background:var(--paper); color:var(--ink);
   font-family:var(--fb); font-weight:400;
@@ -444,6 +444,65 @@ const CSS = `
   .bg-overlay-inner { padding:60px 24px 60px; }
   .bg-nameplate-title { font-size:clamp(2.4rem,10vw,4rem); }
 }
+
+  .bg-nav-hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: none; padding: 6px; z-index: 310;
+  }
+  .bg-nav-hamburger span {
+    display: block; width: 24px; height: 1.5px; background: rgba(248,245,238,0.6);
+    transition: all 0.35s cubic-bezier(0.16,1,0.3,1); transform-origin: center;
+  }
+  .bg-nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: #C9A84C; }
+  .bg-nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .bg-nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: #C9A84C; }
+  .bg-drawer {
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(3,10,20,0.97); backdrop-filter: blur(24px);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transform: translateX(100%); transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+    pointer-events: none;
+  }
+  .bg-drawer.open { transform: translateX(0); pointer-events: all; }
+  .bg-drawer-brand {
+    font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.3rem;
+    letter-spacing: .18em; color: #F8F5EE; margin-bottom: 44px;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity .4s .1s, transform .4s .1s;
+  }
+  .bg-drawer.open .bg-drawer-brand { opacity: 1; transform: translateY(0); }
+  .bg-drawer-brand em { color: #C9A84C; font-style: normal; }
+  .bg-dlink {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2rem, 8vw, 3rem); font-weight: 300; color: rgba(248,245,238,0.6);
+    background: none; border: none; padding: 10px 0; cursor: pointer;
+    display: block; width: 100%; text-align: center;
+    opacity: 0; transform: translateY(18px);
+    transition: color .3s, opacity .4s cubic-bezier(0.16,1,0.3,1), transform .4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .bg-drawer.open .bg-dlink { opacity: 1; transform: translateY(0); }
+  .bg-drawer.open .bg-dlink:nth-of-type(1) { transition-delay: .12s; }
+  .bg-drawer.open .bg-dlink:nth-of-type(2) { transition-delay: .17s; }
+  .bg-drawer.open .bg-dlink:nth-of-type(3) { transition-delay: .22s; }
+  .bg-drawer.open .bg-dlink:nth-of-type(4) { transition-delay: .27s; }
+  .bg-drawer.open .bg-dlink:nth-of-type(5) { transition-delay: .32s; }
+  .bg-dlink:hover { color: #C9A84C; }
+  .bg-drawer-div { width: 40px; height: 1px; background: rgba(201,168,76,.25); margin: 18px 0; opacity: 0; transition: opacity .4s .34s; }
+  .bg-drawer.open .bg-drawer-div { opacity: 1; }
+  .bg-dcta {
+    font-family: 'DM Sans', sans-serif; font-size: .7rem; letter-spacing: .18em;
+    text-transform: uppercase; color: #C9A84C; border: 1px solid #C9A84C;
+    background: none; padding: 12px 32px; cursor: pointer; margin-top: 8px;
+    opacity: 0; transform: translateY(18px);
+    transition: color .3s, background .3s, opacity .4s .38s, transform .4s .38s;
+  }
+  .bg-drawer.open .bg-dcta { opacity: 1; transform: translateY(0); }
+  .bg-dcta:hover { background: #C9A84C; color: #05111e; }
+  @media (max-width: 900px) {
+    .bg-nav-links { display: none; }
+    .bg-nav-cta { display: none !important; }
+    .bg-nav-hamburger { display: flex; }
+  }
 `;
 
 // ─── BLOG DATA ────────────────────────────────────────────────
@@ -657,7 +716,7 @@ function ArticleOverlay({ article, onClose }) {
       <div className="bg-overlay-inner">
         {/* Masthead strip inside article */}
         <div style={{textAlign:"center",borderBottom:"3px double #0d0b08",paddingBottom:"14px",marginBottom:"28px"}}>
-          <span style={{fontFamily:"'Times New Roman',serif",fontSize:"1.8rem",color:"var(--ink)"}}>The UAE Business Gazette</span>
+          <span style={{fontFamily:"'UnifrakturMaguntia',cursive",fontSize:"1.8rem",color:"var(--ink)"}}>The UAE Business Gazette</span>
         </div>
 
         <span className="bg-art-kicker ink-stamp">{article.kicker} · {article.cat}</span>
@@ -696,7 +755,9 @@ function ArticleOverlay({ article, onClose }) {
 }
 
 // ─── MAIN ──────────────────────────────────────────────────────
-export default function BlogPage({ onBack }) {
+export default function BlogPage({ onBack, onNavigate }) {
+  const [_bgOpen, setbgOpen] = useState(false);
+
   const [scrolled, setScrolled]     = useState(false);
   const [activeCat, setActiveCat]   = useState("All");
   const [activeArt, setActiveArt]   = useState(null);
@@ -731,7 +792,7 @@ export default function BlogPage({ onBack }) {
 
       {/* ── NAV ── */}
       <nav className={`bg-nav${scrolled ? " scrolled" : ""}`}>
-        <div className="bg-nav-logo">INCO<em>ZONE</em></div>
+        <div className="bg-nav-logo" onClick={()=>{if(onNavigate){onNavigate("home");window.scrollTo(0,0);}}}>INCO<em>ZONE</em></div>
         <ul className="bg-nav-links">
           {["Home","Services","Free Zones","About","Blog","Contact"].map(l => (
             <li key={l}><a href="#" onClick={e => { e.preventDefault(); if(l==="Home") onBack(); }}>{l}</a></li>
@@ -741,7 +802,38 @@ export default function BlogPage({ onBack }) {
           <button className="bg-back-btn" onClick={onBack}>Back to Home</button>
           <button className="bg-nav-cta">Consult Now</button>
         </div>
+      
+        {/* Hamburger */}
+        <button
+          className={`bg-nav-hamburger${_bgOpen ? " open" : ""}`}
+          onClick={() => setbgOpen(o => !o)}
+          aria-label="Toggle menu"
+        >
+          <span /><span /><span />
+        </button>
       </nav>
+
+      {/* Mobile drawer */}
+      <div className={`bg-drawer${_bgOpen ? " open" : ""}`}>
+        <div className="bg-drawer-brand"
+          onClick={() => { setbgOpen(false); if(onNavigate) { onNavigate("home"); window.scrollTo(0,0); } }}>
+          INCO<em>ZONE</em>
+        </div>
+        {["Services","Free Zones","About","Blog","Contact"].map((l) => {
+          const pm = {"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};
+          return (
+            <button key={l} className="bg-dlink"
+              onClick={() => { setbgOpen(false); if(onNavigate) { onNavigate(pm[l]); window.scrollTo(0,0); } }}>
+              {l}
+            </button>
+          );
+        })}
+        <div className="bg-drawer-div" />
+        <button className="bg-dcta"
+          onClick={() => { setbgOpen(false); if(onNavigate) { onNavigate("schedule"); window.scrollTo(0,0); } }}>
+          Schedule Consultation
+        </button>
+      </div>
 
       {/* ── MAIN CONTENT — paper fold in ── */}
       <div className={folded ? "" : "bg-paper-fold"} style={{paddingTop:"58px"}}>
@@ -766,7 +858,7 @@ export default function BlogPage({ onBack }) {
             <span className="bg-nameplate-title ink-stamp" style={{animationDelay:".1s"}}>
               THE UAE BUSINESS GAZETTE
             </span>
-            <div style={{fontFamily:"'Times New Roman',serif",fontSize:"clamp(3.2rem,7.5vw,7rem)",color:"var(--ink)",lineHeight:1,display:"block",margin:"4px 0 8px"}}>
+            <div style={{fontFamily:"'UnifrakturMaguntia',cursive",fontSize:"clamp(3.2rem,7.5vw,7rem)",color:"var(--ink)",lineHeight:1,display:"block",margin:"4px 0 8px"}}>
               INCOZONE
             </div>
             <span className="bg-nameplate-sub ink-stamp" style={{animationDelay:".2s"}}>

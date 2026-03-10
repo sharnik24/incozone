@@ -663,11 +663,7 @@ export default function ServicesPage({ onBack, onNavigate }) {
       {/* ── NAV ── */}
       <nav className={`srv-nav${scrolled ? " scrolled" : ""}`}>
         <div className="srv-nav-logo" onClick={()=>{if(onNavigate){onNavigate("home");window.scrollTo(0,0);}}}>INCO<em>ZONE</em></div>
-        <ul className="srv-nav-links">
-          {["Services","Free Zones","About","Blog","Contact"].map(l => (
-            <li key={l}><a href="#" className={l === "Services" ? "active" : ""}>{l}</a></li>
-          ))}
-        </ul>
+        <ul className="srv-nav-links">{["Services","Free Zones","About","Blog","Contact"].map(l=>{const m={"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};return <li key={l}><a href="#" onClick={e=>{e.preventDefault();if(onNavigate){onNavigate(m[l]);window.scrollTo(0,0);}}}>{l}</a></li>;})}</ul>
         <button className="srv-nav-cta" onClick={()=>{if(onNavigate){onNavigate("schedule");window.scrollTo(0,0);}}}>Schedule Consultation</button>
       
         {/* Hamburger */}

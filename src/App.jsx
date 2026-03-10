@@ -109,6 +109,7 @@ const CSS = `
     position: relative; z-index: 2; max-width: 820px; text-align: center;
     opacity: 0; transform: translateY(28px);
     animation: fadeUp 1.2s var(--ease-out) 0.3s forwards;
+    padding-top: 80px;
   }
   .hero-eyebrow {
     font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase;
@@ -1601,6 +1602,7 @@ function GlobalNav({ onNavigate, scrolled }) {
   }, [open]);
 
   const links = [
+    { label: "Home",      page: "home" },
     { label: "Services",   page: "services" },
     { label: "Free Zones", page: "zones" },
     { label: "About",      page: "about" },

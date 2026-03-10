@@ -707,10 +707,10 @@ const PILLARS = [
 ];
 
 const TEAM = [
-  { initial:"R", name:"Rashid Al-Mansoori", role:"Managing Director", bio:"12 years as UAE's most trusted advisor for high-net-worth individuals, family offices, and institutional investors entering the UAE market.", exp:"12yr UAE" },
-  { initial:"A", name:"Alexandra Voss", role:"Head of Free Zone Advisory", bio:"Former DMCC licensing officer. 8 years of deep free zone expertise across all 7 UAE zones. Speaks English, German, Russian.", exp:"8yr Advisory" },
-  { initial:"K", name:"Khalid Ibrahim", role:"Senior PRO Manager", bio:"UAE national with 10 years of government liaison experience across DED, GDRFA, MOFA, and all free zone authorities. Direct officer access.", exp:"10yr PRO" },
-  { initial:"S", name:"Sarah Chen", role:"Corporate Banking Specialist", bio:"Ex-ADCB relationship manager. 95% success rate in UAE business account openings for international founders and holding structures.", exp:"6yr Banking" },
+  { initial:"R", name:"Chirag Mahyavansi", role:"Managing Director", bio:"Leads INCOZONE's advisory practice with 12 years of experience guiding high-net-worth individuals, family offices, and institutional investors through UAE market entry and corporate structuring.", exp:"12yr UAE" },
+  { initial:"A", name:"Tushar Rathod", role:"Business Setup Consultant", bio:"Specialist in UAE free zone incorporation across all 8 major zones. Advises founders and SMEs on optimal zone selection, licensing strategy, and end-to-end company formation.", exp:"8yr Advisory" },
+  { initial:"K", name:"Aakash Palgamkar", role:"Accountant", bio:"Manages corporate financial compliance, bookkeeping, VAT registration, and financial reporting for INCOZONE clients across free zone and mainland structures.", exp:"10yr Accounting" },
+  { initial:"S", name:"Dharmesh Mahyavanshi", role:"Accounting Head", bio:"Heads INCOZONE's accounting and financial compliance practice. Oversees corporate financial structuring, VAT compliance, and financial reporting for high-value clients across free zone and mainland entities.", exp:"10yr Accounting" },
 ];
 
 const VALUES = [

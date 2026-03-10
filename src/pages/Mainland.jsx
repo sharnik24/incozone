@@ -405,6 +405,65 @@ const CSS = `
   .mnl-hero-right { flex-direction: column; }
   .mnl-hero-stat-item { border-right: none; border-bottom: 1px solid var(--w06); }
 }
+
+  .mnl-nav-hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: none; padding: 6px; z-index: 310;
+  }
+  .mnl-nav-hamburger span {
+    display: block; width: 24px; height: 1.5px; background: rgba(248,245,238,0.6);
+    transition: all 0.35s cubic-bezier(0.16,1,0.3,1); transform-origin: center;
+  }
+  .mnl-nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: #C9A84C; }
+  .mnl-nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .mnl-nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: #C9A84C; }
+  .mnl-drawer {
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(3,10,20,0.97); backdrop-filter: blur(24px);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transform: translateX(100%); transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+    pointer-events: none;
+  }
+  .mnl-drawer.open { transform: translateX(0); pointer-events: all; }
+  .mnl-drawer-brand {
+    font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.3rem;
+    letter-spacing: .18em; color: #F8F5EE; margin-bottom: 44px;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity .4s .1s, transform .4s .1s;
+  }
+  .mnl-drawer.open .mnl-drawer-brand { opacity: 1; transform: translateY(0); }
+  .mnl-drawer-brand em { color: #C9A84C; font-style: normal; }
+  .mnl-dlink {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2rem, 8vw, 3rem); font-weight: 300; color: rgba(248,245,238,0.6);
+    background: none; border: none; padding: 10px 0; cursor: pointer;
+    display: block; width: 100%; text-align: center;
+    opacity: 0; transform: translateY(18px);
+    transition: color .3s, opacity .4s cubic-bezier(0.16,1,0.3,1), transform .4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .mnl-drawer.open .mnl-dlink { opacity: 1; transform: translateY(0); }
+  .mnl-drawer.open .mnl-dlink:nth-of-type(1) { transition-delay: .12s; }
+  .mnl-drawer.open .mnl-dlink:nth-of-type(2) { transition-delay: .17s; }
+  .mnl-drawer.open .mnl-dlink:nth-of-type(3) { transition-delay: .22s; }
+  .mnl-drawer.open .mnl-dlink:nth-of-type(4) { transition-delay: .27s; }
+  .mnl-drawer.open .mnl-dlink:nth-of-type(5) { transition-delay: .32s; }
+  .mnl-dlink:hover { color: #C9A84C; }
+  .mnl-drawer-div { width: 40px; height: 1px; background: rgba(201,168,76,.25); margin: 18px 0; opacity: 0; transition: opacity .4s .34s; }
+  .mnl-drawer.open .mnl-drawer-div { opacity: 1; }
+  .mnl-dcta {
+    font-family: 'DM Sans', sans-serif; font-size: .7rem; letter-spacing: .18em;
+    text-transform: uppercase; color: #C9A84C; border: 1px solid #C9A84C;
+    background: none; padding: 12px 32px; cursor: pointer; margin-top: 8px;
+    opacity: 0; transform: translateY(18px);
+    transition: color .3s, background .3s, opacity .4s .38s, transform .4s .38s;
+  }
+  .mnl-drawer.open .mnl-dcta { opacity: 1; transform: translateY(0); }
+  .mnl-dcta:hover { background: #C9A84C; color: #05111e; }
+  @media (max-width: 900px) {
+    .mnl-nav-links { display: none; }
+    .mnl-nav-cta { display: none !important; }
+    .mnl-nav-hamburger { display: flex; }
+  }
 `;
 
 // ── DATA ──────────────────────────────────────────────────────
@@ -609,7 +668,14 @@ function Calculator() {
 }
 
 // ── MAIN PAGE ──────────────────────────────────────────────────
-export default function MainlandPage({ onBack }) {
+export default function MainlandPage({ onBack, onNavigate }) {
+  const [_mnlOpen, setmnlOpen] = useState(false);
+  // Lock body scroll when drawer open
+  useEffect(() => {
+    document.body.style.overflow = _mnlOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [_mnlOpen]);
+
   const [scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
   useReveal();
@@ -626,10 +692,41 @@ export default function MainlandPage({ onBack }) {
 
       {/* ── NAV ── */}
       <nav className={`mnl-nav${scrolled ? " scrolled" : ""}`}>
-        <div className="mnl-nav-logo">INCO<em>ZONE</em></div>
+        <div className="mnl-nav-logo" onClick={()=>{if(onNavigate){onNavigate("home");window.scrollTo(0,0);}}}>INCO<em>ZONE</em></div>
         <ul className="mnl-nav-links">{["Services","Free Zones","About","Blog","Contact"].map(l => <li key={l}><a href="#">{l}</a></li>)}</ul>
-        <button className="mnl-nav-cta">Schedule Consultation</button>
+        <button className="mnl-nav-cta" onClick={()=>{if(onNavigate){onNavigate("schedule");window.scrollTo(0,0);}}}>Schedule Consultation</button>
+      
+        {/* Hamburger */}
+        <button
+          className={`mnl-nav-hamburger${_mnlOpen ? " open" : ""}`}
+          onClick={() => setmnlOpen(o => !o)}
+          aria-label="Toggle menu"
+        >
+          <span /><span /><span />
+        </button>
       </nav>
+
+      {/* Mobile drawer */}
+      <div className={`mnl-drawer${_mnlOpen ? " open" : ""}`}>
+        <div className="mnl-drawer-brand"
+          onClick={() => { setmnlOpen(false); if(onNavigate) { onNavigate("home"); window.scrollTo(0,0); } }}>
+          INCO<em>ZONE</em>
+        </div>
+        {["Services","Free Zones","About","Blog","Contact"].map((l) => {
+          const pm = {"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};
+          return (
+            <button key={l} className="mnl-dlink"
+              onClick={() => { setmnlOpen(false); if(onNavigate) { onNavigate(pm[l]); window.scrollTo(0,0); } }}>
+              {l}
+            </button>
+          );
+        })}
+        <div className="mnl-drawer-div" />
+        <button className="mnl-dcta"
+          onClick={() => { setmnlOpen(false); if(onNavigate) { onNavigate("schedule"); window.scrollTo(0,0); } }}>
+          Schedule Consultation
+        </button>
+      </div>
 
       {/* ── HERO ── */}
       <section className="mnl-hero">

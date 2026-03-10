@@ -426,6 +426,65 @@ const CSS = `
   .ifza-act-grid { grid-template-columns: 1fr; }
   .ifza-hero-h1 { font-size: 4.5rem; }
 }
+
+  .ifza-nav-hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: none; padding: 6px; z-index: 310;
+  }
+  .ifza-nav-hamburger span {
+    display: block; width: 24px; height: 1.5px; background: rgba(248,245,238,0.6);
+    transition: all 0.35s cubic-bezier(0.16,1,0.3,1); transform-origin: center;
+  }
+  .ifza-nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: #C9A84C; }
+  .ifza-nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .ifza-nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: #C9A84C; }
+  .ifza-drawer {
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(3,10,20,0.97); backdrop-filter: blur(24px);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transform: translateX(100%); transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+    pointer-events: none;
+  }
+  .ifza-drawer.open { transform: translateX(0); pointer-events: all; }
+  .ifza-drawer-brand {
+    font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.3rem;
+    letter-spacing: .18em; color: #F8F5EE; margin-bottom: 44px;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity .4s .1s, transform .4s .1s;
+  }
+  .ifza-drawer.open .ifza-drawer-brand { opacity: 1; transform: translateY(0); }
+  .ifza-drawer-brand em { color: #C9A84C; font-style: normal; }
+  .ifza-dlink {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2rem, 8vw, 3rem); font-weight: 300; color: rgba(248,245,238,0.6);
+    background: none; border: none; padding: 10px 0; cursor: pointer;
+    display: block; width: 100%; text-align: center;
+    opacity: 0; transform: translateY(18px);
+    transition: color .3s, opacity .4s cubic-bezier(0.16,1,0.3,1), transform .4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .ifza-drawer.open .ifza-dlink { opacity: 1; transform: translateY(0); }
+  .ifza-drawer.open .ifza-dlink:nth-of-type(1) { transition-delay: .12s; }
+  .ifza-drawer.open .ifza-dlink:nth-of-type(2) { transition-delay: .17s; }
+  .ifza-drawer.open .ifza-dlink:nth-of-type(3) { transition-delay: .22s; }
+  .ifza-drawer.open .ifza-dlink:nth-of-type(4) { transition-delay: .27s; }
+  .ifza-drawer.open .ifza-dlink:nth-of-type(5) { transition-delay: .32s; }
+  .ifza-dlink:hover { color: #C9A84C; }
+  .ifza-drawer-div { width: 40px; height: 1px; background: rgba(201,168,76,.25); margin: 18px 0; opacity: 0; transition: opacity .4s .34s; }
+  .ifza-drawer.open .ifza-drawer-div { opacity: 1; }
+  .ifza-dcta {
+    font-family: 'DM Sans', sans-serif; font-size: .7rem; letter-spacing: .18em;
+    text-transform: uppercase; color: #C9A84C; border: 1px solid #C9A84C;
+    background: none; padding: 12px 32px; cursor: pointer; margin-top: 8px;
+    opacity: 0; transform: translateY(18px);
+    transition: color .3s, background .3s, opacity .4s .38s, transform .4s .38s;
+  }
+  .ifza-drawer.open .ifza-dcta { opacity: 1; transform: translateY(0); }
+  .ifza-dcta:hover { background: #C9A84C; color: #05111e; }
+  @media (max-width: 900px) {
+    .ifza-nav-links { display: none; }
+    .ifza-nav-cta { display: none !important; }
+    .ifza-nav-hamburger { display: flex; }
+  }
 `;
 
 // ── DATA ──────────────────────────────────────────────────────
@@ -622,7 +681,14 @@ function Calculator() {
 }
 
 // ── MAIN PAGE ─────────────────────────────────────────────────
-export default function IFZAPage({ onBack }) {
+export default function IFZAPage({ onBack, onNavigate }) {
+  const [_ifzaOpen, setifzaOpen] = useState(false);
+  // Lock body scroll when drawer open
+  useEffect(() => {
+    document.body.style.overflow = _ifzaOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [_ifzaOpen]);
+
   const [scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
   useReveal();
@@ -640,10 +706,41 @@ export default function IFZAPage({ onBack }) {
 
       {/* ── NAV ── */}
       <nav className={`ifza-nav${scrolled ? " scrolled" : ""}`}>
-        <div className="ifza-nav-logo">INCO<em>ZONE</em></div>
-        <ul className="ifza-nav-links">{["Services","Free Zones","About","Blog","Contact"].map(l=><li key={l}><a href="#">{l}</a></li>)}</ul>
-        <button className="ifza-nav-cta">Schedule Consultation</button>
+        <div className="ifza-nav-logo" onClick={()=>{if(onNavigate){onNavigate("home");window.scrollTo(0,0);}}}>INCO<em>ZONE</em></div>
+        <ul className="ifza-nav-links">{["Services","Free Zones","About","Blog","Contact"].map(l=>{const pgMap={"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};return <li key={l}><a href="#" onClick={e=>{e.preventDefault();if(onNavigate){onNavigate(pgMap[l]);window.scrollTo(0,0);}}}>{ l}</a></li>;})}</ul>
+        <button className="ifza-nav-cta" onClick={()=>{if(onNavigate){onNavigate("schedule");window.scrollTo(0,0);}}}>Schedule Consultation</button>
+      
+        {/* Hamburger */}
+        <button
+          className={`ifza-nav-hamburger${_ifzaOpen ? " open" : ""}`}
+          onClick={() => setifzaOpen(o => !o)}
+          aria-label="Toggle menu"
+        >
+          <span /><span /><span />
+        </button>
       </nav>
+
+      {/* Mobile drawer */}
+      <div className={`ifza-drawer${_ifzaOpen ? " open" : ""}`}>
+        <div className="ifza-drawer-brand"
+          onClick={() => { setifzaOpen(false); if(onNavigate) { onNavigate("home"); window.scrollTo(0,0); } }}>
+          INCO<em>ZONE</em>
+        </div>
+        {["Services","Free Zones","About","Blog","Contact"].map((l) => {
+          const pm = {"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};
+          return (
+            <button key={l} className="ifza-dlink"
+              onClick={() => { setifzaOpen(false); if(onNavigate) { onNavigate(pm[l]); window.scrollTo(0,0); } }}>
+              {l}
+            </button>
+          );
+        })}
+        <div className="ifza-drawer-div" />
+        <button className="ifza-dcta"
+          onClick={() => { setifzaOpen(false); if(onNavigate) { onNavigate("schedule"); window.scrollTo(0,0); } }}>
+          Schedule Consultation
+        </button>
+      </div>
 
       {/* ── HERO ── */}
       <div className="ifza-hero">

@@ -992,6 +992,61 @@ const CSS = `
   @keyframes meshFloat3 { 0%, 100% { transform: translate(0px, 0px) scale(1); } 50% { transform: translate(25px, 40px) scale(1.06); } }
   @keyframes gridDrift { 0% { transform: translate(0, 0); } 100% { transform: translate(90px, 90px); } }
 
+  /* ── HAMBURGER + DRAWER ── */
+  .nav-hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: none; padding: 6px; z-index: 310;
+  }
+  .nav-hamburger span {
+    display: block; width: 24px; height: 1.5px; background: var(--white-60);
+    transition: all 0.35s var(--ease-out); transform-origin: center;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--gold-400); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--gold-400); }
+
+  .nav-drawer {
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(3,10,20,0.97); backdrop-filter: blur(24px);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transform: translateX(100%); transition: transform 0.45s var(--ease-out);
+    pointer-events: none; padding: 40px 24px;
+  }
+  .nav-drawer.open { transform: translateX(0); pointer-events: all; }
+  .nav-drawer-brand {
+    font-family: var(--font-display); font-size: 1.3rem; letter-spacing: .18em;
+    color: var(--white); margin-bottom: 48px;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity .4s .1s var(--ease-out), transform .4s .1s var(--ease-out);
+  }
+  .nav-drawer-brand span { color: var(--gold-400); }
+  .nav-drawer.open .nav-drawer-brand { opacity: 1; transform: translateY(0); }
+  .drawer-link {
+    font-family: var(--font-display); font-size: clamp(2rem, 8vw, 3.2rem); font-weight: 300;
+    letter-spacing: .02em; color: var(--white-60); background: none; border: none;
+    padding: 10px 0; cursor: pointer; display: block; width: 100%; text-align: center;
+    opacity: 0; transform: translateY(20px);
+    transition: color .3s, opacity .4s var(--ease-out), transform .4s var(--ease-out);
+  }
+  .nav-drawer.open .drawer-link { opacity: 1; transform: translateY(0); }
+  .nav-drawer.open .drawer-link:nth-of-type(1) { transition-delay: .12s; }
+  .nav-drawer.open .drawer-link:nth-of-type(2) { transition-delay: .17s; }
+  .nav-drawer.open .drawer-link:nth-of-type(3) { transition-delay: .22s; }
+  .nav-drawer.open .drawer-link:nth-of-type(4) { transition-delay: .27s; }
+  .nav-drawer.open .drawer-link:nth-of-type(5) { transition-delay: .32s; }
+  .drawer-link:hover { color: var(--gold-400); }
+  .drawer-divider { width: 40px; height: 1px; background: rgba(201,168,76,.25); margin: 20px 0; opacity: 0; transition: opacity .4s .35s; }
+  .nav-drawer.open .drawer-divider { opacity: 1; }
+  .drawer-cta-btn {
+    font-family: var(--font-body); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--gold-400); border: 1px solid var(--gold-400); background: none;
+    padding: 13px 36px; cursor: pointer; margin-top: 8px;
+    opacity: 0; transform: translateY(20px);
+    transition: color .3s, background .3s, opacity .4s .37s var(--ease-out), transform .4s .37s var(--ease-out);
+  }
+  .nav-drawer.open .drawer-cta-btn { opacity: 1; transform: translateY(0); }
+  .drawer-cta-btn:hover { background: var(--gold-400); color: var(--navy-900); }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 1200px) {
     .zf-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1000,39 +1055,77 @@ const CSS = `
     .calc-result { position: static; }
   }
   @media (max-width: 900px) {
-    .nav { padding: 18px 28px; } .nav.scrolled { padding: 12px 28px; } .nav-links { display: none; }
-    section { padding: 72px 28px; }
-    .hero { padding: 0 28px; }
-    .zf-grid { grid-template-columns: repeat(2, 1fr); }
+    .nav { padding: 16px 22px; }
+    .nav.scrolled { padding: 12px 22px; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .nav-hamburger { display: flex; }
+    section { padding: 70px 22px; }
+    .hero { padding: 0 22px; min-height: 100svh; }
+    .hero-h1 { font-size: clamp(2.1rem, 7.5vw, 3.5rem); }
+    .hero-sub { font-size: .75rem; letter-spacing: .1em; }
+    .hero-actions { flex-direction: column; align-items: center; gap: 12px; }
+    .hero-actions .btn-primary, .hero-actions .btn-ghost { width: 100%; max-width: 320px; text-align: center; }
+    .zf-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .packages-grid { grid-template-columns: 1fr; }
-    .expertise-grid { grid-template-columns: 1fr; }
+    .expertise-grid { grid-template-columns: 1fr; gap: 12px; }
     .testi-grid { grid-template-columns: 1fr; }
     .why-inner { grid-template-columns: 1fr; }
     .why-visual { display: none; }
-    .footer-top { grid-template-columns: 1fr 1fr; }
-    .zone-hero { padding: 100px 28px 60px; }
-    .zone-back { left: 28px; }
-    .zone-stats-bar { padding: 24px 28px; flex-wrap: wrap; gap: 16px; }
-    .zone-stat { flex: none; width: calc(50% - 8px); border-right: none; padding: 0; border-bottom: 1px solid var(--white-10); padding-bottom: 16px; }
-    .packages-section, .calc-section, .includes-section, .steps-section { padding: 72px 28px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; padding: 20px 22px; }
+    .zone-hero { padding: 88px 22px 52px; }
+    .zone-back { left: 22px; top: 18px; }
+    .zone-stats-bar { padding: 22px; flex-wrap: wrap; gap: 16px; }
+    .zone-stat { flex: none; width: calc(50% - 8px); border-right: none; padding: 0 0 14px; border-bottom: 1px solid var(--white-10); }
+    .packages-section, .calc-section, .includes-section, .steps-section { padding: 70px 22px; }
     .includes-grid { grid-template-columns: repeat(2, 1fr); }
-    .partners-strip { gap: 28px; }
+    .partners-strip { gap: 20px; }
     .partners-grid { grid-template-columns: 1fr 1fr; }
     .partners-grid-row2 { grid-template-columns: 1fr 1fr; }
     .partners-stats { grid-template-columns: 1fr 1fr; }
-    .elite-cta { padding: 90px 28px; }
+    .elite-cta { padding: 80px 22px; }
+    .section-title { font-size: clamp(1.7rem, 5vw, 2.8rem); }
+    .why-pillars { gap: 12px; }
   }
   @media (max-width: 580px) {
-    .zf-grid { grid-template-columns: 1fr; }
+    .nav { padding: 14px 16px; }
+    section { padding: 56px 16px; }
+    .hero { padding: 0 16px; }
+    .hero-h1 { font-size: clamp(1.8rem, 9vw, 2.8rem); }
+    .hero-sub { font-size: .68rem; }
+    .hero-sub span { margin: 0 5px; }
+    .zf-grid { grid-template-columns: 1fr; gap: 10px; }
+    .zf-filter-bar { gap: 6px; }
+    .zf-filter-btn { padding: 6px 12px; font-size: .65rem; }
     .includes-grid { grid-template-columns: 1fr; }
-    .zone-stats-bar { flex-direction: column; }
-    .zone-stat { width: 100%; }
+    .zone-stats-bar { flex-direction: column; gap: 0; }
+    .zone-stat { width: 100%; border-right: none; padding: 14px 0; border-bottom: 1px solid var(--white-10); }
+    .zone-stat:last-child { border-bottom: none; }
     .calc-toggle-group { flex-wrap: wrap; }
-    .footer-top { grid-template-columns: 1fr; }
-    .partners-grid { grid-template-columns: 1fr; }
-    .partners-grid-row2 { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .partners-grid, .partners-grid-row2 { grid-template-columns: 1fr; }
     .partners-stats { grid-template-columns: 1fr 1fr; }
+    .pillar { grid-template-columns: 48px 1fr; }
+    .expertise-card { padding: 28px 18px; }
+    .testi-card { padding: 24px 18px; }
+    .btn-primary, .btn-ghost { padding: 13px 22px; font-size: .72rem; }
+    .section-title { font-size: clamp(1.6rem, 8vw, 2.4rem); }
+    .elite-cta h2 { font-size: clamp(1.8rem, 7vw, 2.8rem); }
+    .hero-actions { padding: 0 8px; }
+    .zf-card { padding: 24px 18px 20px; }
+    .zf-zone-name { font-size: 1.4rem; }
+    .why-pillar-num-big { font-size: 2rem; }
+    .partners-marquee-track { gap: 28px; }
+    .partners-logo-item { padding: 14px 18px; }
+    .elite-cta { padding: 60px 16px; }
+    .elite-cta-content { max-width: 100%; }
+    .elite-cta-content > div { flex-direction: column; }
   }
+  /* ── Global overflow fix ── */
+  body, #root { overflow-x: hidden; max-width: 100vw; }
+  * { box-sizing: border-box; }
+  img, canvas, video { max-width: 100%; }
 `;
 
 // ─── ZONE DATA ────────────────────────────────────────────────
@@ -1480,6 +1573,80 @@ function UAEGlobe() {
   );
 }
 
+// ─── GLOBAL NAV (shared across ALL pages) ────────────────────
+function GlobalNav({ onNavigate, scrolled }) {
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+
+  const go = (page) => {
+    close();
+    if (page === "home") {
+      onNavigate("home");
+      setTimeout(() => window.scrollTo(0,0), 50);
+    } else if (page === "zones") {
+      onNavigate("home");
+      setTimeout(() => {
+        document.getElementById("zone-finder")?.scrollIntoView({ behavior: "smooth" });
+      }, 150);
+    } else {
+      onNavigate(page);
+      window.scrollTo(0,0);
+    }
+  };
+
+  // lock body scroll when drawer open
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  const links = [
+    { label: "Services",   page: "services" },
+    { label: "Free Zones", page: "zones" },
+    { label: "About",      page: "about" },
+    { label: "Blog",       page: "blog" },
+    { label: "Contact",    page: "contact" },
+  ];
+
+  return (
+    <>
+      <nav className={`nav${scrolled ? " scrolled" : ""}`}>
+        <div className="nav-logo" onClick={() => go("home")}>INCO<span>ZONE</span></div>
+        <ul className="nav-links">
+          {links.map(l => (
+            <li key={l.label}>
+              <a href="#" onClick={e => { e.preventDefault(); go(l.page); }}>{l.label}</a>
+            </li>
+          ))}
+        </ul>
+        <button className="nav-cta" onClick={() => go("schedule")}>Schedule Consultation</button>
+        {/* Hamburger */}
+        <button
+          className={`nav-hamburger${open ? " open" : ""}`}
+          onClick={() => setOpen(o => !o)}
+          aria-label="Toggle menu"
+        >
+          <span /><span /><span />
+        </button>
+      </nav>
+
+      {/* Full-screen mobile drawer */}
+      <div className={`nav-drawer${open ? " open" : ""}`} role="dialog" aria-modal="true">
+        <div className="nav-drawer-brand" onClick={() => go("home")}>INCO<span>ZONE</span></div>
+        {links.map(l => (
+          <button key={l.label} className="drawer-link" onClick={() => go(l.page)}>
+            {l.label}
+          </button>
+        ))}
+        <div className="drawer-divider" />
+        <button className="drawer-cta-btn" onClick={() => go("schedule")}>
+          Schedule Consultation
+        </button>
+      </div>
+    </>
+  );
+}
+
 // ─── MAIN APP ─────────────────────────────────────────────────
 export default function App() {
   const [selectedZone, setSelectedZone]   = useState(null);
@@ -1505,25 +1672,25 @@ export default function App() {
   const goServices = () => { setCurrentPage("services"); setSelectedZone(null); window.scrollTo(0, 0); };
   const goPage = (page) => { setCurrentPage(page); setSelectedZone(null); window.scrollTo(0, 0); };
 
-  // Zone pages
-  if (selectedZone?.id === "dmcc")   return <DMCCPage   onBack={goHome} />;
-  if (selectedZone?.id === "ifza")   return <IFZAPage   onBack={goHome} />;
-  if (selectedZone?.id === "meydan") return <MeydanPage onBack={goHome} />;
-  if (selectedZone?.id === "rakez")  return <RAKEZPage  onBack={goHome} />;
-  if (selectedZone?.id === "shams")  return <SHAMSPage  onBack={goHome} />;
-  if (selectedZone?.id === "jafza")  return <JAFZAPage  onBack={goHome} />;
-  if (selectedZone?.id === "afz")    return <AFZPage    onBack={goHome} />;
-  if (selectedZone?.id === "adgm")   return <ADGMPage   onBack={goHome} />;
-  if (selectedZone) return <ZonePage zone={selectedZone} onBack={goHome} />;
+  // Zone pages — all receive onNavigate so their nav works
+  if (selectedZone?.id === "dmcc")   return <DMCCPage   onBack={goHome} onNavigate={goPage} />;
+  if (selectedZone?.id === "ifza")   return <IFZAPage   onBack={goHome} onNavigate={goPage} />;
+  if (selectedZone?.id === "meydan") return <MeydanPage onBack={goHome} onNavigate={goPage} />;
+  if (selectedZone?.id === "rakez")  return <RAKEZPage  onBack={goHome} onNavigate={goPage} />;
+  if (selectedZone?.id === "shams")  return <SHAMSPage  onBack={goHome} onNavigate={goPage} />;
+  if (selectedZone?.id === "jafza")  return <JAFZAPage  onBack={goHome} onNavigate={goPage} />;
+  if (selectedZone?.id === "afz")    return <AFZPage    onBack={goHome} onNavigate={goPage} />;
+  if (selectedZone?.id === "adgm")   return <ADGMPage   onBack={goHome} onNavigate={goPage} />;
+  if (selectedZone) return <ZonePage zone={selectedZone} onBack={goHome} onNavigate={goPage} />;
 
-  // Service pages
-  if (currentPage === "services") return <ServicesPage onBack={() => goPage("home")} />;
-  if (currentPage === "mainland") return <MainlandPage onBack={goServices} />;
-  if (currentPage === "pro")      return <PROPage      onBack={goServices} />;
-  if (currentPage === "about")    return <AboutPage    onBack={() => goPage("home")} />;
-  if (currentPage === "blog")     return <BlogPage     onBack={() => goPage("home")} />;
-  if (currentPage === "contact")  return <ContactPage  onBack={() => goPage("home")} onSchedule={() => goPage("schedule")} />;
-  if (currentPage === "schedule") return <SchedulePage onBack={() => goPage("home")} />;
+  // Service pages — all receive onNavigate so their nav works
+  if (currentPage === "services") return <ServicesPage onBack={() => goPage("home")} onNavigate={goPage} />;
+  if (currentPage === "mainland") return <MainlandPage onBack={goServices}            onNavigate={goPage} />;
+  if (currentPage === "pro")      return <PROPage      onBack={goServices}            onNavigate={goPage} />;
+  if (currentPage === "about")    return <AboutPage    onBack={() => goPage("home")}  onNavigate={goPage} />;
+  if (currentPage === "blog")     return <BlogPage     onBack={() => goPage("home")}  onNavigate={goPage} />;
+  if (currentPage === "contact")  return <ContactPage  onBack={() => goPage("home")}  onNavigate={goPage} onSchedule={() => goPage("schedule")} />;
+  if (currentPage === "schedule") return <SchedulePage onBack={() => goPage("home")}  onNavigate={goPage} />;
   if (currentPage === "admin")    return <AdminPage />;
 
   const filtered = activeCategory === "all" ? ZONES : ZONES.filter(z => z.category === activeCategory);
@@ -1532,25 +1699,8 @@ export default function App() {
     <>
       <style>{CSS}</style>
 
-      {/* NAV */}
-      <nav className={`nav${scrolled ? " scrolled" : ""}`}>
-        <div className="nav-logo">INCO<span>ZONE</span></div>
-        <ul className="nav-links">
-          {["Services", "Free Zones", "About", "Blog", "Contact"].map(l => (
-            <li key={l}>
-              <a href="#" onClick={e => {
-                e.preventDefault();
-                if (l === "Services") { setCurrentPage("services"); window.scrollTo(0,0); }
-                else if (l === "Free Zones") document.getElementById("zone-finder")?.scrollIntoView({ behavior: "smooth" });
-                else if (l === "About") { setCurrentPage("about"); window.scrollTo(0,0); }
-                else if (l === "Blog") { setCurrentPage("blog"); window.scrollTo(0,0); }
-                else if (l === "Contact") { setCurrentPage("contact"); window.scrollTo(0,0); }
-              }}>{l}</a>
-            </li>
-          ))}
-        </ul>
-        <button className="nav-cta" onClick={() => goPage("schedule")}>Schedule Consultation</button>
-      </nav>
+      {/* NAV — shared GlobalNav component */}
+      <GlobalNav onNavigate={goPage} scrolled={scrolled} />
 
       {/* HERO — dark navy with particles */}
       <section className="hero">

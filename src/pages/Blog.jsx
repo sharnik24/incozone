@@ -793,11 +793,7 @@ export default function BlogPage({ onBack, onNavigate }) {
       {/* ── NAV ── */}
       <nav className={`bg-nav${scrolled ? " scrolled" : ""}`}>
         <div className="bg-nav-logo" onClick={()=>{if(onNavigate){onNavigate("home");window.scrollTo(0,0);}}}>INCO<em>ZONE</em></div>
-        <ul className="bg-nav-links">
-          {["Home","Services","Free Zones","About","Blog","Contact"].map(l => (
-            <li key={l}><a href="#" onClick={e => { e.preventDefault(); if(l==="Home") onBack(); }}>{l}</a></li>
-          ))}
-        </ul>
+        <ul className="bg-nav-links">{["Services","Free Zones","About","Blog","Contact"].map(l=>{const m={"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};return <li key={l}><a href="#" onClick={e=>{e.preventDefault();if(onNavigate){onNavigate(m[l]);window.scrollTo(0,0);}}}>{l}</a></li>;})}</ul>
         <div style={{display:"flex",alignItems:"center",gap:"16px"}}>
           <button className="bg-back-btn" onClick={onBack}>Back to Home</button>
           <button className="bg-nav-cta">Consult Now</button>

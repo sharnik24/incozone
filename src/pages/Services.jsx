@@ -54,22 +54,10 @@ const CSS = `
 /* ── HERO ────────────────────────────────────────────────────── */
 .srv-hero {
   min-height: 100vh; position: relative; overflow: hidden;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 0 60px 80px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 60px 80px;
 }
 .srv-hero-canvas { position: absolute; inset: 0; z-index: 0; }
-
-/* Giant background wordmark */
-.srv-hero-wordmark {
-  position: absolute; z-index: 1;
-  top: 50%; left: 50%; transform: translate(-50%, -48%);
-  font-family: var(--fd); font-size: clamp(10rem, 22vw, 22rem);
-  font-weight: 300; letter-spacing: -0.04em; line-height: 1;
-  color: transparent; -webkit-text-stroke: 1px rgba(201,168,76,0.08);
-  white-space: nowrap; pointer-events: none; user-select: none;
-  animation: srvWordmark 1.6s var(--ease) 0.3s both;
-}
-@keyframes srvWordmark { from { opacity: 0; transform: translate(-50%, -44%); } to { opacity: 1; transform: translate(-50%, -48%); } }
 
 .srv-hero-inner { position: relative; z-index: 2; max-width: 900px; }
 
@@ -81,13 +69,13 @@ const CSS = `
 .srv-hero-overline span { font-size: 0.62rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--g400); }
 
 .srv-hero-h1 {
-  font-family: var(--fd); font-weight: 300; line-height: 0.92;
-  letter-spacing: -0.03em; color: var(--w);
-  font-size: clamp(3.8rem, 8vw, 8rem);
+  font-family: var(--fd); font-weight: 300; line-height: 1.0;
+  letter-spacing: -0.02em; color: var(--w);
+  font-size: clamp(2.8rem, 5vw, 5.2rem);
   opacity: 0; animation: srvUp 1s var(--ease) 0.6s forwards;
 }
-.srv-hero-h1 .line-2 { display: block; padding-left: 80px; color: var(--g400); font-style: italic; }
-.srv-hero-h1 .line-3 { display: block; padding-left: 160px; }
+.srv-hero-h1 .line-2 { display: block; padding-left: 40px; color: var(--g400); font-style: italic; }
+.srv-hero-h1 .line-3 { display: block; padding-left: 80px; }
 
 .srv-hero-sub {
   margin-top: 36px; max-width: 480px;
@@ -669,7 +657,7 @@ export default function ServicesPage({ onBack, onNavigate }) {
       {/* ── NAV ── */}
       <nav className={`srv-nav${scrolled ? " scrolled" : ""}`}>
         <div className="srv-nav-logo" onClick={()=>{if(onNavigate){onNavigate("home");window.scrollTo(0,0);}}}>INCO<em>ZONE</em></div>
-        <ul className="srv-nav-links">{["Services","Free Zones","About","Blog","Contact"].map(l=>{const m={"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};return <li key={l}><a href="#" onClick={e=>{e.preventDefault();if(onNavigate){onNavigate(m[l]);window.scrollTo(0,0);}}}>{l}</a></li>;})}</ul>
+        <ul className="srv-nav-links">{["Home","Services","Free Zones","About","Blog","Contact"].map(l=>{const m={"Home":"home","Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};return <li key={l}><a href="#" onClick={e=>{e.preventDefault();if(onNavigate){onNavigate(m[l]);window.scrollTo(0,0);}}}>{l}</a></li>;})}</ul>
         <button className="srv-nav-cta" onClick={()=>{if(onNavigate){onNavigate("schedule");window.scrollTo(0,0);}}}>Schedule Consultation</button>
       
         {/* Hamburger */}
@@ -688,8 +676,8 @@ export default function ServicesPage({ onBack, onNavigate }) {
           onClick={() => { setsrvOpen(false); if(onNavigate) { onNavigate("home"); window.scrollTo(0,0); } }}>
           INCO<em>ZONE</em>
         </div>
-        {["Services","Free Zones","About","Blog","Contact"].map((l) => {
-          const pm = {"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};
+        {["Home","Services","Free Zones","About","Blog","Contact"].map((l) => {
+          const pm = {"Home":"home","Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};
           return (
             <button key={l} className="srv-dlink"
               onClick={() => { setsrvOpen(false); if(onNavigate) { onNavigate(pm[l]); window.scrollTo(0,0); } }}>
@@ -707,7 +695,6 @@ export default function ServicesPage({ onBack, onNavigate }) {
       {/* ── HERO ── */}
       <section className="srv-hero">
         <HeroCanvas />
-        <div className="srv-hero-wordmark">SERVICES</div>
 
         <div className="srv-hero-inner">
           <div className="srv-hero-overline">

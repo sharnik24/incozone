@@ -1036,7 +1036,7 @@ export default function DMCCPage({ onBack, onNavigate }) {
             Schedule a private consultation. No obligation. Our DMCC specialists will assess your situation and give you a clear, honest recommendation — whether that's DMCC or another zone entirely.
           </p>
           <div className="dmcc-cta-btns dmcc-reveal dr3">
-            <button className="btn-ink">Schedule Private Consultation</button>
+            <button className="btn-ink" onClick={() => { if(onNavigate){ onNavigate("schedule"); window.scrollTo(0,0); } }}>Schedule Private Consultation</button>
             <button className="btn-cream-outline" onClick={onBack}>← Explore Other Zones</button>
           </div>
         </div>

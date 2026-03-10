@@ -1384,7 +1384,7 @@ function Calculator({ zone }) {
             <div className="calc-line" style={{ borderBottom: "none", paddingTop: "16px" }}><span className="calc-line-label" style={{ fontWeight: "500", color: "var(--white)" }}>Total Estimate</span><span className="calc-line-val" style={{ color: "var(--gold-400)", fontSize: "1rem" }}>{fmt(total)}</span></div>
           </div>
           <p className="calc-note">This is an estimate. Final costs depend on specific activities, authority fees, and prevailing government charges.</p>
-          <button className="btn-primary" style={{ width: "100%" }}>Get Exact Quote →</button>
+          <button className="btn-primary" style={{ width: "100%" }} onClick={() => onNavigate && onNavigate("schedule")}>Get Exact Quote →</button>
         </div>
       </div>
     </div>
@@ -1392,7 +1392,7 @@ function Calculator({ zone }) {
 }
 
 // ─── ZONE DETAIL PAGE ─────────────────────────────────────────
-function ZonePage({ zone, onBack }) {
+function ZonePage({ zone, onBack, onNavigate }) {
   const [activeTab, setActiveTab] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   useReveal();
@@ -1407,8 +1407,8 @@ function ZonePage({ zone, onBack }) {
     <div className="zone-page">
       <nav className={`nav${scrolled ? " scrolled" : ""}`}>
         <div className="nav-logo">INCO<span>ZONE</span></div>
-        <ul className="nav-links">{["Services", "Free Zones", "About", "Blog", "Contact"].map(l => <li key={l}><a href="#">{l}</a></li>)}</ul>
-        <button className="nav-cta">Schedule Consultation</button>
+        <ul className="nav-links">{["Services","Free Zones","About","Blog","Contact"].map(l=>{const m={"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};return <li key={l}><a href="#" onClick={e=>{e.preventDefault();if(onNavigate){onNavigate(m[l]);window.scrollTo(0,0);}}}}>{l}</a></li>;})}  </ul>
+        <button className="nav-cta" onClick={() => onNavigate && onNavigate("schedule")}>Schedule Consultation</button>
       </nav>
       <div className="zone-hero">
         <ZoneHeroCanvas color={zone.color} />
@@ -1496,7 +1496,7 @@ function ZonePage({ zone, onBack }) {
           <div className="cta-divider" />
           <p>Private consultation. No obligation. Expert advisory from day one.</p>
           <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-            <button className="btn-cream-primary">Schedule Private Consultation</button>
+            <button className="btn-cream-primary" onClick={() => goPage("schedule")}>Schedule Private Consultation</button>
             <button className="btn-cream-ghost" onClick={onBack}>← Explore Other Zones</button>
           </div>
         </div>
@@ -1505,9 +1505,9 @@ function ZonePage({ zone, onBack }) {
       <footer>
         <div className="footer-top">
           <div><div className="footer-brand-name">INCO<span>ZONE</span></div><p className="footer-tagline">UAE's premier private advisory firm for business incorporation and corporate structuring.</p></div>
-          <div className="footer-col"><h5>Services</h5><ul>{["Free Zone Formation", "Mainland Setup", "PRO Services", "Amendments"].map(s => <li key={s}><a href="#">{s}</a></li>)}</ul></div>
-          <div className="footer-col"><h5>Free Zones</h5><ul>{ZONES.map(z => <li key={z.id}><a href="#">{z.name}</a></li>)}</ul></div>
-          <div className="footer-col"><h5>Company</h5><ul>{["About", "Blog", "Contact"].map(s => <li key={s}><a href="#">{s}</a></li>)}</ul></div>
+          <div className="footer-col"><h5>Services</h5><ul>{[["Free Zone Formation","services"],["Mainland Setup","mainland"],["PRO Services","pro"],["Amendments","pro"]].map(([s,p]) => <li key={s}><a href="#" onClick={e=>{e.preventDefault();if(onNavigate){onNavigate(p);window.scrollTo(0,0);}}}>{s}</a></li>)}</ul></div>
+          <div className="footer-col"><h5>Free Zones</h5><ul>{ZONES.map(z => <li key={z.id}><a href="#" onClick={e=>{e.preventDefault();if(onNavigate){onNavigate("home");window.scrollTo(0,0);}}}>{z.name}</a></li>)}</ul></div>
+          <div className="footer-col"><h5>Company</h5><ul>{[["About","about"],["Blog","blog"],["Contact","contact"]].map(([s,p]) => <li key={s}><a href="#" onClick={e=>{e.preventDefault();if(onNavigate){onNavigate(p);window.scrollTo(0,0);}}}>{s}</a></li>)}</ul></div>
         </div>
         <div className="footer-bottom"><span>© 2025 INCOZONE.</span><span>Dubai, UAE</span></div>
       </footer>
@@ -1710,7 +1710,7 @@ export default function App() {
           <h1 className="hero-h1">Establish Your Presence<br />in the UAE with <em>Strategic Precision.</em></h1>
           <p className="hero-sub">Free Zone <span>·</span> Mainland <span>·</span> PRO Services <span>·</span> Corporate Structuring</p>
           <div className="hero-actions">
-            <button className="btn-primary">Schedule Private Consultation</button>
+            <button className="btn-primary" onClick={() => goPage("schedule")}>Schedule Private Consultation</button>
             <button className="btn-ghost" onClick={() => document.getElementById("zone-finder")?.scrollIntoView({ behavior: "smooth" })}>Explore Free Zones ↓</button>
           </div>
         </div>
@@ -2095,7 +2095,7 @@ export default function App() {
           <div className="cta-divider" />
           <p>Private consultation. Structured approach. Measurable results.</p>
           <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-            <button className="btn-cream-primary">Schedule Private Consultation</button>
+            <button className="btn-cream-primary" onClick={() => goPage("schedule")}>Schedule Private Consultation</button>
             <button className="btn-cream-ghost">Download Setup Guide</button>
           </div>
         </div>

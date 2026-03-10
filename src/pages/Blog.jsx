@@ -7,7 +7,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 // ═══════════════════════════════════════════════════════════════
 
 const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
 
 /* ─── RESET ─────────────────────────────────────────────────── */
 .bg-root *, .bg-root *::before, .bg-root *::after { box-sizing:border-box; margin:0; padding:0; }
@@ -35,7 +35,7 @@ const CSS = `
   --fb:'Libre Baskerville',Georgia,serif;
   --fs:'DM Sans',system-ui,sans-serif;
   --fc:'Cormorant Garamond',Georgia,serif;
-  --ff:'UnifrakturMaguntia',cursive;
+  --ff:'Cormorant Garamond',Georgia,serif;
 
   background:var(--paper); color:var(--ink);
   font-family:var(--fb); font-weight:400;
@@ -716,7 +716,7 @@ function ArticleOverlay({ article, onClose }) {
       <div className="bg-overlay-inner">
         {/* Masthead strip inside article */}
         <div style={{textAlign:"center",borderBottom:"3px double #0d0b08",paddingBottom:"14px",marginBottom:"28px"}}>
-          <span style={{fontFamily:"'UnifrakturMaguntia',cursive",fontSize:"1.8rem",color:"var(--ink)"}}>The UAE Business Gazette</span>
+          <span style={{fontFamily:"'Cormorant Garamond',Georgia,serif",fontSize:"1.8rem",color:"var(--ink)"}}>The UAE Business Gazette</span>
         </div>
 
         <span className="bg-art-kicker ink-stamp">{article.kicker} · {article.cat}</span>
@@ -854,7 +854,7 @@ export default function BlogPage({ onBack, onNavigate }) {
             <span className="bg-nameplate-title ink-stamp" style={{animationDelay:".1s"}}>
               THE UAE BUSINESS GAZETTE
             </span>
-            <div style={{fontFamily:"'UnifrakturMaguntia',cursive",fontSize:"clamp(3.2rem,7.5vw,7rem)",color:"var(--ink)",lineHeight:1,display:"block",margin:"4px 0 8px"}}>
+            <div style={{fontFamily:"'Cormorant Garamond',Georgia,serif",fontSize:"clamp(3.2rem,7.5vw,7rem)",color:"var(--ink)",lineHeight:1,display:"block",margin:"4px 0 8px"}}>
               INCOZONE
             </div>
             <span className="bg-nameplate-sub ink-stamp" style={{animationDelay:".2s"}}>
@@ -1077,7 +1077,7 @@ export default function BlogPage({ onBack, onNavigate }) {
 
         {/* ══ FOOTER ════════════════════════════════════════════ */}
         <div className="bg-footer">
-          <div style={{fontFamily:"'UnifrakturMaguntia',cursive",fontSize:"2.2rem",color:"var(--paper2)"}}>The UAE Business Gazette</div>
+          <div style={{fontFamily:"'Cormorant Garamond',Georgia,serif",fontSize:"2.2rem",color:"var(--paper2)"}}>The UAE Business Gazette</div>
           <div style={{fontFamily:"var(--fs)",fontSize:".62rem",color:"rgba(245,240,232,.5)",letterSpacing:".06em",textAlign:"center"}}>
             © 2026 INCOZONE Advisory. All editorial content is for informational purposes only.<br/>
             Nothing herein constitutes legal or financial advice.

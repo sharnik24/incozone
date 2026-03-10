@@ -655,7 +655,7 @@ export default function ADGMPage({ onBack, onNavigate }) {
       {/* ── NAV ── */}
       <nav className={`adg-nav${scrolled ? " scrolled" : ""}`}>
         <div className="adg-nav-logo" onClick={()=>{if(onNavigate){onNavigate("home");window.scrollTo(0,0);}}}>INCO<em>ZONE</em></div>
-        <ul className="adg-nav-links">{["Services","Free Zones","About","Blog","Contact"].map(l => <li key={l}><a href="#">{l}</a></li>)}</ul>
+        <ul className="adg-nav-links">{["Services","Free Zones","About","Blog","Contact"].map(l=>{const m={"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};return <li key={l}><a href="#" onClick={e=>{e.preventDefault();if(onNavigate){onNavigate(m[l]);window.scrollTo(0,0);}}}>{l}</a></li>;})}</ul>
         <button className="adg-nav-cta" onClick={()=>{if(onNavigate){onNavigate("schedule");window.scrollTo(0,0);}}}>Schedule Consultation</button>
       
         {/* Hamburger */}

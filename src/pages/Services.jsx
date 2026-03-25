@@ -483,8 +483,7 @@ const SERVICES = [
     num: "01",
     category: "Formation",
     title: "Free Zone\nIncorporation",
-    titleEm: null,
-    desc: "Strategic establishment within UAE's premier free zones — <strong>DMCC, IFZA, Meydan, SHAMS, RAKEZ, JAFZA, AFZ, and ADGM.</strong> Full licensing, activity selection, and corporate document facilitation. We match your business model to the right zone from the first conversation.",
+    desc: "Strategic establishment within UAE's premier free zones — <strong>DMCC, IFZA, Meydan, SHAMS, RAKEZ, JAFZA, AFZ, and ADGM.</strong> Full licensing, activity selection, and corporate document facilitation. We match your business model to the right zone from the first conversation — not the most profitable one for us.",
     tags: ["Trade License", "MOA & Articles", "Corporate Stamp", "Activity Selection", "Zone Advisory"],
     stat: "8",
     statLabel: "Free Zones",
@@ -493,63 +492,124 @@ const SERVICES = [
   },
   {
     num: "02",
-    category: "Residency",
-    title: "UAE Investor\nVisa",
-    titleEm: null,
-    desc: "End-to-end investor visa processing — entry permit, <strong>medical fitness, biometric registration, Emirates ID,</strong> and residence stamping. We handle every government touchpoint so you don't have to. Timelines from 10 working days.",
-    tags: ["Entry Permit", "Emirates ID", "Medical Test", "Biometrics", "Visa Stamping"],
+    category: "Mainland",
+    title: "UAE Mainland\nSetup",
+    desc: "DED-licensed mainland company formation — <strong>sole establishment, LLC structures, and professional licenses</strong> with full local sponsor and LSA arrangements. Ideal for businesses targeting the UAE domestic market, government contracts, or requiring a physical Dubai address without free zone restrictions.",
+    tags: ["DED License", "LLC Formation", "Local Sponsor", "Professional License", "Branch Office"],
+    stat: "3,200+",
+    statLabel: "Companies",
+    cta: "Learn More",
+    page: "mainland",
+  },
+  {
+    num: "03",
+    category: "Residency & Immigration",
+    title: "Visa &\nImmigration Services",
+    desc: "Complete UAE visa management — <strong>investor visas, employment visas, dependent visas, visa renewals, and cancellations.</strong> Entry permit, medical fitness, biometric registration, Emirates ID, and residence stamping all managed under one roof. Average investor visa timeline: 10 working days.",
+    tags: ["Investor Visa", "Employment Visa", "Dependent Visa", "Visa Renewal", "Visa Cancellation", "Emirates ID", "Entry Permit", "Medical Test"],
     stat: "10",
     statLabel: "Days Average",
     cta: "Get in Touch",
     page: "contact",
   },
   {
-    num: "03",
+    num: "04",
+    category: "Prestige Residency",
+    title: "UAE Golden\nVisa",
+    desc: "The UAE Golden Visa grants <strong>10-year renewable residency</strong> for investors, entrepreneurs, exceptional talent, and qualified professionals. No employer sponsorship needed — full independence. We manage the complete qualification assessment, application, and approval process. Applicable for real estate investors (AED 2M+), business owners, and high-net-worth individuals.",
+    tags: ["10-Year Residency", "Investor Category", "Entrepreneur Route", "Talent Category", "Real Estate", "Self-Sponsored", "Family Inclusion"],
+    stat: "10",
+    statLabel: "Year Visa",
+    cta: "Check Eligibility",
+    page: "contact",
+  },
+  {
+    num: "05",
     category: "Banking",
     title: "Corporate\nBanking Setup",
-    titleEm: null,
-    desc: "Introductions to UAE's top corporate banks with full documentation packages prepared for your business model. <strong>Source-of-funds letters, business plans, KYC packages</strong> — we maximise your account approval probability from day one.",
-    tags: ["Bank Introductions", "KYC Package", "Business Plan", "Source of Funds", "Trade Finance"],
+    desc: "Introductions to UAE's top corporate banks — <strong>ENBD, FAB, ADCB, Mashreq, RAKBank</strong> — with fully prepared documentation packages tailored to your business model. Source-of-funds letters, business plans, KYC packages curated to maximise approval probability. We know what each bank looks for and structure your application accordingly.",
+    tags: ["Bank Introductions", "KYC Package", "Business Plan", "Source of Funds", "Trade Finance", "Multi-Currency"],
     stat: "95%",
     statLabel: "Approval Rate",
     cta: "Get in Touch",
     page: "contact",
   },
   {
-    num: "04",
+    num: "06",
     category: "Operations",
     title: "PRO &\nGovernment Services",
-    titleEm: null,
-    desc: "Ongoing government liaison — <strong>license renewals, activity amendments, visa renewals,</strong> Emirates ID renewals, attestations, NOCs, and authority approvals. Your dedicated PRO partner for every government interaction in the UAE.",
-    tags: ["License Renewal", "Visa Renewal", "Amendments", "Attestation", "NOC Services"],
+    desc: "Your permanent government liaison in the UAE — <strong>license renewals, visa renewals, Emirates ID renewals, activity amendments, MOA updates, NOCs, attestations, MOHRE approvals, and authority submissions.</strong> Trusted by 500+ businesses for all routine and complex government transactions. No more queues. No more confusion.",
+    tags: ["License Renewal", "Visa Renewal", "MOHRE Services", "Attestation", "NOC Services", "MOA Updates", "Authority Liaison"],
     stat: "1,200+",
     statLabel: "Transactions",
     cta: "Learn More",
     page: "pro",
   },
   {
-    num: "05",
+    num: "07",
     category: "Restructuring",
     title: "Company\nAmendments",
-    titleEm: null,
-    desc: "Shareholder changes, director additions, activity expansions, trade name amendments, share transfers, and <strong>corporate restructuring across all UAE free zones and mainland.</strong> Executed with precision regardless of complexity.",
-    tags: ["Share Transfer", "Director Change", "Activity Add", "Name Change", "Capital Change"],
+    desc: "Shareholder changes, director appointments, activity expansions, trade name amendments, share transfers, and <strong>corporate restructuring across all UAE free zones and mainland.</strong> Whether it's a simple name change or a complex cross-border restructuring, we execute with the same precision regardless of complexity or timeline.",
+    tags: ["Share Transfer", "Director Change", "Activity Addition", "Name Change", "Capital Change", "Cross-Border"],
     stat: "48hr",
     statLabel: "Turnaround",
     cta: "Get in Touch",
     page: "contact",
   },
   {
-    num: "06",
-    category: "Mainland",
-    title: "UAE Mainland\nSetup",
-    titleEm: null,
-    desc: "DED-licensed mainland company formation — <strong>sole establishment, LLC structures, and professional licenses</strong> with full local sponsor and LSA arrangements. Ideal for businesses requiring direct consumer-facing UAE mainland operations.",
-    tags: ["DED License", "LLC Formation", "Local Sponsor", "Professional License", "Branch Office"],
-    stat: "3,200+",
-    statLabel: "Companies",
-    cta: "Learn More",
-    page: "mainland",
+    num: "08",
+    category: "Legal Asset Protection",
+    title: "UAE WILL\nRegistration",
+    desc: "Protect your UAE assets and secure your family's future with a <strong>legally registered WILL under DIFC or Abu Dhabi Courts.</strong> Without a registered WILL, UAE assets can be frozen upon death and distributed under Sharia law regardless of your nationality. Our WILL advisory ensures your assets, shares, and property transfer exactly as you intend — legally enforced.",
+    tags: ["DIFC WILL", "Abu Dhabi Courts", "Asset Protection", "Inheritance Planning", "Share Transfer on Death", "Property", "Family Security"],
+    stat: "100%",
+    statLabel: "Legal Certainty",
+    cta: "Get in Touch",
+    page: "contact",
+  },
+  {
+    num: "09",
+    category: "Intellectual Property",
+    title: "Trademark\nRegistration",
+    desc: "Register and protect your brand in the UAE with a <strong>Ministry of Economy trademark</strong> — covering your name, logo, slogan, and brand identity across all 45 international classes. Without registration, your brand is unprotected. We manage the full application, classification, examination response, and certificate delivery. Regional GCC trademark filing also available.",
+    tags: ["UAE Trademark", "Ministry of Economy", "Brand Protection", "Logo Registration", "GCC Filing", "45 Classes", "Renewal Management"],
+    stat: "45",
+    statLabel: "IP Classes",
+    cta: "Protect Your Brand",
+    page: "contact",
+  },
+  {
+    num: "10",
+    category: "Special Approvals",
+    title: "Government\nSpecial Approvals",
+    desc: "Certain business activities in the UAE require <strong>approvals beyond the standard trade license</strong> — from sector regulators including CBUAE, SCA, KHDA, DHA, CAA, TDRA, and Dubai Economy. Regulated industries including fintech, healthcare, education, food & beverage, aviation, media, and financial services require dedicated authority clearance. We navigate every approval pathway.",
+    tags: ["CBUAE Approval", "SCA License", "KHDA Permit", "DHA License", "CAA Approval", "TDRA", "Fintech Regulatory", "Healthcare"],
+    stat: "15+",
+    statLabel: "Regulators",
+    cta: "Discuss Requirements",
+    page: "contact",
+  },
+  {
+    num: "11",
+    category: "Offshore Structuring",
+    title: "Offshore Company\nFormation",
+    desc: "Establish an <strong>offshore holding company in RAK ICC or Ajman Offshore</strong> — ideal for asset protection, international trade, holding UAE real estate, IP ownership, and confidential corporate structures. 100% foreign ownership, zero tax, no audit requirement, and full banking privacy. INCOZONE manages incorporation, nominee services, and ongoing secretarial support.",
+    tags: ["RAK ICC", "Ajman Offshore", "Asset Holding", "IP Ownership", "Real Estate Holding", "Zero Audit", "Nominee Services"],
+    stat: "0%",
+    statLabel: "Tax Obligation",
+    cta: "Structure Advisory",
+    page: "contact",
+  },
+  {
+    num: "12",
+    category: "Exit Strategy",
+    title: "Company\nLiquidation",
+    desc: "Clean, compliant, and <strong>professionally managed company closure</strong> across all UAE free zones and mainland — including visa cancellations, lease terminations, bank account closure, final government clearances, and deregistration certificates. Avoid penalties and blacklisting through proper winding down. We manage every authority interaction from first notice to final clearance.",
+    tags: ["License Cancellation", "Visa Cancellation", "Bank Closure", "Authority Clearance", "Deregistration", "Free Zone & Mainland"],
+    stat: "30",
+    statLabel: "Day Process",
+    cta: "Get in Touch",
+    page: "contact",
   },
 ];
 
@@ -707,7 +767,7 @@ export default function ServicesPage({ onBack, onNavigate }) {
             <span className="line-3">Needs in UAE.</span>
           </h1>
           <p className="srv-hero-sub">
-            From <strong>free zone incorporation</strong> to investor visas, corporate banking, and ongoing government services — INCOZONE manages the full lifecycle of your UAE business presence. One advisor. End to end.
+            From <strong>free zone incorporation</strong> to Golden Visa, WILL registration, trademark protection, offshore structuring, and company liquidation — INCOZONE manages the full lifecycle of your UAE business presence. One advisor. End to end. Zero gaps.
           </p>
         </div>
 
@@ -721,13 +781,13 @@ export default function ServicesPage({ onBack, onNavigate }) {
       <div className="srv-intro-band">
         <div className="srv-intro-band-text">Our Services</div>
         <div className="srv-intro-band-pills">
-          {["Free Zone Setup","Investor Visa","Banking","PRO Services","Amendments","Mainland"].map(p => (
+          {["Free Zone Setup","Mainland","Visa & Immigration","Golden Visa","Banking","PRO Services","Amendments","WILL Registration","Trademark","Special Approvals","Offshore","Liquidation"].map(p => (
             <div className="srv-intro-band-pill" key={p}>{p}</div>
           ))}
         </div>
         <div className="srv-intro-band-count">
-          06
-          <span>Core Services</span>
+          12
+          <span>Premium Services</span>
         </div>
       </div>
 
@@ -736,11 +796,11 @@ export default function ServicesPage({ onBack, onNavigate }) {
         <div className="srv-list-header">
           <div className="srv-list-header-left srv-reveal">
             <span className="srv-list-header-label">Full Service Advisory</span>
-            <h2 className="srv-list-header-h2">Six services.<br /><em>One advisor.</em><br />Complete coverage.</h2>
+            <h2 className="srv-list-header-h2">Twelve services.<br /><em>One advisor.</em><br />Complete UAE coverage.</h2>
           </div>
           <div className="srv-list-header-right srv-reveal sd2">
             <p className="srv-list-header-desc">
-              INCOZONE provides <strong>integrated advisory across every stage</strong> of UAE business establishment and operation. Each service is delivered by specialists — not generalists — with direct relationships at the authorities that matter.
+              INCOZONE provides <strong>integrated advisory across every stage</strong> of UAE business establishment, operation, and exit. From incorporation and visas to Golden Visa, trademark protection, WILL registration, offshore structuring, and company liquidation — each service delivered by specialists with direct authority relationships.
             </p>
           </div>
         </div>

@@ -599,9 +599,9 @@ export default function ContactPage({ onBack, onSchedule, onNavigate }) {
             </p>
 
             {[
-              { icon:"📞", label:"Direct Line", val:"+971 4 XXX XXXX", sub:"Sun–Thu, 9:00am–6:00pm GST" },
-              { icon:"✉️", label:"Email Advisory", val:"advisory@incozone.ae", sub:"Response within 1 business day" },
-              { icon:"💬", label:"WhatsApp", val:"+971 XX XXX XXXX", sub:"Instant messaging, 7 days" },
+              { icon:"📞", label:"Direct Line", val:"+971 56 583 4586", sub:"Sun–Thu, 9:00am–6:00pm GST" },
+              { icon:"✉️", label:"Email Advisory", val:"info@essenceuae.com", sub:"Response within 1 business day" },
+              { icon:"💬", label:"WhatsApp", val:"+971 56 583 4586", sub:"Instant messaging, 7 days" },
               { icon:"📍", label:"Location", val:"Business Bay, Dubai", sub:"Near Dubai Mall Metro Station" },
             ].map((c, i) => (
               <div className="ct-contact-card ct-reveal" key={i} style={{transitionDelay:`${i*.08}s`}}>

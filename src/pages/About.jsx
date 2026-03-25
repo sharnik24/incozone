@@ -709,8 +709,8 @@ const PILLARS = [
 const TEAM = [
   { initial:"R", name:"Chirag Mahyavansi", role:"Managing Director", bio:"Leads INCOZONE's advisory practice with 12 years of experience guiding high-net-worth individuals, family offices, and institutional investors through UAE market entry and corporate structuring.", exp:"12yr UAE" },
   { initial:"A", name:"Tushar Rathod", role:"Business Setup Consultant", bio:"Specialist in UAE free zone incorporation across all 8 major zones. Advises founders and SMEs on optimal zone selection, licensing strategy, and end-to-end company formation.", exp:"2yr Advisory" },
-  { initial:"K", name:"Aakash Palgamkar", role:"Accountant", bio:"Manages corporate financial compliance, bookkeeping, VAT registration, and financial reporting for INCOZONE clients across free zone and mainland structures.", exp:"10yr Accounting" },
-  { initial:"S", name:"Dharmesh Mahyavanshi", role:"Accounting Head", bio:"Heads INCOZONE's accounting and financial compliance practice. Oversees corporate financial structuring, VAT compliance, and financial reporting for high-value clients across free zone and mainland entities.", exp:"2yr Accounting" },
+  { initial:"K", name:"Aakash Palgamkar", role:"Accountant", bio:"Manages corporate financial compliance, bookkeeping, VAT registration, and financial reporting for INCOZONE clients across free zone and mainland structures.", exp:"2yr Accounting" },
+  { initial:"S", name:"Dharmesh Mahyavanshi", role:"Accounting Head", bio:"Heads INCOZONE's accounting and financial compliance practice. Oversees corporate financial structuring, VAT compliance, and financial reporting for high-value clients across free zone and mainland entities.", exp:"10yr Accounting" },
 ];
 
 const VALUES = [

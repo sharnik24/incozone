@@ -521,7 +521,7 @@ const SERVICES = [
     stat: "10",
     statLabel: "Year Visa",
     cta: "Check Eligibility",
-    page: "contact",
+    page: "goldenvisa",
   },
   {
     num: "05",

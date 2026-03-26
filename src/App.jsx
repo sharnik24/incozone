@@ -15,6 +15,7 @@ import BlogPage from "./pages/Blog";
 import ContactPage from "./pages/Contact";
 import SchedulePage from "./pages/Schedule";
 import AdminPage from "./pages/Admin";
+import GoldenVisaPage from "./pages/GoldenVisa";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Dark Navy + Cream Accents
@@ -1748,6 +1749,7 @@ export default function App() {
   if (currentPage === "contact")  return <ContactPage  onBack={() => goPage("home")}  onNavigate={goPage} onSchedule={() => goPage("schedule")} />;
   if (currentPage === "schedule") return <SchedulePage onBack={() => goPage("home")}  onNavigate={goPage} />;
   if (currentPage === "admin")    return <AdminPage />;
+  if (currentPage === "goldenvisa") return <GoldenVisaPage onBack={() => goPage("services")} onNavigate={goPage} />;
 
   const filtered = activeCategory === "all" ? ZONES : ZONES.filter(z => z.category === activeCategory);
 

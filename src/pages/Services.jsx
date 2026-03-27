@@ -532,7 +532,7 @@ const SERVICES = [
     stat: "95%",
     statLabel: "Approval Rate",
     cta: "Get in Touch",
-    page: "contact",
+    page: "banking",
   },
   {
     num: "06",

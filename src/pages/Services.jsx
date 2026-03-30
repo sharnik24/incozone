@@ -565,7 +565,7 @@ const SERVICES = [
     stat: "100%",
     statLabel: "Legal Certainty",
     cta: "Get in Touch",
-    page: "contact",
+    page: "willregistration",
   },
   {
     num: "09",

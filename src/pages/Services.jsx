@@ -510,7 +510,7 @@ const SERVICES = [
     stat: "10",
     statLabel: "Days Average",
     cta: "Get in Touch",
-    page: "contact",
+    page: "residencyimmigration",
   },
   {
     num: "04",

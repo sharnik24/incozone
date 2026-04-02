@@ -17,6 +17,14 @@ import SchedulePage from "./pages/Schedule";
 import AdminPage from "./pages/Admin";
 import GoldenVisaPage from "./pages/GoldenVisa";
 import BankingPage from "./pages/Banking";
+import VisaImmigrationPage from "./pages/VisaImmigration";
+import WillRegistrationPage from "./pages/WillRegistration";
+import TrademarkRegistrationPage from "./pages/TrademarkRegistration";
+import SpecialApprovalsPage from "./pages/SpecialApprovals";
+import OffshoreFormationPage from "./pages/OffshoreFormation";
+import CompanyLiquidationPage from "./pages/CompanyLiquidation";
+import FreeZoneIncorporationPage from "./pages/FreeZoneIncorporation";
+import CompanyAmendmentsPage from "./pages/CompanyAmendments";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Dark Navy + Cream Accents
@@ -1741,17 +1749,27 @@ export default function App() {
   if (selectedZone?.id === "adgm")   return <ADGMPage   onBack={goHome} onNavigate={goPage} />;
   if (selectedZone) return <ZonePage zone={selectedZone} onBack={goHome} onNavigate={goPage} />;
 
-  // Service pages — all receive onNavigate so their nav works
-  if (currentPage === "services") return <ServicesPage onBack={() => goPage("home")} onNavigate={goPage} />;
-  if (currentPage === "mainland") return <MainlandPage onBack={goServices}            onNavigate={goPage} />;
-  if (currentPage === "pro")      return <PROPage      onBack={goServices}            onNavigate={goPage} />;
+  // Service pages — all 12 fully wired
+  if (currentPage === "services")           return <ServicesPage            onBack={() => goPage("home")}     onNavigate={goPage} />;
+  if (currentPage === "mainland")           return <MainlandPage            onBack={() => goPage("services")} onNavigate={goPage} />;
+  if (currentPage === "pro")                return <PROPage                 onBack={() => goPage("services")} onNavigate={goPage} />;
+  if (currentPage === "goldenvisa")         return <GoldenVisaPage          onBack={() => goPage("services")} onNavigate={goPage} />;
+  if (currentPage === "banking")            return <BankingPage             onBack={() => goPage("services")} onNavigate={goPage} />;
+  if (currentPage === "visaimmigration")    return <VisaImmigrationPage     onBack={() => goPage("services")} onNavigate={goPage} />;
+  if (currentPage === "willregistration")   return <WillRegistrationPage    onBack={() => goPage("services")} onNavigate={goPage} />;
+  if (currentPage === "trademark")          return <TrademarkRegistrationPage onBack={() => goPage("services")} onNavigate={goPage} />;
+  if (currentPage === "specialapprovals")   return <SpecialApprovalsPage    onBack={() => goPage("services")} onNavigate={goPage} />;
+  if (currentPage === "offshore")           return <OffshoreFormationPage   onBack={() => goPage("services")} onNavigate={goPage} />;
+  if (currentPage === "liquidation")        return <CompanyLiquidationPage  onBack={() => goPage("services")} onNavigate={goPage} />;
+  if (currentPage === "freezoneincorp")     return <FreeZoneIncorporationPage onBack={() => goPage("services")} onNavigate={goPage} />;
+  if (currentPage === "amendments")         return <CompanyAmendmentsPage   onBack={() => goPage("services")} onNavigate={goPage} />;
+
+  // Other pages
   if (currentPage === "about")    return <AboutPage    onBack={() => goPage("home")}  onNavigate={goPage} />;
   if (currentPage === "blog")     return <BlogPage     onBack={() => goPage("home")}  onNavigate={goPage} />;
   if (currentPage === "contact")  return <ContactPage  onBack={() => goPage("home")}  onNavigate={goPage} onSchedule={() => goPage("schedule")} />;
   if (currentPage === "schedule") return <SchedulePage onBack={() => goPage("home")}  onNavigate={goPage} />;
   if (currentPage === "admin")    return <AdminPage />;
-  if (currentPage === "goldenvisa") return <GoldenVisaPage onBack={() => goPage("services")} onNavigate={goPage} />;
-  if (currentPage === "banking") return <BankingPage onBack={() => goPage("services")} onNavigate={goPage} />;
 
   const filtered = activeCategory === "all" ? ZONES : ZONES.filter(z => z.category === activeCategory);
 

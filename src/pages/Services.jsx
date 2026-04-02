@@ -509,7 +509,7 @@ const SERVICES = [
     tags: ["Investor Visa", "Employment Visa", "Dependent Visa", "Visa Renewal", "Visa Cancellation", "Emirates ID", "Entry Permit", "Medical Test"],
     stat: "10",
     statLabel: "Days Average",
-    cta: "Get in Touch",
+    cta: "Learn More",
     page: "visaimmigration",
   },
   {
@@ -531,7 +531,7 @@ const SERVICES = [
     tags: ["Bank Introductions", "KYC Package", "Business Plan", "Source of Funds", "Trade Finance", "Multi-Currency"],
     stat: "95%",
     statLabel: "Approval Rate",
-    cta: "Get in Touch",
+    cta: "Learn More",
     page: "banking",
   },
   {
@@ -553,8 +553,8 @@ const SERVICES = [
     tags: ["Share Transfer", "Director Change", "Activity Addition", "Name Change", "Capital Change", "Cross-Border"],
     stat: "48hr",
     statLabel: "Turnaround",
-    cta: "Get in Touch",
-    page: "contact",
+    cta: "Learn More",
+    page: "amendments",
   },
   {
     num: "08",
@@ -564,7 +564,7 @@ const SERVICES = [
     tags: ["DIFC WILL", "Abu Dhabi Courts", "Asset Protection", "Inheritance Planning", "Share Transfer on Death", "Property", "Family Security"],
     stat: "100%",
     statLabel: "Legal Certainty",
-    cta: "Get in Touch",
+    cta: "Learn More",
     page: "willregistration",
   },
   {
@@ -575,8 +575,8 @@ const SERVICES = [
     tags: ["UAE Trademark", "Ministry of Economy", "Brand Protection", "Logo Registration", "GCC Filing", "45 Classes", "Renewal Management"],
     stat: "45",
     statLabel: "IP Classes",
-    cta: "Protect Your Brand",
-    page: "contact",
+    cta: "Learn More",
+    page: "trademark",
   },
   {
     num: "10",
@@ -586,8 +586,8 @@ const SERVICES = [
     tags: ["CBUAE Approval", "SCA License", "KHDA Permit", "DHA License", "CAA Approval", "TDRA", "Fintech Regulatory", "Healthcare"],
     stat: "15+",
     statLabel: "Regulators",
-    cta: "Discuss Requirements",
-    page: "contact",
+    cta: "Learn More",
+    page: "specialapprovals",
   },
   {
     num: "11",
@@ -597,8 +597,8 @@ const SERVICES = [
     tags: ["RAK ICC", "Ajman Offshore", "Asset Holding", "IP Ownership", "Real Estate Holding", "Zero Audit", "Nominee Services"],
     stat: "0%",
     statLabel: "Tax Obligation",
-    cta: "Structure Advisory",
-    page: "contact",
+    cta: "Learn More",
+    page: "offshore",
   },
   {
     num: "12",
@@ -608,8 +608,8 @@ const SERVICES = [
     tags: ["License Cancellation", "Visa Cancellation", "Bank Closure", "Authority Clearance", "Deregistration", "Free Zone & Mainland"],
     stat: "30",
     statLabel: "Day Process",
-    cta: "Get in Touch",
-    page: "contact",
+    cta: "Learn More",
+    page: "liquidation",
   },
 ];
 

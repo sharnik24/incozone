@@ -712,7 +712,7 @@ function ArticleOverlay({ article, onClose }) {
 
   return (
     <div className={`bg-overlay ${exiting ? "bg-article-exit" : "bg-article-enter"}`}>
-      <button className="bg-overlay-close" onClick={handleClose} aria-label="Close">✕</button>
+      <button className="bg-overlay-close" onClick={handleClose} aria-label="Close"></button>
       <div className="bg-overlay-inner">
         {/* Masthead strip inside article */}
         <div style={{textAlign:"center",borderBottom:"3px double #0d0b08",paddingBottom:"14px",marginBottom:"28px"}}>

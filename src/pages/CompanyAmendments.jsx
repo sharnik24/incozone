@@ -445,32 +445,32 @@ const PROCESS_STEPS = [
 
 const BENEFITS = [
   {
-    icon: "⚡",
+    icon: "",
     title: "Fast Turnaround",
     desc: "Most standard amendments completed within 3–7 working days. Complex restructuring handled on agreed timelines."
   },
   {
-    icon: "🏛️",
+    icon: "",
     title: "All Jurisdictions Covered",
     desc: "Amendments handled across all 8 major UAE free zones and DED mainland — one team, all authorities."
   },
   {
-    icon: "📋",
+    icon: "",
     title: "Full Document Management",
     desc: "We prepare, submit, and collect all documents. You review and sign — nothing else required from you."
   },
   {
-    icon: "🔍",
+    icon: "",
     title: "Pre-Amendment Review",
     desc: "We check for restrictions, conflicts, and authority requirements before submission — preventing rejections."
   },
   {
-    icon: "🤝",
+    icon: "",
     title: "Ongoing Corporate Support",
     desc: "We remain your corporate secretary post-amendment for all future changes, renewals, and compliance needs."
   },
   {
-    icon: "🔒",
+    icon: "",
     title: "Confidential & Precise",
     desc: "Sensitive shareholder and ownership changes handled with full confidentiality and legal precision."
   }

@@ -185,19 +185,19 @@ const CSS = `
 
 const LIQ_TYPES = [
   {
-    icon: "🏢", badge: "Free Zone",
+    icon: "", badge: "Free Zone",
     title: "Free Zone Liquidation",
     desc: "Professional deregistration of free zone companies across DMCC, IFZA, JAFZA, RAKEZ, SHAMS, Meydan, AFZ, ADGM and all other UAE free zones. Each authority has a specific closure process — we manage all.",
     includes: ["License cancellation with authority", "Employee visa cancellations", "Signatory removal from free zone", "Corporate document surrender", "Final clearance certificate", "Bank account closure coordination"],
   },
   {
-    icon: "🏙️", badge: "Mainland",
+    icon: "", badge: "Mainland",
     title: "Mainland Liquidation",
     desc: "DED and Department of Economic Development mainland company dissolution — including LLC, sole establishment, professional license, and branch office closures. Full MOE and labour clearance managed.",
     includes: ["DED license cancellation", "MOHRE / WPS clearance", "All employee visa cancellations", "Local sponsor release", "Municipality clearance", "Final deregistration certificate"],
   },
   {
-    icon: "🌊", badge: "Offshore",
+    icon: "", badge: "Offshore",
     title: "Offshore Dissolution",
     desc: "Clean dissolution of RAK ICC, Ajman Offshore, and other UAE offshore companies — including registered agent termination, bank account closure, and final deregistration from the authority.",
     includes: ["Authority dissolution application", "Registered agent termination", "Bank account closure coordination", "Corporate document cancellation", "Dissolution certificate issuance", "Annual fee clearance"],
@@ -214,12 +214,12 @@ const PROCESS_STEPS = [
 ];
 
 const CONSEQUENCES = [
-  { icon: "⚠️", title: "Daily Accumulating Fines", desc: "Expired UAE licenses accrue daily and monthly fines. Leaving a license to lapse without formal cancellation results in compounding penalties that can reach tens of thousands of dirhams." },
-  { icon: "🚫", title: "UAE Travel Ban", desc: "Outstanding company debts, unpaid fines, or improper closures can result in personal travel bans on company directors and shareholders — preventing re-entry to the UAE." },
-  { icon: "🏦", title: "Frozen Bank Accounts", desc: "An improperly closed or abandoned company can lead to corporate bank account freezing, which may affect personal accounts of directors in some circumstances." },
-  { icon: "📋", title: "Blacklisting with Authorities", desc: "Abandoned companies with outstanding violations are flagged by free zone authorities and DED — preventing future company setup in the same jurisdiction under the same shareholders." },
-  { icon: "👔", title: "Ongoing Employee Liability", desc: "If employees are not formally released through MOHRE, the company remains the legal employer — with ongoing salary, end-of-service, and gratuity obligations accumulating." },
-  { icon: "🔒", title: "Director Personal Liability", desc: "In cases of wilful abandonment, UAE courts may pierce the corporate veil and hold directors personally liable for company debts and obligations." },
+  { icon: "", title: "Daily Accumulating Fines", desc: "Expired UAE licenses accrue daily and monthly fines. Leaving a license to lapse without formal cancellation results in compounding penalties that can reach tens of thousands of dirhams." },
+  { icon: "", title: "UAE Travel Ban", desc: "Outstanding company debts, unpaid fines, or improper closures can result in personal travel bans on company directors and shareholders — preventing re-entry to the UAE." },
+  { icon: "", title: "Frozen Bank Accounts", desc: "An improperly closed or abandoned company can lead to corporate bank account freezing, which may affect personal accounts of directors in some circumstances." },
+  { icon: "", title: "Blacklisting with Authorities", desc: "Abandoned companies with outstanding violations are flagged by free zone authorities and DED — preventing future company setup in the same jurisdiction under the same shareholders." },
+  { icon: "", title: "Ongoing Employee Liability", desc: "If employees are not formally released through MOHRE, the company remains the legal employer — with ongoing salary, end-of-service, and gratuity obligations accumulating." },
+  { icon: "", title: "Director Personal Liability", desc: "In cases of wilful abandonment, UAE courts may pierce the corporate veil and hold directors personally liable for company debts and obligations." },
 ];
 
 const FAQS = [
@@ -305,7 +305,7 @@ export default function CompanyLiquidationPage({ onBack, onNavigate }) {
         </div>
         <div className="cl-hero-right">
           <div className="cl-warning-card">
-            <div className="cl-warning-title">⚠️ Cost of Not Acting</div>
+            <div className="cl-warning-title"> Cost of Not Acting</div>
             <div className="cl-warning-items">
               {[["Daily fines for expired licenses accumulate indefinitely"], ["Personal travel ban for directors with outstanding obligations"], ["Blacklisting prevents future UAE company setup"], ["Bank accounts frozen — affecting personal banking"], ["Ongoing employee liability if MOHRE not cleared"], ["Compounding penalties reaching AED 10,000s+"]].map(([text], i) => (
                 <div className="cl-warning-item" key={i}><span className="cl-warning-icon">→</span><span>{text}</span></div>
@@ -387,7 +387,7 @@ export default function CompanyLiquidationPage({ onBack, onNavigate }) {
               <ul className="cl-pkg-feats">
                 {pkg.features.map((f, j) => (
                   <li className="cl-pkg-feat" key={j}>
-                    <span className={`cl-feat-chk ${f.y ? "yes" : "no"}`}>{f.y ? "✓" : "×"}</span>
+                    <span className={`cl-feat-chk ${f.y ? "yes" : "no"}`}>{f.y ? "" : "×"}</span>
                     <span style={{ color: pkg.featured ? (f.y ? "var(--w80)" : "rgba(248,245,238,0.25)") : (f.y ? "var(--cream-ink2)" : "var(--cream-bdr)") }}>{f.t}</span>
                   </li>
                 ))}

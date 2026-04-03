@@ -353,7 +353,7 @@ const CSS = `
 
 const CATEGORIES = [
   {
-    icon: "🏢",
+    icon: "",
     num: "01",
     title: "Real Estate Investor",
     desc: "Own UAE property worth AED 2 million or more — whether purchased outright or with a mortgage from an approved UAE bank.",
@@ -365,7 +365,7 @@ const CATEGORIES = [
     ],
   },
   {
-    icon: "💼",
+    icon: "",
     num: "02",
     title: "Business Owner / Investor",
     desc: "Entrepreneurs and investors who own a business with a minimum capital investment or who have established a company in the UAE.",
@@ -377,7 +377,7 @@ const CATEGORIES = [
     ],
   },
   {
-    icon: "⭐",
+    icon: "",
     num: "03",
     title: "Exceptional Talent",
     desc: "Professionals recognised for outstanding contributions in science, arts, culture, sports, medicine, education, or technology.",
@@ -389,7 +389,7 @@ const CATEGORIES = [
     ],
   },
   {
-    icon: "🎓",
+    icon: "",
     num: "04",
     title: "Outstanding Students",
     desc: "High-achieving students from UAE universities or top-ranked international institutions who demonstrate academic excellence.",
@@ -401,7 +401,7 @@ const CATEGORIES = [
     ],
   },
   {
-    icon: "👔",
+    icon: "",
     num: "05",
     title: "Skilled Professional",
     desc: "Professionals in priority sectors who meet the UAE's criteria for skills and salary thresholds in high-demand industries.",
@@ -413,7 +413,7 @@ const CATEGORIES = [
     ],
   },
   {
-    icon: "🌐",
+    icon: "",
     num: "06",
     title: "Humanitarian Pioneer",
     desc: "Individuals who have made significant charitable contributions or shown extraordinary humanitarian service.",
@@ -427,14 +427,14 @@ const CATEGORIES = [
 ];
 
 const BENEFITS = [
-  { icon: "🛂", title: "10-Year Renewable Residency", desc: "Live, work, and study in the UAE for 10 years — automatically renewable if conditions are maintained." },
-  { icon: "👨‍👩‍👧", title: "Full Family Sponsorship", desc: "Sponsor spouse, children (all ages), and parents. No age limit restrictions on children unlike standard visas." },
-  { icon: "🏢", title: "No Employer Sponsorship", desc: "Completely self-sponsored. Your residency is independent of any employer — full freedom to change jobs or start businesses." },
-  { icon: "🌍", title: "Stay Outside UAE", desc: "No mandatory return requirement every 6 months. Live internationally without losing your UAE residency status." },
-  { icon: "🏦", title: "Full Banking Access", desc: "Access premium UAE banking facilities, investments, property ownership rights, and financial services as a long-term resident." },
-  { icon: "📜", title: "Business Freedom", desc: "Full freedom to establish, own, and operate UAE businesses. Start companies, hold shares, and run operations independently." },
-  { icon: "🎓", title: "Education & Healthcare", desc: "Access to UAE government schools, universities, and healthcare at resident rates — not visitor rates." },
-  { icon: "🔒", title: "Stability & Security", desc: "10-year horizon provides the stability to invest, plan, and build in the UAE with full long-term confidence." },
+  { icon: "", title: "10-Year Renewable Residency", desc: "Live, work, and study in the UAE for 10 years — automatically renewable if conditions are maintained." },
+  { icon: "", title: "Full Family Sponsorship", desc: "Sponsor spouse, children (all ages), and parents. No age limit restrictions on children unlike standard visas." },
+  { icon: "", title: "No Employer Sponsorship", desc: "Completely self-sponsored. Your residency is independent of any employer — full freedom to change jobs or start businesses." },
+  { icon: "", title: "Stay Outside UAE", desc: "No mandatory return requirement every 6 months. Live internationally without losing your UAE residency status." },
+  { icon: "", title: "Full Banking Access", desc: "Access premium UAE banking facilities, investments, property ownership rights, and financial services as a long-term resident." },
+  { icon: "", title: "Business Freedom", desc: "Full freedom to establish, own, and operate UAE businesses. Start companies, hold shares, and run operations independently." },
+  { icon: "", title: "Education & Healthcare", desc: "Access to UAE government schools, universities, and healthcare at resident rates — not visitor rates." },
+  { icon: "", title: "Stability & Security", desc: "10-year horizon provides the stability to invest, plan, and build in the UAE with full long-term confidence." },
 ];
 
 const PROCESS_STEPS = [
@@ -842,7 +842,7 @@ export default function GoldenVisaPage({ onBack, onNavigate }) {
                   const included = j < (pkg.featured ? 6 : pkg.name === "Family" ? 6 : 5);
                   return (
                     <li className="gv-pkg-feat" key={j}>
-                      <span className="gv-feat-check">{included ? "✓" : "×"}</span>
+                      <span className="gv-feat-check">{included ? "" : "×"}</span>
                       <span style={{ color: pkg.featured ? (included ? "var(--w80)" : "rgba(248,245,238,0.25)") : (included ? "var(--cream-ink2)" : "var(--cream-bdr)") }}>{f}</span>
                     </li>
                   );

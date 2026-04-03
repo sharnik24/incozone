@@ -528,7 +528,7 @@ export default function ContactPage({ onBack, onSchedule, onNavigate }) {
 
           {submitted ? (
             <div className="ct-success" style={{marginTop:"40px"}}>
-              <div className="ct-success-icon">✓</div>
+              <div className="ct-success-icon"></div>
               <div className="ct-success-title">Message Received.</div>
               <p className="ct-success-body">
                 One of our advisors will review your enquiry and respond within one business day. For urgent matters, call us directly on +971 4 XXX XXXX.
@@ -599,10 +599,10 @@ export default function ContactPage({ onBack, onSchedule, onNavigate }) {
             </p>
 
             {[
-              { icon:"📞", label:"Direct Line", val:"+971 56 583 4586", sub:"Sun–Thu, 9:00am–6:00pm GST" },
-              { icon:"✉️", label:"Email Advisory", val:"info@essenceuae.com", sub:"Response within 1 business day" },
-              { icon:"💬", label:"WhatsApp", val:"+971 56 583 4586", sub:"Instant messaging, 7 days" },
-              { icon:"📍", label:"Location", val:"Business Bay, Dubai", sub:"Near Dubai Mall Metro Station" },
+              { icon:"", label:"Direct Line", val:"+971 56 583 4586", sub:"Sun–Thu, 9:00am–6:00pm GST" },
+              { icon:"", label:"Email Advisory", val:"info@essenceuae.com", sub:"Response within 1 business day" },
+              { icon:"", label:"WhatsApp", val:"+971 56 583 4586", sub:"Instant messaging, 7 days" },
+              { icon:"", label:"Location", val:"Business Bay, Dubai", sub:"Near Dubai Mall Metro Station" },
             ].map((c, i) => (
               <div className="ct-contact-card ct-reveal" key={i} style={{transitionDelay:`${i*.08}s`}}>
                 <div className="ct-cc-icon">{c.icon}</div>

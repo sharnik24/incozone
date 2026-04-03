@@ -495,18 +495,18 @@ const STATS = [
 ];
 
 const ACTIVITIES = [
-  { i:"💼", n:"General Trading", d:"Import, export and general trading of goods worldwide" },
-  { i:"🖥️", n:"E-Commerce", d:"Online retail, digital marketplaces and dropshipping" },
-  { i:"💻", n:"Technology & IT", d:"Software, SaaS, IT consulting and digital services" },
-  { i:"📣", n:"Marketing & Media", d:"Digital marketing, advertising, branding and PR agencies" },
-  { i:"🏥", n:"Healthcare & Wellness", d:"Health consulting, medical equipment and wellness services" },
-  { i:"🎓", n:"Education & Training", d:"E-learning, coaching, training centers and EdTech" },
-  { i:"🏗️", n:"Real Estate", d:"Property consulting, management and real estate advisory" },
-  { i:"💡", n:"Consulting & Advisory", d:"Business, strategy, management and professional consulting" },
-  { i:"🌿", n:"Food & Beverage", d:"F&B trading, catering, food import/export and FMCG" },
-  { i:"✈️", n:"Travel & Tourism", d:"Travel agencies, tour operators and hospitality services" },
-  { i:"🚢", n:"Logistics", d:"Freight, supply chain, warehousing and distribution" },
-  { i:"🎨", n:"Creative & Design", d:"Graphic design, content creation, photography, video" },
+  { i:"", n:"General Trading", d:"Import, export and general trading of goods worldwide" },
+  { i:"", n:"E-Commerce", d:"Online retail, digital marketplaces and dropshipping" },
+  { i:"", n:"Technology & IT", d:"Software, SaaS, IT consulting and digital services" },
+  { i:"", n:"Marketing & Media", d:"Digital marketing, advertising, branding and PR agencies" },
+  { i:"", n:"Healthcare & Wellness", d:"Health consulting, medical equipment and wellness services" },
+  { i:"", n:"Education & Training", d:"E-learning, coaching, training centers and EdTech" },
+  { i:"", n:"Real Estate", d:"Property consulting, management and real estate advisory" },
+  { i:"", n:"Consulting & Advisory", d:"Business, strategy, management and professional consulting" },
+  { i:"", n:"Food & Beverage", d:"F&B trading, catering, food import/export and FMCG" },
+  { i:"", n:"Travel & Tourism", d:"Travel agencies, tour operators and hospitality services" },
+  { i:"", n:"Logistics", d:"Freight, supply chain, warehousing and distribution" },
+  { i:"", n:"Creative & Design", d:"Graphic design, content creation, photography, video" },
 ];
 
 const STEPS = [
@@ -824,11 +824,11 @@ export default function IFZAPage({ onBack, onNavigate }) {
           <div className="ifza-reveal ir2">
             <div className="ifza-pillars">
               {[
-                { i:"💰", h:"Most Affordable UAE Free Zone", p:"Starting from AED 12,000 — the lowest entry cost of any major UAE free zone. Ideal for bootstrapped founders and growing SMEs." },
-                { i:"⚡", h:"Fastest Setup — 5 to 7 Days", p:"IFZA's streamlined digital process delivers your trade license in 5–7 working days. Faster than DMCC, JAFZA, and most other zones." },
-                { i:"🌐", h:"Virtual Office Available", p:"No need for a physical office. IFZA's virtual office package gives you a legitimate UAE business address and mailing services from anywhere." },
-                { i:"🔄", h:"No Minimum Share Capital", p:"Unlike DMCC (AED 50,000 declared) and many other zones, IFZA has no minimum share capital requirement — freeing up your working capital." },
-                { i:"🤝", h:"Multi-Shareholder Friendly", p:"IFZA supports sole proprietors, FZ-LLCs with up to 50 shareholders, and corporate shareholders — flexible for joint ventures and group structures." },
+                { i:"", h:"Most Affordable UAE Free Zone", p:"Starting from AED 12,000 — the lowest entry cost of any major UAE free zone. Ideal for bootstrapped founders and growing SMEs." },
+                { i:"", h:"Fastest Setup — 5 to 7 Days", p:"IFZA's streamlined digital process delivers your trade license in 5–7 working days. Faster than DMCC, JAFZA, and most other zones." },
+                { i:"", h:"Virtual Office Available", p:"No need for a physical office. IFZA's virtual office package gives you a legitimate UAE business address and mailing services from anywhere." },
+                { i:"", h:"No Minimum Share Capital", p:"Unlike DMCC (AED 50,000 declared) and many other zones, IFZA has no minimum share capital requirement — freeing up your working capital." },
+                { i:"", h:"Multi-Shareholder Friendly", p:"IFZA supports sole proprietors, FZ-LLCs with up to 50 shareholders, and corporate shareholders — flexible for joint ventures and group structures." },
               ].map((p,i)=>(
                 <div className="ifza-pillar" key={i}>
                   <div className="ifza-pillar-icon">{p.i}</div>
@@ -929,7 +929,7 @@ export default function IFZAPage({ onBack, onNavigate }) {
               <ul className="ifza-pkg-features">
                 {pkg.feats.map((f,j)=>(
                   <li className="ifza-pkg-feat" key={j}>
-                    <span className={f.on?"ifza-feat-on":"ifza-feat-off"}>{f.on?"✓":"×"}</span>
+                    <span className={f.on?"ifza-feat-on":"ifza-feat-off"}>{f.on?"":"×"}</span>
                     <span className={f.on?"ifza-feat-label-on":"ifza-feat-label-off"}>{f.t}</span>
                   </li>
                 ))}
@@ -1047,7 +1047,7 @@ export default function IFZAPage({ onBack, onNavigate }) {
             ))}
           </div>
           <div className="ifza-advisory-warning ifza-reveal">
-            <h4>⚠️ When IFZA Is NOT the Right Choice</h4>
+            <h4> When IFZA Is NOT the Right Choice</h4>
             <p>IFZA may not be ideal if: you need DMCC's commodities ecosystem · you are a regulated financial services firm requiring DMCC's FinTech Hive · your banking partners specifically require a DMCC or DIFC entity · you need more than 8 visas from a single license. In these cases, INCOZONE will recommend the right alternative — honestly.</p>
           </div>
         </div>

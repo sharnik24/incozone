@@ -701,9 +701,9 @@ const STATS = [
 ];
 
 const PILLARS = [
-  { icon:"🎯", num:"01", title:"Strategic Advisors", body:"We never recommend a structure before understanding your business model, your shareholders, and your long-term commercial intent. Zone selection and structure are outputs of strategy — never defaults." },
-  { icon:"🏛️", num:"02", title:"Authority Insiders", body:"12 years of direct working relationships with licensing officers, visa section staff, and compliance teams across all UAE free zone authorities means your application moves at a different speed." },
-  { icon:"🤝", num:"03", title:"Lifetime Partners", body:"Our 96% client retention rate is not a marketing claim. It reflects what happens when a firm treats every incorporation as the beginning of a relationship, not the completion of a transaction." },
+  { icon:"", num:"01", title:"Strategic Advisors", body:"We never recommend a structure before understanding your business model, your shareholders, and your long-term commercial intent. Zone selection and structure are outputs of strategy — never defaults." },
+  { icon:"", num:"02", title:"Authority Insiders", body:"12 years of direct working relationships with licensing officers, visa section staff, and compliance teams across all UAE free zone authorities means your application moves at a different speed." },
+  { icon:"", num:"03", title:"Lifetime Partners", body:"Our 96% client retention rate is not a marketing claim. It reflects what happens when a firm treats every incorporation as the beginning of a relationship, not the completion of a transaction." },
 ];
 
 const TEAM = [
@@ -730,12 +730,12 @@ const TIMELINE = [
 ];
 
 const RECOGNITION = [
-  { icon:"🏆", title:"DMCC Accredited Partner", body:"One of a select number of officially accredited DMCC formation partners — reflecting direct authority relationships and deep technical expertise in the UAE's most prestigious free zone." },
-  { icon:"⚖️", title:"FTA-Registered Advisory", body:"Registered with the Federal Tax Authority as a compliant advisory firm. All structuring recommendations account for UAE corporate tax, VAT, and ESR obligations from the outset." },
-  { icon:"🌐", title:"IFZA Official Partner", body:"Official IFZA partner with direct authority access, streamlined processing, and a dedicated relationship with the IFZA licensing team — reflected in our below-average setup timelines." },
-  { icon:"🏛️", title:"ADGM Approved Intermediary", body:"Working relationship with ADGM Registration Authority enables INCOZONE to advise on both regulated and non-regulated ADGM structures — rare outside formal legal firms." },
-  { icon:"🔒", title:"GDRFA Registered PRO", body:"Our PRO team holds active GDRFA registration, enabling direct visa and immigration submissions across all UAE free zones and mainland entities." },
-  { icon:"📋", title:"MOHRE Accredited Agency", body:"Ministry of Human Resources and Emiratisation accreditation allows us to process employment visas, labour cards, and establishment cards for all client companies without third-party dependency." },
+  { icon:"", title:"DMCC Accredited Partner", body:"One of a select number of officially accredited DMCC formation partners — reflecting direct authority relationships and deep technical expertise in the UAE's most prestigious free zone." },
+  { icon:"", title:"FTA-Registered Advisory", body:"Registered with the Federal Tax Authority as a compliant advisory firm. All structuring recommendations account for UAE corporate tax, VAT, and ESR obligations from the outset." },
+  { icon:"", title:"IFZA Official Partner", body:"Official IFZA partner with direct authority access, streamlined processing, and a dedicated relationship with the IFZA licensing team — reflected in our below-average setup timelines." },
+  { icon:"", title:"ADGM Approved Intermediary", body:"Working relationship with ADGM Registration Authority enables INCOZONE to advise on both regulated and non-regulated ADGM structures — rare outside formal legal firms." },
+  { icon:"", title:"GDRFA Registered PRO", body:"Our PRO team holds active GDRFA registration, enabling direct visa and immigration submissions across all UAE free zones and mainland entities." },
+  { icon:"", title:"MOHRE Accredited Agency", body:"Ministry of Human Resources and Emiratisation accreditation allows us to process employment visas, labour cards, and establishment cards for all client companies without third-party dependency." },
 ];
 
 // ── CANVAS ────────────────────────────────────────────────────
@@ -1156,9 +1156,9 @@ export default function AboutPage({ onBack, onNavigate }) {
       {/* Contact strip */}
       <div className="ab-contact-strip">
         {[
-          { icon:"📍", label:"Head Office", val:"Business Bay, Dubai, UAE" },
-          { icon:"📞", label:"Direct Line", val:"+971 4 XXX XXXX" },
-          { icon:"✉️", label:"Email", val:"advisory@incozone.ae" },
+          { icon:"", label:"Head Office", val:"Business Bay, Dubai, UAE" },
+          { icon:"", label:"Direct Line", val:"+971 4 XXX XXXX" },
+          { icon:"", label:"Email", val:"advisory@incozone.ae" },
         ].map((c, i) => (
           <div className="ab-contact-item ab-reveal" key={i} style={{transitionDelay:`${i*.1}s`}}>
             <span className="ab-contact-icon">{c.icon}</span>

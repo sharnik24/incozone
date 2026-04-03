@@ -431,12 +431,12 @@ const CSS = `
 `;
 
 const SERVICES = [
-  { id:"freezone", icon:"🏢", name:"Free Zone Formation", desc:"Company setup in DMCC, IFZA, ADGM, JAFZA, SHAMS, or any UAE free zone." },
-  { id:"mainland", icon:"🇦🇪", name:"Mainland Formation", desc:"DED-licensed mainland company with 100% foreign ownership." },
-  { id:"pro", icon:"📋", name:"PRO & Compliance", desc:"Visa processing, license renewals, government liaison, amendments." },
-  { id:"banking", icon:"🏦", name:"Corporate Banking", desc:"UAE business bank account opening — strategy, preparation, and submission." },
-  { id:"visa", icon:"🛂", name:"Investor Visa / Golden Visa", desc:"UAE residency visa for investors, business owners, and family members." },
-  { id:"advisory", icon:"💡", name:"General Advisory", desc:"Structuring advice, tax position review, UBO compliance, or any UAE corporate matter." },
+  { id:"freezone", icon:"", name:"Free Zone Formation", desc:"Company setup in DMCC, IFZA, ADGM, JAFZA, SHAMS, or any UAE free zone." },
+  { id:"mainland", icon:"", name:"Mainland Formation", desc:"DED-licensed mainland company with 100% foreign ownership." },
+  { id:"pro", icon:"", name:"PRO & Compliance", desc:"Visa processing, license renewals, government liaison, amendments." },
+  { id:"banking", icon:"", name:"Corporate Banking", desc:"UAE business bank account opening — strategy, preparation, and submission." },
+  { id:"visa", icon:"", name:"Investor Visa / Golden Visa", desc:"UAE residency visa for investors, business owners, and family members." },
+  { id:"advisory", icon:"", name:"General Advisory", desc:"Structuring advice, tax position review, UBO compliance, or any UAE corporate matter." },
 ];
 
 const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -596,12 +596,12 @@ export default function SchedulePage({ onBack, onNavigate }) {
           <div className="sc-booking-card">
             <span className="sc-booking-card-label">Booking Confirmation · INCOZONE</span>
             {[
-              { icon:"🎯", key:"Service", val: selServiceObj?.name || service },
-              { icon:"👤", key:"Name", val: details.name },
-              { icon:"📅", key:"Date", val: selDateStr },
-              { icon:"🕐", key:"Time", val: `${selTime} · ${duration} minutes` },
-              { icon:"💬", key:"Format", val: "Private Video Consultation" },
-              { icon:"✉️", key:"Confirmation to", val: details.email },
+              { icon:"", key:"Service", val: selServiceObj?.name || service },
+              { icon:"", key:"Name", val: details.name },
+              { icon:"", key:"Date", val: selDateStr },
+              { icon:"", key:"Time", val: `${selTime} · ${duration} minutes` },
+              { icon:"", key:"Format", val: "Private Video Consultation" },
+              { icon:"", key:"Confirmation to", val: details.email },
             ].map((r, i) => (
               <div className="sc-booking-row" key={i}
                 style={{opacity:0,animation:`scSlideIn .5s var(--ease) ${.5+i*.08}s forwards`}}>
@@ -636,7 +636,7 @@ export default function SchedulePage({ onBack, onNavigate }) {
             <div className="sc-steps">
               {STEPS.map((s, i) => (
                 <div className={`sc-step${step === i+1 ? " active" : ""}${step > i+1 ? " done" : ""}`} key={i}>
-                  <div className="sc-step-dot">{step > i+1 ? "✓" : s.n}</div>
+                  <div className="sc-step-dot">{step > i+1 ? "" : s.n}</div>
                   <span className="sc-step-label">{s.label}</span>
                 </div>
               ))}
@@ -654,13 +654,13 @@ export default function SchedulePage({ onBack, onNavigate }) {
                 )}
                 {selDateStr && (
                   <div className="sc-summary-item">
-                    <span className="sc-summary-icon">📅</span>
+                    <span className="sc-summary-icon"></span>
                     <span className="sc-summary-text"><strong>{selDateStr}</strong></span>
                   </div>
                 )}
                 {selTime && (
                   <div className="sc-summary-item">
-                    <span className="sc-summary-icon">🕐</span>
+                    <span className="sc-summary-icon"></span>
                     <span className="sc-summary-text"><strong>{selTime}</strong> · {duration} min</span>
                   </div>
                 )}
@@ -684,7 +684,7 @@ export default function SchedulePage({ onBack, onNavigate }) {
                         key={s.id}
                         onClick={() => setService(s.id)}
                       >
-                        <div className="sc-service-check">✓</div>
+                        <div className="sc-service-check"></div>
                         <span className="sc-service-card-icon">{s.icon}</span>
                         <div className="sc-service-card-name">{s.name}</div>
                         <p className="sc-service-card-desc">{s.desc}</p>
@@ -727,7 +727,7 @@ export default function SchedulePage({ onBack, onNavigate }) {
                   </div>
 
                   <p style={{fontSize:".7rem",color:"var(--w30)",marginTop:"14px"}}>
-                    ✦ Fridays unavailable · Availability shown in UAE time (GST/UTC+4)
+                     Fridays unavailable · Availability shown in UAE time (GST/UTC+4)
                   </p>
 
                   <div className="sc-nav-btns">

@@ -453,18 +453,18 @@ const STATS = [
 ];
 
 const ACTIVITIES = [
-  { i:"🎬", n:"Content Creation", d:"Video production, YouTube channels, podcasting and digital content" },
-  { i:"📱", n:"Social Media Management", d:"Instagram, TikTok, LinkedIn and multi-platform social strategy" },
-  { i:"💡", n:"Influencer Marketing", d:"Influencer agency, talent management and brand partnerships" },
-  { i:"🖥️", n:"Digital Marketing", d:"SEO, SEM, performance marketing and online advertising" },
-  { i:"📰", n:"Publishing & Editorial", d:"Online publishing, journalism, editorial services and blogging" },
-  { i:"🎙️", n:"Broadcasting & Radio", d:"Radio production, broadcasting services and audio content" },
-  { i:"🎨", n:"Design & Creative", d:"Graphic design, branding, motion graphics and visual identity" },
-  { i:"🎭", n:"Events & Entertainment", d:"Event management, entertainment production and talent booking" },
-  { i:"📡", n:"PR & Communications", d:"Public relations, corporate communications and media relations" },
-  { i:"💻", n:"Tech & Software", d:"Software development, apps, SaaS and digital product studios" },
-  { i:"🛍️", n:"E-Commerce", d:"Online retail, dropshipping and digital commerce platforms" },
-  { i:"💡", n:"Consulting & Advisory", d:"Business consulting, strategy advisory and professional services" },
+  { i:"", n:"Content Creation", d:"Video production, YouTube channels, podcasting and digital content" },
+  { i:"", n:"Social Media Management", d:"Instagram, TikTok, LinkedIn and multi-platform social strategy" },
+  { i:"", n:"Influencer Marketing", d:"Influencer agency, talent management and brand partnerships" },
+  { i:"", n:"Digital Marketing", d:"SEO, SEM, performance marketing and online advertising" },
+  { i:"", n:"Publishing & Editorial", d:"Online publishing, journalism, editorial services and blogging" },
+  { i:"", n:"Broadcasting & Radio", d:"Radio production, broadcasting services and audio content" },
+  { i:"", n:"Design & Creative", d:"Graphic design, branding, motion graphics and visual identity" },
+  { i:"", n:"Events & Entertainment", d:"Event management, entertainment production and talent booking" },
+  { i:"", n:"PR & Communications", d:"Public relations, corporate communications and media relations" },
+  { i:"", n:"Tech & Software", d:"Software development, apps, SaaS and digital product studios" },
+  { i:"", n:"E-Commerce", d:"Online retail, dropshipping and digital commerce platforms" },
+  { i:"", n:"Consulting & Advisory", d:"Business consulting, strategy advisory and professional services" },
 ];
 
 const STEPS = [
@@ -754,11 +754,11 @@ export default function SHAMSPage({ onBack, onNavigate }) {
           <div className="sms-reveal sr2">
             <div className="sms-pillars">
               {[
-                { i:"🎬", h:"Purpose-Built for Media", p:"The UAE's only free zone specifically designed for content creation, media production, and creative industries — not an afterthought. Activity licensing is explicit and legally precise." },
-                { i:"📱", h:"Creator Economy Friendly", p:"Influencer marketing, social media management, and content creation are explicitly licensed activities — giving creators and agencies clear legal standing for their business model." },
-                { i:"💰", h:"Most Affordable Media Zone", p:"Starting from AED 11,500 — the lowest setup cost of any UAE media-specific free zone. Annual renewals from AED 8,000, making SHAMS ideal for early-stage creative businesses." },
-                { i:"🏢", h:"Studio Workspaces Available", p:"Beyond virtual offices, SHAMS offers dedicated studio spaces and creative offices suited to production businesses. Purpose-built creative infrastructure at competitive rates." },
-                { i:"⚡", h:"5 to 8 Day Setup", p:"Streamlined digital application with fast authority turnaround. Most SHAMS licenses are issued within 5–8 working days from document submission." },
+                { i:"", h:"Purpose-Built for Media", p:"The UAE's only free zone specifically designed for content creation, media production, and creative industries — not an afterthought. Activity licensing is explicit and legally precise." },
+                { i:"", h:"Creator Economy Friendly", p:"Influencer marketing, social media management, and content creation are explicitly licensed activities — giving creators and agencies clear legal standing for their business model." },
+                { i:"", h:"Most Affordable Media Zone", p:"Starting from AED 11,500 — the lowest setup cost of any UAE media-specific free zone. Annual renewals from AED 8,000, making SHAMS ideal for early-stage creative businesses." },
+                { i:"", h:"Studio Workspaces Available", p:"Beyond virtual offices, SHAMS offers dedicated studio spaces and creative offices suited to production businesses. Purpose-built creative infrastructure at competitive rates." },
+                { i:"", h:"5 to 8 Day Setup", p:"Streamlined digital application with fast authority turnaround. Most SHAMS licenses are issued within 5–8 working days from document submission." },
               ].map((p, i) => (
                 <div className="sms-pillar" key={i}>
                   <div className="sms-pillar-icon">{p.i}</div>
@@ -792,7 +792,7 @@ export default function SHAMSPage({ onBack, onNavigate }) {
               <ul className="sms-pkg-features">
                 {pkg.feats.map(([t, on], j) => (
                   <li className="sms-pkg-feat" key={j}>
-                    <span className={on ? "sms-feat-on" : "sms-feat-off"}>{on ? "✓" : "×"}</span>
+                    <span className={on ? "sms-feat-on" : "sms-feat-off"}>{on ? "" : "×"}</span>
                     <span className={on ? "sms-feat-label-on" : "sms-feat-label-off"}>{t}</span>
                   </li>
                 ))}
@@ -906,7 +906,7 @@ export default function SHAMSPage({ onBack, onNavigate }) {
             ))}
           </div>
           <div className="sms-advisory-warning sms-reveal">
-            <h4>⚠️ When SHAMS Might Not Be the Best Fit</h4>
+            <h4> When SHAMS Might Not Be the Best Fit</h4>
             <p>Consider alternatives if: your business is primarily in trading or manufacturing rather than media — RAKEZ or IFZA may be more appropriate · you need a Dubai address specifically for client-facing reasons — Meydan or DMCC may serve better · your business requires DIFC or ADGM's regulated financial services framework · or your operations require substantial physical infrastructure beyond creative workspaces. INCOZONE will always recommend the right zone for your situation.</p>
           </div>
         </div>

@@ -544,12 +544,12 @@ const BANKS = [
 ];
 
 const PREPARE_ITEMS = [
-  { icon: "📋", title: "KYC Package", desc: "Complete Know Your Customer documentation — passport copies, proof of address, source of funds declarations, and business ownership structure charts formatted to each bank's specific requirements." },
-  { icon: "📊", title: "Business Plan", desc: "Professional business plan covering your industry, revenue model, projected turnover, target markets, and UAE business rationale — written to satisfy each bank's compliance team." },
-  { icon: "💰", title: "Source of Funds Letter", desc: "Legally structured source of funds declaration explaining the origin of your capital — one of the most scrutinised documents in UAE corporate account opening." },
-  { icon: "🏢", title: "Corporate Structure Chart", desc: "Visual corporate ownership chart showing shareholders, directors, beneficial owners, and any parent/holding entities — required by all UAE banks for corporate accounts." },
-  { icon: "📜", title: "Trade License Package", desc: "Certified copies of trade license, MOA, share certificates, and all free zone or mainland authority documents — organised and certified to bank-submission standard." },
-  { icon: "🔍", title: "Compliance Pre-Check", desc: "We run an internal compliance review of your profile against each target bank's known rejection triggers — ensuring we only submit where approval probability is high." },
+  { icon: "", title: "KYC Package", desc: "Complete Know Your Customer documentation — passport copies, proof of address, source of funds declarations, and business ownership structure charts formatted to each bank's specific requirements." },
+  { icon: "", title: "Business Plan", desc: "Professional business plan covering your industry, revenue model, projected turnover, target markets, and UAE business rationale — written to satisfy each bank's compliance team." },
+  { icon: "", title: "Source of Funds Letter", desc: "Legally structured source of funds declaration explaining the origin of your capital — one of the most scrutinised documents in UAE corporate account opening." },
+  { icon: "", title: "Corporate Structure Chart", desc: "Visual corporate ownership chart showing shareholders, directors, beneficial owners, and any parent/holding entities — required by all UAE banks for corporate accounts." },
+  { icon: "", title: "Trade License Package", desc: "Certified copies of trade license, MOA, share certificates, and all free zone or mainland authority documents — organised and certified to bank-submission standard." },
+  { icon: "", title: "Compliance Pre-Check", desc: "We run an internal compliance review of your profile against each target bank's known rejection triggers — ensuring we only submit where approval probability is high." },
 ];
 
 const PROCESS_STEPS = [
@@ -778,7 +778,7 @@ export default function BankingPage({ onBack, onNavigate }) {
               </div>
               <div style={{ marginTop: "20px", paddingTop: "16px", borderTop: "1px solid var(--w06)" }}>
                 <button className="bk-bank-select-btn">
-                  {selectedBank === bank.id ? "✓ Selected — Request This Bank" : "Select This Bank →"}
+                  {selectedBank === bank.id ? " Selected — Request This Bank" : "Select This Bank →"}
                 </button>
               </div>
             </div>

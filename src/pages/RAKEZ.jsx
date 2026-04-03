@@ -453,18 +453,18 @@ const STATS = [
 ];
 
 const ACTIVITIES = [
-  { i:"🏭", n:"Manufacturing", d:"Production, assembly, processing and light industrial manufacturing" },
-  { i:"📦", n:"Trading & Import/Export", d:"General trading, wholesale distribution and cross-border trade" },
-  { i:"🚢", n:"Logistics & Warehousing", d:"Storage, freight forwarding, supply chain and distribution" },
-  { i:"💻", n:"Technology & IT", d:"Software, IT consulting, digital services and tech startups" },
-  { i:"💡", n:"Consulting & Professional", d:"Business consulting, management advisory and professional services" },
-  { i:"🏗️", n:"Construction & Engineering", d:"Engineering services, construction consulting and project management" },
-  { i:"🌿", n:"Food & Agriculture", d:"Food processing, agricultural trading and FMCG distribution" },
-  { i:"⚗️", n:"Pharma & Chemicals", d:"Pharmaceutical trading, chemical distribution and healthcare products" },
-  { i:"✈️", n:"Travel & Tourism", d:"Travel agencies, hospitality management and tourism services" },
-  { i:"🎓", n:"Education & Training", d:"Training centres, educational consulting and e-learning platforms" },
-  { i:"🏥", n:"Healthcare", d:"Medical equipment trading, healthcare consulting and wellness" },
-  { i:"⚡", n:"Energy & Renewables", d:"Oil & gas trading, solar energy and clean technology solutions" },
+  { i:"", n:"Manufacturing", d:"Production, assembly, processing and light industrial manufacturing" },
+  { i:"", n:"Trading & Import/Export", d:"General trading, wholesale distribution and cross-border trade" },
+  { i:"", n:"Logistics & Warehousing", d:"Storage, freight forwarding, supply chain and distribution" },
+  { i:"", n:"Technology & IT", d:"Software, IT consulting, digital services and tech startups" },
+  { i:"", n:"Consulting & Professional", d:"Business consulting, management advisory and professional services" },
+  { i:"", n:"Construction & Engineering", d:"Engineering services, construction consulting and project management" },
+  { i:"", n:"Food & Agriculture", d:"Food processing, agricultural trading and FMCG distribution" },
+  { i:"", n:"Pharma & Chemicals", d:"Pharmaceutical trading, chemical distribution and healthcare products" },
+  { i:"", n:"Travel & Tourism", d:"Travel agencies, hospitality management and tourism services" },
+  { i:"", n:"Education & Training", d:"Training centres, educational consulting and e-learning platforms" },
+  { i:"", n:"Healthcare", d:"Medical equipment trading, healthcare consulting and wellness" },
+  { i:"", n:"Energy & Renewables", d:"Oil & gas trading, solar energy and clean technology solutions" },
 ];
 
 const STEPS = [
@@ -754,11 +754,11 @@ export default function RAKEZPage({ onBack, onNavigate }) {
           <div className="rkz-reveal rr2">
             <div className="rkz-pillars">
               {[
-                { i:"💰", h:"UAE's Most Affordable Free Zone", p:"Starting from AED 8,500 — the lowest setup cost of any major UAE free zone. Full company benefits, UAE residency, and zero taxes at an unbeatable price." },
-                { i:"🏭", h:"Industrial Infrastructure", p:"Dedicated warehouses, factories, land plots, and industrial parks at costs 40–60% lower than Dubai equivalents. The only free zone to offer this scale of physical infrastructure at this price." },
-                { i:"⚡", h:"3 to 7 Day Setup", p:"One of the fastest formation processes in the UAE. Simple digital application, straightforward requirements, and quick authority approvals." },
-                { i:"🌐", h:"Full UAE Residency & Ownership", p:"UAE investor visa, Emirates ID, and 100% foreign company ownership — without paying the Dubai premium. Same residency rights, same banking access." },
-                { i:"🚢", h:"Saqr Port Access", p:"Direct proximity to Saqr Port — one of the Middle East's largest bulk cargo ports. Ideal for import/export, logistics, and manufacturing businesses with real supply chain requirements." },
+                { i:"", h:"UAE's Most Affordable Free Zone", p:"Starting from AED 8,500 — the lowest setup cost of any major UAE free zone. Full company benefits, UAE residency, and zero taxes at an unbeatable price." },
+                { i:"", h:"Industrial Infrastructure", p:"Dedicated warehouses, factories, land plots, and industrial parks at costs 40–60% lower than Dubai equivalents. The only free zone to offer this scale of physical infrastructure at this price." },
+                { i:"", h:"3 to 7 Day Setup", p:"One of the fastest formation processes in the UAE. Simple digital application, straightforward requirements, and quick authority approvals." },
+                { i:"", h:"Full UAE Residency & Ownership", p:"UAE investor visa, Emirates ID, and 100% foreign company ownership — without paying the Dubai premium. Same residency rights, same banking access." },
+                { i:"", h:"Saqr Port Access", p:"Direct proximity to Saqr Port — one of the Middle East's largest bulk cargo ports. Ideal for import/export, logistics, and manufacturing businesses with real supply chain requirements." },
               ].map((p, i) => (
                 <div className="rkz-pillar" key={i}>
                   <div className="rkz-pillar-icon">{p.i}</div>
@@ -792,7 +792,7 @@ export default function RAKEZPage({ onBack, onNavigate }) {
               <ul className="rkz-pkg-features">
                 {pkg.feats.map(([t, on], j) => (
                   <li className="rkz-pkg-feat" key={j}>
-                    <span className={on ? "rkz-feat-on" : "rkz-feat-off"}>{on ? "✓" : "×"}</span>
+                    <span className={on ? "rkz-feat-on" : "rkz-feat-off"}>{on ? "" : "×"}</span>
                     <span className={on ? "rkz-feat-label-on" : "rkz-feat-label-off"}>{t}</span>
                   </li>
                 ))}
@@ -906,7 +906,7 @@ export default function RAKEZPage({ onBack, onNavigate }) {
             ))}
           </div>
           <div className="rkz-advisory-warning rkz-reveal">
-            <h4>⚠️ When RAKEZ Might Not Be the Best Fit</h4>
+            <h4> When RAKEZ Might Not Be the Best Fit</h4>
             <p>Consider alternatives if: your clients or banking partners specifically require a Dubai address · you need DMCC's commodities or fintech ecosystem · you require JAFZA's direct Jebel Ali port connectivity · your business requires DIFC's regulated financial services framework · or if the specific perception of a Dubai address is critical to your business development. INCOZONE will always give you an honest recommendation — including when that recommendation is not RAKEZ.</p>
           </div>
         </div>

@@ -458,32 +458,32 @@ const PROCESS_STEPS = [
 
 const BENEFITS = [
   {
-    icon: "💼",
+    icon: "",
     title: "100% Foreign Ownership",
     desc: "Retain complete control of your business with full foreign ownership rights."
   },
   {
-    icon: "🛡️",
+    icon: "",
     title: "Zero Corporate Tax",
     desc: "Benefit from 0% corporate and personal income tax on business profits."
   },
   {
-    icon: "💰",
+    icon: "",
     title: "Full Profit Repatriation",
     desc: "Transfer 100% of your capital and profits back to your home country."
   },
   {
-    icon: "🌍",
+    icon: "",
     title: "Strategic Location",
     desc: "Access to Middle East, Asian, and African markets from a central hub."
   },
   {
-    icon: "🏢",
+    icon: "",
     title: "World-Class Infrastructure",
     desc: "Premium office spaces, logistics facilities, and business amenities."
   },
   {
-    icon: "📄",
+    icon: "",
     title: "Simplified Compliance",
     desc: "Minimal reporting requirements and streamlined regulatory processes."
   }

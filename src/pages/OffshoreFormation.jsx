@@ -185,14 +185,14 @@ const CSS = `
 
 const JURISDICTIONS = [
   {
-    icon: "🏔️", badge: "Most Popular",
+    icon: "", badge: "Most Popular",
     title: "RAK ICC",
     full: "Ras Al Khaimah International Corporate Centre",
     desc: "The UAE's most popular offshore jurisdiction — cost-effective, flexible, and globally recognised. RAK ICC is ideal for holding companies, asset protection, international trading, and IP ownership structures.",
     features: ["100% foreign ownership", "Zero corporate and personal tax", "No audit or financial reporting required", "Bank accounts with UAE and international banks", "Real estate holding in UAE permitted", "Nominee director and shareholder services", "Fast incorporation — 3–5 working days", "Confidential shareholder register"],
   },
   {
-    icon: "🏙️", badge: "Established",
+    icon: "", badge: "Established",
     title: "Ajman Offshore",
     full: "Ajman Free Zone Offshore",
     desc: "A well-established UAE offshore option with competitive fees and straightforward incorporation. Particularly suited for international trading structures, holding arrangements, and businesses seeking a simple, low-cost offshore vehicle.",
@@ -201,12 +201,12 @@ const JURISDICTIONS = [
 ];
 
 const USE_CASES = [
-  { icon: "🏠", title: "UAE Real Estate Holding", desc: "Hold Dubai freehold property under an offshore company — provides privacy, easier transfer on death, and cleaner inheritance planning." },
-  { icon: "🌐", title: "International Trading", desc: "Invoice international clients through a UAE offshore entity — zero tax, full banking access, and professional UAE address for contracts." },
-  { icon: "💡", title: "IP & Patent Ownership", desc: "Hold trademarks, patents, and intellectual property in a UAE offshore company — licence IP to operating companies globally." },
-  { icon: "🔒", title: "Asset Protection", desc: "Ring-fence personal and business assets from liability — offshore structures provide legal separation from operating risk." },
-  { icon: "📊", title: "Investment Holding", desc: "Hold UAE and international investments, stocks, bonds, and funds through an offshore vehicle for clean structuring." },
-  { icon: "👨‍👩‍👧", title: "Family Wealth Structure", desc: "Organise family wealth across generations through a structured offshore holding entity — with clear succession planning." },
+  { icon: "", title: "UAE Real Estate Holding", desc: "Hold Dubai freehold property under an offshore company — provides privacy, easier transfer on death, and cleaner inheritance planning." },
+  { icon: "", title: "International Trading", desc: "Invoice international clients through a UAE offshore entity — zero tax, full banking access, and professional UAE address for contracts." },
+  { icon: "", title: "IP & Patent Ownership", desc: "Hold trademarks, patents, and intellectual property in a UAE offshore company — licence IP to operating companies globally." },
+  { icon: "", title: "Asset Protection", desc: "Ring-fence personal and business assets from liability — offshore structures provide legal separation from operating risk." },
+  { icon: "", title: "Investment Holding", desc: "Hold UAE and international investments, stocks, bonds, and funds through an offshore vehicle for clean structuring." },
+  { icon: "", title: "Family Wealth Structure", desc: "Organise family wealth across generations through a structured offshore holding entity — with clear succession planning." },
 ];
 
 const FAQS = [
@@ -335,7 +335,7 @@ export default function OffshoreFormationPage({ onBack, onNavigate }) {
                 <div className="of-compare-hcell">RAK ICC</div>
                 <div className="of-compare-hcell">Ajman Offshore</div>
               </div>
-              {[["Setup Time", "3–5 Days", "5–7 Days"], ["Government Fee", "Lower", "Very Low"], ["UAE Real Estate", "✓ Permitted", "Limited"], ["Banking Access", "Excellent", "Good"], ["International Reputation", "Very High", "High"], ["Nominee Services", "✓ Available", "✓ Available"], ["Annual Renewal", "Simple", "Simple"], ["CRS / AEOI", "Compliant", "Compliant"]].map(([feat, rak, ajm]) => (
+              {[["Setup Time", "3–5 Days", "5–7 Days"], ["Government Fee", "Lower", "Very Low"], ["UAE Real Estate", " Permitted", "Limited"], ["Banking Access", "Excellent", "Good"], ["International Reputation", "Very High", "High"], ["Nominee Services", " Available", " Available"], ["Annual Renewal", "Simple", "Simple"], ["CRS / AEOI", "Compliant", "Compliant"]].map(([feat, rak, ajm]) => (
                 <div className="of-compare-row" key={feat}>
                   <div className="of-compare-cell label">{feat}</div>
                   <div className="of-compare-cell gold">{rak}</div>
@@ -377,7 +377,7 @@ export default function OffshoreFormationPage({ onBack, onNavigate }) {
               <ul className="of-pkg-feats">
                 {pkg.features.map((f, j) => (
                   <li className="of-pkg-feat" key={j}>
-                    <span className={`of-feat-chk ${f.y ? "yes" : "no"}`}>{f.y ? "✓" : "×"}</span>
+                    <span className={`of-feat-chk ${f.y ? "yes" : "no"}`}>{f.y ? "" : "×"}</span>
                     <span style={{ color: pkg.featured ? (f.y ? "var(--w80)" : "rgba(248,245,238,0.25)") : (f.y ? "var(--cream-ink2)" : "var(--cream-bdr)") }}>{f.t}</span>
                   </li>
                 ))}

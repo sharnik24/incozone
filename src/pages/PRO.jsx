@@ -193,7 +193,7 @@ const CSS = `
   display:flex; align-items:center; gap:12px;
   font-size:0.77rem; color:var(--w60);
 }
-.pro-included-item::before { content:'✦'; color:var(--g400); font-size:.55rem; flex-shrink:0; }
+.pro-included-item::before { content:''; color:var(--g400); font-size:.55rem; flex-shrink:0; }
 
 /* ═══════════════════════════════════════════════════
    SERVICES MATRIX — Mosaic grid
@@ -653,37 +653,37 @@ const MARQUEE_ITEMS = [
 
 const MOSAIC_SERVICES = [
   {
-    cat:"License & Corporate",icon:"📋",title:"License Management",
+    cat:"License & Corporate",icon:"",title:"License Management",
     desc:"Complete management of your trade license lifecycle — renewal, amendments, upgrades, and compliance. We track expiry dates and initiate renewal 60 days in advance so you never risk a lapse.",
     items:["Annual license renewal","Activity additions & removals","License upgrade / downgrade","License cancellation"],
     time:"48–72 hr standard turnaround",tall:false,
   },
   {
-    cat:"Shareholder Changes",icon:"🤝",title:"Share Transfers & Restructuring",
+    cat:"Shareholder Changes",icon:"",title:"Share Transfers & Restructuring",
     desc:"Full-scope ownership restructuring — share transfers between existing shareholders, introduction of new investors, exit arrangements, and corporate restructuring across all UAE free zones and mainland.",
     items:["Share transfer (partial or full)","New shareholder onboarding","Exit & buyout arrangements","Shareholding restructure","Board resolution drafting","Notarisation & authority filing"],
     time:"5–15 business days",tall:true,
   },
   {
-    cat:"Compliance",icon:"⚖️",title:"Regulatory Compliance",
+    cat:"Compliance",icon:"",title:"Regulatory Compliance",
     desc:"UBO (Ultimate Beneficial Owner) filings, ESR (Economic Substance Regulation) compliance, AML declarations, and annual reporting obligations across all UAE jurisdictions.",
     items:["UBO registration & updates","ESR notification & reporting","AML compliance declarations","Annual return filings"],
     time:"Authority-dependent",tall:false,
   },
   {
-    cat:"Authority Liaison",icon:"🏛️",title:"Government Liaison",
+    cat:"Authority Liaison",icon:"",title:"Government Liaison",
     desc:"Direct representation at UAE government authorities — DED, MOHRE, GDRFA, ICA, Ministry of Foreign Affairs, Chamber of Commerce, and all free zone authorities. Your PRO manages every counter interaction.",
     items:["DED & free zone authority visits","Ministry of Foreign Affairs","GDRFA & ICA immigration","Chamber of Commerce filings","Document attestation & legalisation"],
     time:"Same-day to 5 business days",tall:false,
   },
   {
-    cat:"Corporate Records",icon:"📁",title:"Corporate Amendments",
+    cat:"Corporate Records",icon:"",title:"Corporate Amendments",
     desc:"Director appointments and removals, trade name amendments, registered address changes, capital increases, and full constitutional document updates.",
     items:["Director / manager changes","Registered address update","Trade name amendment","Capital increase / decrease","MOA & AOA amendments"],
     time:"3–10 business days",tall:false,
   },
   {
-    cat:"Documentation",icon:"✍️",title:"Attestation & Legalisation",
+    cat:"Documentation",icon:"",title:"Attestation & Legalisation",
     desc:"End-to-end document attestation — notarisation, MOFA attestation, embassy legalisation, apostille, and translation services for UAE and international use.",
     items:["UAE MOFA attestation","Embassy legalisation","Apostille certification","Certified translations","Corporate document packages"],
     time:"3–7 business days",tall:false,
@@ -701,25 +701,25 @@ const RM_CARDS = [
 
 const AMEND_CATS = [
   {
-    icon:"👥", title:"Ownership & Shareholder Changes",
+    icon:"", title:"Ownership & Shareholder Changes",
     desc:"The most complex category of amendments — requiring authority approval, legal documentation, and often notarisation. INCOZONE manages the entire chain.",
     items:["Full share transfer to new buyer","Partial share transfer","New shareholder introduction","Shareholder exit arrangement","Corporate shareholder onboarding","Trust & nominee amendments","Board resolution drafting","Shareholder agreement updates"],
     time:"7–15 business days",
   },
   {
-    icon:"👤", title:"Director & Manager Amendments",
+    icon:"", title:"Director & Manager Amendments",
     desc:"Adding or removing directors, appointing managers, updating authorised signatories, and maintaining the authority's records.",
     items:["Director appointment","Director removal","Manager designation","Authorised signatory change","Signing authority update","Power of attorney issuance","Contact person update","Emergency director changes"],
     time:"3–7 business days",
   },
   {
-    icon:"📋", title:"License & Activity Changes",
+    icon:"", title:"License & Activity Changes",
     desc:"Expanding or restricting your licensed activities, upgrading license categories, and managing multi-activity approvals across all authorities.",
     items:["Activity addition","Activity removal","License category upgrade","New activity approval","Restricted activity licensing","Freelancer permit addition","DED activity amendments","Free zone activity expansion"],
     time:"2–5 business days",
   },
   {
-    icon:"🏢", title:"Company Details & Corporate Records",
+    icon:"", title:"Company Details & Corporate Records",
     desc:"Trade name changes, registered address updates, capital structure amendments, and official document reissuance.",
     items:["Trade name change","Registered address update","Office space upgrade / downgrade","Share capital increase","Share capital decrease","MOA / AOA amendments","Company objects change","Corporate stamp reissuance"],
     time:"3–10 business days",
@@ -1191,7 +1191,7 @@ export default function PROPage({ onBack, onNavigate }) {
               <ul className="pro-plan-features">
                 {p.feats.map(([t,on],j)=>(
                   <li className="pro-plan-feat" key={j}>
-                    <span className={on?"pro-feat-on":"pro-feat-off"}>{on?"✓":"×"}</span>
+                    <span className={on?"pro-feat-on":"pro-feat-off"}>{on?"":"×"}</span>
                     <span className={on?"pro-feat-label-on":"pro-feat-label-off"}>{t}</span>
                   </li>
                 ))}

@@ -68,7 +68,7 @@ const DEFAULT = {
     stats: [
       { num: "68+",  label: "Nationalities Served" },
       { num: "12yr", label: "UAE Experience" },
-      { num: "4.9★", label: "Client Rating" },
+      { num: "4.9", label: "Client Rating" },
     ],
   },
 
@@ -174,12 +174,12 @@ const DEFAULT = {
     heroHeadline: "Schedule a Consultation",
     heroBody: "A focused 30 or 60-minute session with a senior INCOZONE advisor. We'll map your business to the right UAE structure.",
     services: [
-      { id: "freezone",  icon: "🏢", name: "Free Zone Formation",    desc: "Company setup in DMCC, IFZA, ADGM, JAFZA, SHAMS, or any UAE free zone." },
-      { id: "mainland",  icon: "🇦🇪", name: "Mainland Formation",    desc: "DED-licensed mainland company with 100% foreign ownership." },
-      { id: "pro",       icon: "📋", name: "PRO & Compliance",        desc: "Visa processing, license renewals, government liaison, amendments." },
-      { id: "banking",   icon: "🏦", name: "Corporate Banking",       desc: "UAE business bank account opening — strategy, preparation, submission." },
-      { id: "visa",      icon: "🛂", name: "Investor / Golden Visa",  desc: "UAE residency visa for investors, business owners, and family members." },
-      { id: "advisory",  icon: "💡", name: "General Advisory",        desc: "Structuring, tax position, UBO compliance, or any UAE corporate matter." },
+      { id: "freezone",  icon: "", name: "Free Zone Formation",    desc: "Company setup in DMCC, IFZA, ADGM, JAFZA, SHAMS, or any UAE free zone." },
+      { id: "mainland",  icon: "", name: "Mainland Formation",    desc: "DED-licensed mainland company with 100% foreign ownership." },
+      { id: "pro",       icon: "", name: "PRO & Compliance",        desc: "Visa processing, license renewals, government liaison, amendments." },
+      { id: "banking",   icon: "", name: "Corporate Banking",       desc: "UAE business bank account opening — strategy, preparation, submission." },
+      { id: "visa",      icon: "", name: "Investor / Golden Visa",  desc: "UAE residency visa for investors, business owners, and family members." },
+      { id: "advisory",  icon: "", name: "General Advisory",        desc: "Structuring, tax position, UBO compliance, or any UAE corporate matter." },
     ],
   },
 
@@ -803,7 +803,7 @@ function HomePage({ d, oc }) {
             <div className="rep-item" key={i}>
               <div className="rep-head">
                 <span className="rep-num">Testimonial {i+1}</span>
-                <button className="btn btn-d btn-sm" onClick={()=>delT(i)}>✕ Remove</button>
+                <button className="btn btn-d btn-sm" onClick={()=>delT(i)}> Remove</button>
               </div>
               <F label="Quote Text">
                 <CharTa value={item.text} onChange={e=>uT(i,"text",e.target.value)} max={280} />
@@ -1017,7 +1017,7 @@ function AboutPage({ d, oc }) {
                 <div className="rep-item" key={i}>
                   <div className="rep-head">
                     <span className="rep-num">{m.name}</span>
-                    <button className="btn btn-d btn-sm" onClick={()=>delTeam(i)}>✕</button>
+                    <button className="btn btn-d btn-sm" onClick={()=>delTeam(i)}></button>
                   </div>
                   <div className="g2">
                     <F label="Full Name"><Inp value={m.name} onChange={e=>uTeam(i,"name",e.target.value)} /></F>
@@ -1056,7 +1056,7 @@ function AboutPage({ d, oc }) {
             <div className="rep-item" key={i}>
               <div className="rep-head">
                 <span className="rep-num">{tl.year}</span>
-                <button className="btn btn-d btn-sm" onClick={()=>delTl(i)}>✕</button>
+                <button className="btn btn-d btn-sm" onClick={()=>delTl(i)}></button>
               </div>
               <div className="g2">
                 <F label="Year"><Inp value={tl.year} onChange={e=>uTl(i,"year",e.target.value)} /></F>
@@ -1107,7 +1107,7 @@ function ContactPageSection({ d, oc }) {
             <div className="rep-item" key={i}>
               <div className="rep-head">
                 <span className="rep-num">FAQ {i+1}</span>
-                <button className="btn btn-d btn-sm" onClick={()=>delFaq(i)}>✕</button>
+                <button className="btn btn-d btn-sm" onClick={()=>delFaq(i)}></button>
               </div>
               <F label="Question"><Inp value={faq.q} onChange={e=>uFaq(i,"q",e.target.value)} /></F>
               <F label="Answer"><Ta value={faq.a} onChange={e=>uFaq(i,"a",e.target.value)} /></F>
@@ -1201,7 +1201,7 @@ function BlogSection({ d, oc }) {
           <div className="card-head">
             <div><div className="card-title">Post #{post.id}</div><div className="card-sub">{post.date}</div></div>
             <div className="btn-group">
-              <button className="btn btn-ok btn-sm" onClick={()=>u("status","published")}>✓ Publish</button>
+              <button className="btn btn-ok btn-sm" onClick={()=>u("status","published")}> Publish</button>
               <button className="btn btn-s btn-sm" onClick={()=>u("status","draft")}>Draft</button>
               <button className="btn btn-d btn-sm" onClick={()=>del(post.id)}>Delete</button>
             </div>
@@ -1247,7 +1247,7 @@ function BlogSection({ d, oc }) {
           </div>
         </div>
       ) : (
-        <div className="card"><div className="empty"><span className="empty-icon">📰</span>Select a post to edit</div></div>
+        <div className="card"><div className="empty"><span className="empty-icon"></span>Select a post to edit</div></div>
       )}
     </div>
   );
@@ -1280,8 +1280,8 @@ function Enquiries({ d, oc }) {
               <td><Bdg status={e.status} /></td>
               <td onClick={ev=>ev.stopPropagation()}>
                 <div className="btn-group">
-                  <button className="btn btn-ok btn-xs" onClick={()=>u(e.id,"status","replied")}>✓ Replied</button>
-                  <button className="btn btn-d btn-xs" onClick={()=>del(e.id)}>✕</button>
+                  <button className="btn btn-ok btn-xs" onClick={()=>u(e.id,"status","replied")}> Replied</button>
+                  <button className="btn btn-d btn-xs" onClick={()=>del(e.id)}></button>
                 </div>
               </td>
             </tr>
@@ -1301,14 +1301,14 @@ function Enquiries({ d, oc }) {
               <div className="msg-box">{selected.message}</div>
             </div>
             <div style={{marginTop:14}} className="btn-group">
-              <button className="btn btn-p btn-sm" onClick={()=>u(selected.id,"status","replied")}>✓ Mark Replied</button>
+              <button className="btn btn-p btn-sm" onClick={()=>u(selected.id,"status","replied")}> Mark Replied</button>
               <button className="btn btn-s btn-sm" onClick={()=>u(selected.id,"status","read")}>Mark Read</button>
               <button className="btn btn-d btn-sm" onClick={()=>del(selected.id)}>Delete</button>
             </div>
           </div>
         </div>
       ) : (
-        <div className="card"><div className="empty"><span className="empty-icon">📬</span>Click a row to view details</div></div>
+        <div className="card"><div className="empty"><span className="empty-icon"></span>Click a row to view details</div></div>
       )}
     </div>
   );
@@ -1346,8 +1346,8 @@ function Consultations({ d, oc }) {
             <td style={{fontSize:".72rem",color:"var(--txt3)",maxWidth:120,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{c.notes||"—"}</td>
             <td>
               <div className="btn-group">
-                <button className="btn btn-ok btn-xs" onClick={()=>u(c.id,"status","confirmed")}>✓ Confirm</button>
-                <button className="btn btn-d btn-xs"  onClick={()=>del(c.id)}>✕</button>
+                <button className="btn btn-ok btn-xs" onClick={()=>u(c.id,"status","confirmed")}> Confirm</button>
+                <button className="btn btn-d btn-xs"  onClick={()=>del(c.id)}></button>
               </div>
             </td>
           </tr>
@@ -1362,23 +1362,23 @@ function Consultations({ d, oc }) {
 // ─────────────────────────────────────────────────────────────
 const NAV_GROUPS = [
   { group: "Overview", items: [
-    { id: "dashboard",     icon: "📊", label: "Dashboard" },
-    { id: "enquiries",     icon: "📬", label: "Enquiries",         badge: "red" },
-    { id: "consultations", icon: "📅", label: "Consultations",     badge: "gold" },
+    { id: "dashboard",     icon: "", label: "Dashboard" },
+    { id: "enquiries",     icon: "", label: "Enquiries",         badge: "red" },
+    { id: "consultations", icon: "", label: "Consultations",     badge: "gold" },
   ]},
   { group: "Site Content", items: [
-    { id: "global",   icon: "⚙️",  label: "Global Settings" },
-    { id: "home",     icon: "🏠",  label: "Home Page" },
-    { id: "services", icon: "💼",  label: "Services Page" },
-    { id: "about",    icon: "🏛️",  label: "About Page" },
-    { id: "contact",  icon: "✉️",  label: "Contact Page" },
-    { id: "schedule", icon: "🗓️",  label: "Schedule Page" },
+    { id: "global",   icon: "",  label: "Global Settings" },
+    { id: "home",     icon: "",  label: "Home Page" },
+    { id: "services", icon: "",  label: "Services Page" },
+    { id: "about",    icon: "",  label: "About Page" },
+    { id: "contact",  icon: "",  label: "Contact Page" },
+    { id: "schedule", icon: "",  label: "Schedule Page" },
   ]},
   { group: "Free Zones", items: [
-    { id: "zones",    icon: "🏢",  label: "All Free Zones" },
+    { id: "zones",    icon: "",  label: "All Free Zones" },
   ]},
   { group: "Blog", items: [
-    { id: "blog",     icon: "📰",  label: "Blog Posts" },
+    { id: "blog",     icon: "",  label: "Blog Posts" },
   ]},
 ];
 
@@ -1500,7 +1500,7 @@ export default function AdminPage() {
           <div className="sb-foot">
             <div className="sb-av">A</div>
             <div className="sb-user"><strong>Admin</strong>INCOZONE CMS v2</div>
-            <button className="sb-logout" onClick={logout} title="Log out">⏻</button>
+            <button className="sb-logout" onClick={logout} title="Log out"></button>
           </div>
         </div>
 
@@ -1511,7 +1511,7 @@ export default function AdminPage() {
             <div className="topbar-right">
               <div className="live-pill">Site Live</div>
               <button className={`save-btn${saving?" saving":""}`} onClick={save}>
-                {saving ? "⏳ Saving…" : "💾 Save All Changes"}
+                {saving ? " Saving…" : " Save All Changes"}
               </button>
             </div>
           </div>
@@ -1532,7 +1532,7 @@ export default function AdminPage() {
         </div>
       </div>
 
-      {toast && <div className="toast">✓ All changes saved successfully</div>}
+      {toast && <div className="toast"> All changes saved successfully</div>}
     </>
   );
 }

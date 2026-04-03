@@ -453,18 +453,18 @@ const STATS = [
 ];
 
 const ACTIVITIES = [
-  { i:"💡", n:"Consulting & Advisory", d:"Management, strategy, business advisory and professional services" },
-  { i:"💻", n:"Technology & IT", d:"Software development, SaaS, IT consulting and digital solutions" },
-  { i:"📣", n:"Marketing & Creative", d:"Digital agencies, branding, PR and creative services" },
-  { i:"🎬", n:"Media & Entertainment", d:"Content creation, production, events and entertainment" },
-  { i:"🏗️", n:"Real Estate", d:"Property consulting, investment advisory and PropTech" },
-  { i:"🌿", n:"Food & Beverage", d:"F&B trading, restaurant consulting and catering services" },
-  { i:"✈️", n:"Travel & Tourism", d:"Travel agencies, tour operators and hospitality management" },
-  { i:"🎓", n:"Education & Training", d:"E-learning, coaching and professional development" },
-  { i:"🏥", n:"Health & Wellness", d:"Health consulting, wellness services and distribution" },
-  { i:"💼", n:"General Trading", d:"Import, export and trading across all goods categories" },
-  { i:"🖥️", n:"E-Commerce", d:"Online retail, digital platforms and dropshipping" },
-  { i:"⚡", n:"Sports & Lifestyle", d:"Sports management, fitness consulting and lifestyle brands" },
+  { i:"", n:"Consulting & Advisory", d:"Management, strategy, business advisory and professional services" },
+  { i:"", n:"Technology & IT", d:"Software development, SaaS, IT consulting and digital solutions" },
+  { i:"", n:"Marketing & Creative", d:"Digital agencies, branding, PR and creative services" },
+  { i:"", n:"Media & Entertainment", d:"Content creation, production, events and entertainment" },
+  { i:"", n:"Real Estate", d:"Property consulting, investment advisory and PropTech" },
+  { i:"", n:"Food & Beverage", d:"F&B trading, restaurant consulting and catering services" },
+  { i:"", n:"Travel & Tourism", d:"Travel agencies, tour operators and hospitality management" },
+  { i:"", n:"Education & Training", d:"E-learning, coaching and professional development" },
+  { i:"", n:"Health & Wellness", d:"Health consulting, wellness services and distribution" },
+  { i:"", n:"General Trading", d:"Import, export and trading across all goods categories" },
+  { i:"", n:"E-Commerce", d:"Online retail, digital platforms and dropshipping" },
+  { i:"", n:"Sports & Lifestyle", d:"Sports management, fitness consulting and lifestyle brands" },
 ];
 
 const STEPS = [
@@ -754,11 +754,11 @@ export default function MeydanPage({ onBack, onNavigate }) {
           <div className="myd-reveal mr2">
             <div className="myd-pillars">
               {[
-                { i:"🏆", h:"Most Prestigious Affordable Zone", p:"A globally recognised Dubai address at a fraction of DMCC or DIFC costs. Starting from AED 14,500 — ideal for consultancies and lifestyle brands." },
-                { i:"⚡", h:"5 to 10 Day Setup", p:"Fast-track digital application process. Trade license typically issued within 5–10 working days from document submission." },
-                { i:"🌐", h:"World-Famous Address", p:"Meydan is known globally through the Dubai World Cup. Your Nad Al Sheba address carries instant prestige with international clients." },
-                { i:"🔄", h:"No Minimum Share Capital", p:"Zero declared share capital required — unlike DMCC's AED 50,000. Keep your full working capital available from day one." },
-                { i:"🏇", h:"Unique Lifestyle Ecosystem", p:"Office within the Meydan Racecourse complex — 5-star hotels, fine dining, events and world-class leisure at your doorstep." },
+                { i:"", h:"Most Prestigious Affordable Zone", p:"A globally recognised Dubai address at a fraction of DMCC or DIFC costs. Starting from AED 14,500 — ideal for consultancies and lifestyle brands." },
+                { i:"", h:"5 to 10 Day Setup", p:"Fast-track digital application process. Trade license typically issued within 5–10 working days from document submission." },
+                { i:"", h:"World-Famous Address", p:"Meydan is known globally through the Dubai World Cup. Your Nad Al Sheba address carries instant prestige with international clients." },
+                { i:"", h:"No Minimum Share Capital", p:"Zero declared share capital required — unlike DMCC's AED 50,000. Keep your full working capital available from day one." },
+                { i:"", h:"Unique Lifestyle Ecosystem", p:"Office within the Meydan Racecourse complex — 5-star hotels, fine dining, events and world-class leisure at your doorstep." },
               ].map((p, i) => (
                 <div className="myd-pillar" key={i}>
                   <div className="myd-pillar-icon">{p.i}</div>
@@ -792,7 +792,7 @@ export default function MeydanPage({ onBack, onNavigate }) {
               <ul className="myd-pkg-features">
                 {pkg.feats.map(([t, on], j) => (
                   <li className="myd-pkg-feat" key={j}>
-                    <span className={on ? "myd-feat-on" : "myd-feat-off"}>{on ? "✓" : "×"}</span>
+                    <span className={on ? "myd-feat-on" : "myd-feat-off"}>{on ? "" : "×"}</span>
                     <span className={on ? "myd-feat-label-on" : "myd-feat-label-off"}>{t}</span>
                   </li>
                 ))}
@@ -906,7 +906,7 @@ export default function MeydanPage({ onBack, onNavigate }) {
             ))}
           </div>
           <div className="myd-advisory-warning myd-reveal">
-            <h4>⚠️ When Meydan Might Not Be the Best Fit</h4>
+            <h4> When Meydan Might Not Be the Best Fit</h4>
             <p>Consider alternatives if: you specifically need DMCC's commodities trading or fintech ecosystem · you require DIFC's regulated financial services framework · you need JAFZA's port-connected logistics infrastructure · your business requires a large-scale physical operation · or complex corporate structures require a zone with decade-long banking relationships. INCOZONE will always recommend the right zone — even if it's not Meydan.</p>
           </div>
         </div>

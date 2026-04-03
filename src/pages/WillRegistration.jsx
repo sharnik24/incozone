@@ -268,7 +268,7 @@ const CSS = `
 // ── DATA ──────────────────────────────────────────────────────
 const WILL_TYPES = [
   {
-    icon: "⚖️",
+    icon: "",
     badge: "Most Common",
     title: "DIFC WILL",
     desc: "The most widely used WILL for expatriates in Dubai and the northern emirates. Registered with the DIFC Courts — internationally recognised and enforceable under English Common Law.",
@@ -282,7 +282,7 @@ const WILL_TYPES = [
     cost: "From AED 2,500",
   },
   {
-    icon: "🏛️",
+    icon: "",
     badge: "Abu Dhabi Based",
     title: "Abu Dhabi Courts WILL",
     desc: "Registered with the Abu Dhabi Judicial Department — ideal for residents based in Abu Dhabi or with significant Abu Dhabi assets. Equally enforceable and legally binding.",
@@ -296,7 +296,7 @@ const WILL_TYPES = [
     cost: "From AED 2,000",
   },
   {
-    icon: "🌐",
+    icon: "",
     badge: "Comprehensive",
     title: "Mirror WILL",
     desc: "Dual WILLs for couples — each mirroring the other's intentions. Ensures both spouses' assets are protected and transfer seamlessly regardless of which partner passes first.",
@@ -312,14 +312,14 @@ const WILL_TYPES = [
 ];
 
 const COVERED_ITEMS = [
-  { icon: "🏠", title: "UAE Real Estate", desc: "Freehold and leasehold properties in Dubai, Abu Dhabi, and all other emirates." },
-  { icon: "💰", title: "Bank Accounts", desc: "All UAE savings, current, and investment accounts — including joint accounts." },
-  { icon: "📈", title: "Investment Portfolios", desc: "UAE stocks, bonds, funds, crypto held locally, and brokerage accounts." },
-  { icon: "🏢", title: "Company Shares", desc: "Free zone company shares, mainland shareholdings, and business ownership stakes." },
-  { icon: "🚗", title: "Vehicles & Assets", desc: "UAE-registered vehicles, boats, and valuable personal property." },
-  { icon: "👶", title: "Guardian Appointment", desc: "Legal appointment of guardians for minor children residing in the UAE." },
-  { icon: "💎", title: "Personal Valuables", desc: "Jewellery, art, and high-value personal items stored in the UAE." },
-  { icon: "🔐", title: "Digital Assets", desc: "Cryptocurrency, digital wallets, and online accounts — a growing area of estate planning." },
+  { icon: "", title: "UAE Real Estate", desc: "Freehold and leasehold properties in Dubai, Abu Dhabi, and all other emirates." },
+  { icon: "", title: "Bank Accounts", desc: "All UAE savings, current, and investment accounts — including joint accounts." },
+  { icon: "", title: "Investment Portfolios", desc: "UAE stocks, bonds, funds, crypto held locally, and brokerage accounts." },
+  { icon: "", title: "Company Shares", desc: "Free zone company shares, mainland shareholdings, and business ownership stakes." },
+  { icon: "", title: "Vehicles & Assets", desc: "UAE-registered vehicles, boats, and valuable personal property." },
+  { icon: "", title: "Guardian Appointment", desc: "Legal appointment of guardians for minor children residing in the UAE." },
+  { icon: "", title: "Personal Valuables", desc: "Jewellery, art, and high-value personal items stored in the UAE." },
+  { icon: "", title: "Digital Assets", desc: "Cryptocurrency, digital wallets, and online accounts — a growing area of estate planning." },
 ];
 
 const PROCESS_STEPS = [
@@ -439,7 +439,7 @@ export default function WillRegistrationPage({ onBack, onNavigate }) {
         </div>
         <div className="wr-hero-right">
           <div className="wr-alert">
-            <span className="wr-alert-icon">⚠️</span>
+            <span className="wr-alert-icon"></span>
             <div className="wr-alert-title">Critical for Every Expatriate</div>
             <p className="wr-alert-text">
               <strong>Without a UAE-registered WILL</strong>, your UAE bank accounts will be frozen immediately upon death. Assets will be distributed under Sharia law — regardless of your religion, nationality, or wishes expressed in a foreign WILL. <strong>This affects every non-Muslim expatriate in the UAE.</strong>
@@ -463,34 +463,34 @@ export default function WillRegistrationPage({ onBack, onNavigate }) {
         </div>
         <div className="wr-split">
           <div className="wr-split-col danger wr-reveal">
-            <div className="wr-split-title">⚠️ Without a UAE WILL</div>
+            <div className="wr-split-title"> Without a UAE WILL</div>
             <div className="wr-split-items">
               {[
-                ["❌", "Bank accounts frozen immediately upon death"],
-                ["❌", "Assets distributed under Sharia law regardless of your religion"],
-                ["❌", "Spouse may receive only 1/8 of estate under Sharia formula"],
-                ["❌", "Children's shares fixed by law — not your wishes"],
-                ["❌", "Foreign WILLs may not be recognised for UAE assets"],
-                ["❌", "Court appoints guardians for your children — not you"],
-                ["❌", "Estate settlement can take years and significant legal cost"],
-                ["❌", "Business shares and company ownership in legal limbo"],
+                ["", "Bank accounts frozen immediately upon death"],
+                ["", "Assets distributed under Sharia law regardless of your religion"],
+                ["", "Spouse may receive only 1/8 of estate under Sharia formula"],
+                ["", "Children's shares fixed by law — not your wishes"],
+                ["", "Foreign WILLs may not be recognised for UAE assets"],
+                ["", "Court appoints guardians for your children — not you"],
+                ["", "Estate settlement can take years and significant legal cost"],
+                ["", "Business shares and company ownership in legal limbo"],
               ].map(([icon, text], i) => (
                 <div className="wr-split-item" key={i}><span className="wr-split-icon">{icon}</span><span>{text}</span></div>
               ))}
             </div>
           </div>
           <div className="wr-split-col safe wr-reveal wr-d2">
-            <div className="wr-split-title">✦ With a Registered UAE WILL</div>
+            <div className="wr-split-title"> With a Registered UAE WILL</div>
             <div className="wr-split-items">
               {[
-                ["✓", "Assets transfer to your chosen beneficiaries immediately"],
-                ["✓", "Distribution follows your exact written instructions"],
-                ["✓", "Spouse receives exactly what you intend — no formula"],
-                ["✓", "Children's inheritance protected and documented"],
-                ["✓", "Legally enforceable under English Common Law (DIFC)"],
-                ["✓", "You choose guardians for your children in writing"],
-                ["✓", "Estate settled efficiently — typically within months"],
-                ["✓", "Business continuity protected and ownership transferred cleanly"],
+                ["", "Assets transfer to your chosen beneficiaries immediately"],
+                ["", "Distribution follows your exact written instructions"],
+                ["", "Spouse receives exactly what you intend — no formula"],
+                ["", "Children's inheritance protected and documented"],
+                ["", "Legally enforceable under English Common Law (DIFC)"],
+                ["", "You choose guardians for your children in writing"],
+                ["", "Estate settled efficiently — typically within months"],
+                ["", "Business continuity protected and ownership transferred cleanly"],
               ].map(([icon, text], i) => (
                 <div className="wr-split-item" key={i}><span className="wr-split-icon" style={{ color: "var(--g400)" }}>{icon}</span><span>{text}</span></div>
               ))}
@@ -498,7 +498,7 @@ export default function WillRegistrationPage({ onBack, onNavigate }) {
           </div>
         </div>
         <div className="wr-urgency wr-reveal">
-          <div className="wr-urgency-icon">🔔</div>
+          <div className="wr-urgency-icon"></div>
           <div className="wr-urgency-text">
             <h4>This applies to every expatriate in the UAE — regardless of nationality</h4>
             <p>Whether you are British, Indian, American, European, or any other nationality — <strong>if you have assets in the UAE and no registered UAE WILL, your family is at risk.</strong> INCOZONE has helped hundreds of families protect their UAE estate. The process is simple. The consequences of not acting are not.</p>
@@ -588,7 +588,7 @@ export default function WillRegistrationPage({ onBack, onNavigate }) {
               <ul className="wr-pkg-feats">
                 {pkg.features.map((f, j) => (
                   <li className="wr-pkg-feat" key={j}>
-                    <span className={`wr-feat-chk ${f.yes ? "yes" : "no"}`}>{f.yes ? "✓" : "×"}</span>
+                    <span className={`wr-feat-chk ${f.yes ? "yes" : "no"}`}>{f.yes ? "" : "×"}</span>
                     <span style={{ color: pkg.featured ? (f.yes ? "var(--w80)" : "rgba(248,245,238,0.25)") : (f.yes ? "var(--cream-ink2)" : "var(--cream-bdr)") }}>{f.text}</span>
                   </li>
                 ))}

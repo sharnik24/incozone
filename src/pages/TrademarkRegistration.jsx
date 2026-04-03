@@ -286,31 +286,31 @@ const CSS = `
 
 const TRADEMARK_TYPES = [
   {
-    icon: "™️", badge: "Most Common",
+    icon: "™", badge: "Most Common",
     title: "Goods & Services Trademark",
     desc: "The standard trademark covering your brand name, logo, or slogan used in connection with specific goods or services. Applicable to any business, company, or individual.",
     examples: ["Brand Name", "Logo", "Slogan", "Product Name", "Service Mark"],
   },
   {
-    icon: "🏅", badge: "Quality Certification",
+    icon: "", badge: "Quality Certification",
     title: "Quality / Control Mark",
     desc: "A certification mark that certifies the quality, characteristics, or origin of goods or services — not tied to a specific commercial source. Requires Ministry approval.",
     examples: ["Quality Standard", "Origin Mark", "Certification", "Approved Standards"],
   },
   {
-    icon: "🌍", badge: "Government Only",
+    icon: "", badge: "Government Only",
     title: "Geographical Indication",
     desc: "Used by government entities to indicate that a product originates from a specific geographic region with qualities attributable to that origin. Requires official legal instruments.",
     examples: ["Regional Products", "Origin-Specific", "Government Entity", "Product Specification"],
   },
   {
-    icon: "🎪", badge: "Event Protection",
+    icon: "", badge: "Event Protection",
     title: "Exhibition Trademark",
     desc: "Temporary trademark protection for brands displayed at exhibitions and trade shows — protecting your mark during the event period before full registration.",
     examples: ["Trade Shows", "Exhibitions", "Event Protection", "Temporary"],
   },
   {
-    icon: "🤝", badge: "Member Association",
+    icon: "", badge: "Member Association",
     title: "Collective Mark",
     desc: "Used by members of an association or group to distinguish their goods or services. The applicant entity controls member usage and sets criteria for use.",
     examples: ["Association", "Member Control", "Collective Use", "Group Identity"],
@@ -368,12 +368,12 @@ const NICE_CLASSES = [
 ];
 
 const REQUIRED_DOCS = [
-  { icon: "🖼️", title: "Trademark Image (JPEG)", desc: "A clear copy of your trademark — logo, wordmark, or combined mark — in JPEG format.", note: "Required for all applications" },
-  { icon: "📄", title: "Trade License Copy", desc: "If the applicant is a company or establishment, a copy of the valid UAE trade license must be attached.", note: "Companies & establishments" },
-  { icon: "📋", title: "Power of Attorney", desc: "Duly certified and notarized power of attorney if applying through a registered trademark agent (like INCOZONE). Required for overseas applicants.", note: "Must be notarized & legally translated" },
-  { icon: "📜", title: "Articles of Association", desc: "Required for Quality Marks and Collective Marks — must include specific declarations about mark usage, standards, and member control.", note: "Quality / Collective Marks only" },
-  { icon: "🔤", title: "Arabic Translation", desc: "All supporting documents must be duly notarized, legalized, and translated into Arabic by a certified legal translator.", note: "All non-Arabic documents" },
-  { icon: "🏆", title: "Exhibition Details", desc: "For temporary exhibition protection — exhibitor name, official opening date, duration, and goods/services specification are required.", note: "Exhibition Trademarks only" },
+  { icon: "", title: "Trademark Image (JPEG)", desc: "A clear copy of your trademark — logo, wordmark, or combined mark — in JPEG format.", note: "Required for all applications" },
+  { icon: "", title: "Trade License Copy", desc: "If the applicant is a company or establishment, a copy of the valid UAE trade license must be attached.", note: "Companies & establishments" },
+  { icon: "", title: "Power of Attorney", desc: "Duly certified and notarized power of attorney if applying through a registered trademark agent (like INCOZONE). Required for overseas applicants.", note: "Must be notarized & legally translated" },
+  { icon: "", title: "Articles of Association", desc: "Required for Quality Marks and Collective Marks — must include specific declarations about mark usage, standards, and member control.", note: "Quality / Collective Marks only" },
+  { icon: "", title: "Arabic Translation", desc: "All supporting documents must be duly notarized, legalized, and translated into Arabic by a certified legal translator.", note: "All non-Arabic documents" },
+  { icon: "", title: "Exhibition Details", desc: "For temporary exhibition protection — exhibitor name, official opening date, duration, and goods/services specification are required.", note: "Exhibition Trademarks only" },
 ];
 
 const FAQS = [
@@ -552,12 +552,12 @@ export default function TrademarkRegistrationPage({ onBack, onNavigate }) {
         </div>
         <div className="tm-why-grid">
           {[
-            { icon: "🛡️", title: "Legal Ownership", desc: "Trademark registration gives you exclusive legal ownership of your brand name and logo in the UAE. Only you can use it — and you can take legal action against anyone who copies it." },
-            { icon: "⚖️", title: "Enforcement Rights", desc: "Without registration, you have no legal standing to stop others from using your brand. With registration, you can pursue infringers through UAE courts and customs authorities." },
-            { icon: "💰", title: "Commercial Asset", desc: "A registered trademark is a valuable intangible asset — it can be licensed, franchised, sold, or used as collateral. It directly increases the valuation of your business." },
-            { icon: "🌍", title: "GCC Protection", desc: "UAE trademark registration can form the basis for GCC-wide and international trademark filings — protecting your brand across the region as you grow." },
-            { icon: "🚫", title: "Stop Copycats", desc: "Registered trademarks are recorded with UAE Customs — giving you the power to intercept and seize counterfeit goods at the border before they reach the market." },
-            { icon: "📈", title: "Brand Credibility", desc: "The ™ and ® symbols signal to customers, investors, and partners that you take your brand seriously. It builds instant credibility and trust in the marketplace." },
+            { icon: "", title: "Legal Ownership", desc: "Trademark registration gives you exclusive legal ownership of your brand name and logo in the UAE. Only you can use it — and you can take legal action against anyone who copies it." },
+            { icon: "", title: "Enforcement Rights", desc: "Without registration, you have no legal standing to stop others from using your brand. With registration, you can pursue infringers through UAE courts and customs authorities." },
+            { icon: "", title: "Commercial Asset", desc: "A registered trademark is a valuable intangible asset — it can be licensed, franchised, sold, or used as collateral. It directly increases the valuation of your business." },
+            { icon: "", title: "GCC Protection", desc: "UAE trademark registration can form the basis for GCC-wide and international trademark filings — protecting your brand across the region as you grow." },
+            { icon: "", title: "Stop Copycats", desc: "Registered trademarks are recorded with UAE Customs — giving you the power to intercept and seize counterfeit goods at the border before they reach the market." },
+            { icon: "", title: "Brand Credibility", desc: "The ™ and ® symbols signal to customers, investors, and partners that you take your brand seriously. It builds instant credibility and trust in the marketplace." },
           ].map((w, i) => (
             <div className={`tm-why-card tm-reveal tm-d${(i % 3) + 1}`} key={i}>
               <span className="tm-why-icon">{w.icon}</span>
@@ -597,7 +597,7 @@ export default function TrademarkRegistrationPage({ onBack, onNavigate }) {
               The official UAE trademark registration process is managed by the <strong>Ministry of Economy & Tourism</strong>. INCOZONE handles every step on your behalf — from application to certificate delivery. The process is available <strong>online 24/7</strong> via the MoE website and smart app.
             </p>
             <div className="tm-official-badge">
-              <span className="tm-official-badge-icon">🏛️</span>
+              <span className="tm-official-badge-icon"></span>
               <span className="tm-official-badge-text">Official Source: Ministry of Economy & Tourism · moet.gov.ae · 800 1222</span>
             </div>
           </div>
@@ -717,7 +717,7 @@ export default function TrademarkRegistrationPage({ onBack, onNavigate }) {
               <ul className="tm-pkg-feats">
                 {pkg.features.map((f, j) => (
                   <li className="tm-pkg-feat" key={j}>
-                    <span className={`tm-feat-chk ${f.yes ? "yes" : "no"}`}>{f.yes ? "✓" : "×"}</span>
+                    <span className={`tm-feat-chk ${f.yes ? "yes" : "no"}`}>{f.yes ? "" : "×"}</span>
                     <span style={{ color: pkg.featured ? (f.yes ? "var(--w80)" : "rgba(248,245,238,0.25)") : (f.yes ? "var(--cream-ink2)" : "var(--cream-bdr)") }}>{f.text}</span>
                   </li>
                 ))}

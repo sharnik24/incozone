@@ -488,7 +488,7 @@ const SERVICES = [
     stat: "8",
     statLabel: "Free Zones",
     cta: "Explore Zones",
-    page: "home",
+    page: "freezoneincorp",
   },
   {
     num: "02",

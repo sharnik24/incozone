@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { IArrowsExchange, IBriefcase, IMonitor, ITrendingUp, IPackage, IMegaphone, ICross, IBuilding, IBookOpen, ILeaf, ICompass, IBolt, ICrown, IGlobe, IShield, IGrid, IBarChart } from "../icons";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — DMCC Free Zone Page  (standalone, self-contained)
@@ -547,18 +548,18 @@ const STATS = [
 ];
 
 const ACTIVITIES = [
-  { i:"", n:"Commodities Trading", d:"Gold, diamonds, precious metals and raw materials" },
-  { i:"", n:"Professional Services", d:"Consulting, advisory and management services" },
-  { i:"", n:"Technology & IT", d:"Software, fintech, crypto and digital services" },
-  { i:"", n:"Financial Services", d:"Investment advisory, fund management, financial consulting" },
-  { i:"", n:"Logistics & Shipping", d:"Freight forwarding, import/export, supply chain" },
-  { i:"", n:"Media & Marketing", d:"Digital media, content creation, advertising" },
-  { i:"", n:"Healthcare & Pharma", d:"Medical distribution, pharma trading, health consulting" },
-  { i:"", n:"Real Estate", d:"Property management, real estate consulting, prop-tech" },
-  { i:"", n:"Education & Training", d:"E-learning platforms, training centers, EdTech" },
-  { i:"", n:"Food & Agri Trading", d:"Food commodities, agricultural products, FMCG" },
-  { i:"", n:"Travel & Tourism", d:"Tour operations, travel agencies, hospitality" },
-  { i:"", n:"Energy & Renewables", d:"Oil & gas, solar energy, clean tech solutions" },
+  { i:IArrowsExchange, n:"Commodities Trading", d:"Gold, diamonds, precious metals and raw materials" },
+  { i:IBriefcase, n:"Professional Services", d:"Consulting, advisory and management services" },
+  { i:IMonitor, n:"Technology & IT", d:"Software, fintech, crypto and digital services" },
+  { i:ITrendingUp, n:"Financial Services", d:"Investment advisory, fund management, financial consulting" },
+  { i:IPackage, n:"Logistics & Shipping", d:"Freight forwarding, import/export, supply chain" },
+  { i:IMegaphone, n:"Media & Marketing", d:"Digital media, content creation, advertising" },
+  { i:ICross, n:"Healthcare & Pharma", d:"Medical distribution, pharma trading, health consulting" },
+  { i:IBuilding, n:"Real Estate", d:"Property management, real estate consulting, prop-tech" },
+  { i:IBookOpen, n:"Education & Training", d:"E-learning platforms, training centers, EdTech" },
+  { i:ILeaf, n:"Food & Agri Trading", d:"Food commodities, agricultural products, FMCG" },
+  { i:ICompass, n:"Travel & Tourism", d:"Tour operations, travel agencies, hospitality" },
+  { i:IBolt, n:"Energy & Renewables", d:"Oil & gas, solar energy, clean tech solutions" },
 ];
 
 const STEPS = [
@@ -862,11 +863,11 @@ export default function DMCCPage({ onBack, onNavigate }) {
           <div className="dmcc-reveal dr2">
             <div className="dmcc-pillars">
               {[
-                { i:"", h:"World's #1 Free Zone", p:"Ranked #1 globally by Financial Times fDi Magazine for 10 consecutive years — the only free zone to achieve this." },
-                { i:"", h:"Global Connectivity", p:"190+ countries connected through DMCC's trade and business network. Unrivalled for international commodity flows." },
-                { i:"", h:"Regulated & Credible", p:"DMCC is a UAE government authority — internationally recognised, respected by banks and institutional investors worldwide." },
-                { i:"", h:"Full Business Ecosystem", p:"Legal, banking, logistics, insurance and business services all operate within the DMCC zone — everything in one place." },
-                { i:"", h:"100% Profit Repatriation", p:"No restrictions on moving funds internationally. Zero capital controls or withholding taxes on dividends or profits." },
+                { i:ICrown, h:"World's #1 Free Zone", p:"Ranked #1 globally by Financial Times fDi Magazine for 10 consecutive years — the only free zone to achieve this." },
+                { i:IGlobe, h:"Global Connectivity", p:"190+ countries connected through DMCC's trade and business network. Unrivalled for international commodity flows." },
+                { i:IShield, h:"Regulated & Credible", p:"DMCC is a UAE government authority — internationally recognised, respected by banks and institutional investors worldwide." },
+                { i:IGrid, h:"Full Business Ecosystem", p:"Legal, banking, logistics, insurance and business services all operate within the DMCC zone — everything in one place." },
+                { i:IBarChart, h:"100% Profit Repatriation", p:"No restrictions on moving funds internationally. Zero capital controls or withholding taxes on dividends or profits." },
               ].map((p, i) => (
                 <div className="dmcc-pillar" key={i}>
                   <div className="dmcc-pillar-icon">{p.i}</div>

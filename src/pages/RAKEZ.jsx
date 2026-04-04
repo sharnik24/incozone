@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { IGear, IArrowsExchange, IPackage, IMonitor, IBriefcase, IWrench, ILeaf, IDroplet, ICompass, IBookOpen, ICross, IBolt, ITag, IGrid, IClock, IIdCard, IAnchor } from "../icons";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — RAKEZ Free Zone Page  (standalone, self-contained)
@@ -453,18 +454,18 @@ const STATS = [
 ];
 
 const ACTIVITIES = [
-  { i:"", n:"Manufacturing", d:"Production, assembly, processing and light industrial manufacturing" },
-  { i:"", n:"Trading & Import/Export", d:"General trading, wholesale distribution and cross-border trade" },
-  { i:"", n:"Logistics & Warehousing", d:"Storage, freight forwarding, supply chain and distribution" },
-  { i:"", n:"Technology & IT", d:"Software, IT consulting, digital services and tech startups" },
-  { i:"", n:"Consulting & Professional", d:"Business consulting, management advisory and professional services" },
-  { i:"", n:"Construction & Engineering", d:"Engineering services, construction consulting and project management" },
-  { i:"", n:"Food & Agriculture", d:"Food processing, agricultural trading and FMCG distribution" },
-  { i:"", n:"Pharma & Chemicals", d:"Pharmaceutical trading, chemical distribution and healthcare products" },
-  { i:"", n:"Travel & Tourism", d:"Travel agencies, hospitality management and tourism services" },
-  { i:"", n:"Education & Training", d:"Training centres, educational consulting and e-learning platforms" },
-  { i:"", n:"Healthcare", d:"Medical equipment trading, healthcare consulting and wellness" },
-  { i:"", n:"Energy & Renewables", d:"Oil & gas trading, solar energy and clean technology solutions" },
+  { i:IGear, n:"Manufacturing", d:"Production, assembly, processing and light industrial manufacturing" },
+  { i:IArrowsExchange, n:"Trading & Import/Export", d:"General trading, wholesale distribution and cross-border trade" },
+  { i:IPackage, n:"Logistics & Warehousing", d:"Storage, freight forwarding, supply chain and distribution" },
+  { i:IMonitor, n:"Technology & IT", d:"Software, IT consulting, digital services and tech startups" },
+  { i:IBriefcase, n:"Consulting & Professional", d:"Business consulting, management advisory and professional services" },
+  { i:IWrench, n:"Construction & Engineering", d:"Engineering services, construction consulting and project management" },
+  { i:ILeaf, n:"Food & Agriculture", d:"Food processing, agricultural trading and FMCG distribution" },
+  { i:IDroplet, n:"Pharma & Chemicals", d:"Pharmaceutical trading, chemical distribution and healthcare products" },
+  { i:ICompass, n:"Travel & Tourism", d:"Travel agencies, hospitality management and tourism services" },
+  { i:IBookOpen, n:"Education & Training", d:"Training centres, educational consulting and e-learning platforms" },
+  { i:ICross, n:"Healthcare", d:"Medical equipment trading, healthcare consulting and wellness" },
+  { i:IBolt, n:"Energy & Renewables", d:"Oil & gas trading, solar energy and clean technology solutions" },
 ];
 
 const STEPS = [
@@ -754,11 +755,11 @@ export default function RAKEZPage({ onBack, onNavigate }) {
           <div className="rkz-reveal rr2">
             <div className="rkz-pillars">
               {[
-                { i:"", h:"UAE's Most Affordable Free Zone", p:"Starting from AED 8,500 — the lowest setup cost of any major UAE free zone. Full company benefits, UAE residency, and zero taxes at an unbeatable price." },
-                { i:"", h:"Industrial Infrastructure", p:"Dedicated warehouses, factories, land plots, and industrial parks at costs 40–60% lower than Dubai equivalents. The only free zone to offer this scale of physical infrastructure at this price." },
-                { i:"", h:"3 to 7 Day Setup", p:"One of the fastest formation processes in the UAE. Simple digital application, straightforward requirements, and quick authority approvals." },
-                { i:"", h:"Full UAE Residency & Ownership", p:"UAE investor visa, Emirates ID, and 100% foreign company ownership — without paying the Dubai premium. Same residency rights, same banking access." },
-                { i:"", h:"Saqr Port Access", p:"Direct proximity to Saqr Port — one of the Middle East's largest bulk cargo ports. Ideal for import/export, logistics, and manufacturing businesses with real supply chain requirements." },
+                { i:ITag, h:"UAE's Most Affordable Free Zone", p:"Starting from AED 8,500 — the lowest setup cost of any major UAE free zone. Full company benefits, UAE residency, and zero taxes at an unbeatable price." },
+                { i:IGrid, h:"Industrial Infrastructure", p:"Dedicated warehouses, factories, land plots, and industrial parks at costs 40–60% lower than Dubai equivalents. The only free zone to offer this scale of physical infrastructure at this price." },
+                { i:IClock, h:"3 to 7 Day Setup", p:"One of the fastest formation processes in the UAE. Simple digital application, straightforward requirements, and quick authority approvals." },
+                { i:IIdCard, h:"Full UAE Residency & Ownership", p:"UAE investor visa, Emirates ID, and 100% foreign company ownership — without paying the Dubai premium. Same residency rights, same banking access." },
+                { i:IAnchor, h:"Saqr Port Access", p:"Direct proximity to Saqr Port — one of the Middle East's largest bulk cargo ports. Ideal for import/export, logistics, and manufacturing businesses with real supply chain requirements." },
               ].map((p, i) => (
                 <div className="rkz-pillar" key={i}>
                   <div className="rkz-pillar-icon">{p.i}</div>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { IShield, IBolt, ITrendingUp, IMapPin, IGrid, IFileText } from "../icons";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Free Zone Incorporation Service
@@ -458,32 +459,32 @@ const PROCESS_STEPS = [
 
 const BENEFITS = [
   {
-    icon: "",
+    icon: IShield,
     title: "100% Foreign Ownership",
     desc: "Retain complete control of your business with full foreign ownership rights."
   },
   {
-    icon: "",
+    icon: IBolt,
     title: "Zero Corporate Tax",
     desc: "Benefit from 0% corporate and personal income tax on business profits."
   },
   {
-    icon: "",
+    icon: ITrendingUp,
     title: "Full Profit Repatriation",
     desc: "Transfer 100% of your capital and profits back to your home country."
   },
   {
-    icon: "",
+    icon: IMapPin,
     title: "Strategic Location",
     desc: "Access to Middle East, Asian, and African markets from a central hub."
   },
   {
-    icon: "",
+    icon: IGrid,
     title: "World-Class Infrastructure",
     desc: "Premium office spaces, logistics facilities, and business amenities."
   },
   {
-    icon: "",
+    icon: IFileText,
     title: "Simplified Compliance",
     desc: "Minimal reporting requirements and streamlined regulatory processes."
   }

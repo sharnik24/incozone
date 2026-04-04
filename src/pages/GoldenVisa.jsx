@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { IBuilding, ITrendingUp, ILightbulb, IAward, IIdCard, IHeart, ICalendar, IUsers, IShield, IGlobe, ICreditCard, IBriefcase, IBookOpen, ILock } from "../icons";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — UAE Golden Visa Page
@@ -353,7 +354,7 @@ const CSS = `
 
 const CATEGORIES = [
   {
-    icon: "",
+    icon: IBuilding,
     num: "01",
     title: "Real Estate Investor",
     desc: "Own UAE property worth AED 2 million or more — whether purchased outright or with a mortgage from an approved UAE bank.",
@@ -365,7 +366,7 @@ const CATEGORIES = [
     ],
   },
   {
-    icon: "",
+    icon: ITrendingUp,
     num: "02",
     title: "Business Owner / Investor",
     desc: "Entrepreneurs and investors who own a business with a minimum capital investment or who have established a company in the UAE.",
@@ -377,7 +378,7 @@ const CATEGORIES = [
     ],
   },
   {
-    icon: "",
+    icon: ILightbulb,
     num: "03",
     title: "Exceptional Talent",
     desc: "Professionals recognised for outstanding contributions in science, arts, culture, sports, medicine, education, or technology.",
@@ -389,7 +390,7 @@ const CATEGORIES = [
     ],
   },
   {
-    icon: "",
+    icon: IAward,
     num: "04",
     title: "Outstanding Students",
     desc: "High-achieving students from UAE universities or top-ranked international institutions who demonstrate academic excellence.",
@@ -401,7 +402,7 @@ const CATEGORIES = [
     ],
   },
   {
-    icon: "",
+    icon: IIdCard,
     num: "05",
     title: "Skilled Professional",
     desc: "Professionals in priority sectors who meet the UAE's criteria for skills and salary thresholds in high-demand industries.",
@@ -413,7 +414,7 @@ const CATEGORIES = [
     ],
   },
   {
-    icon: "",
+    icon: IHeart,
     num: "06",
     title: "Humanitarian Pioneer",
     desc: "Individuals who have made significant charitable contributions or shown extraordinary humanitarian service.",
@@ -427,14 +428,14 @@ const CATEGORIES = [
 ];
 
 const BENEFITS = [
-  { icon: "", title: "10-Year Renewable Residency", desc: "Live, work, and study in the UAE for 10 years — automatically renewable if conditions are maintained." },
-  { icon: "", title: "Full Family Sponsorship", desc: "Sponsor spouse, children (all ages), and parents. No age limit restrictions on children unlike standard visas." },
-  { icon: "", title: "No Employer Sponsorship", desc: "Completely self-sponsored. Your residency is independent of any employer — full freedom to change jobs or start businesses." },
-  { icon: "", title: "Stay Outside UAE", desc: "No mandatory return requirement every 6 months. Live internationally without losing your UAE residency status." },
-  { icon: "", title: "Full Banking Access", desc: "Access premium UAE banking facilities, investments, property ownership rights, and financial services as a long-term resident." },
-  { icon: "", title: "Business Freedom", desc: "Full freedom to establish, own, and operate UAE businesses. Start companies, hold shares, and run operations independently." },
-  { icon: "", title: "Education & Healthcare", desc: "Access to UAE government schools, universities, and healthcare at resident rates — not visitor rates." },
-  { icon: "", title: "Stability & Security", desc: "10-year horizon provides the stability to invest, plan, and build in the UAE with full long-term confidence." },
+  { icon: ICalendar, title: "10-Year Renewable Residency", desc: "Live, work, and study in the UAE for 10 years — automatically renewable if conditions are maintained." },
+  { icon: IUsers, title: "Full Family Sponsorship", desc: "Sponsor spouse, children (all ages), and parents. No age limit restrictions on children unlike standard visas." },
+  { icon: IShield, title: "No Employer Sponsorship", desc: "Completely self-sponsored. Your residency is independent of any employer — full freedom to change jobs or start businesses." },
+  { icon: IGlobe, title: "Stay Outside UAE", desc: "No mandatory return requirement every 6 months. Live internationally without losing your UAE residency status." },
+  { icon: ICreditCard, title: "Full Banking Access", desc: "Access premium UAE banking facilities, investments, property ownership rights, and financial services as a long-term resident." },
+  { icon: IBriefcase, title: "Business Freedom", desc: "Full freedom to establish, own, and operate UAE businesses. Start companies, hold shares, and run operations independently." },
+  { icon: IBookOpen, title: "Education & Healthcare", desc: "Access to UAE government schools, universities, and healthcare at resident rates — not visitor rates." },
+  { icon: ILock, title: "Stability & Security", desc: "10-year horizon provides the stability to invest, plan, and build in the UAE with full long-term confidence." },
 ];
 
 const PROCESS_STEPS = [

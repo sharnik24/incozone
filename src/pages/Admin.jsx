@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { IGrid, IMessageSquare, ICalendar, IGlobe, IHome, IBriefcase, IUsers, IPhone, IClock, IBuilding, IBookOpen, IIdCard, ICreditCard, IShield } from "../icons";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Admin CMS  (v2 — Complete)
@@ -174,11 +175,11 @@ const DEFAULT = {
     heroHeadline: "Schedule a Consultation",
     heroBody: "A focused 30 or 60-minute session with a senior INCOZONE advisor. We'll map your business to the right UAE structure.",
     services: [
-      { id: "freezone",  icon: "", name: "Free Zone Formation",    desc: "Company setup in DMCC, IFZA, ADGM, JAFZA, SHAMS, or any UAE free zone." },
-      { id: "mainland",  icon: "", name: "Mainland Formation",    desc: "DED-licensed mainland company with 100% foreign ownership." },
-      { id: "pro",       icon: "", name: "PRO & Compliance",        desc: "Visa processing, license renewals, government liaison, amendments." },
-      { id: "banking",   icon: "", name: "Corporate Banking",       desc: "UAE business bank account opening — strategy, preparation, submission." },
-      { id: "visa",      icon: "", name: "Investor / Golden Visa",  desc: "UAE residency visa for investors, business owners, and family members." },
+      { id: "freezone",  icon: IBuilding, name: "Free Zone Formation",    desc: "Company setup in DMCC, IFZA, ADGM, JAFZA, SHAMS, or any UAE free zone." },
+      { id: "mainland",  icon: IGlobe, name: "Mainland Formation",    desc: "DED-licensed mainland company with 100% foreign ownership." },
+      { id: "pro",       icon: IShield, name: "PRO & Compliance",        desc: "Visa processing, license renewals, government liaison, amendments." },
+      { id: "banking",   icon: ICreditCard, name: "Corporate Banking",       desc: "UAE business bank account opening — strategy, preparation, submission." },
+      { id: "visa",      icon: IIdCard, name: "Investor / Golden Visa",  desc: "UAE residency visa for investors, business owners, and family members." },
       { id: "advisory",  icon: "", name: "General Advisory",        desc: "Structuring, tax position, UBO compliance, or any UAE corporate matter." },
     ],
   },
@@ -1362,23 +1363,23 @@ function Consultations({ d, oc }) {
 // ─────────────────────────────────────────────────────────────
 const NAV_GROUPS = [
   { group: "Overview", items: [
-    { id: "dashboard",     icon: "", label: "Dashboard" },
-    { id: "enquiries",     icon: "", label: "Enquiries",         badge: "red" },
-    { id: "consultations", icon: "", label: "Consultations",     badge: "gold" },
+    { id: "dashboard",     icon: IGrid, label: "Dashboard" },
+    { id: "enquiries",     icon: IMessageSquare, label: "Enquiries",         badge: "red" },
+    { id: "consultations", icon: ICalendar, label: "Consultations",     badge: "gold" },
   ]},
   { group: "Site Content", items: [
-    { id: "global",   icon: "",  label: "Global Settings" },
-    { id: "home",     icon: "",  label: "Home Page" },
-    { id: "services", icon: "",  label: "Services Page" },
-    { id: "about",    icon: "",  label: "About Page" },
-    { id: "contact",  icon: "",  label: "Contact Page" },
-    { id: "schedule", icon: "",  label: "Schedule Page" },
+    { id: "global",   icon: IGlobe,  label: "Global Settings" },
+    { id: "home",     icon: IHome,  label: "Home Page" },
+    { id: "services", icon: IBriefcase,  label: "Services Page" },
+    { id: "about",    icon: IUsers,  label: "About Page" },
+    { id: "contact",  icon: IPhone,  label: "Contact Page" },
+    { id: "schedule", icon: IClock,  label: "Schedule Page" },
   ]},
   { group: "Free Zones", items: [
-    { id: "zones",    icon: "",  label: "All Free Zones" },
+    { id: "zones",    icon: IBuilding,  label: "All Free Zones" },
   ]},
   { group: "Blog", items: [
-    { id: "blog",     icon: "",  label: "Blog Posts" },
+    { id: "blog",     icon: IBookOpen,  label: "Blog Posts" },
   ]},
 ];
 

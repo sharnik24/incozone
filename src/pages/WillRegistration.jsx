@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { IFileText, IBuilding, IUsers, ICreditCard, ITrendingUp, IBriefcase, ICar, IStar, IGlobe } from "../icons";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — UAE WILL Registration Page
@@ -268,7 +269,7 @@ const CSS = `
 // ── DATA ──────────────────────────────────────────────────────
 const WILL_TYPES = [
   {
-    icon: "",
+    icon: IFileText,
     badge: "Most Common",
     title: "DIFC WILL",
     desc: "The most widely used WILL for expatriates in Dubai and the northern emirates. Registered with the DIFC Courts — internationally recognised and enforceable under English Common Law.",
@@ -282,7 +283,7 @@ const WILL_TYPES = [
     cost: "From AED 2,500",
   },
   {
-    icon: "",
+    icon: IBuilding,
     badge: "Abu Dhabi Based",
     title: "Abu Dhabi Courts WILL",
     desc: "Registered with the Abu Dhabi Judicial Department — ideal for residents based in Abu Dhabi or with significant Abu Dhabi assets. Equally enforceable and legally binding.",
@@ -296,7 +297,7 @@ const WILL_TYPES = [
     cost: "From AED 2,000",
   },
   {
-    icon: "",
+    icon: IUsers,
     badge: "Comprehensive",
     title: "Mirror WILL",
     desc: "Dual WILLs for couples — each mirroring the other's intentions. Ensures both spouses' assets are protected and transfer seamlessly regardless of which partner passes first.",
@@ -312,14 +313,14 @@ const WILL_TYPES = [
 ];
 
 const COVERED_ITEMS = [
-  { icon: "", title: "UAE Real Estate", desc: "Freehold and leasehold properties in Dubai, Abu Dhabi, and all other emirates." },
-  { icon: "", title: "Bank Accounts", desc: "All UAE savings, current, and investment accounts — including joint accounts." },
-  { icon: "", title: "Investment Portfolios", desc: "UAE stocks, bonds, funds, crypto held locally, and brokerage accounts." },
-  { icon: "", title: "Company Shares", desc: "Free zone company shares, mainland shareholdings, and business ownership stakes." },
-  { icon: "", title: "Vehicles & Assets", desc: "UAE-registered vehicles, boats, and valuable personal property." },
-  { icon: "", title: "Guardian Appointment", desc: "Legal appointment of guardians for minor children residing in the UAE." },
-  { icon: "", title: "Personal Valuables", desc: "Jewellery, art, and high-value personal items stored in the UAE." },
-  { icon: "", title: "Digital Assets", desc: "Cryptocurrency, digital wallets, and online accounts — a growing area of estate planning." },
+  { icon: IBuilding, title: "UAE Real Estate", desc: "Freehold and leasehold properties in Dubai, Abu Dhabi, and all other emirates." },
+  { icon: ICreditCard, title: "Bank Accounts", desc: "All UAE savings, current, and investment accounts — including joint accounts." },
+  { icon: ITrendingUp, title: "Investment Portfolios", desc: "UAE stocks, bonds, funds, crypto held locally, and brokerage accounts." },
+  { icon: IBriefcase, title: "Company Shares", desc: "Free zone company shares, mainland shareholdings, and business ownership stakes." },
+  { icon: ICar, title: "Vehicles & Assets", desc: "UAE-registered vehicles, boats, and valuable personal property." },
+  { icon: IUsers, title: "Guardian Appointment", desc: "Legal appointment of guardians for minor children residing in the UAE." },
+  { icon: IStar, title: "Personal Valuables", desc: "Jewellery, art, and high-value personal items stored in the UAE." },
+  { icon: IGlobe, title: "Digital Assets", desc: "Cryptocurrency, digital wallets, and online accounts — a growing area of estate planning." },
 ];
 
 const PROCESS_STEPS = [

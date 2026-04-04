@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { ITrendingUp, IBriefcase, IUsers, IClock, IXCircle, IBookOpen, IIdCard, IArrowsExchange, IFileText, ICross, IAward, IShield, IScale, IGlobe } from "../icons";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Visa & Immigration Page
@@ -249,56 +250,56 @@ const CSS = `
 // ── DATA ──────────────────────────────────────────────────────
 const VISA_TYPES = [
   {
-    icon: "", num: "01", title: "Investor Visa",
+    icon: ITrendingUp, num: "01", title: "Investor Visa",
     desc: "For company owners and shareholders in UAE free zones or mainland. Linked to your trade license — full 2-year residency with Emirates ID.",
     tags: ["Free Zone", "Mainland", "2-Year Validity", "Renewable"],
   },
   {
-    icon: "", num: "02", title: "Employment Visa",
+    icon: IBriefcase, num: "02", title: "Employment Visa",
     desc: "For employees sponsored by a UAE-registered company. Includes labour contract, MOHRE registration, medical, biometrics, and residence stamp.",
     tags: ["Labour Contract", "MOHRE", "Work Permit", "All Sectors"],
   },
   {
-    icon: "", num: "03", title: "Dependent / Family Visa",
+    icon: IUsers, num: "03", title: "Dependent / Family Visa",
     desc: "Sponsor your spouse, children, and parents under your UAE residency. Full family residency management from entry permit to Emirates ID.",
     tags: ["Spouse", "Children", "Parents", "Emirates ID"],
   },
   {
-    icon: "", num: "04", title: "Visa Renewal",
+    icon: IClock, num: "04", title: "Visa Renewal",
     desc: "Timely renewal of investor, employment, and dependent visas before expiry — avoiding fines, overstay penalties, and status complications.",
     tags: ["Before Expiry", "Fine Avoidance", "All Visa Types", "Express Option"],
   },
   {
-    icon: "", num: "05", title: "Visa Cancellation",
+    icon: IXCircle, num: "05", title: "Visa Cancellation",
     desc: "Clean, compliant visa cancellation for employees, dependents, and business owners — including labour ban clearance and final exit processing.",
     tags: ["Labour Ban Check", "Final Exit", "No Complications", "Same Day"],
   },
   {
-    icon: "", num: "06", title: "Student Visa",
+    icon: IBookOpen, num: "06", title: "Student Visa",
     desc: "UAE student visas for enrolment in government or private universities — including KHDA-approved institutions across all seven emirates.",
     tags: ["KHDA Approved", "University", "All Emirates", "Renewable"],
   },
   {
-    icon: "", num: "07", title: "Domestic Worker Visa",
+    icon: IIdCard, num: "07", title: "Domestic Worker Visa",
     desc: "Sponsorship and visa processing for housemaids, drivers, nannies, and domestic helpers under personal or corporate sponsorship.",
     tags: ["Housemaid", "Driver", "Nanny", "MOHRE Approved"],
   },
   {
-    icon: "", num: "08", title: "Status Change",
+    icon: IArrowsExchange, num: "08", title: "Status Change",
     desc: "Change your UAE visa status — tourist to residency, visit to employment — without exiting the country where permitted by GDRFA.",
     tags: ["In-Country", "GDRFA Approved", "Tourist to Resident", "Visit to Work"],
   },
 ];
 
 const INCLUDES = [
-  { icon: "", title: "Entry Permit", desc: "Initial entry permission issued before you arrive in the UAE — or while on visit visa inside the country." },
-  { icon: "", title: "Medical Fitness Test", desc: "Mandatory medical examination at an approved UAE health authority centre — we book and coordinate your appointment." },
-  { icon: "", title: "Biometric Registration", desc: "Fingerprint and photo capture at ICA or GDRFA — required for all UAE residents. We accompany or guide remotely." },
-  { icon: "", title: "Emirates ID", desc: "Federal identity card — required for all banking, healthcare, government, and daily services in the UAE." },
-  { icon: "", title: "Residence Stamping", desc: "UAE residence visa stamp in your passport — the final confirmation of your legal residency status." },
-  { icon: "", title: "Health Insurance", desc: "Mandatory health insurance in Dubai and Abu Dhabi — we coordinate appropriate plans during visa processing." },
-  { icon: "", title: "Labour Contract", desc: "Employment contracts registered with MOHRE — required for all employment visa categories." },
-  { icon: "", title: "Authority Liaison", desc: "Direct communication with ICA, GDRFA, MOHRE, and free zone authorities — no portals, no queues for you." },
+  { icon: IFileText, title: "Entry Permit", desc: "Initial entry permission issued before you arrive in the UAE — or while on visit visa inside the country." },
+  { icon: ICross, title: "Medical Fitness Test", desc: "Mandatory medical examination at an approved UAE health authority centre — we book and coordinate your appointment." },
+  { icon: IUsers, title: "Biometric Registration", desc: "Fingerprint and photo capture at ICA or GDRFA — required for all UAE residents. We accompany or guide remotely." },
+  { icon: IIdCard, title: "Emirates ID", desc: "Federal identity card — required for all banking, healthcare, government, and daily services in the UAE." },
+  { icon: IAward, title: "Residence Stamping", desc: "UAE residence visa stamp in your passport — the final confirmation of your legal residency status." },
+  { icon: IShield, title: "Health Insurance", desc: "Mandatory health insurance in Dubai and Abu Dhabi — we coordinate appropriate plans during visa processing." },
+  { icon: IScale, title: "Labour Contract", desc: "Employment contracts registered with MOHRE — required for all employment visa categories." },
+  { icon: IGlobe, title: "Authority Liaison", desc: "Direct communication with ICA, GDRFA, MOHRE, and free zone authorities — no portals, no queues for you." },
 ];
 
 const TIMELINE = [

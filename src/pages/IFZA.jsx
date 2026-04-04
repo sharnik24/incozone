@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { IArrowsExchange, IShoppingBag, IMonitor, IMegaphone, ICross, IBookOpen, IBuilding, IBriefcase, ILeaf, ICompass, IPackage, IPenTool, ITag, IClock, ILaptop, IShield, IUsers } from "../icons";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — IFZA Free Zone Page  (standalone, self-contained)
@@ -495,18 +496,18 @@ const STATS = [
 ];
 
 const ACTIVITIES = [
-  { i:"", n:"General Trading", d:"Import, export and general trading of goods worldwide" },
-  { i:"", n:"E-Commerce", d:"Online retail, digital marketplaces and dropshipping" },
-  { i:"", n:"Technology & IT", d:"Software, SaaS, IT consulting and digital services" },
-  { i:"", n:"Marketing & Media", d:"Digital marketing, advertising, branding and PR agencies" },
-  { i:"", n:"Healthcare & Wellness", d:"Health consulting, medical equipment and wellness services" },
-  { i:"", n:"Education & Training", d:"E-learning, coaching, training centers and EdTech" },
-  { i:"", n:"Real Estate", d:"Property consulting, management and real estate advisory" },
-  { i:"", n:"Consulting & Advisory", d:"Business, strategy, management and professional consulting" },
-  { i:"", n:"Food & Beverage", d:"F&B trading, catering, food import/export and FMCG" },
-  { i:"", n:"Travel & Tourism", d:"Travel agencies, tour operators and hospitality services" },
-  { i:"", n:"Logistics", d:"Freight, supply chain, warehousing and distribution" },
-  { i:"", n:"Creative & Design", d:"Graphic design, content creation, photography, video" },
+  { i:IArrowsExchange, n:"General Trading", d:"Import, export and general trading of goods worldwide" },
+  { i:IShoppingBag, n:"E-Commerce", d:"Online retail, digital marketplaces and dropshipping" },
+  { i:IMonitor, n:"Technology & IT", d:"Software, SaaS, IT consulting and digital services" },
+  { i:IMegaphone, n:"Marketing & Media", d:"Digital marketing, advertising, branding and PR agencies" },
+  { i:ICross, n:"Healthcare & Wellness", d:"Health consulting, medical equipment and wellness services" },
+  { i:IBookOpen, n:"Education & Training", d:"E-learning, coaching, training centers and EdTech" },
+  { i:IBuilding, n:"Real Estate", d:"Property consulting, management and real estate advisory" },
+  { i:IBriefcase, n:"Consulting & Advisory", d:"Business, strategy, management and professional consulting" },
+  { i:ILeaf, n:"Food & Beverage", d:"F&B trading, catering, food import/export and FMCG" },
+  { i:ICompass, n:"Travel & Tourism", d:"Travel agencies, tour operators and hospitality services" },
+  { i:IPackage, n:"Logistics", d:"Freight, supply chain, warehousing and distribution" },
+  { i:IPenTool, n:"Creative & Design", d:"Graphic design, content creation, photography, video" },
 ];
 
 const STEPS = [
@@ -824,11 +825,11 @@ export default function IFZAPage({ onBack, onNavigate }) {
           <div className="ifza-reveal ir2">
             <div className="ifza-pillars">
               {[
-                { i:"", h:"Most Affordable UAE Free Zone", p:"Starting from AED 12,000 — the lowest entry cost of any major UAE free zone. Ideal for bootstrapped founders and growing SMEs." },
-                { i:"", h:"Fastest Setup — 5 to 7 Days", p:"IFZA's streamlined digital process delivers your trade license in 5–7 working days. Faster than DMCC, JAFZA, and most other zones." },
-                { i:"", h:"Virtual Office Available", p:"No need for a physical office. IFZA's virtual office package gives you a legitimate UAE business address and mailing services from anywhere." },
-                { i:"", h:"No Minimum Share Capital", p:"Unlike DMCC (AED 50,000 declared) and many other zones, IFZA has no minimum share capital requirement — freeing up your working capital." },
-                { i:"", h:"Multi-Shareholder Friendly", p:"IFZA supports sole proprietors, FZ-LLCs with up to 50 shareholders, and corporate shareholders — flexible for joint ventures and group structures." },
+                { i:ITag, h:"Most Affordable UAE Free Zone", p:"Starting from AED 12,000 — the lowest entry cost of any major UAE free zone. Ideal for bootstrapped founders and growing SMEs." },
+                { i:IClock, h:"Fastest Setup — 5 to 7 Days", p:"IFZA's streamlined digital process delivers your trade license in 5–7 working days. Faster than DMCC, JAFZA, and most other zones." },
+                { i:ILaptop, h:"Virtual Office Available", p:"No need for a physical office. IFZA's virtual office package gives you a legitimate UAE business address and mailing services from anywhere." },
+                { i:IShield, h:"No Minimum Share Capital", p:"Unlike DMCC (AED 50,000 declared) and many other zones, IFZA has no minimum share capital requirement — freeing up your working capital." },
+                { i:IUsers, h:"Multi-Shareholder Friendly", p:"IFZA supports sole proprietors, FZ-LLCs with up to 50 shareholders, and corporate shareholders — flexible for joint ventures and group structures." },
               ].map((p,i)=>(
                 <div className="ifza-pillar" key={i}>
                   <div className="ifza-pillar-icon">{p.i}</div>

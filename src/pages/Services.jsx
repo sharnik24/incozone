@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { IBuilding, IGlobe, IStar, IClock, IAward, ICalendar } from "../icons";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Services Page
@@ -621,12 +622,12 @@ const PROCESS = [
 ];
 
 const TRUST = [
-  { icon: "", num: "3,200", numEm: "+", title: "Companies Incorporated", desc: "Over 3,200 successful company formations across all 8 major UAE free zones and mainland — from solo consultants to multinational holding structures." },
-  { icon: "", num: "68", numEm: "+", title: "Nationalities Served", desc: "Clients from over 68 countries trust INCOZONE as their UAE corporate advisor. We understand international compliance requirements and cross-border structures." },
-  { icon: "", num: "4.9", numEm: "/5", title: "Client Satisfaction", desc: "Consistently rated 4.9 out of 5 across independent review platforms. Our advisory-first approach is reflected in every client engagement." },
-  { icon: "", num: "5", numEm: " Days", title: "Fastest Setup Time", desc: "Our fastest free zone setup — AFZ — completed in 5 working days from document submission to license issuance. Speed without compromising quality." },
-  { icon: "", num: "96", numEm: "%", title: "Renewal Retention Rate", desc: "96% of our clients return for annual renewals and additional services. Long-term advisory relationships are at the core of how we operate." },
-  { icon: "", num: "12", numEm: " Yrs", title: "UAE Market Experience", desc: "Over 12 years navigating UAE free zone regulations, authority relationships, and corporate structuring — institutional knowledge that benefits every client." },
+  { icon: IBuilding, num: "3,200", numEm: "+", title: "Companies Incorporated", desc: "Over 3,200 successful company formations across all 8 major UAE free zones and mainland — from solo consultants to multinational holding structures." },
+  { icon: IGlobe, num: "68", numEm: "+", title: "Nationalities Served", desc: "Clients from over 68 countries trust INCOZONE as their UAE corporate advisor. We understand international compliance requirements and cross-border structures." },
+  { icon: IStar, num: "4.9", numEm: "/5", title: "Client Satisfaction", desc: "Consistently rated 4.9 out of 5 across independent review platforms. Our advisory-first approach is reflected in every client engagement." },
+  { icon: IClock, num: "5", numEm: " Days", title: "Fastest Setup Time", desc: "Our fastest free zone setup — AFZ — completed in 5 working days from document submission to license issuance. Speed without compromising quality." },
+  { icon: IAward, num: "96", numEm: "%", title: "Renewal Retention Rate", desc: "96% of our clients return for annual renewals and additional services. Long-term advisory relationships are at the core of how we operate." },
+  { icon: ICalendar, num: "12", numEm: " Yrs", title: "UAE Market Experience", desc: "Over 12 years navigating UAE free zone regulations, authority relationships, and corporate structuring — institutional knowledge that benefits every client." },
 ];
 
 // ── HERO CANVAS ────────────────────────────────────────────────

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { IClock, IGlobe, IFileText, IShield, IBriefcase, ILock } from "../icons";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Company Amendments Service
@@ -445,32 +446,32 @@ const PROCESS_STEPS = [
 
 const BENEFITS = [
   {
-    icon: "",
+    icon: IClock,
     title: "Fast Turnaround",
     desc: "Most standard amendments completed within 3–7 working days. Complex restructuring handled on agreed timelines."
   },
   {
-    icon: "",
+    icon: IGlobe,
     title: "All Jurisdictions Covered",
     desc: "Amendments handled across all 8 major UAE free zones and DED mainland — one team, all authorities."
   },
   {
-    icon: "",
+    icon: IFileText,
     title: "Full Document Management",
     desc: "We prepare, submit, and collect all documents. You review and sign — nothing else required from you."
   },
   {
-    icon: "",
+    icon: IShield,
     title: "Pre-Amendment Review",
     desc: "We check for restrictions, conflicts, and authority requirements before submission — preventing rejections."
   },
   {
-    icon: "",
+    icon: IBriefcase,
     title: "Ongoing Corporate Support",
     desc: "We remain your corporate secretary post-amendment for all future changes, renewals, and compliance needs."
   },
   {
-    icon: "",
+    icon: ILock,
     title: "Confidential & Precise",
     desc: "Sensitive shareholder and ownership changes handled with full confidentiality and legal precision."
   }

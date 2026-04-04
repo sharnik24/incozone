@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { IBriefcase, IMonitor, IMegaphone, IFilm, IBuilding, ILeaf, ICompass, IBookOpen, ICross, IArrowsExchange, IShoppingBag, IActivity, ICrown, IClock, IMapPin, IShield, IStar } from "../icons";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Meydan Free Zone Page  (standalone, self-contained)
@@ -453,18 +454,18 @@ const STATS = [
 ];
 
 const ACTIVITIES = [
-  { i:"", n:"Consulting & Advisory", d:"Management, strategy, business advisory and professional services" },
-  { i:"", n:"Technology & IT", d:"Software development, SaaS, IT consulting and digital solutions" },
-  { i:"", n:"Marketing & Creative", d:"Digital agencies, branding, PR and creative services" },
-  { i:"", n:"Media & Entertainment", d:"Content creation, production, events and entertainment" },
-  { i:"", n:"Real Estate", d:"Property consulting, investment advisory and PropTech" },
-  { i:"", n:"Food & Beverage", d:"F&B trading, restaurant consulting and catering services" },
-  { i:"", n:"Travel & Tourism", d:"Travel agencies, tour operators and hospitality management" },
-  { i:"", n:"Education & Training", d:"E-learning, coaching and professional development" },
-  { i:"", n:"Health & Wellness", d:"Health consulting, wellness services and distribution" },
-  { i:"", n:"General Trading", d:"Import, export and trading across all goods categories" },
-  { i:"", n:"E-Commerce", d:"Online retail, digital platforms and dropshipping" },
-  { i:"", n:"Sports & Lifestyle", d:"Sports management, fitness consulting and lifestyle brands" },
+  { i:IBriefcase, n:"Consulting & Advisory", d:"Management, strategy, business advisory and professional services" },
+  { i:IMonitor, n:"Technology & IT", d:"Software development, SaaS, IT consulting and digital solutions" },
+  { i:IMegaphone, n:"Marketing & Creative", d:"Digital agencies, branding, PR and creative services" },
+  { i:IFilm, n:"Media & Entertainment", d:"Content creation, production, events and entertainment" },
+  { i:IBuilding, n:"Real Estate", d:"Property consulting, investment advisory and PropTech" },
+  { i:ILeaf, n:"Food & Beverage", d:"F&B trading, restaurant consulting and catering services" },
+  { i:ICompass, n:"Travel & Tourism", d:"Travel agencies, tour operators and hospitality management" },
+  { i:IBookOpen, n:"Education & Training", d:"E-learning, coaching and professional development" },
+  { i:ICross, n:"Health & Wellness", d:"Health consulting, wellness services and distribution" },
+  { i:IArrowsExchange, n:"General Trading", d:"Import, export and trading across all goods categories" },
+  { i:IShoppingBag, n:"E-Commerce", d:"Online retail, digital platforms and dropshipping" },
+  { i:IActivity, n:"Sports & Lifestyle", d:"Sports management, fitness consulting and lifestyle brands" },
 ];
 
 const STEPS = [
@@ -754,11 +755,11 @@ export default function MeydanPage({ onBack, onNavigate }) {
           <div className="myd-reveal mr2">
             <div className="myd-pillars">
               {[
-                { i:"", h:"Most Prestigious Affordable Zone", p:"A globally recognised Dubai address at a fraction of DMCC or DIFC costs. Starting from AED 14,500 — ideal for consultancies and lifestyle brands." },
-                { i:"", h:"5 to 10 Day Setup", p:"Fast-track digital application process. Trade license typically issued within 5–10 working days from document submission." },
-                { i:"", h:"World-Famous Address", p:"Meydan is known globally through the Dubai World Cup. Your Nad Al Sheba address carries instant prestige with international clients." },
-                { i:"", h:"No Minimum Share Capital", p:"Zero declared share capital required — unlike DMCC's AED 50,000. Keep your full working capital available from day one." },
-                { i:"", h:"Unique Lifestyle Ecosystem", p:"Office within the Meydan Racecourse complex — 5-star hotels, fine dining, events and world-class leisure at your doorstep." },
+                { i:ICrown, h:"Most Prestigious Affordable Zone", p:"A globally recognised Dubai address at a fraction of DMCC or DIFC costs. Starting from AED 14,500 — ideal for consultancies and lifestyle brands." },
+                { i:IClock, h:"5 to 10 Day Setup", p:"Fast-track digital application process. Trade license typically issued within 5–10 working days from document submission." },
+                { i:IMapPin, h:"World-Famous Address", p:"Meydan is known globally through the Dubai World Cup. Your Nad Al Sheba address carries instant prestige with international clients." },
+                { i:IShield, h:"No Minimum Share Capital", p:"Zero declared share capital required — unlike DMCC's AED 50,000. Keep your full working capital available from day one." },
+                { i:IStar, h:"Unique Lifestyle Ecosystem", p:"Office within the Meydan Racecourse complex — 5-star hotels, fine dining, events and world-class leisure at your doorstep." },
               ].map((p, i) => (
                 <div className="myd-pillar" key={i}>
                   <div className="myd-pillar-icon">{p.i}</div>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { ITrendingUp, IUsers, IBarChart, IBriefcase, ICreditCard, IScale, IBuilding, IShield, IArrowsExchange, ILightbulb, IDroplet, IGlobe, ICrown } from "../icons";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — ADGM Free Zone Page  (standalone, self-contained)
@@ -453,18 +454,18 @@ const STATS = [
 ];
 
 const ACTIVITIES = [
-  { i:"", n:"Asset Management", d:"Fund management, portfolio management, investment advisory and discretionary mandates" },
-  { i:"", n:"Family Office", d:"Single and multi-family office structures, wealth planning and private capital management" },
-  { i:"", n:"Capital Markets", d:"Securities dealing, brokerage, market making and capital markets advisory" },
-  { i:"", n:"Private Equity", d:"PE fund structuring, venture capital, buyout funds and alternative investment vehicles" },
-  { i:"", n:"Fintech & Digital Assets", d:"Digital asset trading, crypto regulation, payment services and fintech innovation" },
-  { i:"", n:"Legal & Professional Services", d:"International law firms, compliance, regulatory advisory and legal consulting" },
-  { i:"", n:"Corporate HQ & SPVs", d:"Holding companies, special purpose vehicles, regional headquarters and IP holding" },
-  { i:"", n:"Insurance & Reinsurance", d:"Insurance management, captive insurance, reinsurance and risk advisory" },
-  { i:"", n:"M&A & Corporate Finance", d:"Mergers and acquisitions advisory, restructuring, due diligence and deal execution" },
-  { i:"", n:"Venture Capital", d:"VC fund structures, startup investment vehicles, accelerator programmes and seed funds" },
-  { i:"", n:"Commodities & FX", d:"Commodities trading, forex operations, derivatives and structured financial products" },
-  { i:"", n:"International Business", d:"Cross-border corporate structuring, tax planning vehicles and international holding" },
+  { i:ITrendingUp, n:"Asset Management", d:"Fund management, portfolio management, investment advisory and discretionary mandates" },
+  { i:IUsers, n:"Family Office", d:"Single and multi-family office structures, wealth planning and private capital management" },
+  { i:IBarChart, n:"Capital Markets", d:"Securities dealing, brokerage, market making and capital markets advisory" },
+  { i:IBriefcase, n:"Private Equity", d:"PE fund structuring, venture capital, buyout funds and alternative investment vehicles" },
+  { i:ICreditCard, n:"Fintech & Digital Assets", d:"Digital asset trading, crypto regulation, payment services and fintech innovation" },
+  { i:IScale, n:"Legal & Professional Services", d:"International law firms, compliance, regulatory advisory and legal consulting" },
+  { i:IBuilding, n:"Corporate HQ & SPVs", d:"Holding companies, special purpose vehicles, regional headquarters and IP holding" },
+  { i:IShield, n:"Insurance & Reinsurance", d:"Insurance management, captive insurance, reinsurance and risk advisory" },
+  { i:IArrowsExchange, n:"M&A & Corporate Finance", d:"Mergers and acquisitions advisory, restructuring, due diligence and deal execution" },
+  { i:ILightbulb, n:"Venture Capital", d:"VC fund structures, startup investment vehicles, accelerator programmes and seed funds" },
+  { i:IDroplet, n:"Commodities & FX", d:"Commodities trading, forex operations, derivatives and structured financial products" },
+  { i:IGlobe, n:"International Business", d:"Cross-border corporate structuring, tax planning vehicles and international holding" },
 ];
 
 const STEPS = [
@@ -754,11 +755,11 @@ export default function ADGMPage({ onBack, onNavigate }) {
           <div className="adg-reveal agr2">
             <div className="adg-pillars">
               {[
-                { i:"", h:"English Common Law Jurisdiction", p:"ADGM operates entirely under English common law — separate from UAE federal law. International contracts, dispute resolution, and corporate governance follow globally familiar legal standards trusted by international investors and institutions." },
-                { i:"", h:"Sovereign Backing & Capital Access", p:"ADGM's Abu Dhabi location provides proximity to ADIA, Mubadala, ADQ, and Abu Dhabi's sovereign capital ecosystem — unmatched access to sovereign wealth fund relationships and Abu Dhabi institutional networks." },
-                { i:"", h:"Leading Digital Assets Framework", p:"ADGM's FSRA has developed one of the world's most comprehensive and credible digital assets regulatory frameworks — attracting global crypto exchanges, asset managers, and fintech innovators seeking a regulated UAE base." },
-                { i:"", h:"Family Office Jurisdiction of Choice", p:"ADGM is the preferred structure for sophisticated family offices in the region — offering flexible SPV and holding structures, strong confidentiality protections, and direct proximity to Abu Dhabi's private wealth ecosystem." },
-                { i:"", h:"International Legal Credibility", p:"ADGM's legal framework is recognised and trusted by international counterparties, investors, and institutions worldwide. English common law contracts and ADGM courts carry weight that UAE onshore or other free zone structures cannot match for institutional transactions." },
+                { i:IScale, h:"English Common Law Jurisdiction", p:"ADGM operates entirely under English common law — separate from UAE federal law. International contracts, dispute resolution, and corporate governance follow globally familiar legal standards trusted by international investors and institutions." },
+                { i:ICrown, h:"Sovereign Backing & Capital Access", p:"ADGM's Abu Dhabi location provides proximity to ADIA, Mubadala, ADQ, and Abu Dhabi's sovereign capital ecosystem — unmatched access to sovereign wealth fund relationships and Abu Dhabi institutional networks." },
+                { i:ICreditCard, h:"Leading Digital Assets Framework", p:"ADGM's FSRA has developed one of the world's most comprehensive and credible digital assets regulatory frameworks — attracting global crypto exchanges, asset managers, and fintech innovators seeking a regulated UAE base." },
+                { i:IUsers, h:"Family Office Jurisdiction of Choice", p:"ADGM is the preferred structure for sophisticated family offices in the region — offering flexible SPV and holding structures, strong confidentiality protections, and direct proximity to Abu Dhabi's private wealth ecosystem." },
+                { i:IGlobe, h:"International Legal Credibility", p:"ADGM's legal framework is recognised and trusted by international counterparties, investors, and institutions worldwide. English common law contracts and ADGM courts carry weight that UAE onshore or other free zone structures cannot match for institutional transactions." },
               ].map((p, i) => (
                 <div className="adg-pillar" key={i}>
                   <div className="adg-pillar-icon">{p.i}</div>

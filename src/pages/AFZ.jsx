@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { IArrowsExchange, IBriefcase, IMonitor, IGear, IPackage, IPenTool, IWrench, ILeaf, ICar, ICross, IBookOpen, IShoppingBag, ITag, IClock, IIdCard, ILaptop, IGrid } from "../icons";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — AFZ Free Zone Page  (standalone, self-contained)
@@ -453,18 +454,18 @@ const STATS = [
 ];
 
 const ACTIVITIES = [
-  { i:"", n:"General Trading", d:"Multi-product import, export, and re-export trading across all commodity categories" },
-  { i:"", n:"Consulting & Advisory", d:"Business consulting, management advisory, strategy and professional services" },
-  { i:"", n:"IT & Technology", d:"Software development, IT services, tech consulting and digital solutions" },
-  { i:"", n:"Light Manufacturing", d:"Assembly, processing, light industrial production and product finishing" },
-  { i:"", n:"Warehousing & Storage", d:"Goods storage, inventory management, fulfilment and distribution services" },
-  { i:"", n:"Creative & Design", d:"Graphic design, branding, marketing materials and creative production" },
-  { i:"", n:"Construction & Contracting", d:"Construction consulting, contracting services and building materials trading" },
-  { i:"", n:"Food & Agriculture", d:"Food processing, agricultural trading, spices, grains and commodity trading" },
-  { i:"", n:"Automobile Trading", d:"Car trading, spare parts, auto accessories and vehicle services" },
-  { i:"", n:"Healthcare & Pharma", d:"Medical equipment, pharmaceutical products and healthcare consultancy" },
-  { i:"", n:"Education & Training", d:"Training institutes, e-learning, educational content and skills development" },
-  { i:"", n:"E-Commerce", d:"Online retail, dropshipping, digital marketplaces and cross-border commerce" },
+  { i:IArrowsExchange, n:"General Trading", d:"Multi-product import, export, and re-export trading across all commodity categories" },
+  { i:IBriefcase, n:"Consulting & Advisory", d:"Business consulting, management advisory, strategy and professional services" },
+  { i:IMonitor, n:"IT & Technology", d:"Software development, IT services, tech consulting and digital solutions" },
+  { i:IGear, n:"Light Manufacturing", d:"Assembly, processing, light industrial production and product finishing" },
+  { i:IPackage, n:"Warehousing & Storage", d:"Goods storage, inventory management, fulfilment and distribution services" },
+  { i:IPenTool, n:"Creative & Design", d:"Graphic design, branding, marketing materials and creative production" },
+  { i:IWrench, n:"Construction & Contracting", d:"Construction consulting, contracting services and building materials trading" },
+  { i:ILeaf, n:"Food & Agriculture", d:"Food processing, agricultural trading, spices, grains and commodity trading" },
+  { i:ICar, n:"Automobile Trading", d:"Car trading, spare parts, auto accessories and vehicle services" },
+  { i:ICross, n:"Healthcare & Pharma", d:"Medical equipment, pharmaceutical products and healthcare consultancy" },
+  { i:IBookOpen, n:"Education & Training", d:"Training institutes, e-learning, educational content and skills development" },
+  { i:IShoppingBag, n:"E-Commerce", d:"Online retail, dropshipping, digital marketplaces and cross-border commerce" },
 ];
 
 const STEPS = [
@@ -754,11 +755,11 @@ export default function AFZPage({ onBack, onNavigate }) {
           <div className="afz-reveal ar2">
             <div className="afz-pillars">
               {[
-                { i:"", h:"UAE's Lowest Setup Cost", p:"Starting from AED 5,500 — the most affordable legitimate free zone setup in the UAE. Annual renewal from AED 4,500 keeps your ongoing costs minimal. Full legal standing, same tax benefits, same ownership rights." },
-                { i:"", h:"3 to 5 Day Setup", p:"Among the fastest free zone setups in the UAE. AFZ's streamlined digital process means license issuance within 3–5 working days from document submission — one of the quickest turnarounds available." },
-                { i:"", h:"Full UAE Residence Visa", p:"Your AFZ investor visa is a genuine UAE residence visa — Emirates ID, residency rights, and banking access identical to any Dubai free zone visa. The Ajman location does not affect visa quality or recognition." },
-                { i:"", h:"Flexible Workspace Options", p:"Virtual offices for remote businesses, flexi desks for occasional use, private offices for established teams, and warehouse units for businesses with physical inventory needs." },
-                { i:"", h:"1,500+ Licensed Activities", p:"AFZ supports over 1,500 business activities including general trading, consulting, technology, e-commerce, manufacturing, food trading, and healthcare — broad enough to cover almost any legitimate business model." },
+                { i:ITag, h:"UAE's Lowest Setup Cost", p:"Starting from AED 5,500 — the most affordable legitimate free zone setup in the UAE. Annual renewal from AED 4,500 keeps your ongoing costs minimal. Full legal standing, same tax benefits, same ownership rights." },
+                { i:IClock, h:"3 to 5 Day Setup", p:"Among the fastest free zone setups in the UAE. AFZ's streamlined digital process means license issuance within 3–5 working days from document submission — one of the quickest turnarounds available." },
+                { i:IIdCard, h:"Full UAE Residence Visa", p:"Your AFZ investor visa is a genuine UAE residence visa — Emirates ID, residency rights, and banking access identical to any Dubai free zone visa. The Ajman location does not affect visa quality or recognition." },
+                { i:ILaptop, h:"Flexible Workspace Options", p:"Virtual offices for remote businesses, flexi desks for occasional use, private offices for established teams, and warehouse units for businesses with physical inventory needs." },
+                { i:IGrid, h:"1,500+ Licensed Activities", p:"AFZ supports over 1,500 business activities including general trading, consulting, technology, e-commerce, manufacturing, food trading, and healthcare — broad enough to cover almost any legitimate business model." },
               ].map((p, i) => (
                 <div className="afz-pillar" key={i}>
                   <div className="afz-pillar-icon">{p.i}</div>

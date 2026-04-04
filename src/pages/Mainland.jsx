@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { IBuilding, IBriefcase, IGlobe } from "../icons";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Mainland Company Formation Page
@@ -469,17 +470,17 @@ const CSS = `
 // ── DATA ──────────────────────────────────────────────────────
 const LICENSES = [
   {
-    num: "01", icon: "", name: "LLC", subtitle: "Limited Liability Company",
+    num: "01", icon: IBuilding, name: "LLC", subtitle: "Limited Liability Company",
     desc: "The most widely used mainland structure. A UAE LLC requires 2–50 shareholders with a minimum 51% UAE national shareholding — however, in practice, the sponsor's role can be structured via a legally binding side agreement that protects 100% of economic rights for the foreign investor.",
     examples: ["Trading companies","Retail businesses","Distribution & logistics","Restaurants & hospitality","General contracting"],
   },
   {
-    num: "02", icon: "", name: "Sole Est.", subtitle: "Sole Establishment",
+    num: "02", icon: IBriefcase, name: "Sole Est.", subtitle: "Sole Establishment",
     desc: "For individual foreign professionals and solo operators. A Sole Establishment is 100% owned by a foreign national — no UAE sponsor required — but is restricted to professional and service activities. The most direct route to UAE mainland for consultants and specialists.",
     examples: ["Consulting & advisory","IT & software services","Design & creative","Healthcare professionals","Engineering consultancy"],
   },
   {
-    num: "03", icon: "", name: "Branch", subtitle: "Foreign Company Branch",
+    num: "03", icon: IGlobe, name: "Branch", subtitle: "Foreign Company Branch",
     desc: "An extension of an existing overseas company into the UAE mainland. A branch carries the parent company's name and liability — no separate legal entity. Requires a Local Service Agent (LSA) rather than a sponsor. Well-suited for multinationals establishing a UAE presence.",
     examples: ["Multinational regional offices","Professional services firms","Engineering companies","IT & technology companies","Consulting practices"],
   },

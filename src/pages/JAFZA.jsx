@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { IArrowsExchange, IPackage, IGear, IGrid, IAnchor, IDroplet, IWrench, ITrendingUp, ICross, ILeaf, IMonitor, IBuilding, IGlobe, IIdCard, ICreditCard } from "../icons";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — JAFZA Free Zone Page  (standalone, self-contained)
@@ -453,18 +454,18 @@ const STATS = [
 ];
 
 const ACTIVITIES = [
-  { i:"", n:"Import & Export", d:"International trade, customs clearance, re-export and cross-border distribution" },
-  { i:"", n:"Logistics & Freight", d:"Freight forwarding, 3PL, supply chain management and transport coordination" },
-  { i:"", n:"Manufacturing", d:"Light and heavy manufacturing, assembly, processing and production" },
-  { i:"", n:"Warehousing & Storage", d:"Bonded warehouses, cold storage, distribution centres and fulfilment hubs" },
-  { i:"", n:"Port & Maritime Services", d:"Ship chandling, maritime agency, port services and vessel operations" },
-  { i:"", n:"Oil & Gas Trading", d:"Petroleum products, energy commodities and oil field services" },
-  { i:"", n:"Industrial Services", d:"Engineering, maintenance, equipment supply and industrial project management" },
-  { i:"", n:"General Trading", d:"Multi-category general trading with international buying and selling" },
-  { i:"", n:"Pharma & Healthcare", d:"Pharmaceutical distribution, medical devices and healthcare supply chain" },
-  { i:"", n:"Food & FMCG", d:"Food processing, FMCG distribution and consumer goods trading" },
-  { i:"", n:"Technology & Electronics", d:"Electronics trading, tech hardware distribution and IT infrastructure" },
-  { i:"", n:"Construction & Engineering", d:"Construction materials, engineering consultancy and project contracting" },
+  { i:IArrowsExchange, n:"Import & Export", d:"International trade, customs clearance, re-export and cross-border distribution" },
+  { i:IPackage, n:"Logistics & Freight", d:"Freight forwarding, 3PL, supply chain management and transport coordination" },
+  { i:IGear, n:"Manufacturing", d:"Light and heavy manufacturing, assembly, processing and production" },
+  { i:IGrid, n:"Warehousing & Storage", d:"Bonded warehouses, cold storage, distribution centres and fulfilment hubs" },
+  { i:IAnchor, n:"Port & Maritime Services", d:"Ship chandling, maritime agency, port services and vessel operations" },
+  { i:IDroplet, n:"Oil & Gas Trading", d:"Petroleum products, energy commodities and oil field services" },
+  { i:IWrench, n:"Industrial Services", d:"Engineering, maintenance, equipment supply and industrial project management" },
+  { i:ITrendingUp, n:"General Trading", d:"Multi-category general trading with international buying and selling" },
+  { i:ICross, n:"Pharma & Healthcare", d:"Pharmaceutical distribution, medical devices and healthcare supply chain" },
+  { i:ILeaf, n:"Food & FMCG", d:"Food processing, FMCG distribution and consumer goods trading" },
+  { i:IMonitor, n:"Technology & Electronics", d:"Electronics trading, tech hardware distribution and IT infrastructure" },
+  { i:IBuilding, n:"Construction & Engineering", d:"Construction materials, engineering consultancy and project contracting" },
 ];
 
 const STEPS = [
@@ -754,11 +755,11 @@ export default function JAFZAPage({ onBack, onNavigate }) {
           <div className="jfz-reveal jr2">
             <div className="jfz-pillars">
               {[
-                { i:"", h:"Jebel Ali Port Integration", p:"Direct, seamless integration with the world's 9th largest port. Goods move between vessel, warehouse, and market with zero friction — the operational advantage that defines JAFZA." },
-                { i:"", h:"190+ Country Connectivity", p:"Jebel Ali Port connects to over 190 countries via regular shipping services. For businesses that need to reach global markets efficiently, no UAE address provides better connectivity." },
-                { i:"", h:"Industrial Infrastructure at Scale", p:"Warehouses, factories, land plots, and cold storage facilities at a scale unavailable in any other UAE free zone. JAFZA can accommodate operations from small warehouses to full manufacturing plants." },
-                { i:"", h:"Highest Visa Quota in UAE", p:"Up to 15 investor and employee visas — the highest allocation of any UAE free zone. Designed to support the larger teams that industrial and logistics operations require." },
-                { i:"", h:"Trade Finance Friendly", p:"JAFZA's reputation with UAE banks is unmatched for trade finance — letters of credit, facilities, and corporate banking are significantly easier to access than from smaller free zones." },
+                { i:IAnchor, h:"Jebel Ali Port Integration", p:"Direct, seamless integration with the world's 9th largest port. Goods move between vessel, warehouse, and market with zero friction — the operational advantage that defines JAFZA." },
+                { i:IGlobe, h:"190+ Country Connectivity", p:"Jebel Ali Port connects to over 190 countries via regular shipping services. For businesses that need to reach global markets efficiently, no UAE address provides better connectivity." },
+                { i:IGear, h:"Industrial Infrastructure at Scale", p:"Warehouses, factories, land plots, and cold storage facilities at a scale unavailable in any other UAE free zone. JAFZA can accommodate operations from small warehouses to full manufacturing plants." },
+                { i:IIdCard, h:"Highest Visa Quota in UAE", p:"Up to 15 investor and employee visas — the highest allocation of any UAE free zone. Designed to support the larger teams that industrial and logistics operations require." },
+                { i:ICreditCard, h:"Trade Finance Friendly", p:"JAFZA's reputation with UAE banks is unmatched for trade finance — letters of credit, facilities, and corporate banking are significantly easier to access than from smaller free zones." },
               ].map((p, i) => (
                 <div className="jfz-pillar" key={i}>
                   <div className="jfz-pillar-icon">{p.i}</div>

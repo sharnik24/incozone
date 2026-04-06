@@ -1788,7 +1788,7 @@ export default function App() {
         <HeroCanvas />
         <div className="hero-content">
           <span className="hero-eyebrow">Private UAE Incorporation Advisory</span>
-          <h1 className="hero-h1">Establish Your Presence<br />in the UAE with <em>Strategic Precision.</em></h1>
+          <h1 className="hero-h1">Ready To Setup<br />Your Business<em>In UAE</em></h1>
           <p className="hero-sub">Free Zone <span>·</span> Mainland <span>·</span> PRO Services <span>·</span> Corporate Structuring</p>
           <div className="hero-actions">
             <button className="btn-primary" onClick={() => goPage("schedule")}>Schedule Private Consultation</button>

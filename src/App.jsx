@@ -1304,14 +1304,12 @@ function ParticleCanvas() {
 function HeroCanvas() {
   return (
     <div style={{ position: "absolute", inset: 0, zIndex: 0, overflow: "hidden" }}>
-      <div style={{ position: "absolute", inset: 0, background: "#05111e", zIndex: 0 }} />
-      <div style={{ position: "absolute", inset: 0, zIndex: 1, animation: "meshFloat1 18s ease-in-out infinite", background: "radial-gradient(ellipse 70% 60% at 20% 60%, rgba(22,51,84,0.7) 0%, transparent 70%)" }} />
-      <div style={{ position: "absolute", inset: 0, zIndex: 1, animation: "meshFloat2 14s ease-in-out infinite", background: "radial-gradient(ellipse 50% 50% at 80% 30%, rgba(16,37,64,0.8) 0%, transparent 65%)" }} />
+      <div style={{ position: "absolute", inset: 0, zIndex: 1, animation: "meshFloat1 18s ease-in-out infinite", background: "radial-gradient(ellipse 70% 60% at 20% 60%, rgba(22,51,84,0.4) 0%, transparent 70%)" }} />
+      <div style={{ position: "absolute", inset: 0, zIndex: 1, animation: "meshFloat2 14s ease-in-out infinite", background: "radial-gradient(ellipse 50% 50% at 80% 30%, rgba(16,37,64,0.4) 0%, transparent 65%)" }} />
       <div style={{ position: "absolute", inset: 0, zIndex: 1, animation: "meshFloat3 20s ease-in-out infinite", background: "radial-gradient(ellipse 40% 40% at 60% 75%, rgba(201,168,76,0.05) 0%, transparent 60%)" }} />
       <div style={{ position: "absolute", inset: 0, zIndex: 2, backgroundImage: `linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px)`, backgroundSize: "90px 90px", animation: "gridDrift 25s linear infinite" }} />
-      <div style={{ position: "absolute", inset: 0, zIndex: 3, background: "radial-gradient(ellipse 100% 100% at 50% 50%, transparent 20%, rgba(5,17,30,0.5) 70%, rgba(3,13,23,0.85) 100%)" }} />
       <ParticleCanvas />
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "200px", zIndex: 4, background: "linear-gradient(to top, #05111e, transparent)" }} />
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "200px", zIndex: 4, background: "linear-gradient(to top, rgba(5,17,30,0.8), transparent)" }} />
     </div>
   );
 }

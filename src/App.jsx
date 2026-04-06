@@ -25,6 +25,7 @@ import OffshoreFormationPage from "./pages/OffshoreFormation";
 import CompanyLiquidationPage from "./pages/CompanyLiquidation";
 import FreeZoneIncorporationPage from "./pages/FreeZoneIncorporation";
 import CompanyAmendmentsPage from "./pages/CompanyAmendments";
+import heroBg from "./images/business-data-analysis.jpg";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Dark Navy + Cream Accents
@@ -113,6 +114,10 @@ const CSS = `
   .hero {
     min-height: 100vh; display: flex; align-items: center; justify-content: center;
     position: relative; overflow: hidden; padding: 0 60px; background: var(--navy-900);
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: rgba(6, 14, 35, 0.72);
   }
   .hero-canvas { position: absolute; inset: 0; z-index: 0; }
   .hero-content {
@@ -1781,7 +1786,7 @@ export default function App() {
       <GlobalNav onNavigate={goPage} scrolled={scrolled} />
 
       {/* HERO — dark navy with particles */}
-      <section className="hero">
+      <section className="hero" style={{ backgroundImage: `url(${heroBg})`, backgroundSize: "cover", backgroundPosition: "center" }}>
         <HeroCanvas />
         <div className="hero-content">
           <span className="hero-eyebrow">Private UAE Incorporation Advisory</span>

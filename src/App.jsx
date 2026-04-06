@@ -27,6 +27,9 @@ import FreeZoneIncorporationPage from "./pages/FreeZoneIncorporation";
 import CompanyAmendmentsPage from "./pages/CompanyAmendments";
 import heroBg from "./images/business-data-analysis.jpg";
 
+// Preload hero image at module level so it's in browser cache before any navigation
+const _heroBgPreload = new Image(); _heroBgPreload.src = heroBg;
+
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Dark Navy + Cream Accents
 // ═══════════════════════════════════════════════════════════════

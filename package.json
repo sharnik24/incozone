@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "postbuild": "react-snap",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -29,5 +30,51 @@
     "sharp": "^0.34.5",
     "vite": "^7.3.1",
     "vite-plugin-image-optimizer": "^2.0.3"
+  },
+  "reactSnap": {
+    "source": "dist",
+    "minifyHtml": {
+      "collapseWhitespace": false,
+      "removeComments": false
+    },
+    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
+    "crawl": false,
+    "include": [
+      "/",
+      "/services",
+      "/freezoneincorp",
+      "/mainland",
+      "/offshore",
+      "/banking",
+      "/goldenvisa",
+      "/visa",
+      "/pro",
+      "/trademark",
+      "/amendments",
+      "/liquidation",
+      "/specialapprovals",
+      "/willregistration",
+      "/dmcc",
+      "/ifza",
+      "/meydan",
+      "/rakez",
+      "/shams",
+      "/jafza",
+      "/afz",
+      "/adgm",
+      "/about",
+      "/blog",
+      "/contact",
+      "/schedule"
+    ],
+    "skipThirdPartyRequests": true,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "waitFor": 2000,
+    "externalServer": false,
+    "saveAs": "html",
+    "fixWebpackChunksIssue": false
   }
 }

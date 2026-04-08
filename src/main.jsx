@@ -1,5 +1,5 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
 import App from './App.jsx'
@@ -31,10 +31,19 @@ window.scrollTo = (x, y) => {
   else { lenis.scrollTo(y ?? x, { immediate: true }); }
 };
 
-createRoot(document.getElementById('root')).render(
+const rootEl = document.getElementById('root');
+const app = (
   <StrictMode>
     <HelmetProvider>
       <App />
     </HelmetProvider>
-  </StrictMode>,
-)
+  </StrictMode>
+);
+
+// react-snap pre-renders to static HTML — use hydrateRoot to attach to it.
+// In dev or first render without pre-rendered HTML, fall back to createRoot.
+if (rootEl.hasChildNodes()) {
+  hydrateRoot(rootEl, app);
+} else {
+  createRoot(rootEl).render(app);
+}

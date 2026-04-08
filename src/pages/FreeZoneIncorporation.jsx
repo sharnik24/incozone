@@ -1,6 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { IShield, IBolt, ITrendingUp, IMapPin, IGrid, IFileText } from "../icons";
 
+import imgDMCC   from "../images/aerial-view-tall-skyscraper-city.jpg";
+import imgIFZA   from "../images/futuristic-landscape-dubai.jpg";
+import imgMeydan from "../images/dramatic-perspective-with-low-angle-view-skyscrapers-looking-up-sky-dubai-vanishing-point.jpg";
+import imgRAKEZ  from "../images/modern-glass-skyscraper-reflecting-twilight-sky.jpg";
+import imgSHAMS  from "../images/modern-cityscape-view-from-high-rise-building.jpg";
+import imgJAFZA  from "../images/bridge-with-city.jpg";
+import imgAFZ    from "../images/landscape-with-colorful-rainbow-appearing-sky.jpg";
+import imgADGM   from "../images/business-data-analysis.jpg";
+
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Free Zone Incorporation Service
 //  Comprehensive guide to UAE Free Zone company setup
@@ -158,49 +167,95 @@ const CSS = `
 }
 
 .fzi-zones-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 32px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 28px;
 }
+
+/* PACKAGE CARD */
 .fzi-zone-card {
-  padding: 36px 32px;
-  background: linear-gradient(135deg, rgba(16,37,64,0.4), rgba(5,17,30,0.6));
-  border: 1px solid var(--w12);
-  transition: all 0.5s var(--ease);
-  cursor: pointer;
   position: relative; overflow: hidden;
+  min-height: 460px;
+  display: flex; flex-direction: column;
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  border: 1px solid var(--w12);
+  cursor: pointer;
+  transition: all 0.5s var(--ease);
 }
-.fzi-zone-card::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 0%, var(--glow), transparent 70%);
-  opacity: 0; transition: opacity 0.5s;
-}
-.fzi-zone-card:hover::before { opacity: 1; }
 .fzi-zone-card:hover {
   border-color: var(--g400); transform: translateY(-8px);
-  box-shadow: 0 12px 48px rgba(0,0,0,0.4);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.55);
 }
-.fzi-zone-card-num {
-  font-family: var(--fd); font-size: 0.7rem; letter-spacing: 0.2em;
-  color: var(--g400); margin-bottom: 16px;
+.fzi-zone-card-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(2,11,20,0.62) 0%,
+    rgba(2,11,20,0.78) 50%,
+    rgba(2,11,20,0.93) 100%
+  );
+  transition: background 0.5s var(--ease);
 }
-.fzi-zone-card-title {
-  font-family: var(--fd); font-size: 1.8rem; font-weight: 500;
-  color: var(--w); margin-bottom: 16px; line-height: 1.3;
+.fzi-zone-card:hover .fzi-zone-card-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(2,11,20,0.70) 0%,
+    rgba(2,11,20,0.84) 50%,
+    rgba(2,11,20,0.96) 100%
+  );
+}
+.fzi-zone-card-inner {
+  position: relative; z-index: 2;
+  padding: 32px 28px 28px;
+  display: flex; flex-direction: column; height: 100%; min-height: 460px;
+}
+.fzi-zone-card-badge {
+  display: inline-block; align-self: flex-start;
+  padding: 4px 12px; margin-bottom: 20px;
+  font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+  background: rgba(201,168,76,0.18); border: 1px solid rgba(201,168,76,0.45);
+  color: var(--g300);
+}
+.fzi-zone-card-abbr {
+  font-family: var(--fd); font-size: 2.4rem; font-weight: 600;
+  color: var(--w); line-height: 1; margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+.fzi-zone-card-fullname {
+  font-size: 0.75rem; color: var(--g300); letter-spacing: 0.06em;
+  margin-bottom: 16px; font-weight: 400;
 }
 .fzi-zone-card-desc {
-  font-size: 0.82rem; color: var(--w60); line-height: 1.8;
-  margin-bottom: 24px;
+  font-size: 0.82rem; color: var(--w80); line-height: 1.75;
+  flex: 1;
 }
-.fzi-zone-card-features {
-  display: flex; flex-direction: column; gap: 10px;
+.fzi-zone-card-divider {
+  height: 1px; background: rgba(201,168,76,0.2);
+  margin: 20px 0;
 }
-.fzi-zone-card-feature {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 0.75rem; color: var(--w80);
+.fzi-zone-card-pricing {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 18px;
 }
-.fzi-zone-card-feature::before {
-  content: '→'; color: var(--g400); font-size: 0.9rem;
+.fzi-zone-card-price {
+  font-family: var(--fd); font-size: 1.6rem; font-weight: 500; color: var(--g400);
 }
+.fzi-zone-card-price span {
+  font-size: 0.72rem; color: var(--w60); display: block;
+  font-family: var(--fb); font-weight: 300; letter-spacing: 0.04em;
+  margin-bottom: 2px;
+}
+.fzi-zone-card-time {
+  font-size: 0.75rem; color: var(--w60); text-align: right;
+  line-height: 1.5;
+}
+.fzi-zone-card-time strong { color: var(--w80); display: block; font-weight: 400; }
+.fzi-zone-card-cta {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--g400); font-family: var(--fb);
+  transition: gap 0.3s var(--ease);
+}
+.fzi-zone-card:hover .fzi-zone-card-cta { gap: 14px; }
 
 /* PROCESS STEPS */
 .fzi-process {
@@ -381,52 +436,84 @@ const CSS = `
 
 const ZONES = [
   {
-    num: "01",
-    name: "DMCC",
-    desc: "Dubai's leading commodities and trading hub with world-class infrastructure",
-    features: ["100% foreign ownership", "Zero corporate tax", "Repatriation of profits"]
+    abbr: "DMCC",
+    fullName: "Dubai Multi Commodities Centre",
+    badge: null,
+    desc: "The world's most connected free zone, hosting 23,000+ companies across commodities, fintech, and professional services.",
+    price: "AED 18,500",
+    timeline: "7–14 days",
+    img: imgDMCC,
+    nav: "dmcc"
   },
   {
-    num: "02",
-    name: "IFZA",
-    desc: "Dubai's cost-effective free zone ideal for startups and SMEs",
-    features: ["Lowest setup costs", "Fast licensing", "Flexible packages"]
+    abbr: "IFZA",
+    fullName: "International Free Zone Authority",
+    badge: "Multi-Activity",
+    desc: "One of UAE's most competitive free zones. Fast, flexible, and cost-effective with broad activity coverage.",
+    price: "AED 12,900",
+    timeline: "3–7 days",
+    img: imgIFZA,
+    nav: "ifza"
   },
   {
-    num: "03",
-    name: "Meydan",
-    desc: "Premium business environment in the heart of Dubai",
-    features: ["Corporate banking support", "Visa flexibility", "Elite location"]
+    abbr: "Meydan",
+    fullName: "Meydan Free Zone",
+    badge: "Premium Location",
+    desc: "Premium free zone in the heart of Dubai's most iconic district. Ideal for consultancies, tech firms, and lifestyle brands.",
+    price: "AED 14,500",
+    timeline: "5–10 days",
+    img: imgMeydan,
+    nav: "meydan"
   },
   {
-    num: "04",
-    name: "SHAMS",
-    desc: "Sharjah's media and creative industries free zone",
-    features: ["Media licenses", "Affordable rates", "Strategic location"]
+    abbr: "RAKEZ",
+    fullName: "Ras Al Khaimah Economic Zone",
+    badge: "Industrial & Commercial",
+    desc: "Northern Emirates' most competitive zone. Ideal for manufacturing, trading, and industrial operations at low cost.",
+    price: "AED 8,500",
+    timeline: "3–7 days",
+    img: imgRAKEZ,
+    nav: "rakez"
   },
   {
-    num: "05",
-    name: "RAKEZ",
-    desc: "Ras Al Khaimah's diverse business ecosystem",
-    features: ["Industrial options", "Warehouse facilities", "Competitive pricing"]
+    abbr: "SHAMS",
+    fullName: "Sharjah Media City",
+    badge: "Media & Creative",
+    desc: "UAE's leading media-focused free zone. Designed for content creators, media companies, and consultancies.",
+    price: "AED 11,500",
+    timeline: "5–8 days",
+    img: imgSHAMS,
+    nav: "shams"
   },
   {
-    num: "06",
-    name: "JAFZA",
-    desc: "Middle East's largest free zone with port access",
-    features: ["Logistics hub", "Port connectivity", "Global reach"]
+    abbr: "JAFZA",
+    fullName: "Jebel Ali Free Zone Authority",
+    badge: "Logistics & Trade",
+    desc: "The world's largest free zone by area. Unmatched for logistics, import/export, and large-scale trade operations.",
+    price: "AED 22,000",
+    timeline: "7–14 days",
+    img: imgJAFZA,
+    nav: "jafza"
   },
   {
-    num: "07",
-    name: "AFZ",
-    desc: "Ajman's growing business-friendly free zone",
-    features: ["Budget-friendly", "Quick setup", "Proximity to Dubai"]
+    abbr: "AFZ",
+    fullName: "Ajman Free Zone",
+    badge: "Budget Friendly",
+    desc: "UAE's most affordable free zone option. Perfect for startups, freelancers, and cost-conscious entrepreneurs.",
+    price: "AED 5,500",
+    timeline: "2–5 days",
+    img: imgAFZ,
+    nav: "afz"
   },
   {
-    num: "08",
-    name: "ADGM",
-    desc: "Abu Dhabi's international financial center with English common law",
-    features: ["Financial services", "Common law framework", "Global recognition"]
+    abbr: "ADGM",
+    fullName: "Abu Dhabi Global Market",
+    badge: "Financial Services",
+    desc: "Abu Dhabi's premier international financial centre. Ideal for asset management, fintech, and regulated financial services.",
+    price: "AED 28,500",
+    timeline: "10–21 days",
+    img: imgADGM,
+    nav: "adgm"
   }
 ];
 
@@ -576,14 +663,34 @@ export default function FreeZoneIncorporationPage({ onNavigate }) {
           </div>
           <div className="fzi-zones-grid">
             {ZONES.map((zone) => (
-              <div key={zone.num} className="fzi-zone-card" onClick={() => onNavigate(zone.name.toLowerCase())}>
-                <div className="fzi-zone-card-num">{zone.num}</div>
-                <h3 className="fzi-zone-card-title">{zone.name}</h3>
-                <p className="fzi-zone-card-desc">{zone.desc}</p>
-                <div className="fzi-zone-card-features">
-                  {zone.features.map((feature, i) => (
-                    <div key={i} className="fzi-zone-card-feature">{feature}</div>
-                  ))}
+              <div
+                key={zone.abbr}
+                className="fzi-zone-card"
+                style={{ backgroundImage: `url(${zone.img})` }}
+                onClick={() => onNavigate(zone.nav)}
+              >
+                <div className="fzi-zone-card-overlay" />
+                <div className="fzi-zone-card-inner">
+                  {zone.badge && (
+                    <div className="fzi-zone-card-badge">{zone.badge}</div>
+                  )}
+                  <div className="fzi-zone-card-abbr">{zone.abbr}</div>
+                  <div className="fzi-zone-card-fullname">{zone.fullName}</div>
+                  <p className="fzi-zone-card-desc">{zone.desc}</p>
+                  <div className="fzi-zone-card-divider" />
+                  <div className="fzi-zone-card-pricing">
+                    <div className="fzi-zone-card-price">
+                      <span>From</span>
+                      {zone.price}
+                    </div>
+                    <div className="fzi-zone-card-time">
+                      <strong>{zone.timeline}</strong>
+                      setup time
+                    </div>
+                  </div>
+                  <div className="fzi-zone-card-cta">
+                    Explore Packages <span>→</span>
+                  </div>
                 </div>
               </div>
             ))}

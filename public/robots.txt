@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*?*
+
+# Sitemaps
+Sitemap: https://www.incozone.com/sitemap.xml
+
+# Crawl-delay (optional — remove if aggressive crawling is fine)
+Crawl-delay: 1

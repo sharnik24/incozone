@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet-async";
+import { PAGE_META, PHONE_NUMBER, PHONE_HREF, WHATSAPP_NUMBER } from "./seo.js";
 import DMCCPage from "./pages/DMCC";
 import IFZAPage from "./pages/IFZA";
 import MeydanPage from "./pages/Meydan";
@@ -873,8 +875,13 @@ const CSS = `
   .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 32px; border-top: 1px solid var(--white-10); font-size: 0.72rem; color: var(--white-30); }
 
   /* ── WA FLOAT ── */
-  .wa-float { position: fixed; bottom: 32px; right: 32px; z-index: 300; width: 52px; height: 52px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: transform 0.3s, box-shadow 0.3s; }
-  .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+  @keyframes waPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(37,211,102,0.5), 0 4px 20px rgba(37,211,102,0.4); }
+    70%  { box-shadow: 0 0 0 14px rgba(37,211,102,0), 0 4px 20px rgba(37,211,102,0.4); }
+    100% { box-shadow: 0 0 0 0 rgba(37,211,102,0), 0 4px 20px rgba(37,211,102,0.4); }
+  }
+  .wa-float { position: fixed; bottom: 32px; right: 32px; z-index: 300; width: 56px; height: 56px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; cursor: pointer; animation: waPulse 2.2s infinite; transition: transform 0.3s, box-shadow 0.3s; text-decoration: none; }
+  .wa-float:hover { transform: scale(1.12); animation: none; box-shadow: 0 8px 32px rgba(37,211,102,0.6); }
 
   /* ══════════════════════════════════════════
      ── ZONE DETAIL: CREAM PACKAGES SECTION ──
@@ -1591,7 +1598,7 @@ function ZonePage({ zone, onBack, onNavigate }) {
         </div>
         <div className="footer-bottom"><span>© 2025 INCOZONE.</span><span>Dubai, UAE</span></div>
       </footer>
-      <div className="wa-float"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg></div>
+      <a className="wa-float" href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20INCOZONE%2C%20I%27d%20like%20to%20inquire%20about%20UAE%20company%20formation.`} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg></a>
     </div>
   );
 }
@@ -1728,10 +1735,20 @@ function GlobalNav({ onNavigate, scrolled }) {
   );
 }
 
+// ─── URL → STATE: parse initial path so direct URLs & bots work ──
+function resolveInitialState() {
+  const path = window.location.pathname.replace(/^\//, "").toLowerCase().trim();
+  if (!path || path === "home") return { page: "home", zone: null };
+  const zone = ZONES.find(z => z.id === path);
+  if (zone) return { page: "home", zone };
+  return { page: path, zone: null };
+}
+
 // ─── MAIN APP ─────────────────────────────────────────────────
 export default function App() {
-  const [selectedZone, setSelectedZone]   = useState(null);
-  const [currentPage, setCurrentPage]     = useState("home");
+  const init = resolveInitialState();
+  const [selectedZone, setSelectedZone]   = useState(init.zone);
+  const [currentPage, setCurrentPage]     = useState(init.page);
   const [activeCategory, setActiveCategory] = useState("all");
   const [scrolled, setScrolled]           = useState(false);
   const [skeletonDone, setSkeletonDone]   = useState(false);
@@ -1808,43 +1825,72 @@ export default function App() {
     window.scrollTo(0, 0);
   };
 
+  // Helper: render a page with its Helmet SEO tags
+  const withHelmet = (key, el) => {
+    const m = PAGE_META[key] || PAGE_META.home;
+    return (
+      <>
+        <Helmet>
+          <title>{m.title}</title>
+          <meta name="description" content={m.description} />
+          <link rel="canonical" href={m.canonical} />
+          <meta property="og:title" content={m.title} />
+          <meta property="og:description" content={m.description} />
+          <meta property="og:url" content={m.canonical} />
+        </Helmet>
+        {el}
+      </>
+    );
+  };
+
   // Zone pages — all receive onNavigate so their nav works
-  if (selectedZone?.id === "dmcc")   return <DMCCPage   onBack={goHome} onNavigate={goPage} />;
-  if (selectedZone?.id === "ifza")   return <IFZAPage   onBack={goHome} onNavigate={goPage} />;
-  if (selectedZone?.id === "meydan") return <MeydanPage onBack={goHome} onNavigate={goPage} />;
-  if (selectedZone?.id === "rakez")  return <RAKEZPage  onBack={goHome} onNavigate={goPage} />;
-  if (selectedZone?.id === "shams")  return <SHAMSPage  onBack={goHome} onNavigate={goPage} />;
-  if (selectedZone?.id === "jafza")  return <JAFZAPage  onBack={goHome} onNavigate={goPage} />;
-  if (selectedZone?.id === "afz")    return <AFZPage    onBack={goHome} onNavigate={goPage} />;
-  if (selectedZone?.id === "adgm")   return <ADGMPage   onBack={goHome} onNavigate={goPage} />;
+  if (selectedZone?.id === "dmcc")   return withHelmet("dmcc",   <DMCCPage   onBack={goHome} onNavigate={goPage} />);
+  if (selectedZone?.id === "ifza")   return withHelmet("ifza",   <IFZAPage   onBack={goHome} onNavigate={goPage} />);
+  if (selectedZone?.id === "meydan") return withHelmet("meydan", <MeydanPage onBack={goHome} onNavigate={goPage} />);
+  if (selectedZone?.id === "rakez")  return withHelmet("rakez",  <RAKEZPage  onBack={goHome} onNavigate={goPage} />);
+  if (selectedZone?.id === "shams")  return withHelmet("shams",  <SHAMSPage  onBack={goHome} onNavigate={goPage} />);
+  if (selectedZone?.id === "jafza")  return withHelmet("jafza",  <JAFZAPage  onBack={goHome} onNavigate={goPage} />);
+  if (selectedZone?.id === "afz")    return withHelmet("afz",    <AFZPage    onBack={goHome} onNavigate={goPage} />);
+  if (selectedZone?.id === "adgm")   return withHelmet("adgm",   <ADGMPage   onBack={goHome} onNavigate={goPage} />);
   if (selectedZone) return <ZonePage zone={selectedZone} onBack={goHome} onNavigate={goPage} />;
 
-  // Service pages — all 12 fully wired
-  if (currentPage === "services")           return <ServicesPage            onBack={() => goPage("home")}     onNavigate={goPage} />;
-  if (currentPage === "mainland")           return <MainlandPage            onBack={() => goPage("services")} onNavigate={goPage} />;
-  if (currentPage === "pro")                return <PROPage                 onBack={() => goPage("services")} onNavigate={goPage} />;
-  if (currentPage === "goldenvisa")         return <GoldenVisaPage          onBack={() => goPage("services")} onNavigate={goPage} />;
-  if (currentPage === "banking")            return <BankingPage             onBack={() => goPage("services")} onNavigate={goPage} />;
-  if (currentPage === "visaimmigration")    return <VisaImmigrationPage     onBack={() => goPage("services")} onNavigate={goPage} />;
-  if (currentPage === "willregistration")   return <WillRegistrationPage    onBack={() => goPage("services")} onNavigate={goPage} />;
-  if (currentPage === "trademark")          return <TrademarkRegistrationPage onBack={() => goPage("services")} onNavigate={goPage} />;
-  if (currentPage === "specialapprovals")   return <SpecialApprovalsPage    onBack={() => goPage("services")} onNavigate={goPage} />;
-  if (currentPage === "offshore")           return <OffshoreFormationPage   onBack={() => goPage("services")} onNavigate={goPage} />;
-  if (currentPage === "liquidation")        return <CompanyLiquidationPage  onBack={() => goPage("services")} onNavigate={goPage} />;
-  if (currentPage === "freezoneincorp")     return <FreeZoneIncorporationPage onBack={() => goPage("services")} onNavigate={goPage} />;
-  if (currentPage === "amendments")         return <CompanyAmendmentsPage   onBack={() => goPage("services")} onNavigate={goPage} />;
+  // Service pages
+  if (currentPage === "services")           return withHelmet("services",        <ServicesPage            onBack={() => goPage("home")}     onNavigate={goPage} />);
+  if (currentPage === "mainland")           return withHelmet("mainland",        <MainlandPage            onBack={() => goPage("services")} onNavigate={goPage} />);
+  if (currentPage === "pro")                return withHelmet("pro",             <PROPage                 onBack={() => goPage("services")} onNavigate={goPage} />);
+  if (currentPage === "goldenvisa")         return withHelmet("goldenvisa",      <GoldenVisaPage          onBack={() => goPage("services")} onNavigate={goPage} />);
+  if (currentPage === "banking")            return withHelmet("banking",         <BankingPage             onBack={() => goPage("services")} onNavigate={goPage} />);
+  if (currentPage === "visaimmigration")    return withHelmet("visa",            <VisaImmigrationPage     onBack={() => goPage("services")} onNavigate={goPage} />);
+  if (currentPage === "willregistration")   return withHelmet("services",        <WillRegistrationPage    onBack={() => goPage("services")} onNavigate={goPage} />);
+  if (currentPage === "trademark")          return withHelmet("trademark",       <TrademarkRegistrationPage onBack={() => goPage("services")} onNavigate={goPage} />);
+  if (currentPage === "specialapprovals")   return withHelmet("services",        <SpecialApprovalsPage    onBack={() => goPage("services")} onNavigate={goPage} />);
+  if (currentPage === "offshore")           return withHelmet("services",        <OffshoreFormationPage   onBack={() => goPage("services")} onNavigate={goPage} />);
+  if (currentPage === "liquidation")        return withHelmet("services",        <CompanyLiquidationPage  onBack={() => goPage("services")} onNavigate={goPage} />);
+  if (currentPage === "freezoneincorp")     return withHelmet("freezoneincorp",  <FreeZoneIncorporationPage onBack={() => goPage("services")} onNavigate={goPage} />);
+  if (currentPage === "amendments")         return withHelmet("services",        <CompanyAmendmentsPage   onBack={() => goPage("services")} onNavigate={goPage} />);
 
   // Other pages
-  if (currentPage === "about")    return <AboutPage    onBack={() => goPage("home")}  onNavigate={goPage} />;
-  if (currentPage === "blog")     return <BlogPage     onBack={() => goPage("home")}  onNavigate={goPage} />;
-  if (currentPage === "contact")  return <ContactPage  onBack={() => goPage("home")}  onNavigate={goPage} onSchedule={() => goPage("schedule")} />;
-  if (currentPage === "schedule") return <SchedulePage onBack={() => goPage("home")}  onNavigate={goPage} />;
+  if (currentPage === "about")    return withHelmet("about",    <AboutPage    onBack={() => goPage("home")}  onNavigate={goPage} />);
+  if (currentPage === "blog")     return withHelmet("blog",     <BlogPage     onBack={() => goPage("home")}  onNavigate={goPage} />);
+  if (currentPage === "contact")  return withHelmet("contact",  <ContactPage  onBack={() => goPage("home")}  onNavigate={goPage} onSchedule={() => goPage("schedule")} />);
+  if (currentPage === "schedule") return withHelmet("schedule", <SchedulePage onBack={() => goPage("home")}  onNavigate={goPage} />);
   if (currentPage === "admin")    return <AdminPage />;
 
   const filtered = activeCategory === "all" ? ZONES : ZONES.filter(z => z.category === activeCategory);
 
+  const homeMeta = PAGE_META.home;
+
   return (
     <>
+      <Helmet>
+        <title>{homeMeta.title}</title>
+        <meta name="description" content={homeMeta.description} />
+        <link rel="canonical" href={homeMeta.canonical} />
+        <meta property="og:title" content={homeMeta.title} />
+        <meta property="og:description" content={homeMeta.description} />
+        <meta property="og:url" content={homeMeta.canonical} />
+      </Helmet>
+
       <style>{CSS}</style>
 
       {/* NAV — shared GlobalNav component */}
@@ -2290,7 +2336,7 @@ export default function App() {
         </div>
       </footer>
 
-      <div className="wa-float"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg></div>
+      <a className="wa-float" href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20INCOZONE%2C%20I%27d%20like%20to%20inquire%20about%20UAE%20company%20formation.`} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg></a>
     </>
   );
 }

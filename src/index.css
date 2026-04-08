@@ -16,7 +16,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 /* ⚠️ This is the critical fix — Vite sets body { display: flex; place-items: center }

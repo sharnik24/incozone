@@ -83,7 +83,7 @@ const CSS = `
     --font-body: 'DM Sans', sans-serif;
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: auto; }
   body {
     background: var(--navy-900);
     color: var(--white);
@@ -1771,12 +1771,20 @@ export default function App() {
   // ── Lenis smooth scroll ───────────────────────────────────────
   useEffect(() => {
     let lenis;
+    let rafId;
     import("@studio-freight/lenis").then(({ default: Lenis }) => {
-      lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
-      const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
-      requestAnimationFrame(raf);
+      lenis = new Lenis({
+        duration: 1.4,
+        easing: t => 1 - Math.pow(1 - t, 4),
+        smoothWheel: true,
+        wheelMultiplier: 0.9,
+        touchMultiplier: 1.5,
+        infinite: false,
+      });
+      const raf = (time) => { lenis.raf(time); rafId = requestAnimationFrame(raf); };
+      rafId = requestAnimationFrame(raf);
     });
-    return () => lenis && lenis.destroy();
+    return () => { cancelAnimationFrame(rafId); lenis && lenis.destroy(); };
   }, []);
 
   const goHome = () => {

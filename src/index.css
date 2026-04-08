@@ -15,8 +15,9 @@
   color-scheme: dark;
 }
 
-html {
+html, body {
   scroll-behavior: auto;
+  overscroll-behavior: none;
 }
 
 /* ⚠️ This is the critical fix — Vite sets body { display: flex; place-items: center }

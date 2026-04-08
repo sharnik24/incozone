@@ -83,7 +83,7 @@ const CSS = `
     --font-body: 'DM Sans', sans-serif;
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   }
-  html { scroll-behavior: auto; }
+  html { scroll-behavior: auto; overscroll-behavior: none; }
   body {
     background: var(--navy-900);
     color: var(--white);
@@ -91,6 +91,17 @@ const CSS = `
     font-weight: 300;
     line-height: 1.6;
     overflow-x: hidden;
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* GPU-promote key layers so scroll never triggers a repaint */
+  .nav, .zf-card, .zf-img, .hero, .zone-finder {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  .zf-img {
+    will-change: opacity, transform;
   }
 
   /* ── NAV ── */
@@ -1768,24 +1779,6 @@ export default function App() {
     return () => { window.removeEventListener("scroll", h); };
   }, [selectedZone, currentPage]);
 
-  // ── Lenis smooth scroll ───────────────────────────────────────
-  useEffect(() => {
-    let lenis;
-    let rafId;
-    import("@studio-freight/lenis").then(({ default: Lenis }) => {
-      lenis = new Lenis({
-        duration: 1.4,
-        easing: t => 1 - Math.pow(1 - t, 4),
-        smoothWheel: true,
-        wheelMultiplier: 0.9,
-        touchMultiplier: 1.5,
-        infinite: false,
-      });
-      const raf = (time) => { lenis.raf(time); rafId = requestAnimationFrame(raf); };
-      rafId = requestAnimationFrame(raf);
-    });
-    return () => { cancelAnimationFrame(rafId); lenis && lenis.destroy(); };
-  }, []);
 
   const goHome = () => {
     setSelectedZone(null);

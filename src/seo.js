@@ -6,9 +6,9 @@
 //  UAE business setup keyword
 // ═══════════════════════════════════════════════════════════════
 
-export const PHONE_NUMBER    = "+971 4 000 0000";   // ⚠️ REPLACE
-export const PHONE_HREF      = "+97140000000";       // ⚠️ REPLACE
-export const WHATSAPP_NUMBER = "971500000000";       // ⚠️ REPLACE
+export const PHONE_NUMBER    = "+971 56 583 4586";
+export const PHONE_HREF      = "+971565834586";
+export const WHATSAPP_NUMBER = "971565834586";
 export const BASE_URL        = "https://www.incozone.com";
 export const BRAND           = "INCOZONE";
 

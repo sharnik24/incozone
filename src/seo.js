@@ -114,6 +114,36 @@ export const PAGE_META = {
     description: "ADGM setup in 10–21 days. Abu Dhabi's premier IFC for asset management, fintech & regulated financial services. English common law. From AED 28,500.",
     canonical: `${BASE_URL}/adgm`,
   },
+  offshore: {
+    title: "UAE Offshore Company Formation 2026 | RAK ICC & JAFZA Offshore | INCOZONE",
+    description: "UAE offshore company formation — RAK ICC and JAFZA offshore. 100% foreign ownership, zero tax, no audit requirement, full privacy. From AED 8,000. Expert setup by INCOZONE.",
+    canonical: `${BASE_URL}/offshore`,
+  },
+  trademark: {
+    title: "Trademark Registration UAE 2026 | Brand Protection | INCOZONE",
+    description: "Register your trademark in UAE with the Ministry of Economy. Protect your brand across all 45 classes. Fast-track available. Full IP protection from AED 3,500.",
+    canonical: `${BASE_URL}/trademark`,
+  },
+  amendments: {
+    title: "Company Amendments UAE | License Renewal & Modifications | INCOZONE",
+    description: "UAE company amendments — shareholder changes, activity additions, name change, license renewal, MOA amendments. All free zones and mainland. Fast turnaround.",
+    canonical: `${BASE_URL}/amendments`,
+  },
+  liquidation: {
+    title: "Company Liquidation UAE 2026 | Business Closure Services | INCOZONE",
+    description: "Orderly UAE company liquidation and deregistration. Free zone and mainland company closure. Visa cancellation, bank account closure, license cancellation. Full process managed.",
+    canonical: `${BASE_URL}/liquidation`,
+  },
+  specialapprovals: {
+    title: "Special Approvals UAE | Regulated Business Licenses | INCOZONE",
+    description: "UAE special approvals for regulated activities — healthcare, education, finance, food, real estate, crypto. Ministry approvals and sector-specific licenses. Expert guidance.",
+    canonical: `${BASE_URL}/specialapprovals`,
+  },
+  willregistration: {
+    title: "Will Registration UAE 2026 | Expat Wills & Estate Planning | INCOZONE",
+    description: "Register your will in UAE — DIFC Wills Service Centre and Abu Dhabi Judicial Department. Protect your assets and family. Expat will drafting and registration from AED 4,500.",
+    canonical: `${BASE_URL}/willregistration`,
+  },
 };
 
 // ─── MASTER FAQ — 50 Questions targeting every PAA box ────────

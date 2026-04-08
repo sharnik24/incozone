@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postbuild": "node -e \"if(!process.env.VERCEL && !process.env.CI){require('child_process').execSync('react-snap',{stdio:'inherit'})}else{console.log('Skipping react-snap in CI/Vercel')}\"",
+    "postbuild": "node prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

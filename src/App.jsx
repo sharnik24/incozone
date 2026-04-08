@@ -26,6 +26,13 @@ import CompanyLiquidationPage from "./pages/CompanyLiquidation";
 import FreeZoneIncorporationPage from "./pages/FreeZoneIncorporation";
 import CompanyAmendmentsPage from "./pages/CompanyAmendments";
 import heroBg from "./images/business-data-analysis.jpg";
+import imgDMCC   from "./images/aerial-view-tall-skyscraper-city.jpg";
+import imgIFZA   from "./images/futuristic-landscape-dubai.jpg";
+import imgMeydan from "./images/dramatic-perspective-with-low-angle-view-skyscrapers-looking-up-sky-dubai-vanishing-point.jpg";
+import imgRAKEZ  from "./images/modern-glass-skyscraper-reflecting-twilight-sky.jpg";
+import imgSHAMS  from "./images/modern-cityscape-view-from-high-rise-building.jpg";
+import imgJAFZA  from "./images/bridge-with-city.jpg";
+import imgAFZ    from "./images/landscape-with-colorful-rainbow-appearing-sky.jpg";
 
 // Preload hero image at module level so it's in browser cache before any navigation
 const _heroBgPreload = new Image(); _heroBgPreload.src = heroBg;
@@ -226,21 +233,28 @@ const CSS = `
   .zf-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   .zf-card {
     background: var(--navy-700); border: 1px solid var(--white-10);
-    padding: 36px 28px 28px; position: relative; overflow: hidden;
+    background-size: cover; background-position: center; background-repeat: no-repeat;
+    padding: 0; position: relative; overflow: hidden; min-height: 420px;
     cursor: pointer; transition: all 0.35s var(--ease-out); display: flex; flex-direction: column;
   }
   .zf-card::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, var(--gold-glow), transparent);
-    opacity: 0; transition: opacity 0.4s;
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to bottom, rgba(5,17,30,0.60) 0%, rgba(5,17,30,0.80) 55%, rgba(5,17,30,0.96) 100%);
+    transition: background 0.35s;
+  }
+  .zf-card:hover::before {
+    background: linear-gradient(to bottom, rgba(5,17,30,0.68) 0%, rgba(5,17,30,0.86) 55%, rgba(5,17,30,0.98) 100%);
   }
   .zf-card::after {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; z-index: 3;
     background: var(--gold-400); transform: scaleX(0); transform-origin: left;
     transition: transform 0.4s var(--ease-out);
   }
-  .zf-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.3); }
-  .zf-card:hover::before { opacity: 1; }
+  .zf-card-inner {
+    position: relative; z-index: 2; padding: 36px 28px 28px;
+    display: flex; flex-direction: column; flex: 1;
+  }
+  .zf-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.45); }
   .zf-card:hover::after { transform: scaleX(1); }
   .zf-card:hover .zf-arrow { transform: translateX(4px); opacity: 1; }
   .zf-badge {
@@ -265,7 +279,7 @@ const CSS = `
   .zf-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold-400); }
   .zf-arrow { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-400); transition: transform 0.3s, opacity 0.3s; opacity: 0.6; margin-top: auto; }
   .zf-skeleton-overlay {
-    position: absolute; inset: 0; background: var(--navy-700);
+    position: absolute; inset: 0; background: var(--navy-700); z-index: 4;
     display: flex; flex-direction: column; padding: 36px 28px 28px;
     animation: skeletonLoad 0.5s var(--ease-out) forwards;
   }
@@ -1150,7 +1164,7 @@ const CSS = `
 // ─── ZONE DATA ────────────────────────────────────────────────
 const ZONES = [
   {
-    id: "dmcc", name: "DMCC", full: "Dubai Multi Commodities Centre", category: "trade",
+    id: "dmcc", name: "DMCC", full: "Dubai Multi Commodities Centre", category: "trade", img: imgDMCC,
     badgeClass: "badge-trade", badgeLabel: "Trade & Commodities",
     desc: "The world's most connected free zone, hosting 23,000+ companies across commodities, fintech, and professional services.",
     location: "Jumeirah Lake Towers, Dubai", setupFrom: "AED 18,500", visaQuota: "Up to 6 visas", setupDays: "7–14", color: "#C9A84C",
@@ -1165,7 +1179,7 @@ const ZONES = [
     calcs: { basePrice: 18500, activities: { 1: 0, 3: 3500, 5: 6500, "unlimited": 12000 }, office: { flexi: 0, private: 8400, premium: 18000 }, visas: { 0: 0, 2: 0, 4: 3200, 6: 6400, 8: 9600 } },
   },
   {
-    id: "ifza", name: "IFZA", full: "International Free Zone Authority", category: "free",
+    id: "ifza", name: "IFZA", full: "International Free Zone Authority", category: "free", img: imgIFZA,
     badgeClass: "badge-free", badgeLabel: "Multi-Activity",
     desc: "One of UAE's most competitive free zones. Fast, flexible, and cost-effective with broad activity coverage.",
     location: "Dubai Silicon Oasis, Dubai", setupFrom: "AED 12,900", visaQuota: "Up to 6 visas", setupDays: "3–7", color: "#D4B468",
@@ -1180,7 +1194,7 @@ const ZONES = [
     calcs: { basePrice: 12900, activities: { 1: 0, 3: 2000, 5: 4500, "unlimited": 9000 }, office: { virtual: 0, flexi: 2800, private: 7200 }, visas: { 0: 0, 1: 0, 3: 2400, 6: 4800 } },
   },
   {
-    id: "meydan", name: "Meydan", full: "Meydan Free Zone", category: "free",
+    id: "meydan", name: "Meydan", full: "Meydan Free Zone", category: "free", img: imgMeydan,
     badgeClass: "badge-free", badgeLabel: "Premium Location",
     desc: "Premium free zone in the heart of Dubai's most iconic district. Ideal for consultancies, tech firms, and lifestyle brands.",
     location: "Meydan, Dubai", setupFrom: "AED 14,500", visaQuota: "Up to 3 visas", setupDays: "5–10", color: "#9a75e8",
@@ -1195,7 +1209,7 @@ const ZONES = [
     calcs: { basePrice: 14500, activities: { 1: 0, 3: 2500, 5: 5000, unlimited: 9500 }, office: { virtual: 0, flexi: 3200, private: 8500 }, visas: { 0: 0, 1: 0, 3: 2800, 6: 5600 } },
   },
   {
-    id: "rakez", name: "RAKEZ", full: "Ras Al Khaimah Economic Zone", category: "industrial",
+    id: "rakez", name: "RAKEZ", full: "Ras Al Khaimah Economic Zone", category: "industrial", img: imgRAKEZ,
     badgeClass: "badge-industrial", badgeLabel: "Industrial & Commercial",
     desc: "Northern Emirates' most competitive zone. Ideal for manufacturing, trading, and industrial operations at low cost.",
     location: "Ras Al Khaimah, UAE", setupFrom: "AED 8,500", visaQuota: "Up to 10 visas", setupDays: "3–7", color: "#48bb78",
@@ -1210,7 +1224,7 @@ const ZONES = [
     calcs: { basePrice: 8500, activities: { 1: 0, 3: 1500, 5: 3000, unlimited: 7000 }, office: { virtual: 0, shared: 1800, private: 5500, warehouse: 14000 }, visas: { 0: 0, 2: 0, 5: 3500, 10: 7000 } },
   },
   {
-    id: "shams", name: "SHAMS", full: "Sharjah Media City", category: "media",
+    id: "shams", name: "SHAMS", full: "Sharjah Media City", category: "media", img: imgSHAMS,
     badgeClass: "badge-media", badgeLabel: "Media & Creative",
     desc: "UAE's leading media-focused free zone. Designed for content creators, media companies, and consultancies.",
     location: "Sharjah, UAE", setupFrom: "AED 11,500", visaQuota: "Up to 6 visas", setupDays: "5–8", color: "#9a75e8",
@@ -1225,7 +1239,7 @@ const ZONES = [
     calcs: { basePrice: 11500, activities: { 1: 0, 3: 2000, 5: 4200, unlimited: 8500 }, office: { virtual: 0, flexi: 2600, studio: 7800, private: 9200 }, visas: { 0: 0, 1: 0, 3: 2600, 6: 5200 } },
   },
   {
-    id: "jafza", name: "JAFZA", full: "Jebel Ali Free Zone Authority", category: "trade",
+    id: "jafza", name: "JAFZA", full: "Jebel Ali Free Zone Authority", category: "trade", img: imgJAFZA,
     badgeClass: "badge-trade", badgeLabel: "Logistics & Trade",
     desc: "The world's largest free zone by area. Unmatched for logistics, import/export, and large-scale trade operations.",
     location: "Jebel Ali, Dubai", setupFrom: "AED 22,000", visaQuota: "Up to 15 visas", setupDays: "7–14", color: "#C9A84C",
@@ -1240,7 +1254,7 @@ const ZONES = [
     calcs: { basePrice: 22000, activities: { 1: 0, 5: 5000, 10: 9500, unlimited: 18000 }, office: { office: 0, warehouse: 12000, large_warehouse: 28000, land: 45000 }, visas: { 0: 0, 3: 0, 8: 6000, 15: 14000 } },
   },
   {
-    id: "afz", name: "AFZ", full: "Ajman Free Zone", category: "free",
+    id: "afz", name: "AFZ", full: "Ajman Free Zone", category: "free", img: imgAFZ,
     badgeClass: "badge-free", badgeLabel: "Budget Friendly",
     desc: "UAE's most affordable free zone option. Perfect for startups, freelancers, and cost-conscious entrepreneurs.",
     location: "Ajman, UAE", setupFrom: "AED 5,500", visaQuota: "Up to 6 visas", setupDays: "2–5", color: "#48bb78",
@@ -1255,7 +1269,7 @@ const ZONES = [
     calcs: { basePrice: 5500, activities: { 1: 0, 3: 1200, 5: 2500, unlimited: 5500 }, office: { virtual: 0, shared: 1500, private: 4000 }, visas: { 0: 0, 1: 0, 3: 2000, 6: 4000 } },
   },
   {
-    id: "adgm", name: "ADGM", full: "Abu Dhabi Global Market", category: "financial",
+    id: "adgm", name: "ADGM", full: "Abu Dhabi Global Market", category: "financial", img: heroBg,
     badgeClass: "badge-financial", badgeLabel: "Financial Services",
     desc: "Abu Dhabi's premier international financial centre. Ideal for asset management, fintech, and regulated financial services.",
     location: "Al Maryah Island, Abu Dhabi", setupFrom: "AED 28,500", visaQuota: "Up to 8 visas", setupDays: "10–21", color: "#ed8936",
@@ -1815,7 +1829,12 @@ export default function App() {
         </div>
         <div className="zf-grid">
           {filtered.map((zone, i) => (
-            <div className={`zf-card reveal reveal-delay-${(i % 4) + 1}`} key={zone.id} onClick={() => { setSelectedZone(zone); pushHistory(zone.id, zone.id); window.scrollTo(0, 0); }}>
+            <div
+              className={`zf-card reveal reveal-delay-${(i % 4) + 1}`}
+              key={zone.id}
+              style={zone.img ? { backgroundImage: `url(${zone.img})` } : {}}
+              onClick={() => { setSelectedZone(zone); pushHistory(zone.id, zone.id); window.scrollTo(0, 0); }}
+            >
               {!skeletonDone && (
                 <div className="zf-skeleton-overlay" style={{ animationDelay: `${i * 0.15}s` }}>
                   <div className="skeleton-bar" style={{ width: "60px", height: "20px", marginBottom: "20px" }} />
@@ -1826,15 +1845,17 @@ export default function App() {
                   <div className="skeleton-bar" style={{ width: "70%", height: "12px", marginBottom: "24px" }} />
                 </div>
               )}
-              <span className={`zf-badge ${zone.badgeClass}`}>{zone.badgeLabel}</span>
-              <div className="zf-zone-name">{zone.name}</div>
-              <div className="zf-zone-full">{zone.full}</div>
-              <p className="zf-desc">{zone.desc}</p>
-              <div className="zf-meta">
-                <div className="zf-meta-item"><div className="zf-dot" /><span>From <strong>{zone.setupFrom}</strong></span></div>
-                <div className="zf-meta-item"><div className="zf-dot" /><span><strong>{zone.setupDays}</strong> days</span></div>
+              <div className="zf-card-inner">
+                <span className={`zf-badge ${zone.badgeClass}`}>{zone.badgeLabel}</span>
+                <div className="zf-zone-name">{zone.name}</div>
+                <div className="zf-zone-full">{zone.full}</div>
+                <p className="zf-desc">{zone.desc}</p>
+                <div className="zf-meta">
+                  <div className="zf-meta-item"><div className="zf-dot" /><span>From <strong>{zone.setupFrom}</strong></span></div>
+                  <div className="zf-meta-item"><div className="zf-dot" /><span><strong>{zone.setupDays}</strong> days</span></div>
+                </div>
+                <div className="zf-arrow">Explore Packages →</div>
               </div>
-              <div className="zf-arrow">Explore Packages →</div>
             </div>
           ))}
         </div>

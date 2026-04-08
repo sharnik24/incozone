@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { IShield, IBolt, ITrendingUp, IMapPin, IGrid, IFileText } from "../icons";
 
-import imgDMCC   from "../images/aerial-view-tall-skyscraper-city.jpg";
-import imgIFZA   from "../images/futuristic-landscape-dubai.jpg";
-import imgMeydan from "../images/dramatic-perspective-with-low-angle-view-skyscrapers-looking-up-sky-dubai-vanishing-point.jpg";
-import imgRAKEZ  from "../images/modern-glass-skyscraper-reflecting-twilight-sky.jpg";
-import imgSHAMS  from "../images/modern-cityscape-view-from-high-rise-building.jpg";
-import imgJAFZA  from "../images/bridge-with-city.jpg";
-import imgAFZ    from "../images/landscape-with-colorful-rainbow-appearing-sky.jpg";
-import imgADGM   from "../images/business-data-analysis.jpg";
+import imgDMCC   from "../images/compressed/aerial-view-tall-skyscraper-city.webp";
+import imgIFZA   from "../images/compressed/futuristic-landscape-dubai.webp";
+import imgMeydan from "../images/compressed/dramatic-perspective-with-low-angle-view-skyscrapers-looking-up-sky-dubai-vanishing-point.webp";
+import imgRAKEZ  from "../images/compressed/modern-glass-skyscraper-reflecting-twilight-sky.webp";
+import imgSHAMS  from "../images/compressed/modern-cityscape-view-from-high-rise-building.webp";
+import imgJAFZA  from "../images/compressed/bridge-with-city.webp";
+import imgAFZ    from "../images/compressed/landscape-with-colorful-rainbow-appearing-sky.webp";
+import imgADGM   from "../images/compressed/representation-ecology-sustainability.webp";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Free Zone Incorporation Service

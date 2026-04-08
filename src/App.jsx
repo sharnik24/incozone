@@ -26,16 +26,22 @@ import CompanyLiquidationPage from "./pages/CompanyLiquidation";
 import FreeZoneIncorporationPage from "./pages/FreeZoneIncorporation";
 import CompanyAmendmentsPage from "./pages/CompanyAmendments";
 import heroBg from "./images/business-data-analysis.jpg";
-import imgDMCC   from "./images/aerial-view-tall-skyscraper-city.jpg";
-import imgIFZA   from "./images/futuristic-landscape-dubai.jpg";
-import imgMeydan from "./images/dramatic-perspective-with-low-angle-view-skyscrapers-looking-up-sky-dubai-vanishing-point.jpg";
-import imgRAKEZ  from "./images/modern-glass-skyscraper-reflecting-twilight-sky.jpg";
-import imgSHAMS  from "./images/modern-cityscape-view-from-high-rise-building.jpg";
-import imgJAFZA  from "./images/bridge-with-city.jpg";
-import imgAFZ    from "./images/landscape-with-colorful-rainbow-appearing-sky.jpg";
+import imgDMCC   from "./images/compressed/aerial-view-tall-skyscraper-city.webp";
+import imgIFZA   from "./images/compressed/futuristic-landscape-dubai.webp";
+import imgMeydan from "./images/compressed/dramatic-perspective-with-low-angle-view-skyscrapers-looking-up-sky-dubai-vanishing-point.webp";
+import imgRAKEZ  from "./images/compressed/modern-glass-skyscraper-reflecting-twilight-sky.webp";
+import imgSHAMS  from "./images/compressed/modern-cityscape-view-from-high-rise-building.webp";
+import imgJAFZA  from "./images/compressed/bridge-with-city.webp";
+import imgAFZ    from "./images/compressed/landscape-with-colorful-rainbow-appearing-sky.webp";
+import imgADGM   from "./images/compressed/representation-ecology-sustainability.webp";
 
 // Preload hero image at module level so it's in browser cache before any navigation
 const _heroBgPreload = new Image(); _heroBgPreload.src = heroBg;
+
+// Preload all zone images immediately so cards render without flicker
+[imgDMCC, imgIFZA, imgMeydan, imgRAKEZ, imgSHAMS, imgJAFZA, imgAFZ, imgADGM].forEach(src => {
+  const img = new Image(); img.src = src;
+});
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Dark Navy + Cream Accents
@@ -254,9 +260,41 @@ const CSS = `
     position: relative; z-index: 2; padding: 36px 28px 28px;
     display: flex; flex-direction: column; flex: 1;
   }
-  .zf-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.45); }
+  .zf-card:hover { border-color: rgba(201,168,76,0.5); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(201,168,76,0.2); }
   .zf-card:hover::after { transform: scaleX(1); }
-  .zf-card:hover .zf-arrow { transform: translateX(4px); opacity: 1; }
+  .zf-card:hover .zf-arrow { transform: translateX(6px); opacity: 1; }
+  .zf-card:active { transform: translateY(-3px) scale(0.99); }
+
+  /* Golden rays ripple on click */
+  @keyframes goldenRipple {
+    0%   { transform: translate(-50%,-50%) scale(0); opacity: 0.7; }
+    100% { transform: translate(-50%,-50%) scale(4); opacity: 0; }
+  }
+  @keyframes goldenRays {
+    0%   { transform: translate(-50%,-50%) scale(0) rotate(0deg); opacity: 0.9; }
+    100% { transform: translate(-50%,-50%) scale(3.5) rotate(30deg); opacity: 0; }
+  }
+  .zf-ripple {
+    position: absolute; z-index: 10; pointer-events: none;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.55) 0%, rgba(201,168,76,0.15) 50%, transparent 70%);
+    animation: goldenRipple 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+  .zf-rays {
+    position: absolute; z-index: 9; pointer-events: none;
+    width: 300px; height: 300px;
+    background: conic-gradient(from 0deg, transparent 0deg, rgba(201,168,76,0.22) 10deg, transparent 20deg, rgba(201,168,76,0.18) 30deg, transparent 40deg, rgba(201,168,76,0.22) 50deg, transparent 60deg, rgba(201,168,76,0.18) 70deg, transparent 80deg, rgba(201,168,76,0.22) 90deg, transparent 100deg, rgba(201,168,76,0.18) 110deg, transparent 120deg, rgba(201,168,76,0.22) 130deg, transparent 140deg, rgba(201,168,76,0.18) 150deg, transparent 160deg, rgba(201,168,76,0.22) 170deg, transparent 180deg, rgba(201,168,76,0.18) 190deg, transparent 200deg, rgba(201,168,76,0.22) 210deg, transparent 220deg, rgba(201,168,76,0.18) 230deg, transparent 240deg, rgba(201,168,76,0.22) 250deg, transparent 260deg, rgba(201,168,76,0.18) 270deg, transparent 280deg, rgba(201,168,76,0.22) 290deg, transparent 300deg, rgba(201,168,76,0.18) 310deg, transparent 320deg, rgba(201,168,76,0.22) 330deg, transparent 340deg, rgba(201,168,76,0.18) 350deg, transparent 360deg);
+    animation: goldenRays 0.8s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+
+  /* Smooth image fade-in */
+  .zf-card { background-color: #091928; }
+  .zf-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    opacity: 0; transition: opacity 0.6s ease;
+  }
+  .zf-img.loaded { opacity: 1; }
   .zf-badge {
     display: inline-block; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
     padding: 4px 10px; border: 1px solid; margin-bottom: 20px; width: fit-content;
@@ -1269,7 +1307,7 @@ const ZONES = [
     calcs: { basePrice: 5500, activities: { 1: 0, 3: 1200, 5: 2500, unlimited: 5500 }, office: { virtual: 0, shared: 1500, private: 4000 }, visas: { 0: 0, 1: 0, 3: 2000, 6: 4000 } },
   },
   {
-    id: "adgm", name: "ADGM", full: "Abu Dhabi Global Market", category: "financial", img: heroBg,
+    id: "adgm", name: "ADGM", full: "Abu Dhabi Global Market", category: "financial", img: imgADGM,
     badgeClass: "badge-financial", badgeLabel: "Financial Services",
     desc: "Abu Dhabi's premier international financial centre. Ideal for asset management, fintech, and regulated financial services.",
     location: "Al Maryah Island, Abu Dhabi", setupFrom: "AED 28,500", visaQuota: "Up to 8 visas", setupDays: "10–21", color: "#ed8936",
@@ -1730,6 +1768,17 @@ export default function App() {
     return () => { window.removeEventListener("scroll", h); };
   }, [selectedZone, currentPage]);
 
+  // ── Lenis smooth scroll ───────────────────────────────────────
+  useEffect(() => {
+    let lenis;
+    import("@studio-freight/lenis").then(({ default: Lenis }) => {
+      lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+      const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
+      requestAnimationFrame(raf);
+    });
+    return () => lenis && lenis.destroy();
+  }, []);
+
   const goHome = () => {
     setSelectedZone(null);
     setCurrentPage("home");
@@ -1832,9 +1881,29 @@ export default function App() {
             <div
               className={`zf-card reveal reveal-delay-${(i % 4) + 1}`}
               key={zone.id}
-              style={zone.img ? { backgroundImage: `url(${zone.img})` } : {}}
-              onClick={() => { setSelectedZone(zone); pushHistory(zone.id, zone.id); window.scrollTo(0, 0); }}
+              onClick={(e) => {
+                // Golden ripple burst
+                const rect = e.currentTarget.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                ["zf-rays", "zf-ripple"].forEach((cls, idx) => {
+                  const el = document.createElement("div");
+                  el.className = cls;
+                  el.style.left = x + "px"; el.style.top = y + "px";
+                  e.currentTarget.appendChild(el);
+                  setTimeout(() => el.remove(), idx === 0 ? 850 : 750);
+                });
+                setTimeout(() => { setSelectedZone(zone); pushHistory(zone.id, zone.id); window.scrollTo(0, 0); }, 180);
+              }}
             >
+              {zone.img && (
+                <img
+                  className="zf-img"
+                  src={zone.img}
+                  alt={zone.name}
+                  onLoad={e => e.currentTarget.classList.add("loaded")}
+                />
+              )}
               {!skeletonDone && (
                 <div className="zf-skeleton-overlay" style={{ animationDelay: `${i * 0.15}s` }}>
                   <div className="skeleton-bar" style={{ width: "60px", height: "20px", marginBottom: "20px" }} />

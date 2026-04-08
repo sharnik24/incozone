@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet-async";
-import { PAGE_META, PHONE_NUMBER, PHONE_HREF, WHATSAPP_NUMBER } from "./seo.js";
+import { PAGE_META, PAGE_FAQ, BREADCRUMBS, HOWTO_SCHEMA, ORG_SCHEMA, FREEZONE_LIST_SCHEMA, buildFAQSchema, buildBreadcrumb, PHONE_NUMBER, PHONE_HREF, WHATSAPP_NUMBER } from "./seo.js";
 import DMCCPage from "./pages/DMCC";
 import IFZAPage from "./pages/IFZA";
 import MeydanPage from "./pages/Meydan";
@@ -1825,9 +1825,11 @@ export default function App() {
     window.scrollTo(0, 0);
   };
 
-  // Helper: render a page with its Helmet SEO tags
+  // Helper: render a page with full SEO — meta, FAQ schema, breadcrumb, canonical
   const withHelmet = (key, el) => {
-    const m = PAGE_META[key] || PAGE_META.home;
+    const m    = PAGE_META[key] || PAGE_META.home;
+    const faqs = PAGE_FAQ[key];
+    const bc   = BREADCRUMBS[key];
     return (
       <>
         <Helmet>
@@ -1837,6 +1839,17 @@ export default function App() {
           <meta property="og:title" content={m.title} />
           <meta property="og:description" content={m.description} />
           <meta property="og:url" content={m.canonical} />
+          <meta property="og:type" content="website" />
+          <meta property="og:image" content="https://www.incozone.com/og-image.jpg" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={m.title} />
+          <meta name="twitter:description" content={m.description} />
+          {faqs?.length > 0 && (
+            <script type="application/ld+json">{buildFAQSchema(faqs)}</script>
+          )}
+          {bc && (
+            <script type="application/ld+json">{buildBreadcrumb(bc)}</script>
+          )}
         </Helmet>
         {el}
       </>
@@ -1879,6 +1892,7 @@ export default function App() {
   const filtered = activeCategory === "all" ? ZONES : ZONES.filter(z => z.category === activeCategory);
 
   const homeMeta = PAGE_META.home;
+  const homeFAQs = PAGE_FAQ.home;
 
   return (
     <>
@@ -1889,6 +1903,21 @@ export default function App() {
         <meta property="og:title" content={homeMeta.title} />
         <meta property="og:description" content={homeMeta.description} />
         <meta property="og:url" content={homeMeta.canonical} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://www.incozone.com/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={homeMeta.title} />
+        <meta name="twitter:description" content={homeMeta.description} />
+        {/* FAQ schema targeting People Also Ask */}
+        <script type="application/ld+json">{buildFAQSchema(homeFAQs)}</script>
+        {/* HowTo schema: appears in rich results for "how to set up company in UAE" */}
+        <script type="application/ld+json">{HOWTO_SCHEMA}</script>
+        {/* Organization schema */}
+        <script type="application/ld+json">{ORG_SCHEMA}</script>
+        {/* Free zone ItemList */}
+        <script type="application/ld+json">{FREEZONE_LIST_SCHEMA}</script>
+        {/* Breadcrumb */}
+        <script type="application/ld+json">{buildBreadcrumb(BREADCRUMBS.home)}</script>
       </Helmet>
 
       <style>{CSS}</style>

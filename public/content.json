@@ -21,9 +21,24 @@
     "ctaSecondary": "Explore Free Zones ↓"
   },
   "expertise": [
-    { "num": "01", "title": "Free Zone Incorporation", "desc": "Strategic establishment within UAE's premier free zones — DMCC, IFZA, Meydan, SHAMS, and beyond. Full licensing, visa, and banking facilitation.", "link": "services" },
-    { "num": "02", "title": "Mainland Company Formation", "desc": "End-to-end mainland LLC and professional license setup. Government liaison, DED approvals, and local sponsor management handled discreetly.", "link": "mainland" },
-    { "num": "03", "title": "Corporate & PRO Advisory", "desc": "Amendments, share transfers, visa processing, and complete government service management through dedicated relationship managers.", "link": "pro" }
+    {
+      "num": "01",
+      "title": "Free Zone Incorporation",
+      "desc": "Strategic establishment within UAE's premier free zones — DMCC, IFZA, Meydan, SHAMS, and beyond. Full licensing, visa, and banking facilitation.",
+      "link": "services"
+    },
+    {
+      "num": "02",
+      "title": "Mainland Company Formation",
+      "desc": "End-to-end mainland LLC and professional license setup. Government liaison, DED approvals, and local sponsor management handled discreetly.",
+      "link": "mainland"
+    },
+    {
+      "num": "03",
+      "title": "Corporate & PRO Advisory",
+      "desc": "Amendments, share transfers, visa processing, and complete government service management through dedicated relationship managers.",
+      "link": "pro"
+    }
   ],
   "why": {
     "label": "Why INCOZONE",
@@ -32,21 +47,61 @@
     "orbNum": "3,200+",
     "orbSub": "Companies Incorporated",
     "pillars": [
-      { "tag": "Strategy First",   "title": "Strategic Advisory Approach",    "desc": "We assess your business model first — structure follows strategy, never the reverse. Zone selection is a consequence of clarity, not guesswork." },
-      { "tag": "Authority Access", "title": "Government Liaison Experts",     "desc": "Deep relationships across UAE free zone authorities, DED, GDRFA, and MOFA ensure frictionless approvals and direct officer access." },
-      { "tag": "Zero Surprises",   "title": "Transparent Structuring",        "desc": "Clear timelines, documented processes, and zero hidden fees. Every cost is disclosed before you commit to a single dirham." },
-      { "tag": "Always On",        "title": "Dedicated Relationship Manager", "desc": "One point of contact for every interaction — proactive, accountable, and available. Your RM knows your company as well as you do." }
+      {
+        "tag": "Strategy First",
+        "title": "Strategic Advisory Approach",
+        "desc": "We assess your business model first — structure follows strategy, never the reverse. Zone selection is a consequence of clarity, not guesswork."
+      },
+      {
+        "tag": "Authority Access",
+        "title": "Government Liaison Experts",
+        "desc": "Deep relationships across UAE free zone authorities, DED, GDRFA, and MOFA ensure frictionless approvals and direct officer access."
+      },
+      {
+        "tag": "Zero Surprises",
+        "title": "Transparent Structuring",
+        "desc": "Clear timelines, documented processes, and zero hidden fees. Every cost is disclosed before you commit to a single dirham."
+      },
+      {
+        "tag": "Always On",
+        "title": "Dedicated Relationship Manager",
+        "desc": "One point of contact for every interaction — proactive, accountable, and available. Your RM knows your company as well as you do."
+      }
     ],
     "stats": [
-      { "num": "68+",  "label": "Nationalities Served" },
-      { "num": "12yr", "label": "UAE Experience" },
-      { "num": "4.9",  "label": "Client Rating" }
+      {
+        "num": "68+",
+        "label": "Nationalities Served"
+      },
+      {
+        "num": "12yr",
+        "label": "UAE Experience"
+      },
+      {
+        "num": "4.9",
+        "label": "Client Rating"
+      }
     ]
   },
   "testimonials": [
-    { "text": "INCOZONE handled our DMCC setup with remarkable discretion and precision. From licensing to banking — flawless execution.", "name": "Rashid Al-Mansoori", "role": "Managing Director, Trade Group", "rating": 5 },
-    { "text": "Their mainland structuring advisory saved us months of back and forth. Professional, knowledgeable, and deeply connected.", "name": "Alexandra V.", "role": "Founder, European Holdings", "rating": 5 },
-    { "text": "The team understood our offshore requirements instantly. The level of service matches what we'd expect from a private law firm.", "name": "James W.", "role": "CEO, Family Office", "rating": 5 }
+    {
+      "text": "INCOZONE handled our DMCC setup with remarkable discretion and precision. From licensing to banking — flawless execution.",
+      "name": "Rashid Al-Mansoori",
+      "role": "Managing Director, Trade Group",
+      "rating": 5
+    },
+    {
+      "text": "Their mainland structuring advisory saved us months of back and forth. Professional, knowledgeable, and deeply connected.",
+      "name": "Alexandra V.",
+      "role": "Founder, European Holdings",
+      "rating": 5
+    },
+    {
+      "text": "The team understood our offshore requirements instantly. The level of service matches what we'd expect from a private law firm.",
+      "name": "James W.",
+      "role": "CEO, Family Office",
+      "rating": 5
+    }
   ],
   "cta": {
     "label": "Begin Your Journey",
@@ -60,6 +115,514 @@
     "tagline": "UAE's premier private advisory firm for business incorporation, corporate structuring, and government liaison services.",
     "copyright": "© 2026 INCOZONE. All rights reserved.",
     "location": "Dubai, United Arab Emirates"
+  },
+  "zones": [
+    {
+      "id": "dmcc",
+      "name": "DMCC",
+      "full": "Dubai Multi Commodities Centre",
+      "category": "trade",
+      "badgeLabel": "World #1 Free Zone",
+      "desc": "The world's largest free zone by member count. Unmatched prestige, institutional banking relationships, and commodity trading infrastructure.",
+      "location": "JLT, Dubai",
+      "setupFrom": "AED 18,500",
+      "visaQuota": "Up to 6 visas",
+      "setupDays": "7–14",
+      "minCapital": "AED 50,000 nominal",
+      "color": "#C9A84C"
+    },
+    {
+      "id": "ifza",
+      "name": "IFZA",
+      "full": "International Free Zone Authority",
+      "category": "free",
+      "badgeLabel": "Best Value",
+      "desc": "Dubai's fastest-growing free zone. Highly competitive pricing with genuine institutional infrastructure and rapid setup timelines.",
+      "location": "Dubai Silicon Oasis",
+      "setupFrom": "AED 12,900",
+      "visaQuota": "Up to 5 visas",
+      "setupDays": "5–10",
+      "minCapital": "None",
+      "color": "#4CAEC9"
+    },
+    {
+      "id": "meydan",
+      "name": "Meydan",
+      "full": "Meydan Free Zone",
+      "category": "free",
+      "badgeLabel": "Premium Location",
+      "desc": "Premium free zone in the heart of Dubai's most iconic district. Ideal for consultancies, tech firms, and lifestyle brands.",
+      "location": "Meydan, Dubai",
+      "setupFrom": "AED 14,500",
+      "visaQuota": "Up to 3 visas",
+      "setupDays": "5–10",
+      "minCapital": "None",
+      "color": "#9a75e8"
+    },
+    {
+      "id": "rakez",
+      "name": "RAKEZ",
+      "full": "Ras Al Khaimah Economic Zone",
+      "category": "industrial",
+      "badgeLabel": "Industrial & Commercial",
+      "desc": "Northern Emirates' most competitive zone. Ideal for manufacturing, trading, and industrial operations at consistently low cost.",
+      "location": "Ras Al Khaimah",
+      "setupFrom": "AED 8,500",
+      "visaQuota": "Up to 10 visas",
+      "setupDays": "3–7",
+      "minCapital": "None",
+      "color": "#48bb78"
+    },
+    {
+      "id": "shams",
+      "name": "SHAMS",
+      "full": "Sharjah Media City",
+      "category": "media",
+      "badgeLabel": "Media & Creative",
+      "desc": "UAE's leading media-focused free zone. Designed for content creators, media companies, and consultancies seeking Sharjah presence.",
+      "location": "Sharjah, UAE",
+      "setupFrom": "AED 11,500",
+      "visaQuota": "Up to 6 visas",
+      "setupDays": "5–8",
+      "minCapital": "None",
+      "color": "#9a75e8"
+    },
+    {
+      "id": "jafza",
+      "name": "JAFZA",
+      "full": "Jebel Ali Free Zone Authority",
+      "category": "trade",
+      "badgeLabel": "Logistics & Trade",
+      "desc": "The world's largest free zone by area. Unmatched for logistics, import/export, and large-scale trade and warehousing operations.",
+      "location": "Jebel Ali, Dubai",
+      "setupFrom": "AED 22,000",
+      "visaQuota": "Up to 15 visas",
+      "setupDays": "7–14",
+      "minCapital": "None",
+      "color": "#C9A84C"
+    },
+    {
+      "id": "ajman",
+      "name": "AFZ",
+      "full": "Ajman Free Zone",
+      "category": "free",
+      "badgeLabel": "Budget Friendly",
+      "desc": "UAE's most affordable free zone option. Perfect for startups, freelancers, and cost-conscious entrepreneurs entering the market.",
+      "location": "Ajman, UAE",
+      "setupFrom": "AED 5,500",
+      "visaQuota": "Up to 6 visas",
+      "setupDays": "2–5",
+      "minCapital": "None",
+      "color": "#48bb78"
+    },
+    {
+      "id": "adgm",
+      "name": "ADGM",
+      "full": "Abu Dhabi Global Market",
+      "category": "financial",
+      "badgeLabel": "Financial Hub",
+      "desc": "Abu Dhabi's world-class international financial centre. Premier destination for financial services, funds, fintech, and HNW structures.",
+      "location": "Al Maryah Island, AD",
+      "setupFrom": "AED 28,500",
+      "visaQuota": "Up to 5 visas",
+      "setupDays": "10–21",
+      "minCapital": "USD 1,000",
+      "color": "#C9A84C"
+    }
+  ],
+  "services": {
+    "heroLabel": "What We Do",
+    "heroHeadline": "Structured Advisory. Measurable Results.",
+    "heroBody": "Six core service lines. One integrated advisory relationship.",
+    "services": [
+      {
+        "num": "01",
+        "title": "Free Zone Company Formation",
+        "price": "From AED 4,500",
+        "duration": "5–14 days",
+        "desc": "End-to-end free zone incorporation across all UAE jurisdictions. License selection, authority submission, visa quota, and banking introduction."
+      },
+      {
+        "num": "02",
+        "title": "Mainland Company Formation",
+        "price": "From AED 6,800",
+        "duration": "10–21 days",
+        "desc": "DED-licensed mainland LLC, professional license, or branch registration. Sponsor management, tenancy contracting, and chamber registration."
+      },
+      {
+        "num": "03",
+        "title": "Corporate & PRO Advisory",
+        "price": "From AED 3,500",
+        "duration": "Ongoing",
+        "desc": "Government liaison, visa processing, trade license renewals, share transfers, and complete regulatory compliance management."
+      },
+      {
+        "num": "04",
+        "title": "UAE Investor Visa",
+        "price": "From AED 3,200",
+        "duration": "14–21 days",
+        "desc": "Residency visa processing for company owners, shareholders, and family members. Golden Visa assessment and submission."
+      },
+      {
+        "num": "05",
+        "title": "Corporate Banking Setup",
+        "price": "From AED 2,500",
+        "duration": "4–8 weeks",
+        "desc": "UAE business bank account opening strategy, documentation preparation, and relationship-managed bank introductions."
+      },
+      {
+        "num": "06",
+        "title": "Company Amendments",
+        "price": "From AED 1,800",
+        "duration": "5–10 days",
+        "desc": "Share transfers, director changes, activity additions, trade name amendments, and corporate restructuring facilitation."
+      }
+    ]
+  },
+  "about": {
+    "heroLabel": "Our Story",
+    "heroHeadline": "Twelve Years at the Heart of UAE Business Formation.",
+    "heroBody": "Founded in 2012, INCOZONE has guided over 3,200 companies through UAE incorporation — from single-founder startups to multi-jurisdictional family office structures.",
+    "missionHeadline": "We exist to make UAE market entry intelligent, dignified, and efficient.",
+    "storyBody": "INCOZONE was founded by advisors who were tired of watching founders receive conflicting guidance, inflated quotes, and anonymous service from incorporation mills. We built the firm on three principles: structural clarity before jurisdiction selection, total fee transparency before engagement, and a named advisor as the single point of accountability for every client.",
+    "teamMembers": [
+      {
+        "name": "Chirag Mahyavanshi",
+        "role": "Managing Partner",
+        "bio": "15 years in UAE corporate law and free zone advisory.",
+        "initial": "O"
+      },
+      {
+        "name": "Sarah Chen",
+        "role": "Head of Banking Advisory",
+        "bio": "Former relationship manager at Emirates NBD and ADCB.",
+        "initial": "S"
+      },
+      {
+        "name": "Khalid Ibrahim",
+        "role": "Head of PRO & Compliance",
+        "bio": "12 years managing government liaison across all UAE zones.",
+        "initial": "K"
+      },
+      {
+        "name": "Alexandra Voss",
+        "role": "Senior Corporate Advisor",
+        "bio": "Specialist in European and Asian client market entry.",
+        "initial": "A"
+      }
+    ],
+    "values": [
+      {
+        "num": "01",
+        "title": "Clarity Before Speed",
+        "body": "We never rush a client into a jurisdiction. Structure must be understood before it is executed."
+      },
+      {
+        "num": "02",
+        "title": "Named Accountability",
+        "body": "Every client has one named relationship manager. No ticket systems, no anonymous queues."
+      },
+      {
+        "num": "03",
+        "title": "Zero Hidden Costs",
+        "body": "Every dirham is disclosed in writing before engagement. No surprises at invoice."
+      },
+      {
+        "num": "04",
+        "title": "Permanent Partnership",
+        "body": "We are not a one-transaction firm. We manage your UAE entity for its entire lifecycle."
+      }
+    ],
+    "timeline": [
+      {
+        "year": "2012",
+        "event": "INCOZONE founded in Business Bay with a team of three."
+      },
+      {
+        "year": "2015",
+        "event": "First 500 companies incorporated. DMCC preferred partner status awarded."
+      },
+      {
+        "year": "2018",
+        "event": "Corporate banking advisory service launched in response to client demand."
+      },
+      {
+        "year": "2020",
+        "event": "Remote incorporation service launched. 100% paperless client onboarding."
+      },
+      {
+        "year": "2022",
+        "event": "Golden Visa advisory team established. 200+ applications filed in year one."
+      },
+      {
+        "year": "2024",
+        "event": "3,000th company incorporated. ADGM authorised representative status awarded."
+      }
+    ]
+  },
+  "contact": {
+    "heroLabel": "Get in Touch",
+    "heroHeadline": "Let's build your UAE structure together.",
+    "heroBody": "Tell us about your business and we'll match you to the right zone, license type, and structure — with full cost transparency before you commit to anything.",
+    "officeLabel": "Head Office",
+    "officeName": "Business Bay, Dubai, UAE",
+    "faqItems": [
+      {
+        "q": "How long does a typical UAE company formation take?",
+        "a": "Free zone formations typically take 5–14 business days. RAKEZ and AFZ can complete in 3–5 days. DMCC and ADGM require 10–14 days. Visa processing adds 14–21 days."
+      },
+      {
+        "q": "Do I need to be present in the UAE?",
+        "a": "No. Most clients complete formation entirely remotely. Visa applications and Emirates ID collection do require a UAE visit — we manage all scheduling."
+      },
+      {
+        "q": "What is the minimum capital requirement?",
+        "a": "Most free zone entities have no minimum paid-up capital. DMCC requires AED 50,000 nominal share capital. Mainland entities have sector-specific requirements."
+      },
+      {
+        "q": "Can I open a UAE bank account as a non-resident?",
+        "a": "Yes. Non-residents holding a UAE trade license can open business accounts. Physical presence at the bank is typically required — we arrange all introductions."
+      },
+      {
+        "q": "How do I know which free zone is right for me?",
+        "a": "Our initial consultation maps your activity, customers, visa requirements, and budget to 2–3 structured zone recommendations with clear trade-offs explained."
+      }
+    ]
+  },
+  "schedule": {
+    "heroLabel": "Private Advisory",
+    "heroHeadline": "Schedule a Consultation",
+    "heroBody": "A focused 30 or 60-minute session with a senior INCOZONE advisor. We'll map your business to the right UAE structure.",
+    "services": [
+      {
+        "id": "freezone",
+        "icon": {
+          "type": "svg",
+          "key": null,
+          "ref": null,
+          "props": {
+            "width": 20,
+            "height": 20,
+            "viewBox": "0 0 24 24",
+            "fill": "none",
+            "stroke": "currentColor",
+            "strokeWidth": 1.5,
+            "strokeLinecap": "round",
+            "strokeLinejoin": "round",
+            "children": [
+              {
+                "type": "path",
+                "key": null,
+                "ref": null,
+                "props": {
+                  "d": "M3 21h18M5 21V7l7-4 7 4v14"
+                }
+              },
+              {
+                "type": "path",
+                "key": null,
+                "ref": null,
+                "props": {
+                  "d": "M9 21V13h6v8"
+                }
+              },
+              {
+                "type": "path",
+                "key": null,
+                "ref": null,
+                "props": {
+                  "d": "M9 8h.01M15 8h.01M9 12h.01M15 12h.01"
+                }
+              }
+            ]
+          }
+        },
+        "name": "Free Zone Formation",
+        "desc": "Company setup in DMCC, IFZA, ADGM, JAFZA, SHAMS, or any UAE free zone."
+      },
+      {
+        "id": "mainland",
+        "icon": {
+          "type": "svg",
+          "key": null,
+          "ref": null,
+          "props": {
+            "width": 20,
+            "height": 20,
+            "viewBox": "0 0 24 24",
+            "fill": "none",
+            "stroke": "currentColor",
+            "strokeWidth": 1.5,
+            "strokeLinecap": "round",
+            "strokeLinejoin": "round",
+            "children": [
+              {
+                "type": "circle",
+                "key": null,
+                "ref": null,
+                "props": {
+                  "cx": "12",
+                  "cy": "12",
+                  "r": "10"
+                }
+              },
+              {
+                "type": "line",
+                "key": null,
+                "ref": null,
+                "props": {
+                  "x1": "2",
+                  "y1": "12",
+                  "x2": "22",
+                  "y2": "12"
+                }
+              },
+              {
+                "type": "path",
+                "key": null,
+                "ref": null,
+                "props": {
+                  "d": "M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                }
+              }
+            ]
+          }
+        },
+        "name": "Mainland Formation",
+        "desc": "DED-licensed mainland company with 100% foreign ownership."
+      },
+      {
+        "id": "pro",
+        "icon": {
+          "type": "svg",
+          "key": null,
+          "ref": null,
+          "props": {
+            "width": 20,
+            "height": 20,
+            "viewBox": "0 0 24 24",
+            "fill": "none",
+            "stroke": "currentColor",
+            "strokeWidth": 1.5,
+            "strokeLinecap": "round",
+            "strokeLinejoin": "round",
+            "children": {
+              "type": "path",
+              "key": null,
+              "ref": null,
+              "props": {
+                "d": "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+              }
+            }
+          }
+        },
+        "name": "PRO & Compliance",
+        "desc": "Visa processing, license renewals, government liaison, amendments."
+      },
+      {
+        "id": "banking",
+        "icon": {
+          "type": "svg",
+          "key": null,
+          "ref": null,
+          "props": {
+            "width": 20,
+            "height": 20,
+            "viewBox": "0 0 24 24",
+            "fill": "none",
+            "stroke": "currentColor",
+            "strokeWidth": 1.5,
+            "strokeLinecap": "round",
+            "strokeLinejoin": "round",
+            "children": [
+              {
+                "type": "rect",
+                "key": null,
+                "ref": null,
+                "props": {
+                  "x": "1",
+                  "y": "4",
+                  "width": "22",
+                  "height": "16",
+                  "rx": "2"
+                }
+              },
+              {
+                "type": "line",
+                "key": null,
+                "ref": null,
+                "props": {
+                  "x1": "1",
+                  "y1": "10",
+                  "x2": "23",
+                  "y2": "10"
+                }
+              }
+            ]
+          }
+        },
+        "name": "Corporate Banking",
+        "desc": "UAE business bank account opening — strategy, preparation, submission."
+      },
+      {
+        "id": "visa",
+        "icon": {
+          "type": "svg",
+          "key": null,
+          "ref": null,
+          "props": {
+            "width": 20,
+            "height": 20,
+            "viewBox": "0 0 24 24",
+            "fill": "none",
+            "stroke": "currentColor",
+            "strokeWidth": 1.5,
+            "strokeLinecap": "round",
+            "strokeLinejoin": "round",
+            "children": [
+              {
+                "type": "rect",
+                "key": null,
+                "ref": null,
+                "props": {
+                  "x": "2",
+                  "y": "5",
+                  "width": "20",
+                  "height": "14",
+                  "rx": "2"
+                }
+              },
+              {
+                "type": "circle",
+                "key": null,
+                "ref": null,
+                "props": {
+                  "cx": "9",
+                  "cy": "12",
+                  "r": "3"
+                }
+              },
+              {
+                "type": "path",
+                "key": null,
+                "ref": null,
+                "props": {
+                  "d": "M15 8h4M15 12h4M15 16h4"
+                }
+              }
+            ]
+          }
+        },
+        "name": "Investor / Golden Visa",
+        "desc": "UAE residency visa for investors, business owners, and family members."
+      },
+      {
+        "id": "advisory",
+        "icon": "",
+        "name": "General Advisory",
+        "desc": "Structuring, tax position, UBO compliance, or any UAE corporate matter."
+      }
+    ]
   },
   "blog": []
 }

@@ -1,6 +1,61 @@
 import { useState, useEffect, useRef } from "react";
 import { IGrid, IMessageSquare, ICalendar, IGlobe, IHome, IBriefcase, IUsers, IPhone, IClock, IBuilding, IBookOpen, IIdCard, ICreditCard, IShield } from "../icons";
 
+// ── GitHub repo details ────────────────────────────────────────
+const GH_REPO  = "sharnik24/incozone";
+const GH_FILE  = "public/content.json";
+const GH_API   = `https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`;
+const GH_ISSUE = `https://api.github.com/repos/${GH_REPO}/issues`;
+
+// Retrieve stored GitHub token (set on first login)
+const getToken = () => sessionStorage.getItem("gh_token") || "";
+
+// Commit content.json to GitHub → triggers Vercel redeploy
+async function pushContent(contentObj) {
+  const token = getToken();
+  if (!token) throw new Error("No GitHub token");
+
+  // Get current file SHA (required for update)
+  const info = await fetch(GH_API, {
+    headers: { Authorization: `token ${token}`, Accept: "application/vnd.github.v3+json" },
+  }).then(r => r.json());
+
+  const sha = info.sha;
+  const body = JSON.stringify(contentObj, null, 2);
+  const encoded = btoa(unescape(encodeURIComponent(body)));
+
+  const res = await fetch(GH_API, {
+    method: "PUT",
+    headers: {
+      Authorization: `token ${token}`,
+      Accept: "application/vnd.github.v3+json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      message: "CMS: update site content",
+      content: encoded,
+      sha,
+    }),
+  });
+  if (!res.ok) throw new Error("GitHub push failed: " + res.status);
+}
+
+// Create a GitHub Issue for contact enquiries
+async function createIssue(form) {
+  const token = getToken();
+  if (!token) return;
+  const body = Object.entries(form).map(([k,v]) => `**${k}:** ${v}`).join("\n");
+  await fetch(GH_ISSUE, {
+    method: "POST",
+    headers: {
+      Authorization: `token ${token}`,
+      Accept: "application/vnd.github.v3+json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ title: `Enquiry: ${form.name} — ${form.service}`, body, labels: ["enquiry"] }),
+  }).catch(() => {});
+}
+
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Admin CMS  (v2 — Complete)
 //  src/pages/Admin.jsx
@@ -1261,8 +1316,20 @@ function Enquiries({ d, oc }) {
   const [sel, setSel] = useState(null);
   const enqs = d.enquiries;
   const selected = enqs.find(e => e.id === sel);
-  const u   = (id,k,v) => oc("enquiries", enqs.map(e => e.id===id ? {...e,[k]:v} : e));
-  const del = (id) => { oc("enquiries", enqs.filter(e => e.id!==id)); setSel(null); };
+  const persist = (list) => {
+    try { localStorage.setItem("incozone_enquiries", JSON.stringify(list)); } catch(e) {}
+  };
+  const u = (id, k, v) => {
+    const updated = enqs.map(e => e.id===id ? {...e,[k]:v} : e);
+    oc("enquiries", updated);
+    persist(updated);
+  };
+  const del = (id) => {
+    const updated = enqs.filter(e => e.id!==id);
+    oc("enquiries", updated);
+    persist(updated);
+    setSel(null);
+  };
 
   return (
     <div style={{display:"grid",gridTemplateColumns:"1fr 320px",gap:"16px"}}>
@@ -1403,42 +1470,63 @@ const SECTION_TITLES = {
 export default function AdminPage() {
   const [authed,  setAuthed]  = useState(false);
   const [pass,    setPass]    = useState("");
+  const [ghToken, setGhToken] = useState("");
   const [passErr, setPassErr] = useState("");
   const [section, setSection] = useState("dashboard");
   const [data,    setData]    = useState(DEFAULT);
   const [saving,  setSaving]  = useState(false);
   const [toast,   setToast]   = useState(false);
+  const [toastMsg,setToastMsg]= useState("");
 
-  // Load from localStorage on mount
+  // Load from content.json on mount
   useEffect(() => {
     try {
-      const saved = localStorage.getItem("incozone_cms_v3");
-      if (saved) setData(JSON.parse(saved));
       if (localStorage.getItem("incozone_auth") === "1") setAuthed(true);
+      // Restore enquiries from localStorage (saved there by Contact form)
+      const savedEnqs = localStorage.getItem("incozone_enquiries");
+      if (savedEnqs) setData(p => ({ ...p, enquiries: JSON.parse(savedEnqs) }));
     } catch(e) {}
+
+    // Load latest content from the static file
+    fetch(`/content.json?v=${Date.now()}`)
+      .then(r => r.json())
+      .then(d => setData(prev => ({ ...prev, ...d })))
+      .catch(() => {});
   }, []);
 
   const login = () => {
     if (pass === ADMIN_PASS) {
+      if (ghToken) sessionStorage.setItem("gh_token", ghToken);
       setAuthed(true);
       localStorage.setItem("incozone_auth", "1");
     } else {
-      setPassErr("Incorrect password. Please try again.");
+      setPassErr("Incorrect password.");
     }
   };
 
   const save = () => {
     setSaving(true);
-    setTimeout(() => {
-      localStorage.setItem("incozone_cms_v3", JSON.stringify(data));
-      setSaving(false);
-      setToast(true);
-      setTimeout(() => setToast(false), 3500);
-    }, 400);
+    const { enquiries, consultations, ...contentToSave } = data;
+    pushContent(contentToSave)
+      .then(() => {
+        setSaving(false);
+        setToastMsg("Saved! Site will update in ~60 seconds.");
+        setToast(true);
+        setTimeout(() => setToast(false), 5000);
+      })
+      .catch(err => {
+        setSaving(false);
+        if (err.message.includes("No GitHub token")) {
+          setPassErr("Enter your GitHub token in the login screen first.");
+          setAuthed(false);
+        } else {
+          alert("Save failed: " + err.message);
+        }
+      });
   };
 
   const change = (sec, val) => setData(p => ({ ...p, [sec]: val }));
-  const logout = () => { setAuthed(false); localStorage.removeItem("incozone_auth"); };
+  const logout = () => { setAuthed(false); localStorage.removeItem("incozone_auth"); sessionStorage.removeItem("gh_token"); };
 
   const newEnq   = data.enquiries.filter(e => e.status === "new").length;
   const pendingC = data.consultations.filter(c => c.status === "pending").length;
@@ -1448,7 +1536,7 @@ export default function AdminPage() {
     <>
       <style>{CSS}</style>
       <div className="login">
-        <div className="login-box">
+        <div className="login-box" style={{width:440}}>
           <div className="login-brand">INCO<em>ZONE</em></div>
           <span className="login-sub">Admin CMS — Authorised Access Only</span>
           <div className="field">
@@ -1457,6 +1545,13 @@ export default function AdminPage() {
               value={pass} onChange={e=>{setPass(e.target.value);setPassErr("");}}
               onKeyDown={e=>e.key==="Enter"&&login()} autoFocus />
             {passErr && <span className="login-err">{passErr}</span>}
+          </div>
+          <div className="field">
+            <label className="lbl">GitHub Token <span style={{color:"var(--txt3)",fontWeight:400,textTransform:"none",letterSpacing:0}}>(required to publish changes)</span></label>
+            <input className="inp" type="password" placeholder="ghp_... or gho_..."
+              value={ghToken} onChange={e=>setGhToken(e.target.value)}
+              onKeyDown={e=>e.key==="Enter"&&login()} />
+            <div className="hint">Your GitHub personal access token with <strong>repo</strong> scope. Stored in session only, never saved.</div>
           </div>
           <button className="btn btn-p" style={{width:"100%",marginTop:4,justifyContent:"center",padding:"11px"}} onClick={login}>
             Access Dashboard →
@@ -1533,7 +1628,7 @@ export default function AdminPage() {
         </div>
       </div>
 
-      {toast && <div className="toast"> All changes saved successfully</div>}
+      {toast && <div className="toast"> {toastMsg || "All changes saved successfully"}</div>}
     </>
   );
 }

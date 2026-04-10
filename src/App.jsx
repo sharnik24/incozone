@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet-async";
+import { useContent } from "./context/ContentContext";
 import { PAGE_META, PAGE_FAQ, BREADCRUMBS, HOWTO_SCHEMA, ORG_SCHEMA, FREEZONE_LIST_SCHEMA, buildFAQSchema, buildBreadcrumb, PHONE_NUMBER, PHONE_HREF, WHATSAPP_NUMBER } from "./seo.js";
 import DMCCPage from "./pages/DMCC";
 import IFZAPage from "./pages/IFZA";
@@ -1752,6 +1753,7 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [scrolled, setScrolled]           = useState(false);
   const [skeletonDone, setSkeletonDone]   = useState(false);
+  const { content } = useContent();
   useReveal();
 
   // ── Browser history: push state on every navigation ──────────
@@ -1929,12 +1931,12 @@ export default function App() {
       <section className="hero" style={{ backgroundImage: `url(${heroBg})`, backgroundSize: "cover", backgroundPosition: "center" }}>
         <HeroCanvas />
         <div className="hero-content">
-          <span className="hero-eyebrow">Private UAE Incorporation Advisory</span>
-          <h1 className="hero-h1">Ready To Setup<br />Your Business <em>In UAE</em></h1>
-          <p className="hero-sub">Free Zone <span>·</span> Mainland <span>·</span> PRO Services <span>·</span> Corporate Structuring</p>
+          <span className="hero-eyebrow">{content.hero.eyebrow}</span>
+          <h1 className="hero-h1">{content.hero.headline.replace(content.hero.headlineItalic, "").trim()}<br /><em>{content.hero.headlineItalic}</em></h1>
+          <p className="hero-sub">{content.hero.subline.split("·").map((s, i, arr) => <span key={i}>{s.trim()}{i < arr.length - 1 && <span style={{margin:"0 12px",color:"var(--gold-400)",opacity:0.5}}>·</span>}</span>)}</p>
           <div className="hero-actions">
-            <button className="btn-primary" onClick={() => goPage("schedule")}>Schedule Private Consultation</button>
-            <button className="btn-ghost" onClick={() => document.getElementById("zone-finder")?.scrollIntoView({ behavior: "smooth" })}>Explore Free Zones ↓</button>
+            <button className="btn-primary" onClick={() => goPage("schedule")}>{content.hero.ctaPrimary}</button>
+            <button className="btn-ghost" onClick={() => document.getElementById("zone-finder")?.scrollIntoView({ behavior: "smooth" })}>{content.hero.ctaSecondary}</button>
           </div>
         </div>
         <div className="hero-scroll"><span>Scroll</span><div className="scroll-line" /></div>
@@ -2011,12 +2013,8 @@ export default function App() {
         <span className="section-label reveal">Our Expertise</span>
         <h2 className="section-title reveal reveal-delay-1">Three Pillars of<br /><em>Structured Authority</em></h2>
         <div className="expertise-grid">
-          {[
-            { num: "01", title: "Free Zone Incorporation", desc: "Strategic establishment within UAE's premier free zones — DMCC, IFZA, Meydan, SHAMS, and beyond. Full licensing, visa, and banking facilitation." },
-            { num: "02", title: "Mainland Company Formation", desc: "End-to-end mainland LLC and professional license setup. Government liaison, DED approvals, and local sponsor management handled discreetly." },
-            { num: "03", title: "Corporate & PRO Advisory", desc: "Amendments, share transfers, visa processing, and complete government service management through dedicated relationship managers." },
-          ].map((e, i) => {
-            const dest = i === 0 ? "services" : i === 1 ? "mainland" : "pro";
+          {content.expertise.map((e, i) => {
+            const dest = e.link || (i === 0 ? "services" : i === 1 ? "mainland" : "pro");
             return (
               <div
                 className={`expertise-card reveal reveal-delay-${i + 1}`}
@@ -2037,15 +2035,10 @@ export default function App() {
       <section className="why">
         <div className="why-inner">
           <div>
-            <div className="why-header-label reveal">Why INCOZONE</div>
-            <h2 className="section-title reveal reveal-delay-1">The Advisory Standard<br /><em>UAE Business Demands</em></h2>
+            <div className="why-header-label reveal">{content.why.label}</div>
+            <h2 className="section-title reveal reveal-delay-1">{content.why.headline.split(" ").slice(0,-2).join(" ")}<br /><em>{content.why.headline.split(" ").slice(-2).join(" ")}</em></h2>
             <div className="why-pillars">
-              {[
-                { tag: "Strategy First", title: "Strategic Advisory Approach", desc: "We assess your business model first — structure follows strategy, never the reverse. Zone selection is a consequence of clarity, not guesswork." },
-                { tag: "Authority Access", title: "Government Liaison Experts", desc: "Deep relationships across UAE free zone authorities, DED, GDRFA, and MOFA ensure frictionless approvals and direct officer access." },
-                { tag: "Zero Surprises", title: "Transparent Structuring", desc: "Clear timelines, documented processes, and zero hidden fees. Every cost is disclosed before you commit to a single dirham." },
-                { tag: "Always On", title: "Dedicated Relationship Manager", desc: "One point of contact for every interaction — proactive, accountable, and available. Your RM knows your company as well as you do." },
-              ].map((p, i) => (
+              {content.why.pillars.map((p, i) => (
                 <div className={`pillar reveal reveal-delay-${i + 1}`} key={i}>
                   <div className="pillar-fill" />
                   <div className="pillar-num-col">
@@ -2070,22 +2063,16 @@ export default function App() {
             <div className="why-orb-ring" />
             <div className="why-orb" />
             <div className="why-orb-inner">
-              <span className="why-orb-inner-label">Established</span>
-              <span className="why-orb-inner-num">3,200<em>+</em></span>
-              <span className="why-orb-inner-sub">Companies Incorporated</span>
+              <span className="why-orb-inner-label">{content.why.orbLabel}</span>
+              <span className="why-orb-inner-num">{content.why.orbNum.replace("+","")}<em>+</em></span>
+              <span className="why-orb-inner-sub">{content.why.orbSub}</span>
             </div>
-            <div className="why-stat">
-              <span className="why-stat-num">68+</span>
-              <span className="why-stat-label">Nationalities</span>
-            </div>
-            <div className="why-stat">
-              <span className="why-stat-num">12yr</span>
-              <span className="why-stat-label">UAE Experience</span>
-            </div>
-            <div className="why-stat">
-              <span className="why-stat-num">4.9</span>
-              <span className="why-stat-label">Client Rating</span>
-            </div>
+            {content.why.stats.map((s, i) => (
+              <div className="why-stat" key={i}>
+                <span className="why-stat-num">{s.num}</span>
+                <span className="why-stat-label">{s.label}</span>
+              </div>
+            ))}
             <UAEGlobe />
           </div>
         </div>
@@ -2096,13 +2083,9 @@ export default function App() {
         <span className="section-label reveal">Client Perspectives</span>
         <h2 className="section-title reveal reveal-delay-1"><em>Trusted</em> by Founders,<br />Executives & Family Offices</h2>
         <div className="testi-grid">
-          {[
-            { text: "INCOZONE handled our DMCC setup with remarkable discretion and precision. From licensing to banking — flawless execution.", name: "Rashid Al-Mansoori", role: "Managing Director, Trade Group" },
-            { text: "Their mainland structuring advisory saved us months of back and forth. Professional, knowledgeable, and deeply connected.", name: "Alexandra V.", role: "Founder, European Holdings" },
-            { text: "The team understood our offshore requirements instantly. The level of service matches what we'd expect from a private law firm.", name: "James W.", role: "CEO, Family Office" },
-          ].map((t, i) => (
+          {content.testimonials.map((t, i) => (
             <div className={`testi-card reveal reveal-delay-${i + 1}`} key={i}>
-              <div className="testi-stars">{[...Array(5)].map((_, j) => <span key={j} className="star"></span>)}</div>
+              <div className="testi-stars">{[...Array(t.rating || 5)].map((_, j) => <span key={j} className="star"></span>)}</div>
               <p className="testi-text">"{t.text}"</p>
               <div className="testi-author">
                 <div className="testi-avatar">{t.name[0]}</div>

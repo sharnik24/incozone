@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useContent } from "../context/ContentContext";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — The UAE Business Gazette  (Blog Page)
@@ -757,6 +758,7 @@ function ArticleOverlay({ article, onClose }) {
 // ─── MAIN ──────────────────────────────────────────────────────
 export default function BlogPage({ onBack, onNavigate }) {
   const [_bgOpen, setbgOpen] = useState(false);
+  const { blogPosts } = useContent();
 
   const [scrolled, setScrolled]     = useState(false);
   const [activeCat, setActiveCat]   = useState("All");
@@ -773,9 +775,12 @@ export default function BlogPage({ onBack, onNavigate }) {
     return () => window.removeEventListener("scroll", h);
   }, []);
 
+  // Use Firestore blog posts if available, otherwise fall back to hardcoded ARTICLES
+  const allArticles = blogPosts.length > 0 ? blogPosts : ARTICLES;
+
   const filtered = activeCat === "All"
-    ? ARTICLES
-    : ARTICLES.filter(a => a.cat === activeCat);
+    ? allArticles
+    : allArticles.filter(a => a.cat === activeCat);
 
   const featured   = filtered[0];
   const sideLeft   = filtered.slice(1, 3);

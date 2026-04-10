@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
 import App from './App.jsx'
 import Lenis from 'lenis'
+import { ContentProvider } from './context/ContentContext.jsx'
 
 // Init Lenis before React mounts — zero delay, pure GPU smooth scroll
 const lenis = new Lenis({
@@ -35,7 +36,9 @@ const rootEl = document.getElementById('root');
 const app = (
   <StrictMode>
     <HelmetProvider>
-      <App />
+      <ContentProvider>
+        <App />
+      </ContentProvider>
     </HelmetProvider>
   </StrictMode>
 );

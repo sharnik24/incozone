@@ -464,6 +464,12 @@ export default function ContactPage({ onBack, onSchedule, onNavigate }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.name || !form.email) return;
+    // Save enquiry to localStorage so admin panel can view it
+    try {
+      const existing = JSON.parse(localStorage.getItem("incozone_enquiries") || "[]");
+      const newEnq = { ...form, id: Date.now(), status: "new", date: new Date().toISOString().slice(0, 10) };
+      localStorage.setItem("incozone_enquiries", JSON.stringify([newEnq, ...existing]));
+    } catch(e) {}
     setTimeout(() => setSubmitted(true), 300);
   };
 

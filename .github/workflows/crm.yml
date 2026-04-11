@@ -1,0 +1,61 @@
+name: CRM — Save Form Submission
+
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: 'enquiry or consultation'
+        required: true
+      payload:
+        description: 'JSON-encoded form data'
+        required: true
+
+jobs:
+  save:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Save to CRM repo
+        env:
+          CRM_TOKEN: ${{ secrets.CRM_WRITE_TOKEN }}
+          CRM_REPO:  ${{ secrets.CRM_REPO_NAME }}
+        run: |
+          FILE="${{ github.event.inputs.type == 'enquiry' && 'enquiries.json' || 'consultations.json' }}"
+          PAYLOAD='${{ github.event.inputs.payload }}'
+
+          # Get current file
+          RESPONSE=$(curl -s -H "Authorization: token $CRM_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/$CRM_REPO/contents/$FILE")
+
+          SHA=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('sha',''))" 2>/dev/null || echo "")
+          CURRENT=$(echo "$RESPONSE" | python3 -c "
+          import sys,json,base64
+          d=json.load(sys.stdin)
+          content = d.get('content','W10=').replace('\n','')
+          print(base64.b64decode(content).decode())
+          " 2>/dev/null || echo "[]")
+
+          # Prepend new entry
+          NEW_ARRAY=$(python3 -c "
+          import sys,json
+          existing = json.loads('''$CURRENT''')
+          new_item = json.loads('''$PAYLOAD''')
+          existing.insert(0, new_item)
+          print(json.dumps(existing, indent=2))
+          ")
+
+          # Encode and push
+          ENCODED=$(echo "$NEW_ARRAY" | base64 -w 0)
+
+          if [ -n "$SHA" ]; then
+            BODY="{\"message\":\"CRM: new ${{ github.event.inputs.type }}\",\"content\":\"$ENCODED\",\"sha\":\"$SHA\"}"
+          else
+            BODY="{\"message\":\"CRM: new ${{ github.event.inputs.type }}\",\"content\":\"$ENCODED\"}"
+          fi
+
+          curl -s -X PUT \
+            -H "Authorization: token $CRM_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Content-Type: application/json" \
+            "https://api.github.com/repos/$CRM_REPO/contents/$FILE" \
+            -d "$BODY" | python3 -c "import sys,json; d=json.load(sys.stdin); print('Saved:', d.get('content',{}).get('name','ERROR:'+str(d.get('message',''))))"

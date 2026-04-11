@@ -16,22 +16,22 @@ export const BRAND           = "INCOZONE";
 export const PAGE_META = {
   home: {
     title: "UAE Company Formation | Free Zone & Mainland Setup | INCOZONE",
-    description: "Set up your UAE company from AED 5,500 in 2–14 days. Expert free zone & mainland formation — DMCC, IFZA, ADGM, JAFZA, RAKEZ. 3,200+ companies since 2012. Free consultation.",
+    description: "Set up your UAE company from AED 5,500 in 2–14 days. Free zone & mainland formation — DMCC, IFZA, ADGM, JAFZA, RAKEZ. 3,200+ companies since 2012.",
     canonical: `${BASE_URL}/`,
   },
   services: {
-    title: "UAE Business Setup Services 2026 | Company Formation, Visa & Banking | INCOZONE",
-    description: "Complete UAE business setup: free zone incorporation, mainland LLC, offshore, investor visa, Golden Visa, corporate banking, PRO services. All-in-one advisory since 2012.",
+    title: "UAE Business Setup Services 2026 | Full Advisory | INCOZONE",
+    description: "UAE business setup: free zone incorporation, mainland LLC, investor visa, Golden Visa, corporate banking, PRO services. All-in-one advisory since 2012.",
     canonical: `${BASE_URL}/services`,
   },
   freezoneincorp: {
-    title: "Free Zone Company Setup Dubai 2026 | Compare All UAE Free Zones | INCOZONE",
-    description: "UAE free zone company formation from AED 5,500. Compare DMCC, IFZA, Meydan, RAKEZ, SHAMS, JAFZA, AFZ, ADGM. 100% foreign ownership. Zero tax. Expert setup in 2–14 days.",
+    title: "Free Zone Company Setup Dubai 2026 | All UAE Free Zones | INCOZONE",
+    description: "UAE free zone company formation from AED 5,500. Compare DMCC, IFZA, Meydan, RAKEZ, SHAMS, JAFZA, AFZ, ADGM. 100% foreign ownership. Zero tax. 2–14 days.",
     canonical: `${BASE_URL}/freezoneincorp`,
   },
   mainland: {
     title: "Mainland Company Formation UAE 2026 | Dubai LLC Setup | INCOZONE",
-    description: "Form your UAE mainland LLC with 100% foreign ownership. DED-licensed trading & professional licenses. Local market access. Government liaison included. From AED 15,000.",
+    description: "Form your UAE mainland LLC with 100% foreign ownership. DED-licensed trading & professional licenses. Local market access. Government liaison. From AED 15,000.",
     canonical: `${BASE_URL}/mainland`,
   },
   banking: {
@@ -41,22 +41,22 @@ export const PAGE_META = {
   },
   goldenvisa: {
     title: "UAE Golden Visa 2026 | 10-Year Residency for Investors | INCOZONE",
-    description: "UAE Golden Visa — 10-year renewable residency for investors, entrepreneurs & professionals. AED 2M property or business investment. Full application management by INCOZONE.",
+    description: "UAE Golden Visa — 10-year renewable residency for investors, entrepreneurs & professionals. AED 2M property or business investment. Full application management.",
     canonical: `${BASE_URL}/goldenvisa`,
   },
   visa: {
     title: "UAE Investor Visa & Residence Visa Processing 2026 | INCOZONE",
-    description: "UAE investor, employee and dependent residence visa. Emirates ID, medical, labour card. Fast-track processing. Company owner visas from AED 3,500. End-to-end service.",
+    description: "UAE investor, employee and dependent residence visa. Emirates ID, medical, labour card. Fast-track processing. Company owner visas from AED 3,500.",
     canonical: `${BASE_URL}/visa`,
   },
   pro: {
     title: "PRO Services Dubai 2026 | Government Document Processing | INCOZONE",
-    description: "Dubai PRO services — ministry approvals, immigration, license renewals, attestation, ejari, power of attorney. Dedicated PRO officer. Monthly retainer or per-transaction.",
+    description: "Dubai PRO services — ministry approvals, immigration, license renewals, attestation, ejari, power of attorney. Dedicated PRO officer. Retainer available.",
     canonical: `${BASE_URL}/pro`,
   },
   about: {
     title: "About INCOZONE | UAE Business Setup Experts Since 2012 | Dubai",
-    description: "Since 2012, INCOZONE has incorporated 3,200+ companies across UAE free zones and mainland. Advisory-first approach. Meet the team behind Dubai's most trusted setup firm.",
+    description: "Since 2012, INCOZONE has incorporated 3,200+ companies across UAE free zones and mainland. Advisory-first approach. Dubai's most trusted business setup firm.",
     canonical: `${BASE_URL}/about`,
   },
   contact: {
@@ -76,12 +76,12 @@ export const PAGE_META = {
   },
   dmcc: {
     title: "DMCC Company Formation Dubai 2026 | From AED 18,500 | INCOZONE",
-    description: "DMCC setup in 7–14 days. World's most connected free zone — 23,000+ companies. Commodities, trading, fintech, consulting. Full package from AED 18,500 including visa.",
+    description: "DMCC setup in 7–14 days. World's most connected free zone — 23,000+ companies. Commodities, trading, fintech, consulting. Full package from AED 18,500.",
     canonical: `${BASE_URL}/dmcc`,
   },
   ifza: {
     title: "IFZA Free Zone Company Setup Dubai 2026 | From AED 12,900 | INCOZONE",
-    description: "IFZA company in 3–7 days. UAE's most flexible free zone for startups & SMEs. 100+ activities. Multiple visas. Packages from AED 12,900. Fast, affordable, reliable.",
+    description: "IFZA company in 3–7 days. UAE's most flexible free zone for startups & SMEs. 100+ activities. Multiple visas. Packages from AED 12,900. Fast and affordable.",
     canonical: `${BASE_URL}/ifza`,
   },
   meydan: {
@@ -96,7 +96,7 @@ export const PAGE_META = {
   },
   shams: {
     title: "SHAMS Sharjah Media City Free Zone 2026 | Media License UAE | INCOZONE",
-    description: "SHAMS company formation in 5–8 days. UAE's #1 media free zone for content creators, agencies & consultancies. From AED 11,500. Social media, production, PR licenses.",
+    description: "SHAMS company formation in 5–8 days. UAE's #1 media free zone for content creators, agencies & consultancies. From AED 11,500. Social media, PR, production.",
     canonical: `${BASE_URL}/shams`,
   },
   jafza: {
@@ -105,7 +105,7 @@ export const PAGE_META = {
     canonical: `${BASE_URL}/jafza`,
   },
   afz: {
-    title: "Ajman Free Zone Setup 2026 | Cheapest UAE Free Zone | AED 5,500 | INCOZONE",
+    title: "Ajman Free Zone Setup 2026 | Cheapest UAE Free Zone | INCOZONE",
     description: "AFZ company in 2–5 days. UAE's most affordable free zone. Perfect for startups, freelancers & entrepreneurs. Trading, consulting, e-commerce. From AED 5,500.",
     canonical: `${BASE_URL}/afz`,
   },
@@ -115,8 +115,8 @@ export const PAGE_META = {
     canonical: `${BASE_URL}/adgm`,
   },
   offshore: {
-    title: "UAE Offshore Company Formation 2026 | RAK ICC & JAFZA Offshore | INCOZONE",
-    description: "UAE offshore company formation — RAK ICC and JAFZA offshore. 100% foreign ownership, zero tax, no audit requirement, full privacy. From AED 8,000. Expert setup by INCOZONE.",
+    title: "UAE Offshore Company Formation 2026 | RAK ICC & JAFZA | INCOZONE",
+    description: "UAE offshore company formation — RAK ICC and JAFZA offshore. 100% foreign ownership, zero tax, no audit requirement, full privacy. From AED 8,000.",
     canonical: `${BASE_URL}/offshore`,
   },
   trademark: {
@@ -131,17 +131,17 @@ export const PAGE_META = {
   },
   liquidation: {
     title: "Company Liquidation UAE 2026 | Business Closure Services | INCOZONE",
-    description: "Orderly UAE company liquidation and deregistration. Free zone and mainland company closure. Visa cancellation, bank account closure, license cancellation. Full process managed.",
+    description: "Orderly UAE company liquidation and deregistration. Free zone and mainland closure. Visa cancellation, bank account & license cancellation. Fully managed.",
     canonical: `${BASE_URL}/liquidation`,
   },
   specialapprovals: {
     title: "Special Approvals UAE | Regulated Business Licenses | INCOZONE",
-    description: "UAE special approvals for regulated activities — healthcare, education, finance, food, real estate, crypto. Ministry approvals and sector-specific licenses. Expert guidance.",
+    description: "UAE special approvals for regulated activities — healthcare, education, finance, food, real estate, crypto. Ministry approvals and sector-specific licenses.",
     canonical: `${BASE_URL}/specialapprovals`,
   },
   willregistration: {
     title: "Will Registration UAE 2026 | Expat Wills & Estate Planning | INCOZONE",
-    description: "Register your will in UAE — DIFC Wills Service Centre and Abu Dhabi Judicial Department. Protect your assets and family. Expat will drafting and registration from AED 4,500.",
+    description: "Register your will in UAE — DIFC Wills Service Centre or Abu Dhabi Judicial Department. Protect assets and family. Expat will drafting from AED 4,500.",
     canonical: `${BASE_URL}/willregistration`,
   },
 };

@@ -1,6 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="8" fill="#05111e"/>
-  <text x="32" y="38" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="700" fill="#C9A84C" text-anchor="middle" letter-spacing="0.5">IN</text>
-  <rect x="8" y="42" width="48" height="1.5" fill="#C9A84C" opacity="0.6"/>
-  <text x="32" y="56" font-family="Georgia, 'Times New Roman', serif" font-size="8" font-weight="400" fill="#C9A84C" text-anchor="middle" letter-spacing="2">ZONE</text>
+  <rect width="64" height="64" rx="10" fill="#05111e"/>
+  <!-- Gold top bar -->
+  <rect x="14" y="10" width="36" height="6" rx="1" fill="#C9A84C"/>
+  <!-- Gold center vertical bar -->
+  <rect x="27" y="16" width="10" height="22" fill="#C9A84C"/>
+  <!-- Gold bottom bar -->
+  <rect x="14" y="38" width="36" height="6" rx="1" fill="#C9A84C"/>
+  <!-- Thin gold accent line -->
+  <rect x="14" y="48" width="36" height="3" rx="1" fill="#C9A84C" opacity="0.5"/>
 </svg>

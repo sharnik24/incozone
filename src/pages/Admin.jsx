@@ -7,6 +7,9 @@ const GH_FILE  = "public/content.json";
 const GH_API   = `https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`;
 const GH_ISSUE = `https://api.github.com/repos/${GH_REPO}/issues`;
 
+// ── Private CRM repo for enquiries & consultations ────────────
+const CRM_REPO = "sharnik24/incozone-crm";
+
 // Retrieve stored GitHub token (set on first login)
 const getToken = () => sessionStorage.getItem("gh_token") || "";
 
@@ -63,6 +66,40 @@ async function uploadImage(file) {
   });
   if (!res.ok) throw new Error("Image upload failed: " + res.status);
   return `/images/cms/${fname}`;
+}
+
+// Push CRM data (enquiries.json or consultations.json) to private GitHub CRM repo
+async function pushCRM(filename, dataArr) {
+  const token = getToken();
+  if (!token) return;
+  const url = `https://api.github.com/repos/${CRM_REPO}/contents/${filename}`;
+  const headers = { Authorization: `token ${token}`, Accept: "application/vnd.github.v3+json", "Content-Type": "application/json" };
+
+  const info = await fetch(url, { headers }).then(r => r.ok ? r.json() : null);
+  const sha  = info?.sha;
+  const body = JSON.stringify(dataArr, null, 2);
+  const encoded = btoa(unescape(encodeURIComponent(body)));
+
+  await fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({ message: `CRM: update ${filename}`, content: encoded, ...(sha && { sha }) }),
+  }).catch(() => {});
+}
+
+// Fetch CRM data from private GitHub repo into admin state
+async function loadCRMData(token, setData) {
+  const headers = { Authorization: `token ${token}`, Accept: "application/vnd.github.v3+json" };
+  for (const [file, key] of [["enquiries.json","enquiries"],["consultations.json","consultations"]]) {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${CRM_REPO}/contents/${file}`, { headers });
+      if (res.ok) {
+        const json = await res.json();
+        const parsed = JSON.parse(atob(json.content.replace(/\n/g, "")));
+        setData(p => ({ ...p, [key]: parsed }));
+      }
+    } catch (_) {}
+  }
 }
 
 // Create a GitHub Issue for contact enquiries
@@ -1424,17 +1461,14 @@ function Enquiries({ d, oc }) {
   const enqs = d.enquiries;
   const selected = enqs.find(e => e.id === sel);
   const persist = (list) => {
-    try { localStorage.setItem("incozone_enquiries", JSON.stringify(list)); } catch(e) {}
+    oc("enquiries", list);
+    pushCRM("enquiries.json", list);
   };
   const u = (id, k, v) => {
-    const updated = enqs.map(e => e.id===id ? {...e,[k]:v} : e);
-    oc("enquiries", updated);
-    persist(updated);
+    persist(enqs.map(e => e.id===id ? {...e,[k]:v} : e));
   };
   const del = (id) => {
-    const updated = enqs.filter(e => e.id!==id);
-    oc("enquiries", updated);
-    persist(updated);
+    persist(enqs.filter(e => e.id!==id));
     setSel(null);
   };
 
@@ -1494,8 +1528,12 @@ function Enquiries({ d, oc }) {
 // ─────────────────────────────────────────────────────────────
 function Consultations({ d, oc }) {
   const cs = d.consultations;
-  const u   = (id,k,v) => oc("consultations", cs.map(c => c.id===id ? {...c,[k]:v} : c));
-  const del = (id) => oc("consultations", cs.filter(c => c.id!==id));
+  const persist = (list) => {
+    oc("consultations", list);
+    pushCRM("consultations.json", list);
+  };
+  const u   = (id,k,v) => persist(cs.map(c => c.id===id ? {...c,[k]:v} : c));
+  const del = (id) => persist(cs.filter(c => c.id!==id));
 
   return (
     <div className="card">
@@ -1585,21 +1623,24 @@ export default function AdminPage() {
   const [toast,   setToast]   = useState(false);
   const [toastMsg,setToastMsg]= useState("");
 
-  // Load from content.json on mount
+  // Load site content on mount + check remembered auth
   useEffect(() => {
     try {
       if (localStorage.getItem("incozone_auth") === "1") setAuthed(true);
-      // Restore enquiries from localStorage (saved there by Contact form)
-      const savedEnqs = localStorage.getItem("incozone_enquiries");
-      if (savedEnqs) setData(p => ({ ...p, enquiries: JSON.parse(savedEnqs) }));
-    } catch(e) {}
+    } catch(_) {}
 
-    // Load latest content from the static file
     fetch(`/content.json?v=${Date.now()}`)
       .then(r => r.json())
       .then(d => setData(prev => ({ ...prev, ...d })))
       .catch(() => {});
   }, []);
+
+  // Load CRM data (enquiries + consultations) whenever admin logs in
+  useEffect(() => {
+    if (!authed) return;
+    const token = getToken();
+    if (token) loadCRMData(token, setData);
+  }, [authed]);
 
   const login = () => {
     if (pass === ADMIN_PASS) {

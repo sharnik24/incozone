@@ -461,15 +461,19 @@ export default function ContactPage({ onBack, onSchedule, onNavigate }) {
     return () => obs.disconnect();
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.email) return;
-    // Save enquiry to localStorage so admin panel can view it
+    // POST to serverless function → saves to private GitHub CRM repo
     try {
-      const existing = JSON.parse(localStorage.getItem("incozone_enquiries") || "[]");
-      const newEnq = { ...form, id: Date.now(), status: "new", date: new Date().toISOString().slice(0, 10) };
-      localStorage.setItem("incozone_enquiries", JSON.stringify([newEnq, ...existing]));
-    } catch(e) {}
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+    } catch (_) {
+      // Fail silently — user still sees confirmation
+    }
     setTimeout(() => setSubmitted(true), 300);
   };
 

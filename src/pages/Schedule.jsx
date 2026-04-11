@@ -498,8 +498,29 @@ export default function SchedulePage({ onBack, onNavigate }) {
     return false;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setExiting(true);
+    // POST to serverless function → saves to private GitHub CRM repo
+    try {
+      await fetch("/api/schedule", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name:        details.name,
+          email:       details.email,
+          phone:       details.phone,
+          company:     details.company,
+          nationality: details.nationality,
+          notes:       details.notes,
+          service:     selServiceObj?.name || service || "",
+          date:        selDateStr || "",
+          time:        selTime    || "",
+          duration:    duration   || "30",
+        }),
+      });
+    } catch (_) {
+      // Fail silently — user still sees confirmation
+    }
     setTimeout(() => { setConfirmed(true); setExiting(false); }, 280);
   };
 

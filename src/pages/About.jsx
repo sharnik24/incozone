@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useContent } from "../context/ContentContext";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — About Us Page
@@ -841,7 +842,14 @@ function useReveal() {
 // ── MAIN COMPONENT ────────────────────────────────────────────
 export default function AboutPage({ onBack, onNavigate }) {
   const [_abOpen, setabOpen] = useState(false);
-  // Lock body scroll when drawer open
+  const { about } = useContent();
+  // Use CMS data with fallback to local constants
+  const AB_TEAM     = about.team     || TEAM;
+  const AB_VALUES   = about.values   || VALUES;
+  const AB_TIMELINE = about.timeline || TIMELINE;
+  const AB_STATS    = about.stats    || STATS;
+  const AB_PILLARS  = about.pillars  || PILLARS;
+
   useEffect(() => {
     document.body.style.overflow = _abOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -857,9 +865,8 @@ export default function AboutPage({ onBack, onNavigate }) {
     return () => window.removeEventListener("scroll", h);
   }, []);
 
-  // Timeline split into left/right alternating
-  const tlLeft  = TIMELINE.filter((_, i) => i % 2 === 0);
-  const tlRight = TIMELINE.filter((_, i) => i % 2 !== 0);
+  const tlLeft  = AB_TIMELINE.filter((_, i) => i % 2 === 0);
+  const tlRight = AB_TIMELINE.filter((_, i) => i % 2 !== 0);
 
   return (
     <div className="ab-root">
@@ -936,7 +943,7 @@ export default function AboutPage({ onBack, onNavigate }) {
           </div>
 
           {/* Stats floating */}
-          {STATS.map((s, i) => (
+          {AB_STATS.map((s, i) => (
             <div className="ab-hero-stat-card" key={i}>
               <span className="ab-stat-val">{s.val}<span style={{fontSize:".55em",verticalAlign:"super"}}>{s.sup}</span></span>
               <span className="ab-stat-label">{s.label}</span>
@@ -1028,7 +1035,7 @@ export default function AboutPage({ onBack, onNavigate }) {
           </p>
         </div>
         <div className="ab-pillars-grid">
-          {PILLARS.map((p, i) => (
+          {AB_PILLARS.map((p, i) => (
             <div className={`ab-pillar-card ab-reveal ab-d${i+1}`} key={i}>
               <div className="ab-pillar-num-bg" aria-hidden>{p.num}</div>
               <div className="ab-pillar-icon">{p.icon}</div>
@@ -1048,9 +1055,12 @@ export default function AboutPage({ onBack, onNavigate }) {
           <h2 className="ab-team-h2">Former insiders.<br /><em>Now your advocates.</em></h2>
         </div>
         <div className="ab-team-grid">
-          {TEAM.map((m, i) => (
+          {AB_TEAM.map((m, i) => (
             <div className={`ab-team-card ab-reveal ab-d${i+1}`} key={i}>
-              <div className="ab-team-avatar">{m.initial}</div>
+              {m.imageUrl
+                ? <img src={m.imageUrl} alt={m.name} style={{width:"100%",height:"180px",objectFit:"cover",marginBottom:"16px",borderRadius:"4px"}} />
+                : <div className="ab-team-avatar">{m.initial}</div>
+              }
               <div className="ab-team-name">{m.name}</div>
               <div className="ab-team-role">{m.role}</div>
               <div className="ab-team-line" />
@@ -1070,7 +1080,7 @@ export default function AboutPage({ onBack, onNavigate }) {
           <span className="ab-values-label">Our Principles</span>
           <h2 className="ab-values-h2">What we believe<br /><em>drives everything.</em></h2>
         </div>
-        {VALUES.map((v, i) => (
+        {AB_VALUES.map((v, i) => (
           <div className={`ab-value-row ab-reveal ab-d${(i%3)+1}`} key={i}>
             <div className="ab-value-row-num">0{i+1}</div>
             <div className="ab-value-row-title">{v.title}</div>

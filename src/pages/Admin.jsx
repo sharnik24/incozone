@@ -40,6 +40,31 @@ async function pushContent(contentObj) {
   if (!res.ok) throw new Error("GitHub push failed: " + res.status);
 }
 
+// Upload an image file to GitHub → public/images/cms/
+async function uploadImage(file) {
+  const token = getToken();
+  if (!token) throw new Error("No GitHub token");
+  const ext = file.name.split(".").pop();
+  const fname = `${Date.now()}.${ext}`;
+  const GH_IMG = `https://api.github.com/repos/${GH_REPO}/contents/public/images/cms/${fname}`;
+  const base64 = await new Promise((res, rej) => {
+    const reader = new FileReader();
+    reader.onload = () => res(reader.result.split(",")[1]);
+    reader.onerror = rej;
+    reader.readAsDataURL(file);
+  });
+  const existing = await fetch(GH_IMG, { headers: { Authorization: `token ${token}` } }).then(r => r.ok ? r.json() : null);
+  const body = { message: `CMS: upload image ${fname}`, content: base64 };
+  if (existing?.sha) body.sha = existing.sha;
+  const res = await fetch(GH_IMG, {
+    method: "PUT",
+    headers: { Authorization: `token ${token}`, Accept: "application/vnd.github.v3+json", "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error("Image upload failed: " + res.status);
+  return `/images/cms/${fname}`;
+}
+
 // Create a GitHub Issue for contact enquiries
 async function createIssue(form) {
   const token = getToken();
@@ -181,30 +206,44 @@ const DEFAULT = {
 
   // ── ABOUT PAGE ───────────────────────────────────────────────
   about: {
-    heroLabel: "Our Story",
-    heroHeadline: "Twelve Years at the Heart of UAE Business Formation.",
-    heroBody: "Founded in 2012, INCOZONE has guided over 3,200 companies through UAE incorporation — from single-founder startups to multi-jurisdictional family office structures.",
-    missionHeadline: "We exist to make UAE market entry intelligent, dignified, and efficient.",
-    storyBody: "INCOZONE was founded by advisors who were tired of watching founders receive conflicting guidance, inflated quotes, and anonymous service from incorporation mills. We built the firm on three principles: structural clarity before jurisdiction selection, total fee transparency before engagement, and a named advisor as the single point of accountability for every client.",
-    teamMembers: [
-      { name: "Omar Al Rashidi",   role: "Managing Partner",            bio: "15 years in UAE corporate law and free zone advisory.",    initial: "O" },
-      { name: "Sarah Chen",        role: "Head of Banking Advisory",    bio: "Former relationship manager at Emirates NBD and ADCB.",     initial: "S" },
-      { name: "Khalid Ibrahim",    role: "Head of PRO & Compliance",    bio: "12 years managing government liaison across all UAE zones.", initial: "K" },
-      { name: "Alexandra Voss",    role: "Senior Corporate Advisor",    bio: "Specialist in European and Asian client market entry.",     initial: "A" },
+    heroEyebrow: "About INCOZONE",
+    heroDesc: "12 years. 3,200+ companies. 68 nationalities. INCOZONE is not a document-processing firm. We are strategic advisors who built the most technically rigorous UAE business formation practice in the market.",
+    manifesto: '"We believe the quality of your UAE structure determines the quality of your UAE future." · Strategy First · Zero Surprises · Lifetime Partnership',
+    storyLeft: "INCOZONE was founded in 2012 in Business Bay, Dubai, with a conviction that the UAE business formation market was fundamentally broken. Not in its mechanics — UAE free zones are world-class — but in how advisory firms were operating within it. Most were charging premium fees for commodity services: collecting documents, submitting applications, and calling it \"advisory.\" We built something different.",
+    storyRight1: "Today, INCOZONE manages over 3,200 active corporate entities across UAE free zones and mainland — representing founders from 68 nationalities, from solo entrepreneurs setting up their first trading license to family offices structuring multi-jurisdiction holding arrangements.",
+    storyRight2: "Our team includes former free zone licensing officers, ex-bank relationship managers, UAE national PRO specialists, and corporate lawyers — giving clients a depth of institutional knowledge that no single-discipline firm can replicate.",
+    pullQuote: "Structure is a permanent decision. The right advisor makes it once. The wrong one makes it again and again.",
+    pullQuoteCite: "— Chirag Mahyavansi, Managing Director",
+    stats: [
+      { val: "3200", sup: "+",  label: "Companies Incorporated", desc: "Across all UAE free zones and mainland, spanning 68 nationalities." },
+      { val: "12",   sup: "yr", label: "Years of UAE Expertise",  desc: "Founded 2012. Every authority relationship built over a decade." },
+      { val: "96",   sup: "%",  label: "Client Retention Rate",   desc: "The most honest metric we have. Our clients stay." },
+      { val: "68",   sup: "+",  label: "Nationalities Served",    desc: "From European family offices to Asian trading houses." },
+    ],
+    pillars: [
+      { num: "01", title: "Strategic Advisors", body: "We never recommend a structure before understanding your business model, your shareholders, and your long-term commercial intent. Zone selection and structure are outputs of strategy — never defaults." },
+      { num: "02", title: "Authority Insiders", body: "12 years of direct working relationships with licensing officers, visa section staff, and compliance teams across all UAE free zone authorities means your application moves at a different speed." },
+      { num: "03", title: "Lifetime Partners",  body: "Our 96% client retention rate is not a marketing claim. It reflects what happens when a firm treats every incorporation as the beginning of a relationship, not the completion of a transaction." },
+    ],
+    team: [
+      { initial: "R", name: "Chirag Mahyavansi",   role: "Managing Director",        bio: "Leads INCOZONE's advisory practice with 12 years of experience guiding high-net-worth individuals, family offices, and institutional investors through UAE market entry and corporate structuring.", exp: "12yr UAE",      imageUrl: "" },
+      { initial: "A", name: "Tushar Rathod",        role: "Business Setup Consultant", bio: "Specialist in UAE free zone incorporation across all 8 major zones. Advises founders and SMEs on optimal zone selection, licensing strategy, and end-to-end company formation.", exp: "2yr Advisory",   imageUrl: "" },
+      { initial: "K", name: "Aakash Palgamkar",    role: "Accountant",                bio: "Manages corporate financial compliance, bookkeeping, VAT registration, and financial reporting for INCOZONE clients across free zone and mainland structures.", exp: "2yr Accounting", imageUrl: "" },
+      { initial: "S", name: "Dharmesh Mahyavanshi", role: "Accounting Head",           bio: "Heads INCOZONE's accounting and financial compliance practice. Oversees corporate financial structuring, VAT compliance, and financial reporting for high-value clients.", exp: "10yr Accounting", imageUrl: "" },
     ],
     values: [
-      { num: "01", title: "Clarity Before Speed",   body: "We never rush a client into a jurisdiction. Structure must be understood before it is executed." },
-      { num: "02", title: "Named Accountability",   body: "Every client has one named relationship manager. No ticket systems, no anonymous queues." },
-      { num: "03", title: "Zero Hidden Costs",      body: "Every dirham is disclosed in writing before engagement. No surprises at invoice." },
-      { num: "04", title: "Permanent Partnership",  body: "We are not a one-transaction firm. We manage your UAE entity for its entire lifecycle." },
+      { title: "Strategy before structure.", body: "Most advisory firms start with the license. We start with the question: what are you actually trying to build? Structure follows strategy. Every recommendation is derived from a clear understanding of your business." },
+      { title: "Transparency as default.",   body: "We publish our fees. We disclose government charges before you commit. We tell you when a structure won't serve your interests — even if it costs us the engagement." },
+      { title: "Relationships over transactions.", body: "The UAE is a relationship economy. Our 12-year tenure means we have direct contact relationships with licensing officers, visa section heads, and compliance teams at every major authority. That access is your advantage." },
+      { title: "Precision in every document.", body: "An incorrectly drafted Board Resolution. A missing UBO declaration. An activity mismatch in a license application. These are not minor administrative oversights — they are the difference between approval and rejection." },
     ],
     timeline: [
-      { year: "2012", event: "INCOZONE founded in Business Bay with a team of three." },
-      { year: "2015", event: "First 500 companies incorporated. DMCC preferred partner status awarded." },
-      { year: "2018", event: "Corporate banking advisory service launched in response to client demand." },
-      { year: "2020", event: "Remote incorporation service launched. 100% paperless client onboarding." },
-      { year: "2022", event: "Golden Visa advisory team established. 200+ applications filed in year one." },
-      { year: "2024", event: "3,000th company incorporated. ADGM authorised representative status awarded." },
+      { year: "2012", title: "Founded in Dubai",           desc: "INCOZONE established in Business Bay, Dubai — with a single mandate: build the most technically rigorous business advisory firm in the UAE." },
+      { year: "2014", title: "First DMCC Accreditation",   desc: "Became an officially accredited DMCC formation partner — our first free zone authority relationship, and the beginning of a network that now spans 8 zones." },
+      { year: "2016", title: "PRO Division Launched",      desc: "Established a dedicated government liaison team after identifying that ongoing compliance — not initial setup — was where clients suffered most." },
+      { year: "2018", title: "1,000 Companies Milestone",  desc: "Surpassed 1,000 incorporated companies across UAE free zones and mainland — representing clients from 40+ nationalities." },
+      { year: "2021", title: "ADGM & Financial Services",  desc: "Expanded into regulated financial services incorporation, becoming one of the first non-law-firm advisors with direct FSRA working relationships." },
+      { year: "2024", title: "3,200+ Companies & Growing", desc: "Today INCOZONE is the UAE's most trusted private incorporation advisory — 3,200+ companies, 68 nationalities, 96% client retention." },
     ],
   },
 
@@ -1023,43 +1062,99 @@ function ServicesPage({ d, oc }) {
 // ─────────────────────────────────────────────────────────────
 function AboutPage({ d, oc }) {
   const [tab, setTab] = useState("hero");
+  const [uploading, setUploading] = useState({});
   const a = d.about;
   const u = (k,v) => oc("about",{...a,[k]:v});
-  const uTeam = (i,k,v) => { const n=[...a.teamMembers]; n[i]={...n[i],[k]:v}; oc("about",{...a,teamMembers:n}); };
-  const uVal  = (i,k,v) => { const n=[...a.values];     n[i]={...n[i],[k]:v}; oc("about",{...a,values:n}); };
-  const uTl   = (i,k,v) => { const n=[...a.timeline];   n[i]={...n[i],[k]:v}; oc("about",{...a,timeline:n}); };
-  const addTl = () => oc("about",{...a,timeline:[...a.timeline,{year:new Date().getFullYear().toString(),event:"New milestone."}]});
-  const delTl = (i) => oc("about",{...a,timeline:a.timeline.filter((_,j)=>j!==i)});
-  const addTeam = () => oc("about",{...a,teamMembers:[...a.teamMembers,{name:"New Member",role:"Role",bio:"Bio.",initial:"N"}]});
-  const delTeam = (i) => oc("about",{...a,teamMembers:a.teamMembers.filter((_,j)=>j!==i)});
+  const uTeam   = (i,k,v) => { const n=[...(a.team||[])];    n[i]={...n[i],[k]:v}; oc("about",{...a,team:n}); };
+  const uVal    = (i,k,v) => { const n=[...(a.values||[])];  n[i]={...n[i],[k]:v}; oc("about",{...a,values:n}); };
+  const uTl     = (i,k,v) => { const n=[...(a.timeline||[])];n[i]={...n[i],[k]:v}; oc("about",{...a,timeline:n}); };
+  const uStat   = (i,k,v) => { const n=[...(a.stats||[])];   n[i]={...n[i],[k]:v}; oc("about",{...a,stats:n}); };
+  const uPillar = (i,k,v) => { const n=[...(a.pillars||[])]; n[i]={...n[i],[k]:v}; oc("about",{...a,pillars:n}); };
+
+  const addTl   = () => oc("about",{...a,timeline:[...(a.timeline||[]),{year:new Date().getFullYear().toString(),title:"New Milestone",desc:"Description."}]});
+  const delTl   = (i) => oc("about",{...a,timeline:(a.timeline||[]).filter((_,j)=>j!==i)});
+  const addTeam = () => oc("about",{...a,team:[...(a.team||[]),{name:"New Member",role:"Role",bio:"Bio.",initial:"N",exp:"",imageUrl:""}]});
+  const delTeam = (i) => oc("about",{...a,team:(a.team||[]).filter((_,j)=>j!==i)});
+
+  const handleImgUpload = async (i, file) => {
+    if (!file) return;
+    setUploading(p => ({...p,[i]:true}));
+    try {
+      const url = await uploadImage(file);
+      uTeam(i, "imageUrl", url);
+    } catch(e) { alert("Image upload failed: " + e.message); }
+    setUploading(p => ({...p,[i]:false}));
+  };
 
   return (
     <div>
       <div className="tabs">
-        {[["hero","Hero"],["story","Story & Mission"],["team","Team"],["values","Values"],["timeline","Timeline"]].map(([id,lbl]) => (
+        {[["hero","Hero & Intro"],["story","Story Text"],["stats","Stats"],["pillars","Pillars"],["team","Team"],["values","Values"],["timeline","Timeline"]].map(([id,lbl]) => (
           <button key={id} className={`tab${tab===id?" on":""}`} onClick={()=>setTab(id)}>{lbl}</button>
         ))}
       </div>
 
       {tab==="hero" && (
         <div className="card">
-          <div className="card-head"><div className="card-title">About Page Hero</div></div>
+          <div className="card-head"><div className="card-title">About Page Hero & Manifesto</div></div>
           <div className="card-body">
+            <F label="Eyebrow Label" hint="Small text above the headline"><Inp value={a.heroEyebrow||""} onChange={e=>u("heroEyebrow",e.target.value)} /></F>
+            <F label="Hero Description"><CharTa value={a.heroDesc||""} onChange={e=>u("heroDesc",e.target.value)} max={320} style={{minHeight:80}} /></F>
+            <F label="Manifesto Quote" hint="Italic manifesto line below the description"><Ta value={a.manifesto||""} onChange={e=>u("manifesto",e.target.value)} style={{minHeight:60}} /></F>
             <div className="g2">
-              <F label="Section Label"><Inp value={a.heroLabel} onChange={e=>u("heroLabel",e.target.value)} /></F>
-              <F label="Headline"><Inp value={a.heroHeadline} onChange={e=>u("heroHeadline",e.target.value)} /></F>
+              <F label="Pull Quote"><Ta value={a.pullQuote||""} onChange={e=>u("pullQuote",e.target.value)} style={{minHeight:52}} /></F>
+              <F label="Pull Quote Citation"><Inp value={a.pullQuoteCite||""} onChange={e=>u("pullQuoteCite",e.target.value)} /></F>
             </div>
-            <F label="Hero Body Text"><Ta value={a.heroBody} onChange={e=>u("heroBody",e.target.value)} /></F>
           </div>
         </div>
       )}
 
       {tab==="story" && (
         <div className="card">
-          <div className="card-head"><div className="card-title">Story & Mission</div></div>
+          <div className="card-head"><div className="card-title">Story Section (Two-Column Text)</div></div>
           <div className="card-body">
-            <F label="Mission Statement Headline"><Ta value={a.missionHeadline} onChange={e=>u("missionHeadline",e.target.value)} style={{minHeight:52}} /></F>
-            <F label="Story Body Text"><CharTa value={a.storyBody} onChange={e=>u("storyBody",e.target.value)} max={600} style={{minHeight:100}} /></F>
+            <F label="Left Column — Origin Story"><CharTa value={a.storyLeft||""} onChange={e=>u("storyLeft",e.target.value)} max={600} style={{minHeight:120}} /></F>
+            <F label="Right Column — Paragraph 1"><CharTa value={a.storyRight1||""} onChange={e=>u("storyRight1",e.target.value)} max={400} style={{minHeight:80}} /></F>
+            <F label="Right Column — Paragraph 2"><CharTa value={a.storyRight2||""} onChange={e=>u("storyRight2",e.target.value)} max={400} style={{minHeight:80}} /></F>
+          </div>
+        </div>
+      )}
+
+      {tab==="stats" && (
+        <div className="card">
+          <div className="card-head"><div className="card-title">Statistics (4 Key Numbers)</div></div>
+          <div className="card-body">
+            <div className="g2">
+              {(a.stats||[]).map((s,i) => (
+                <div className="rep-item" key={i} style={{marginBottom:0}}>
+                  <div className="rep-head"><span className="rep-num">Stat {i+1}</span></div>
+                  <div className="g2">
+                    <F label="Number Value" hint="e.g. 3200"><Inp value={s.val||""} onChange={e=>uStat(i,"val",e.target.value)} /></F>
+                    <F label="Superscript" hint="e.g. + or yr or %"><Inp value={s.sup||""} onChange={e=>uStat(i,"sup",e.target.value)} style={{width:70}} /></F>
+                  </div>
+                  <F label="Label"><Inp value={s.label||""} onChange={e=>uStat(i,"label",e.target.value)} /></F>
+                  <F label="Description" hint="Small sub-text below the stat"><Inp value={s.desc||""} onChange={e=>uStat(i,"desc",e.target.value)} /></F>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {tab==="pillars" && (
+        <div className="card">
+          <div className="card-head"><div className="card-title">Three Why-Us Pillars</div></div>
+          <div className="card-body">
+            {(a.pillars||[]).map((p,i) => (
+              <div className="rep-item" key={i}>
+                <div className="rep-head"><span className="rep-num">{p.num} — {p.title}</span></div>
+                <div className="g2">
+                  <F label="Number Badge"><Inp value={p.num||""} onChange={e=>uPillar(i,"num",e.target.value)} style={{width:70}} /></F>
+                  <F label="Title"><Inp value={p.title||""} onChange={e=>uPillar(i,"title",e.target.value)} /></F>
+                </div>
+                <F label="Body Text"><Ta value={p.body||""} onChange={e=>uPillar(i,"body",e.target.value)} style={{minHeight:80}} /></F>
+              </div>
+            ))}
           </div>
         </div>
       )}
@@ -1069,18 +1164,32 @@ function AboutPage({ d, oc }) {
           <div className="card">
             <div className="card-head"><div className="card-title">Team Members</div><button className="btn btn-p btn-sm" onClick={addTeam}>+ Add Member</button></div>
             <div className="card-body">
-              {a.teamMembers.map((m,i) => (
+              {(a.team||[]).map((m,i) => (
                 <div className="rep-item" key={i}>
                   <div className="rep-head">
-                    <span className="rep-num">{m.name}</span>
+                    <span className="rep-num">{m.name} — {m.role}</span>
                     <button className="btn btn-d btn-sm" onClick={()=>delTeam(i)}></button>
                   </div>
                   <div className="g2">
-                    <F label="Full Name"><Inp value={m.name} onChange={e=>uTeam(i,"name",e.target.value)} /></F>
-                    <F label="Role / Title"><Inp value={m.role} onChange={e=>uTeam(i,"role",e.target.value)} /></F>
-                    <F label="Avatar Initial" hint="Single letter for avatar"><Inp value={m.initial} onChange={e=>uTeam(i,"initial",e.target.value)} maxLength={1} style={{width:60}} /></F>
+                    <F label="Full Name"><Inp value={m.name||""} onChange={e=>uTeam(i,"name",e.target.value)} /></F>
+                    <F label="Role / Title"><Inp value={m.role||""} onChange={e=>uTeam(i,"role",e.target.value)} /></F>
+                    <F label="Avatar Initial" hint="Single letter shown if no photo"><Inp value={m.initial||""} onChange={e=>uTeam(i,"initial",e.target.value)} maxLength={1} style={{width:60}} /></F>
+                    <F label="Experience Badge" hint="e.g. 12yr UAE"><Inp value={m.exp||""} onChange={e=>uTeam(i,"exp",e.target.value)} /></F>
                   </div>
-                  <F label="Short Bio"><Ta value={m.bio} onChange={e=>uTeam(i,"bio",e.target.value)} style={{minHeight:52}} /></F>
+                  <F label="Short Bio"><Ta value={m.bio||""} onChange={e=>uTeam(i,"bio",e.target.value)} style={{minHeight:60}} /></F>
+                  <F label="Photo">
+                    <div style={{display:"flex",gap:10,alignItems:"center",flexWrap:"wrap"}}>
+                      {m.imageUrl && <img src={m.imageUrl} alt={m.name} style={{width:64,height:64,objectFit:"cover",borderRadius:4,border:"1px solid var(--bdr2)"}} />}
+                      <label style={{cursor:"pointer"}}>
+                        <span className="btn btn-s btn-sm" style={{display:"inline-block"}}>
+                          {uploading[i] ? "Uploading…" : m.imageUrl ? " Change Photo" : " Upload Photo"}
+                        </span>
+                        <input type="file" accept="image/*" style={{display:"none"}} onChange={e=>handleImgUpload(i,e.target.files[0])} />
+                      </label>
+                      {m.imageUrl && <button className="btn btn-d btn-sm" onClick={()=>uTeam(i,"imageUrl","")}>Remove</button>}
+                    </div>
+                    {m.imageUrl && <div className="hint" style={{marginTop:4}}>URL: {m.imageUrl}</div>}
+                  </F>
                 </div>
               ))}
             </div>
@@ -1092,14 +1201,11 @@ function AboutPage({ d, oc }) {
         <div className="card">
           <div className="card-head"><div className="card-title">Company Values</div></div>
           <div className="card-body">
-            {a.values.map((v,i) => (
+            {(a.values||[]).map((v,i) => (
               <div className="rep-item" key={i}>
-                <div className="rep-head"><span className="rep-num">{v.num} — {v.title}</span></div>
-                <div className="g2">
-                  <F label="Number"><Inp value={v.num} onChange={e=>uVal(i,"num",e.target.value)} /></F>
-                  <F label="Title"><Inp value={v.title} onChange={e=>uVal(i,"title",e.target.value)} /></F>
-                </div>
-                <F label="Body"><Ta value={v.body} onChange={e=>uVal(i,"body",e.target.value)} style={{minHeight:52}} /></F>
+                <div className="rep-head"><span className="rep-num">Value {i+1} — {v.title}</span></div>
+                <F label="Title / Heading"><Inp value={v.title||""} onChange={e=>uVal(i,"title",e.target.value)} /></F>
+                <F label="Body Text"><Ta value={v.body||""} onChange={e=>uVal(i,"body",e.target.value)} style={{minHeight:80}} /></F>
               </div>
             ))}
           </div>
@@ -1108,16 +1214,17 @@ function AboutPage({ d, oc }) {
 
       {tab==="timeline" && (
         <div>
-          {a.timeline.map((tl,i) => (
+          {(a.timeline||[]).map((tl,i) => (
             <div className="rep-item" key={i}>
               <div className="rep-head">
-                <span className="rep-num">{tl.year}</span>
+                <span className="rep-num">{tl.year} — {tl.title}</span>
                 <button className="btn btn-d btn-sm" onClick={()=>delTl(i)}></button>
               </div>
               <div className="g2">
-                <F label="Year"><Inp value={tl.year} onChange={e=>uTl(i,"year",e.target.value)} /></F>
-                <F label="Event / Milestone"><Inp value={tl.event} onChange={e=>uTl(i,"event",e.target.value)} /></F>
+                <F label="Year"><Inp value={tl.year||""} onChange={e=>uTl(i,"year",e.target.value)} style={{width:90}} /></F>
+                <F label="Title / Milestone Name"><Inp value={tl.title||""} onChange={e=>uTl(i,"title",e.target.value)} /></F>
               </div>
+              <F label="Description"><Ta value={tl.desc||""} onChange={e=>uTl(i,"desc",e.target.value)} style={{minHeight:52}} /></F>
             </div>
           ))}
           <button className="btn btn-p" style={{marginTop:8}} onClick={addTl}>+ Add Milestone</button>

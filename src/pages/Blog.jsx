@@ -775,8 +775,25 @@ export default function BlogPage({ onBack, onNavigate }) {
     return () => window.removeEventListener("scroll", h);
   }, []);
 
-  // Use Firestore blog posts if available, otherwise fall back to hardcoded ARTICLES
-  const allArticles = blogPosts.length > 0 ? blogPosts : ARTICLES;
+  // Map admin blog posts to article format, fall back to hardcoded ARTICLES
+  const mapPost = (p) => ({
+    id:           p.id,
+    cat:          p.cat || "General",
+    kicker:       p.kicker || "FEATURED",
+    title:        p.title || "",
+    deck:         p.excerpt || p.deck || "",
+    author:       p.author || "INCOZONE",
+    authorInitial:(p.author || "I")[0].toUpperCase(),
+    date:         p.date || "",
+    readTime:     p.readTime || "5 min read",
+    featured:     !!p.featured,
+    imgLabel:     p.imgLabel || p.imageUrl || "",
+    body:         p.body ? (Array.isArray(p.body) ? p.body : [p.body]) : [p.excerpt || p.deck || ""],
+    pullQuote:    p.pullQuote || "",
+    subhead:      p.subhead || "",
+    body2:        p.body2 || [],
+  });
+  const allArticles = blogPosts.length > 0 ? blogPosts.map(mapPost) : ARTICLES;
 
   const filtered = activeCat === "All"
     ? allArticles

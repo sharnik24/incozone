@@ -72,40 +72,88 @@ export const DEFAULT = {
   blog: [],
 };
 
-const ContentContext = createContext({ content: DEFAULT, blogPosts: [], loading: false });
+const DEFAULT_ABOUT = {
+  heroEyebrow: "About INCOZONE",
+  heroDesc: "12 years. 3,200+ companies. 68 nationalities.",
+  manifesto: '"We believe the quality of your UAE structure determines the quality of your UAE future."',
+  storyLeft: "INCOZONE was founded in 2012 in Business Bay, Dubai.",
+  storyRight1: "Today, INCOZONE manages over 3,200 active corporate entities.",
+  storyRight2: "Our team includes former free zone licensing officers and corporate lawyers.",
+  pullQuote: "Structure is a permanent decision. The right advisor makes it once.",
+  pullQuoteCite: "— Chirag Mahyavansi, Managing Director",
+  stats: [
+    { val: "3200", sup: "+",  label: "Companies Incorporated", desc: "" },
+    { val: "12",   sup: "yr", label: "Years of UAE Expertise",  desc: "" },
+    { val: "96",   sup: "%",  label: "Client Retention Rate",   desc: "" },
+    { val: "68",   sup: "+",  label: "Nationalities Served",    desc: "" },
+  ],
+  pillars: [
+    { num: "01", title: "Strategic Advisors", body: "We never recommend a structure before understanding your business model." },
+    { num: "02", title: "Authority Insiders", body: "12 years of direct working relationships with licensing officers." },
+    { num: "03", title: "Lifetime Partners",  body: "Our 96% client retention rate reflects how we treat every incorporation." },
+  ],
+  team: [
+    { initial: "R", name: "Chirag Mahyavansi",   role: "Managing Director",        bio: "Leads INCOZONE's advisory practice with 12 years of experience.", exp: "12yr UAE",      imageUrl: "" },
+    { initial: "A", name: "Tushar Rathod",        role: "Business Setup Consultant",bio: "Specialist in UAE free zone incorporation across all 8 major zones.", exp: "2yr Advisory",   imageUrl: "" },
+    { initial: "K", name: "Aakash Palgamkar",     role: "Accountant",               bio: "Manages corporate financial compliance, bookkeeping, and VAT registration.", exp: "2yr Accounting", imageUrl: "" },
+    { initial: "S", name: "Dharmesh Mahyavanshi", role: "Accounting Head",          bio: "Heads INCOZONE's accounting and financial compliance practice.", exp: "10yr Accounting", imageUrl: "" },
+  ],
+  values: [
+    { title: "Strategy before structure.", body: "Most advisory firms start with the license. We start with the question: what are you actually trying to build?" },
+    { title: "Transparency as default.",   body: "We publish our fees and disclose government charges before you commit." },
+    { title: "Relationships over transactions.", body: "The UAE is a relationship economy. Our 12-year tenure gives clients direct access." },
+    { title: "Precision in every document.", body: "An incorrectly drafted Board Resolution can be the difference between approval and rejection." },
+  ],
+  timeline: [
+    { year: "2012", title: "Founded in Dubai",           desc: "INCOZONE established in Business Bay, Dubai." },
+    { year: "2014", title: "First DMCC Accreditation",   desc: "Became an officially accredited DMCC formation partner." },
+    { year: "2016", title: "PRO Division Launched",      desc: "Established a dedicated government liaison team." },
+    { year: "2018", title: "1,000 Companies Milestone",  desc: "Surpassed 1,000 incorporated companies." },
+    { year: "2021", title: "ADGM & Financial Services",  desc: "Expanded into regulated financial services incorporation." },
+    { year: "2024", title: "3,200+ Companies & Growing", desc: "UAE's most trusted private incorporation advisory." },
+  ],
+};
+
+const ContentContext = createContext({ content: DEFAULT, about: DEFAULT_ABOUT, blogPosts: [], loading: false });
 
 export function ContentProvider({ children }) {
   const [content, setContent] = useState(DEFAULT);
+  const [about, setAbout]     = useState(DEFAULT_ABOUT);
   const [blogPosts, setBlogPosts] = useState([]);
 
   useEffect(() => {
-    // Fetch the static content.json file served from /public/
     fetch(`/content.json?v=${Date.now()}`)
       .then(r => r.json())
       .then(d => {
         setContent({
-          global:       { ...DEFAULT.global,       ...(d.global       || {}) },
-          hero:         { ...DEFAULT.hero,         ...(d.hero         || {}) },
+          global:       { ...DEFAULT.global,  ...(d.global || {}) },
+          hero:         { ...DEFAULT.hero,    ...(d.hero   || {}) },
           expertise:    d.expertise    || DEFAULT.expertise,
-          why: {
-            ...DEFAULT.why,
-            ...(d.why || {}),
-            pillars: d.why?.pillars || DEFAULT.why.pillars,
-            stats:   d.why?.stats   || DEFAULT.why.stats,
-          },
+          why: { ...DEFAULT.why, ...(d.why || {}), pillars: d.why?.pillars || DEFAULT.why.pillars, stats: d.why?.stats || DEFAULT.why.stats },
           testimonials: d.testimonials || DEFAULT.testimonials,
-          cta:          { ...DEFAULT.cta,   ...(d.cta   || {}) },
+          cta:          { ...DEFAULT.cta,    ...(d.cta    || {}) },
           footer:       { ...DEFAULT.footer, ...(d.footer || {}) },
         });
+        if (d.about) {
+          setAbout({
+            ...DEFAULT_ABOUT,
+            ...d.about,
+            stats:    d.about.stats    || DEFAULT_ABOUT.stats,
+            pillars:  d.about.pillars  || DEFAULT_ABOUT.pillars,
+            team:     d.about.team     || DEFAULT_ABOUT.team,
+            values:   d.about.values   || DEFAULT_ABOUT.values,
+            timeline: d.about.timeline || DEFAULT_ABOUT.timeline,
+          });
+        }
         if (d.blog?.length > 0) {
           setBlogPosts(d.blog.filter(p => p.status === "published"));
         }
       })
-      .catch(() => {}); // silently use defaults if fetch fails
+      .catch(() => {});
   }, []);
 
   return (
-    <ContentContext.Provider value={{ content, blogPosts, loading: false }}>
+    <ContentContext.Provider value={{ content, about, blogPosts, loading: false }}>
       {children}
     </ContentContext.Provider>
   );

@@ -16,15 +16,15 @@
     "eyebrow": "Private UAE Incorporation Advisory",
     "headline": "Ready To Setup Your Business In UAE",
     "headlineItalic": "In UAE",
-    "subline": "Free Zone · Mainland · PRO Services · Corporate Structuring",
+    "subline": "Free Zone Â· Mainland Â· PRO Services Â· Corporate Structuring",
     "ctaPrimary": "Schedule Private Consultation",
-    "ctaSecondary": "Explore Free Zones ↓"
+    "ctaSecondary": "Explore Free Zones â†“"
   },
   "expertise": [
     {
       "num": "01",
       "title": "Free Zone Incorporation",
-      "desc": "Strategic establishment within UAE's premier free zones — DMCC, IFZA, Meydan, SHAMS, and beyond. Full licensing, visa, and banking facilitation.",
+      "desc": "Strategic establishment within UAE's premier free zones â€” DMCC, IFZA, Meydan, SHAMS, and beyond. Full licensing, visa, and banking facilitation.",
       "link": "services"
     },
     {
@@ -50,7 +50,7 @@
       {
         "tag": "Strategy First",
         "title": "Strategic Advisory Approach",
-        "desc": "We assess your business model first — structure follows strategy, never the reverse. Zone selection is a consequence of clarity, not guesswork."
+        "desc": "We assess your business model first â€” structure follows strategy, never the reverse. Zone selection is a consequence of clarity, not guesswork."
       },
       {
         "tag": "Authority Access",
@@ -65,7 +65,7 @@
       {
         "tag": "Always On",
         "title": "Dedicated Relationship Manager",
-        "desc": "One point of contact for every interaction — proactive, accountable, and available. Your RM knows your company as well as you do."
+        "desc": "One point of contact for every interaction â€” proactive, accountable, and available. Your RM knows your company as well as you do."
       }
     ],
     "stats": [
@@ -85,7 +85,7 @@
   },
   "testimonials": [
     {
-      "text": "INCOZONE handled our DMCC setup with remarkable discretion and precision. From licensing to banking — flawless execution.",
+      "text": "INCOZONE handled our DMCC setup with remarkable discretion and precision. From licensing to banking â€” flawless execution.",
       "name": "Rashid Al-Mansoori",
       "role": "Managing Director, Trade Group",
       "rating": 5
@@ -113,7 +113,7 @@
   },
   "footer": {
     "tagline": "UAE's premier private advisory firm for business incorporation, corporate structuring, and government liaison services.",
-    "copyright": "© 2026 INCOZONE. All rights reserved.",
+    "copyright": "Â© 2026 INCOZONE. All rights reserved.",
     "location": "Dubai, United Arab Emirates"
   },
   "zones": [
@@ -127,7 +127,7 @@
       "location": "JLT, Dubai",
       "setupFrom": "AED 18,500",
       "visaQuota": "Up to 6 visas",
-      "setupDays": "7–14",
+      "setupDays": "7â€“14",
       "minCapital": "AED 50,000 nominal",
       "color": "#C9A84C"
     },
@@ -141,7 +141,7 @@
       "location": "Dubai Silicon Oasis",
       "setupFrom": "AED 12,900",
       "visaQuota": "Up to 5 visas",
-      "setupDays": "5–10",
+      "setupDays": "5â€“10",
       "minCapital": "None",
       "color": "#4CAEC9"
     },
@@ -155,7 +155,7 @@
       "location": "Meydan, Dubai",
       "setupFrom": "AED 14,500",
       "visaQuota": "Up to 3 visas",
-      "setupDays": "5–10",
+      "setupDays": "5â€“10",
       "minCapital": "None",
       "color": "#9a75e8"
     },
@@ -169,7 +169,7 @@
       "location": "Ras Al Khaimah",
       "setupFrom": "AED 8,500",
       "visaQuota": "Up to 10 visas",
-      "setupDays": "3–7",
+      "setupDays": "3â€“7",
       "minCapital": "None",
       "color": "#48bb78"
     },
@@ -183,7 +183,7 @@
       "location": "Sharjah, UAE",
       "setupFrom": "AED 11,500",
       "visaQuota": "Up to 6 visas",
-      "setupDays": "5–8",
+      "setupDays": "5â€“8",
       "minCapital": "None",
       "color": "#9a75e8"
     },
@@ -197,7 +197,7 @@
       "location": "Jebel Ali, Dubai",
       "setupFrom": "AED 22,000",
       "visaQuota": "Up to 15 visas",
-      "setupDays": "7–14",
+      "setupDays": "7â€“14",
       "minCapital": "None",
       "color": "#C9A84C"
     },
@@ -211,7 +211,7 @@
       "location": "Ajman, UAE",
       "setupFrom": "AED 5,500",
       "visaQuota": "Up to 6 visas",
-      "setupDays": "2–5",
+      "setupDays": "2â€“5",
       "minCapital": "None",
       "color": "#48bb78"
     },
@@ -225,7 +225,7 @@
       "location": "Al Maryah Island, AD",
       "setupFrom": "AED 28,500",
       "visaQuota": "Up to 5 visas",
-      "setupDays": "10–21",
+      "setupDays": "10â€“21",
       "minCapital": "USD 1,000",
       "color": "#C9A84C"
     }
@@ -239,14 +239,14 @@
         "num": "01",
         "title": "Free Zone Company Formation",
         "price": "From AED 4,500",
-        "duration": "5–14 days",
+        "duration": "5â€“14 days",
         "desc": "End-to-end free zone incorporation across all UAE jurisdictions. License selection, authority submission, visa quota, and banking introduction."
       },
       {
         "num": "02",
         "title": "Mainland Company Formation",
         "price": "From AED 6,800",
-        "duration": "10–21 days",
+        "duration": "10â€“21 days",
         "desc": "DED-licensed mainland LLC, professional license, or branch registration. Sponsor management, tenancy contracting, and chamber registration."
       },
       {
@@ -260,120 +260,176 @@
         "num": "04",
         "title": "UAE Investor Visa",
         "price": "From AED 3,200",
-        "duration": "14–21 days",
+        "duration": "14â€“21 days",
         "desc": "Residency visa processing for company owners, shareholders, and family members. Golden Visa assessment and submission."
       },
       {
         "num": "05",
         "title": "Corporate Banking Setup",
         "price": "From AED 2,500",
-        "duration": "4–8 weeks",
+        "duration": "4â€“8 weeks",
         "desc": "UAE business bank account opening strategy, documentation preparation, and relationship-managed bank introductions."
       },
       {
         "num": "06",
         "title": "Company Amendments",
         "price": "From AED 1,800",
-        "duration": "5–10 days",
+        "duration": "5â€“10 days",
         "desc": "Share transfers, director changes, activity additions, trade name amendments, and corporate restructuring facilitation."
       }
     ]
   },
   "about": {
-    "heroLabel": "Our Story",
-    "heroHeadline": "Twelve Years at the Heart of UAE Business Formation.",
-    "heroBody": "Founded in 2012, INCOZONE has guided over 3,200 companies through UAE incorporation — from single-founder startups to multi-jurisdictional family office structures.",
-    "missionHeadline": "We exist to make UAE market entry intelligent, dignified, and efficient.",
-    "storyBody": "INCOZONE was founded by advisors who were tired of watching founders receive conflicting guidance, inflated quotes, and anonymous service from incorporation mills. We built the firm on three principles: structural clarity before jurisdiction selection, total fee transparency before engagement, and a named advisor as the single point of accountability for every client.",
-    "teamMembers": [
+    "heroEyebrow": "About INCOZONE",
+    "heroDesc": "12 years. 3,200+ companies. 68 nationalities. INCOZONE is not a document-processing firm. We are strategic advisors who built the most technically rigorous UAE business formation practice in the market.",
+    "manifesto": "\"We believe the quality of your UAE structure determines the quality of your UAE future.\" Â· Strategy First Â· Zero Surprises Â· Lifetime Partnership",
+    "storyLeft": "INCOZONE was founded in 2012 in Business Bay, Dubai, with a conviction that the UAE business formation market was fundamentally broken. Not in its mechanics â€” UAE free zones are world-class â€” but in how advisory firms were operating within it. Most were charging premium fees for commodity services: collecting documents, submitting applications, and calling it \"advisory.\" We built something different.",
+    "storyRight1": "Today, INCOZONE manages over 3,200 active corporate entities across UAE free zones and mainland â€” representing founders from 68 nationalities, from solo entrepreneurs setting up their first trading license to family offices structuring multi-jurisdiction holding arrangements.",
+    "storyRight2": "Our team includes former free zone licensing officers, ex-bank relationship managers, UAE national PRO specialists, and corporate lawyers â€” giving clients a depth of institutional knowledge that no single-discipline firm can replicate.",
+    "pullQuote": "Structure is a permanent decision. The right advisor makes it once. The wrong one makes it again and again.",
+    "pullQuoteCite": "â€” Chirag Mahyavansi, Managing Director",
+    "stats": [
       {
-        "name": "Chirag Mahyavanshi",
-        "role": "Managing Partner",
-        "bio": "15 years in UAE corporate law and free zone advisory.",
-        "initial": "O"
+        "val": "3200",
+        "sup": "+",
+        "label": "Companies Incorporated",
+        "desc": "Across all UAE free zones and mainland, spanning 68 nationalities."
       },
       {
-        "name": "Sarah Chen",
-        "role": "Head of Banking Advisory",
-        "bio": "Former relationship manager at Emirates NBD and ADCB.",
-        "initial": "S"
+        "val": "12",
+        "sup": "yr",
+        "label": "Years of UAE Expertise",
+        "desc": "Founded 2012. Every authority relationship built over a decade."
       },
       {
-        "name": "Khalid Ibrahim",
-        "role": "Head of PRO & Compliance",
-        "bio": "12 years managing government liaison across all UAE zones.",
-        "initial": "K"
+        "val": "96",
+        "sup": "%",
+        "label": "Client Retention Rate",
+        "desc": "The most honest metric we have. Our clients stay."
       },
       {
-        "name": "Alexandra Voss",
-        "role": "Senior Corporate Advisor",
-        "bio": "Specialist in European and Asian client market entry.",
-        "initial": "A"
+        "val": "68",
+        "sup": "+",
+        "label": "Nationalities Served",
+        "desc": "From European family offices to Asian trading houses."
+      }
+    ],
+    "pillars": [
+      {
+        "num": "01",
+        "title": "Strategic Advisors",
+        "body": "We never recommend a structure before understanding your business model, your shareholders, and your long-term commercial intent. Zone selection and structure are outputs of strategy â€” never defaults."
+      },
+      {
+        "num": "02",
+        "title": "Authority Insiders",
+        "body": "12 years of direct working relationships with licensing officers, visa section staff, and compliance teams across all UAE free zone authorities means your application moves at a different speed."
+      },
+      {
+        "num": "03",
+        "title": "Lifetime Partners",
+        "body": "Our 96% client retention rate is not a marketing claim. It reflects what happens when a firm treats every incorporation as the beginning of a relationship, not the completion of a transaction."
+      }
+    ],
+    "team": [
+      {
+        "initial": "R",
+        "name": "Chirag Mahyavansi",
+        "role": "Managing Director",
+        "bio": "Leads INCOZONE's advisory practice with 12 years of experience guiding high-net-worth individuals, family offices, and institutional investors through UAE market entry and corporate structuring.",
+        "exp": "12yr UAE",
+        "imageUrl": ""
+      },
+      {
+        "initial": "A",
+        "name": "Tushar Rathod",
+        "role": "Business Setup Consultant",
+        "bio": "Specialist in UAE free zone incorporation across all 8 major zones. Advises founders and SMEs on optimal zone selection, licensing strategy, and end-to-end company formation.",
+        "exp": "2yr Advisory",
+        "imageUrl": ""
+      },
+      {
+        "initial": "K",
+        "name": "Aakash Palgamkar",
+        "role": "Accountant",
+        "bio": "Manages corporate financial compliance, bookkeeping, VAT registration, and financial reporting for INCOZONE clients across free zone and mainland structures.",
+        "exp": "2yr Accounting",
+        "imageUrl": ""
+      },
+      {
+        "initial": "S",
+        "name": "Dharmesh Mahyavanshi",
+        "role": "Accounting Head",
+        "bio": "Heads INCOZONE's accounting and financial compliance practice. Oversees corporate financial structuring, VAT compliance, and financial reporting for high-value clients.",
+        "exp": "10yr Accounting",
+        "imageUrl": ""
       }
     ],
     "values": [
       {
-        "num": "01",
-        "title": "Clarity Before Speed",
-        "body": "We never rush a client into a jurisdiction. Structure must be understood before it is executed."
+        "title": "Strategy before structure.",
+        "body": "Most advisory firms start with the license. We start with the question: what are you actually trying to build? <strong>Structure follows strategy.</strong> Every recommendation is derived from a clear understanding of your business."
       },
       {
-        "num": "02",
-        "title": "Named Accountability",
-        "body": "Every client has one named relationship manager. No ticket systems, no anonymous queues."
+        "title": "Transparency as default.",
+        "body": "We publish our fees. We disclose government charges before you commit. We tell you when a structure <strong>won't serve your interests</strong> â€” even if it costs us the engagement."
       },
       {
-        "num": "03",
-        "title": "Zero Hidden Costs",
-        "body": "Every dirham is disclosed in writing before engagement. No surprises at invoice."
+        "title": "Relationships over transactions.",
+        "body": "The UAE is a relationship economy. Our 12-year tenure means we have direct contact relationships with licensing officers, visa section heads, and compliance teams at every major authority. <strong>That access is your advantage.</strong>"
       },
       {
-        "num": "04",
-        "title": "Permanent Partnership",
-        "body": "We are not a one-transaction firm. We manage your UAE entity for its entire lifecycle."
+        "title": "Precision in every document.",
+        "body": "An incorrectly drafted Board Resolution. A missing UBO declaration. An activity mismatch in a license application. These are not minor administrative oversights â€” they are the difference between <strong>approval and rejection.</strong>"
       }
     ],
     "timeline": [
       {
         "year": "2012",
-        "event": "INCOZONE founded in Business Bay with a team of three."
+        "title": "Founded in Dubai",
+        "desc": "INCOZONE established in Business Bay, Dubai â€” with a single mandate: build the most technically rigorous business advisory firm in the UAE."
       },
       {
-        "year": "2015",
-        "event": "First 500 companies incorporated. DMCC preferred partner status awarded."
+        "year": "2014",
+        "title": "First DMCC Accreditation",
+        "desc": "Became an officially accredited DMCC formation partner â€” our first free zone authority relationship, and the beginning of a network that now spans 8 zones."
+      },
+      {
+        "year": "2016",
+        "title": "PRO Division Launched",
+        "desc": "Established a dedicated government liaison team after identifying that ongoing compliance â€” not initial setup â€” was where clients suffered most."
       },
       {
         "year": "2018",
-        "event": "Corporate banking advisory service launched in response to client demand."
+        "title": "1,000 Companies Milestone",
+        "desc": "Surpassed 1,000 incorporated companies across UAE free zones and mainland â€” representing clients from 40+ nationalities."
       },
       {
-        "year": "2020",
-        "event": "Remote incorporation service launched. 100% paperless client onboarding."
-      },
-      {
-        "year": "2022",
-        "event": "Golden Visa advisory team established. 200+ applications filed in year one."
+        "year": "2021",
+        "title": "ADGM & Financial Services",
+        "desc": "Expanded into regulated financial services incorporation, becoming one of the first non-law-firm advisors with direct FSRA working relationships."
       },
       {
         "year": "2024",
-        "event": "3,000th company incorporated. ADGM authorised representative status awarded."
+        "title": "3,200+ Companies & Growing",
+        "desc": "Today INCOZONE is the UAE's most trusted private incorporation advisory â€” 3,200+ companies, 68 nationalities, 96% client retention."
       }
     ]
   },
   "contact": {
     "heroLabel": "Get in Touch",
     "heroHeadline": "Let's build your UAE structure together.",
-    "heroBody": "Tell us about your business and we'll match you to the right zone, license type, and structure — with full cost transparency before you commit to anything.",
+    "heroBody": "Tell us about your business and we'll match you to the right zone, license type, and structure â€” with full cost transparency before you commit to anything.",
     "officeLabel": "Head Office",
     "officeName": "Business Bay, Dubai, UAE",
     "faqItems": [
       {
         "q": "How long does a typical UAE company formation take?",
-        "a": "Free zone formations typically take 5–14 business days. RAKEZ and AFZ can complete in 3–5 days. DMCC and ADGM require 10–14 days. Visa processing adds 14–21 days."
+        "a": "Free zone formations typically take 5â€“14 business days. RAKEZ and AFZ can complete in 3â€“5 days. DMCC and ADGM require 10â€“14 days. Visa processing adds 14â€“21 days."
       },
       {
         "q": "Do I need to be present in the UAE?",
-        "a": "No. Most clients complete formation entirely remotely. Visa applications and Emirates ID collection do require a UAE visit — we manage all scheduling."
+        "a": "No. Most clients complete formation entirely remotely. Visa applications and Emirates ID collection do require a UAE visit â€” we manage all scheduling."
       },
       {
         "q": "What is the minimum capital requirement?",
@@ -381,11 +437,11 @@
       },
       {
         "q": "Can I open a UAE bank account as a non-resident?",
-        "a": "Yes. Non-residents holding a UAE trade license can open business accounts. Physical presence at the bank is typically required — we arrange all introductions."
+        "a": "Yes. Non-residents holding a UAE trade license can open business accounts. Physical presence at the bank is typically required â€” we arrange all introductions."
       },
       {
         "q": "How do I know which free zone is right for me?",
-        "a": "Our initial consultation maps your activity, customers, visa requirements, and budget to 2–3 structured zone recommendations with clear trade-offs explained."
+        "a": "Our initial consultation maps your activity, customers, visa requirements, and budget to 2â€“3 structured zone recommendations with clear trade-offs explained."
       }
     ]
   },
@@ -562,7 +618,7 @@
           }
         },
         "name": "Corporate Banking",
-        "desc": "UAE business bank account opening — strategy, preparation, submission."
+        "desc": "UAE business bank account opening â€” strategy, preparation, submission."
       },
       {
         "id": "visa",

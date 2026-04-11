@@ -1,0 +1,27 @@
+{
+  "name": "INCOZONE — UAE Company Formation",
+  "short_name": "INCOZONE",
+  "description": "UAE business setup advisory. Free zone company formation, mainland setup, visa & banking.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05111e",
+  "theme_color": "#05111e",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

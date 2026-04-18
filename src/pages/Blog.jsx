@@ -494,6 +494,34 @@ const CSS = `
 .bg-se-deck { font-size:.72rem; color:var(--ink3); line-height:1.5; font-family:var(--fb); margin-bottom:8px; }
 .bg-se-meta { font-family:var(--fs); font-size:.56rem; color:var(--ink4); }
 
+/* ─── EXTRA COLUMN WIDGETS ──────────────────────────────────── */
+html { scroll-behavior:smooth; }
+.bg-zone-spotlight { margin-top:20px; border-top:1px solid var(--rule); padding-top:16px; }
+.bg-zone-name { font-family:var(--fd); font-size:1.1rem; font-weight:700; color:var(--ink); margin:8px 0 4px; }
+.bg-zone-desc { font-family:var(--fb); font-size:.75rem; color:var(--ink3); line-height:1.55; }
+.bg-zone-stat { display:inline-block; margin-top:8px; font-family:var(--fs); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; background:var(--gold); color:var(--paper); padding:3px 9px; }
+
+.bg-quick-facts { margin-top:20px; border-top:1px solid var(--rule); padding-top:16px; }
+.bg-qf-row { display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px solid var(--rule2); }
+.bg-qf-row:last-child { border-bottom:none; }
+.bg-qf-icon { font-size:1rem; flex-shrink:0; width:22px; text-align:center; }
+.bg-qf-text { font-family:var(--fb); font-size:.75rem; color:var(--ink2); line-height:1.4; }
+.bg-qf-val { font-family:var(--fs); font-size:.68rem; font-weight:600; color:var(--red); margin-left:auto; flex-shrink:0; }
+
+.bg-how-it-works { margin-top:20px; border-top:1px solid var(--rule); padding-top:16px; }
+.bg-hiw-step { display:flex; gap:12px; align-items:flex-start; padding:8px 0; border-bottom:1px solid var(--rule2); }
+.bg-hiw-step:last-child { border-bottom:none; }
+.bg-hiw-num { font-family:var(--fd); font-size:1.4rem; font-weight:700; color:var(--paper3); line-height:1; flex-shrink:0; width:22px; }
+.bg-hiw-body { font-family:var(--fb); font-size:.74rem; color:var(--ink2); line-height:1.45; }
+.bg-hiw-body strong { font-weight:700; color:var(--ink); display:block; margin-bottom:2px; }
+
+.bg-rates-box { margin-top:20px; border-top:1px solid var(--rule); padding-top:16px; }
+.bg-rate-row { display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid var(--rule2); }
+.bg-rate-row:last-child { border-bottom:none; }
+.bg-rate-zone { font-family:var(--fs); font-size:.68rem; font-weight:500; color:var(--ink); }
+.bg-rate-price { font-family:var(--fs); font-size:.65rem; color:var(--ink3); }
+.bg-rate-badge { font-family:var(--fs); font-size:.55rem; background:var(--rule2); padding:2px 7px; color:var(--ink4); }
+
 /* ─── SPECIAL REPORT BAND ────────────────────────────────────── */
 .bg-special-band {
   background:var(--red); color:var(--paper); padding:28px 60px;
@@ -1120,6 +1148,41 @@ export default function BlogPage({ onBack, onNavigate }) {
               <p className="bg-editorial-text">"The right UAE structure is decided once. Every subsequent cost, every banking approval, every government interaction flows from that first decision."</p>
               <span className="bg-editorial-cite">— INCOZONE Advisory, est. 2012</span>
             </div>
+
+            {/* Zone Spotlight */}
+            <div className="bg-zone-spotlight bg-reveal">
+              <div className="bg-section-label" style={{marginBottom:"12px"}}>Zone Spotlight <span className="bg-section-label-tag">WEEKLY PICK</span></div>
+              <div className="bg-zone-name">IFZA — Dubai Silicon Oasis</div>
+              <p className="bg-zone-desc">Most flexible all-activity free zone in Dubai. Ideal for startups, consultants, and SMEs. 100% foreign ownership, 3 visa quota minimum, no physical office required.</p>
+              <span className="bg-zone-stat">From AED 12,900 / yr</span>
+              <div style={{marginTop:"14px",display:"flex",flexDirection:"column",gap:"4px"}}>
+                {[["Setup time","3–5 business days"],["Visa quota","Up to 6 (standard)"],["Activities","500+ permitted"],["Bank approval","High success rate"]].map(([k,v])=>(
+                  <div key={k} style={{display:"flex",justifyContent:"space-between",fontFamily:"var(--fs)",fontSize:".62rem",padding:"4px 0",borderBottom:"1px solid var(--rule2)"}}>
+                    <span style={{color:"var(--ink4)"}}>{k}</span>
+                    <span style={{color:"var(--ink)",fontWeight:500}}>{v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* UAE Quick Facts */}
+            <div className="bg-quick-facts bg-reveal">
+              <div className="bg-section-label" style={{marginBottom:"12px"}}>UAE At A Glance <span className="bg-section-label-tag">2026</span></div>
+              {[
+                {icon:"🏦", text:"Personal income tax", val:"0%"},
+                {icon:"🌍", text:"Foreign ownership (most sectors)", val:"100%"},
+                {icon:"🏢", text:"Active free zones", val:"45+"},
+                {icon:"⚡", text:"Fastest license issuance", val:"2 days"},
+                {icon:"💼", text:"Corporate tax (standard)", val:"9%"},
+                {icon:"🌐", text:"Double tax treaties", val:"137+"},
+              ].map(({icon,text,val})=>(
+                <div className="bg-qf-row" key={text}>
+                  <span className="bg-qf-icon">{icon}</span>
+                  <span className="bg-qf-text">{text}</span>
+                  <span className="bg-qf-val">{val}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* COLUMN RULE */}
@@ -1244,6 +1307,49 @@ export default function BlogPage({ onBack, onNavigate }) {
               <p style={{fontFamily:"var(--fd)",fontSize:".88rem",fontStyle:"italic",color:"var(--ink3)",lineHeight:1.6}}>
                 All editorial content is verified against UAE authority publications and updated quarterly. Formation costs and timelines reflect 2026 government fee schedules.
               </p>
+            </div>
+
+            {/* How It Works */}
+            <div className="bg-how-it-works bg-reveal">
+              <div className="bg-section-label" style={{marginBottom:"12px"}}>How It Works <span className="bg-section-label-tag">PROCESS</span></div>
+              {[
+                {n:"1", title:"Free Consultation", desc:"30-min call with a senior advisor. We assess your business model and recommend the right structure."},
+                {n:"2", title:"Zone Selection", desc:"We match you to the optimal free zone or mainland setup based on activity, budget & visa needs."},
+                {n:"3", title:"Document Submission", desc:"We handle all paperwork, government portals, notarisations, and authority liaison on your behalf."},
+                {n:"4", title:"License Issued", desc:"Your trade license is issued in 2–14 business days depending on zone. We deliver digitally."},
+                {n:"5", title:"Visa & Banking", desc:"Investor visa processing + bank account introduction with our Tier-1 banking relationships."},
+              ].map(({n,title,desc})=>(
+                <div className="bg-hiw-step" key={n}>
+                  <div className="bg-hiw-num">{n}</div>
+                  <div className="bg-hiw-body"><strong>{title}</strong>{desc}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* 2026 License Rates */}
+            <div className="bg-rates-box bg-reveal">
+              <div className="bg-section-label" style={{marginBottom:"12px"}}>2026 License Rates <span className="bg-section-label-tag">FREE ZONES</span></div>
+              {[
+                {zone:"AFZ (Ajman)", price:"from AED 5,500", badge:"Cheapest"},
+                {zone:"RAKEZ",       price:"from AED 8,500", badge:"Industrial"},
+                {zone:"SHAMS",       price:"from AED 10,500",badge:"Media"},
+                {zone:"IFZA",        price:"from AED 12,900", badge:"Popular"},
+                {zone:"Meydan",      price:"from AED 14,500", badge:"Central"},
+                {zone:"DMCC",        price:"from AED 18,500", badge:"Prestige"},
+                {zone:"ADGM",        price:"from AED 22,000", badge:"Financial"},
+              ].map(({zone,price,badge})=>(
+                <div className="bg-rate-row" key={zone}>
+                  <span className="bg-rate-zone">{zone}</span>
+                  <span className="bg-rate-price">{price}</span>
+                  <span className="bg-rate-badge">{badge}</span>
+                </div>
+              ))}
+              <button onClick={()=>onNavigate&&onNavigate("schedule")}
+                style={{marginTop:"14px",width:"100%",fontFamily:"var(--fs)",fontSize:".6rem",letterSpacing:".16em",textTransform:"uppercase",background:"none",border:"1px solid var(--ink)",padding:"8px",cursor:"pointer",color:"var(--ink)",transition:"all .25s"}}
+                onMouseOver={e=>{e.currentTarget.style.background="var(--ink)";e.currentTarget.style.color="var(--paper)";}}
+                onMouseOut={e=>{e.currentTarget.style.background="none";e.currentTarget.style.color="var(--ink)";}}>
+                Get Your Quote →
+              </button>
             </div>
           </div>
         </div>

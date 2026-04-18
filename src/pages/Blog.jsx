@@ -909,7 +909,7 @@ export default function BlogPage({ onBack, onNavigate }) {
       }, 320);
     }, 4000);
     return () => clearInterval(t);
-  }, [allArticles.length]);
+  }, [blogPosts.length]);
 
   // Auto-rotate UAE stat every 3 s
   useEffect(() => {

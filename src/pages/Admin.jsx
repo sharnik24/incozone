@@ -42,7 +42,7 @@ async function uploadImage(file) {
   });
   const json = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(json.error || "Image upload failed: " + res.status);
-  return json.path || `/images/cms/${fname}`;
+  return json.path || `https://raw.githubusercontent.com/sharnik24/incozone/main/public/images/cms/${fname}`;
 }
 
 // Push CRM data (enquiries.json or consultations.json) to private GitHub CRM repo

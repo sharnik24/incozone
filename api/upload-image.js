@@ -6,8 +6,9 @@
 //  Token stored server-side in GITHUB_TOKEN env var.
 // ═══════════════════════════════════════════════════════════════
 
-const GH_REPO  = "sharnik24/incozone";
-const GH_TOKEN = process.env.GITHUB_TOKEN || process.env.CRM_WRITE_TOKEN || "";
+const GH_REPO   = "sharnik24/incozone";
+const GH_BRANCH = "main";
+const GH_TOKEN  = process.env.GITHUB_TOKEN || process.env.CRM_WRITE_TOKEN || "";
 
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -55,7 +56,9 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: `Image upload failed (${pushRes.status})` });
     }
 
-    return res.status(200).json({ ok: true, path: `/images/cms/${safeName}` });
+    // Return the raw GitHub CDN URL — available instantly (no Vercel redeploy needed)
+    const rawUrl = `https://raw.githubusercontent.com/${GH_REPO}/${GH_BRANCH}/public/images/cms/${safeName}`;
+    return res.status(200).json({ ok: true, path: rawUrl });
   } catch (err) {
     console.error("[upload-image] error:", err.message);
     return res.status(500).json({ error: err.message });

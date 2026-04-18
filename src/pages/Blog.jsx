@@ -1149,14 +1149,14 @@ export default function BlogPage({ onBack, onNavigate }) {
               <span className="bg-editorial-cite">— INCOZONE Advisory, est. 2012</span>
             </div>
 
-            {/* More articles — left column filler */}
-            {filtered.slice(5, 8).map((art, i) => (
-              <div className={`bg-side-story bg-reveal bg-d${i+1}`} key={`lx-${art.id}`} onClick={() => openArticle(art)}
-                style={{borderTop:"1px solid var(--rule)", paddingTop:"16px", marginTop:"16px"}}>
-                <span className="bg-side-story-cat">{art.cat}</span>
-                <div className="bg-side-story-title">{art.title}</div>
-                <p className="bg-side-story-deck">{(art.deck||"").substring(0,100)}…</p>
-                <span className="bg-side-story-meta">{art.author} · {art.date}</span>
+            {/* More articles — fill left column */}
+            {allArticles.slice(2).map((art, i) => (
+              <div key={`lx-${art.id}`} onClick={() => openArticle(art)}
+                style={{borderTop:"1px solid var(--rule)",paddingTop:"14px",marginTop:"14px",cursor:"pointer"}}>
+                <span style={{fontFamily:"var(--fs)",fontSize:".54rem",letterSpacing:".16em",textTransform:"uppercase",color:"var(--red)",display:"block",marginBottom:"5px"}}>{art.cat}</span>
+                <div style={{fontFamily:"var(--fd)",fontSize:".92rem",fontWeight:700,lineHeight:1.25,color:"var(--ink)",marginBottom:"6px"}}>{art.title}</div>
+                <p style={{fontFamily:"var(--fb)",fontSize:".74rem",color:"var(--ink3)",lineHeight:1.5,margin:"0 0 6px"}}>{(art.deck||"").substring(0,90)}…</p>
+                <span style={{fontFamily:"var(--fs)",fontSize:".58rem",color:"var(--ink4)",letterSpacing:".08em"}}>{art.author} · {art.date}</span>
               </div>
             ))}
           </div>
@@ -1285,14 +1285,14 @@ export default function BlogPage({ onBack, onNavigate }) {
               </p>
             </div>
 
-            {/* More articles — right column filler */}
-            {filtered.slice(5, 8).map((art, i) => (
-              <div className={`bg-side-story bg-reveal bg-d${i+1}`} key={`rx-${art.id}`} onClick={() => openArticle(art)}
-                style={{borderTop:"1px solid var(--rule)", paddingTop:"16px", marginTop:"16px"}}>
-                <span className="bg-side-story-cat">{art.cat}</span>
-                <div className="bg-side-story-title">{art.title}</div>
-                <p className="bg-side-story-deck">{(art.deck||"").substring(0,100)}…</p>
-                <span className="bg-side-story-meta">{art.author} · {art.date}</span>
+            {/* More articles — fill right column */}
+            {allArticles.slice(4).map((art, i) => (
+              <div key={`rx-${art.id}`} onClick={() => openArticle(art)}
+                style={{borderTop:"1px solid var(--rule)",paddingTop:"14px",marginTop:"14px",cursor:"pointer"}}>
+                <span style={{fontFamily:"var(--fs)",fontSize:".54rem",letterSpacing:".16em",textTransform:"uppercase",color:"var(--red)",display:"block",marginBottom:"5px"}}>{art.cat}</span>
+                <div style={{fontFamily:"var(--fd)",fontSize:".92rem",fontWeight:700,lineHeight:1.25,color:"var(--ink)",marginBottom:"6px"}}>{art.title}</div>
+                <p style={{fontFamily:"var(--fb)",fontSize:".74rem",color:"var(--ink3)",lineHeight:1.5,margin:"0 0 6px"}}>{(art.deck||"").substring(0,90)}…</p>
+                <span style={{fontFamily:"var(--fs)",fontSize:".58rem",color:"var(--ink4)",letterSpacing:".08em"}}>{art.author} · {art.date}</span>
               </div>
             ))}
           </div>

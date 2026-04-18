@@ -6,6 +6,9 @@
 //  Token stored server-side in GITHUB_TOKEN env var.
 // ═══════════════════════════════════════════════════════════════
 
+// Increase Vercel's default 4.5 MB body parser limit to 10 MB
+export const config = { api: { bodyParser: { sizeLimit: "10mb" } } };
+
 const GH_REPO   = "sharnik24/incozone";
 const GH_BRANCH = "main";
 const GH_TOKEN  = process.env.GITHUB_TOKEN || process.env.CRM_WRITE_TOKEN || "";

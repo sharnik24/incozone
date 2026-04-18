@@ -25,23 +25,45 @@ async function pushContent(contentObj) {
   if (!res.ok) throw new Error(json.error || "Save failed: " + res.status);
 }
 
-// Upload an image via server-side API → public/images/cms/
-async function uploadImage(file) {
-  const ext    = file.name.split(".").pop();
-  const fname  = `${Date.now()}.${ext}`;
-  const base64 = await new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload  = () => resolve(reader.result.split(",")[1]);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
+// Compress + resize image client-side before upload.
+// Vercel serverless functions have a 4.5 MB body limit.
+// A raw photo can be 3-8 MB; canvas resize brings it under 1 MB.
+async function compressImage(file) {
+  const MAX_PX   = 1400;  // max width or height
+  const QUALITY  = 0.88;  // JPEG quality
+
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onerror = reject;
+    img.onload  = () => {
+      let { width, height } = img;
+      if (width > MAX_PX || height > MAX_PX) {
+        if (width >= height) { height = Math.round(height * MAX_PX / width); width = MAX_PX; }
+        else                 { width  = Math.round(width  * MAX_PX / height); height = MAX_PX; }
+      }
+      const canvas = document.createElement("canvas");
+      canvas.width  = width;
+      canvas.height = height;
+      canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+      const dataUrl = canvas.toDataURL("image/jpeg", QUALITY);
+      resolve(dataUrl.split(",")[1]); // return base64 only
+    };
+    img.src = URL.createObjectURL(file);
   });
+}
+
+// Upload an image via server-side API → public/images/cms/
+// Always compresses first so we stay under Vercel's 4.5 MB body limit.
+async function uploadImage(file) {
+  const fname  = `${Date.now()}.jpg`; // always JPEG after compression
+  const base64 = await compressImage(file);
   const res = await fetch("/api/upload-image", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ filename: fname, content: base64 }),
   });
   const json = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(json.error || "Image upload failed: " + res.status);
+  if (!res.ok) throw new Error(json.error || `Upload failed (${res.status})`);
   return json.path || `https://raw.githubusercontent.com/sharnik24/incozone/main/public/images/cms/${fname}`;
 }
 
@@ -1349,6 +1371,8 @@ function BlogSection({ d, oc }) {
     try {
       const url = await uploadImage(file);
       if (url) u("imageUrl", url);
+    } catch(e) {
+      alert("Blog image upload failed: " + e.message);
     } finally {
       setImgUploading(false);
     }

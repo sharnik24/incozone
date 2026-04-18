@@ -420,9 +420,9 @@ const CSS = `
 .bg-footer-back:hover { border-color:var(--gold2); color:var(--gold2); }
 
 /* ─── REVEAL ─────────────────────────────────────────────────── */
-.bg-reveal { opacity:0; transform:translateY(16px); transition:opacity .8s cubic-bezier(0.16,1,0.3,1), transform .8s cubic-bezier(0.16,1,0.3,1); }
-.bg-reveal.in { opacity:1; transform:translateY(0); }
-.bg-d1{transition-delay:.05s}.bg-d2{transition-delay:.12s}.bg-d3{transition-delay:.2s}.bg-d4{transition-delay:.28s}
+@keyframes bgReveal { from{opacity:0;transform:translateY(14px);} to{opacity:1;transform:translateY(0);} }
+.bg-reveal { animation:bgReveal .65s cubic-bezier(0.16,1,0.3,1) both; }
+.bg-d1{animation-delay:.06s}.bg-d2{animation-delay:.13s}.bg-d3{animation-delay:.20s}.bg-d4{animation-delay:.27s}
 
 /* ─── FEATURED CAROUSEL ──────────────────────────────────────── */
 .bg-featured-wrap { position:relative; overflow:hidden; }
@@ -802,15 +802,9 @@ const UAE_STATS = [
 ];
 
 // ─── REVEAL HOOK ──────────────────────────────────────────────
+// CSS animation handles the reveal; this hook is a no-op backup.
 function useReveal() {
-  useEffect(() => {
-    const els = document.querySelectorAll(".bg-reveal");
-    const obs = new IntersectionObserver(entries => entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); }
-    }), { threshold: .07 });
-    els.forEach(el => obs.observe(el));
-    return () => obs.disconnect();
-  });
+  useEffect(() => {}, []);
 }
 
 // ─── ARTICLE OVERLAY ──────────────────────────────────────────
@@ -1116,7 +1110,7 @@ export default function BlogPage({ onBack, onNavigate }) {
             </div>
 
             {/* Rotating UAE stat */}
-            <div className="bg-stat-rotator bg-reveal bg-d4" style={{opacity: statFade ? 1 : 0}}>
+            <div className="bg-stat-rotator" style={{opacity: statFade ? 1 : 0, transition:"opacity .3s ease"}}>
               <span className="bg-stat-num">{UAE_STATS[statIdx].val}</span>
               <span className="bg-stat-lbl">{UAE_STATS[statIdx].lbl}</span>
             </div>

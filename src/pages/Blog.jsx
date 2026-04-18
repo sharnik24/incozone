@@ -935,6 +935,7 @@ export default function BlogPage({ onBack, onNavigate }) {
 
             {sideLeft.map((art, i) => (
               <div className={`bg-side-story bg-reveal bg-d${i+1}`} key={art.id} onClick={() => setActiveArt(art)}>
+                {art.imageUrl && <img src={art.imageUrl} alt={art.title} style={{width:"100%",aspectRatio:"16/7",objectFit:"cover",display:"block",marginBottom:"10px"}} />}
                 <span className="bg-side-story-cat">{art.cat}</span>
                 <div className="bg-side-story-title">{art.title}</div>
                 <p className="bg-side-story-deck">{art.deck.substring(0,110)}…</p>
@@ -965,7 +966,10 @@ export default function BlogPage({ onBack, onNavigate }) {
                 <span className="bg-headline-kicker">{featured.kicker} · {featured.cat}</span>
                 <h2 className="bg-headline-h1">{featured.title}</h2>
                 <div className="bg-headline-img">
-                  <span className="bg-headline-img-label">{featured.imgLabel}</span>
+                  {featured.imageUrl
+                    ? <img src={featured.imageUrl} alt={featured.imgLabel || featured.title} style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",zIndex:1}} />
+                    : <span className="bg-headline-img-label">{featured.imgLabel}</span>
+                  }
                 </div>
                 <p className="bg-headline-deck">{featured.deck}</p>
                 <div className="bg-headline-byline">By {featured.author} · {featured.date} · {featured.readTime}</div>
@@ -1010,6 +1014,7 @@ export default function BlogPage({ onBack, onNavigate }) {
 
             {sideRight.map((art, i) => (
               <div className={`bg-side-story bg-reveal bg-d${i+1}`} key={art.id} onClick={() => setActiveArt(art)}>
+                {art.imageUrl && <img src={art.imageUrl} alt={art.title} style={{width:"100%",aspectRatio:"16/7",objectFit:"cover",display:"block",marginBottom:"10px"}} />}
                 <span className="bg-side-story-cat">{art.cat}</span>
                 <div className="bg-side-story-title">{art.title}</div>
                 <p className="bg-side-story-deck">{art.deck.substring(0,110)}…</p>
@@ -1040,7 +1045,9 @@ export default function BlogPage({ onBack, onNavigate }) {
         <div className="bg-below-fold">
           {belowFold.map((art, i) => (
             <div className={`bg-bf-card bg-reveal bg-d${i+1}`} key={art.id} onClick={() => setActiveArt(art)}>
-              <div className="bg-bf-img" />
+              <div className="bg-bf-img">
+                {art.imageUrl && <img src={art.imageUrl} alt={art.title} style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",zIndex:1}} />}
+              </div>
               <span className="bg-bf-tag">{art.cat}</span>
               <div className="bg-bf-title">{art.title}</div>
               <p className="bg-bf-deck">{art.deck.substring(0,90)}…</p>

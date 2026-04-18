@@ -1340,9 +1340,19 @@ function SchedulePageSection({ d, oc }) {
 // ─────────────────────────────────────────────────────────────
 function BlogSection({ d, oc }) {
   const [selId, setSelId] = useState(d.blog[0]?.id || null);
+  const [imgUploading, setImgUploading] = useState(false);
   const posts = d.blog;
   const post  = posts.find(p => p.id === selId);
   const u = (k,v) => oc("blog", posts.map(p => p.id===selId ? {...p,[k]:v} : p));
+  const handleImgUpload = async (file) => {
+    setImgUploading(true);
+    try {
+      const url = await uploadImage(file);
+      if (url) u("imageUrl", url);
+    } finally {
+      setImgUploading(false);
+    }
+  };
   const add = () => {
     const nid = Math.max(0, ...posts.map(p=>p.id)) + 1;
     const np = {id:nid,cat:"General",title:"New Article",excerpt:"Excerpt.",author:"Admin",date:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"}),status:"draft",featured:false};
@@ -1419,6 +1429,18 @@ function BlogSection({ d, oc }) {
             </F>
             <F label="Excerpt / Deck" hint="Shown on blog index cards and in Google search results">
               <CharTa value={post.excerpt||post.deck||""} onChange={e=>u("excerpt",e.target.value)} max={280} />
+            </F>
+            <F label="Featured Image" hint="Displayed at the top of the blog post on the live site">
+              <div style={{display:"flex",alignItems:"center",gap:"12px",flexWrap:"wrap"}}>
+                {post.imageUrl && <img src={post.imageUrl} alt="Featured" style={{width:80,height:56,objectFit:"cover",borderRadius:4,border:"1px solid var(--bdr2)"}} />}
+                <label className="btn btn-s btn-sm" style={{cursor:"pointer",display:"inline-flex",alignItems:"center",gap:6}}>
+                  <input type="file" accept="image/*" style={{display:"none"}} disabled={imgUploading}
+                    onChange={e => { if(e.target.files[0]) handleImgUpload(e.target.files[0]); e.target.value=""; }} />
+                  {imgUploading ? "Uploading…" : post.imageUrl ? "Change Image" : "Upload Image"}
+                </label>
+                {post.imageUrl && <button className="btn btn-d btn-sm" onClick={()=>u("imageUrl","")}>Remove</button>}
+              </div>
+              {post.imageUrl && <div className="hint" style={{marginTop:4}}>URL: {post.imageUrl}</div>}
             </F>
             <F label="Image Caption / Label" hint="Descriptive label shown under the article hero image">
               <Inp value={post.imgLabel||""} onChange={e=>u("imgLabel",e.target.value)} placeholder="Dubai Skyline · DMCC Headquarters" />

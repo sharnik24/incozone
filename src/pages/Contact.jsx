@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useContent } from "../context/ContentContext";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Contact Page
@@ -432,6 +433,8 @@ function ContactCanvas() {
 }
 
 export default function ContactPage({ onBack, onSchedule, onNavigate }) {
+  const { content } = useContent();
+  const faqs = content?.contact?.faqItems || FAQS;
   const [_ctOpen, setctOpen] = useState(false);
   // Lock body scroll when drawer open
   useEffect(() => {
@@ -527,13 +530,12 @@ export default function ContactPage({ onBack, onSchedule, onNavigate }) {
         {/* LEFT — form */}
         <div className="ct-hero-left">
           <div className="ct-ghost" aria-hidden>C</div>
-          <span className="ct-eyebrow">Get in Touch</span>
+          <span className="ct-eyebrow">{content?.contact?.heroLabel || "Get in Touch"}</span>
           <h1 className="ct-h1">
-            Let's build<em>your UAE</em>
-            <span className="small">structure together.</span>
+            {content?.contact?.heroHeadline || "Let's build your UAE structure together."}
           </h1>
           <p className="ct-sub">
-            Tell us about your business and we'll match you to the right zone, license type, and structure — with full cost transparency before you commit to anything.
+            {content?.contact?.heroBody || "Tell us about your business and we'll match you to the right zone, license type, and structure — with full cost transparency before you commit to anything."}
           </p>
 
           {submitted ? (
@@ -653,7 +655,7 @@ export default function ContactPage({ onBack, onSchedule, onNavigate }) {
           {/* FAQ */}
           <div>
             <h2 className="ct-faq-h2 ct-reveal">Common<em> Questions.</em></h2>
-            {FAQS.map((f, i) => (
+            {faqs.map((f, i) => (
               <div className={`ct-faq-item ct-reveal ct-d${(i%3)+1}${openFaq===i?" open":""}`} key={i}>
                 <button className="ct-faq-q" onClick={() => setOpenFaq(openFaq===i?null:i)}>
                   <span>{f.q}</span>

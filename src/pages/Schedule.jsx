@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useContent } from "../context/ContentContext";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Schedule Consultation
@@ -454,6 +455,8 @@ const STEPS = [
 ];
 
 export default function SchedulePage({ onBack, onNavigate }) {
+  const { content } = useContent();
+  const services = content?.schedule?.services || SERVICES;
   const [_scOpen, setscOpen] = useState(false);
   // Lock body scroll when drawer open
   useEffect(() => {
@@ -699,7 +702,7 @@ export default function SchedulePage({ onBack, onNavigate }) {
                   <span className="sc-step-num">Step 01 of 04</span>
                   <h2 className="sc-step-title">What do you need<em> help with?</em></h2>
                   <div className="sc-services-grid">
-                    {SERVICES.map(s => (
+                    {services.map(s => (
                       <div
                         className={`sc-service-card${service===s.id?" selected":""}`}
                         key={s.id}

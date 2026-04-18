@@ -729,10 +729,13 @@ function ArticleOverlay({ article, onClose }) {
         </div>
 
         <div className="bg-art-img ink-press">
-          <div style={{position:"absolute",inset:0,background:"repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(13,11,8,.05) 28px,rgba(13,11,8,.05) 29px)"}}/>
-          <span className="bg-art-img-label" style={{position:"relative",zIndex:1,fontFamily:"var(--fb)",fontSize:".7rem",fontStyle:"italic",color:"var(--ink4)",textAlign:"center",padding:"0 40px"}}>{article.imgLabel}</span>
+          {article.imageUrl
+            ? <img src={article.imageUrl} alt={article.imgLabel || article.title} style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}} />
+            : <div style={{position:"absolute",inset:0,background:"repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(13,11,8,.05) 28px,rgba(13,11,8,.05) 29px)"}}/>
+          }
+          {!article.imageUrl && <span className="bg-art-img-label" style={{position:"relative",zIndex:1,fontFamily:"var(--fb)",fontSize:".7rem",fontStyle:"italic",color:"var(--ink4)",textAlign:"center",padding:"0 40px"}}>{article.imgLabel}</span>}
         </div>
-        <p className="bg-art-caption">Illustration: INCOZONE Research Division</p>
+        <p className="bg-art-caption">{article.imageUrl ? (article.imgLabel || "") : "Illustration: INCOZONE Research Division"}</p>
 
         <div className="bg-art-body">
           {article.body.map((p, i) => <p key={i}>{p}</p>)}
@@ -787,7 +790,8 @@ export default function BlogPage({ onBack, onNavigate }) {
     date:         p.date || "",
     readTime:     p.readTime || "5 min read",
     featured:     !!p.featured,
-    imgLabel:     p.imgLabel || p.imageUrl || "",
+    imgLabel:     p.imgLabel || "",
+    imageUrl:     p.imageUrl || "",
     body:         p.body ? (Array.isArray(p.body) ? p.body : [p.body]) : [p.excerpt || p.deck || ""],
     pullQuote:    p.pullQuote || "",
     subhead:      p.subhead || "",

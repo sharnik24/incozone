@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { IBuilding, IGlobe, IStar, IClock, IAward, ICalendar } from "../icons";
+import { useContent } from "../context/ContentContext";
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — Services Page
@@ -695,6 +696,7 @@ function useReveal() {
 
 // ── MAIN ──────────────────────────────────────────────────────
 export default function ServicesPage({ onBack, onNavigate }) {
+  const { content } = useContent();
   const [_srvOpen, setsrvOpen] = useState(false);
   // Lock body scroll when drawer open
   useEffect(() => {
@@ -760,7 +762,7 @@ export default function ServicesPage({ onBack, onNavigate }) {
         <div className="srv-hero-inner">
           <div className="srv-hero-overline">
             <div className="srv-hero-overline-line" />
-            <span>What We Do · INCOZONE Advisory</span>
+            <span>{content?.services?.heroLabel || "What We Do"} · INCOZONE Advisory</span>
           </div>
           <h1 className="srv-hero-h1">
             Every Service
@@ -768,7 +770,7 @@ export default function ServicesPage({ onBack, onNavigate }) {
             <span className="line-3">Needs in UAE.</span>
           </h1>
           <p className="srv-hero-sub">
-            From <strong>free zone incorporation</strong> to Golden Visa, WILL registration, trademark protection, offshore structuring, and company liquidation — INCOZONE manages the full lifecycle of your UAE business presence. One advisor. End to end. Zero gaps.
+            {content?.services?.heroBody || "From free zone incorporation to Golden Visa, WILL registration, trademark protection, offshore structuring, and company liquidation — INCOZONE manages the full lifecycle of your UAE business presence. One advisor. End to end. Zero gaps."}
           </p>
         </div>
 

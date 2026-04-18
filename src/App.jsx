@@ -2323,13 +2323,13 @@ export default function App() {
       {/* ── CREAM CTA ── */}
       <section className="elite-cta">
         <div className="elite-cta-content">
-          <span className="section-label" style={{ textAlign: "center", display: "block" }}>Begin Your Journey</span>
-          <h2>Begin Your UAE<br /><em>Incorporation Strategy.</em></h2>
+          <span className="section-label" style={{ textAlign: "center", display: "block" }}>{content?.cta?.label || "Begin Your Journey"}</span>
+          <h2>{(content?.cta?.headline || "Begin Your UAE Incorporation Strategy.").replace(content?.cta?.headlineItalic || "Incorporation Strategy.", "").trim() || "Begin Your UAE"}<br /><em>{content?.cta?.headlineItalic || "Incorporation Strategy."}</em></h2>
           <div className="cta-divider" />
-          <p>Private consultation. Structured approach. Measurable results.</p>
+          <p>{content?.cta?.body || "Private consultation. Structured approach. Measurable results."}</p>
           <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-            <button className="btn-cream-primary" onClick={() => goPage("schedule")}>Schedule Private Consultation</button>
-            <button className="btn-cream-ghost">Download Setup Guide</button>
+            <button className="btn-cream-primary" onClick={() => goPage("schedule")}>{content?.cta?.ctaPrimary || "Schedule Private Consultation"}</button>
+            <button className="btn-cream-ghost">{content?.cta?.ctaSecondary || "Download Setup Guide"}</button>
           </div>
         </div>
       </section>
@@ -2337,14 +2337,14 @@ export default function App() {
       {/* FOOTER — very dark */}
       <footer>
         <div className="footer-top">
-          <div><div className="footer-brand-name">INCO<span>ZONE</span></div><p className="footer-tagline">UAE's premier private advisory firm for business incorporation, corporate structuring, and government liaison services.</p></div>
+          <div><div className="footer-brand-name">INCO<span>ZONE</span></div><p className="footer-tagline">{content?.footer?.tagline || "UAE's premier private advisory firm for business incorporation, corporate structuring, and government liaison services."}</p></div>
           <div className="footer-col"><h5>Services</h5><ul>{[["Free Zone Formation","services"],["Mainland Setup","mainland"],["Offshore Formation","services"],["Corporate Amendments","pro"],["PRO Services","pro"],["Liquidation","services"]].map(([s,p]) => <li key={s}><a href="#" onClick={e=>{e.preventDefault();goPage(p)}}>{s}</a></li>)}</ul></div>
           <div className="footer-col"><h5>Free Zones</h5><ul>{ZONES.map(z => <li key={z.id}><a href="#" onClick={e=>{e.preventDefault();setSelectedZone(z);pushHistory(z.id,z.id);window.scrollTo(0,0)}}>{z.name}</a></li>)}</ul></div>
           <div className="footer-col"><h5>Company</h5><ul>{[["About Us","about"],["Blog","blog"],["Contact","contact"],["Privacy Policy","home"],["Terms","home"]].map(([s,p]) => <li key={s}><a href="#" onClick={e=>{e.preventDefault();goPage(p)}}>{s}</a></li>)}</ul></div>
         </div>
         <div className="footer-bottom">
-          <span style={{cursor:"default"}} onClick={(()=>{let c=0,t;return()=>{c++;clearTimeout(t);t=setTimeout(()=>{c=0},600);if(c>=3){goPage("admin")}}})()}>© 2026 INCOZONE. All rights reserved.</span>
-          <span>Dubai, United Arab Emirates</span>
+          <span style={{cursor:"default"}} onClick={(()=>{let c=0,t;return()=>{c++;clearTimeout(t);t=setTimeout(()=>{c=0},600);if(c>=3){goPage("admin")}}})()}>{content?.footer?.copyright || "© 2026 INCOZONE. All rights reserved."}</span>
+          <span>{content?.footer?.location || "Dubai, United Arab Emirates"}</span>
         </div>
       </footer>
 

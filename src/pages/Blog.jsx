@@ -52,9 +52,8 @@ const CSS = `
   transform-origin: top center;
 }
 @keyframes paperUnfold {
-  0%  { transform: perspective(1200px) rotateX(-90deg) translateY(-60px); opacity:0; }
-  40% { opacity:1; }
-  100%{ transform: perspective(1200px) rotateX(0deg)  translateY(0); opacity:1; }
+  0%  { transform: perspective(1200px) rotateX(-12deg) translateY(-20px); }
+  100%{ transform: perspective(1200px) rotateX(0deg) translateY(0); }
 }
 
 /* Article open: newspaper page-turn from right */
@@ -881,7 +880,7 @@ export default function BlogPage({ onBack, onNavigate }) {
   const [scrolled, setScrolled]       = useState(false);
   const [activeCat, setActiveCat]     = useState("All");
   const [activeArt, setActiveArt]     = useState(null);
-  const [folded, setFolded]           = useState(true);
+  const [folded, setFolded]           = useState(false);
   const [featuredIdx, setFeaturedIdx] = useState(0);
   const [featSlide, setFeatSlide]     = useState("visible"); // visible | exiting | entering
   const [statIdx, setStatIdx]         = useState(0);
@@ -890,7 +889,7 @@ export default function BlogPage({ onBack, onNavigate }) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    setTimeout(() => { setFolded(false); playPageFlip(); }, 50);
+    setTimeout(() => playPageFlip(), 50);
     const h = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", h);
     return () => window.removeEventListener("scroll", h);
@@ -1087,7 +1086,7 @@ export default function BlogPage({ onBack, onNavigate }) {
                 {art.imageUrl && <img src={art.imageUrl} alt={art.title} style={{width:"100%",aspectRatio:"16/7",objectFit:"cover",display:"block",marginBottom:"10px"}} />}
                 <span className="bg-side-story-cat">{art.cat}</span>
                 <div className="bg-side-story-title">{art.title}</div>
-                <p className="bg-side-story-deck">{art.deck.substring(0,110)}…</p>
+                <p className="bg-side-story-deck">{(art.deck||"").substring(0,110)}…</p>
                 <span className="bg-side-story-meta">{art.author} · {art.date}</span>
               </div>
             ))}
@@ -1204,7 +1203,7 @@ export default function BlogPage({ onBack, onNavigate }) {
                 {art.imageUrl && <img src={art.imageUrl} alt={art.title} style={{width:"100%",aspectRatio:"16/7",objectFit:"cover",display:"block",marginBottom:"10px"}} />}
                 <span className="bg-side-story-cat">{art.cat}</span>
                 <div className="bg-side-story-title">{art.title}</div>
-                <p className="bg-side-story-deck">{art.deck.substring(0,110)}…</p>
+                <p className="bg-side-story-deck">{(art.deck||"").substring(0,110)}…</p>
                 <span className="bg-side-story-meta">{art.author} · {art.date}</span>
               </div>
             ))}
@@ -1264,7 +1263,7 @@ export default function BlogPage({ onBack, onNavigate }) {
               </div>
               <span className="bg-bf-tag">{art.cat}</span>
               <div className="bg-bf-title">{art.title}</div>
-              <p className="bg-bf-deck">{art.deck.substring(0,90)}…</p>
+              <p className="bg-bf-deck">{(art.deck||"").substring(0,90)}…</p>
               <span className="bg-bf-meta">{art.author} · {art.date}</span>
             </div>
           ))}
@@ -1290,7 +1289,7 @@ export default function BlogPage({ onBack, onNavigate }) {
                   )}
                   <span style={{fontFamily:"var(--fs)",fontSize:".54rem",letterSpacing:".18em",textTransform:"uppercase",color:"var(--red)",display:"block",marginBottom:"6px"}}>{art.cat}</span>
                   <div style={{fontFamily:"'Cormorant Garamond',Georgia,serif",fontSize:"1.05rem",fontWeight:700,lineHeight:1.25,color:"var(--ink)",marginBottom:"8px"}}>{art.title}</div>
-                  <p style={{fontFamily:"var(--fd)",fontSize:".82rem",color:"var(--ink3)",lineHeight:1.55,margin:0}}>{art.deck.substring(0,80)}…</p>
+                  <p style={{fontFamily:"var(--fd)",fontSize:".82rem",color:"var(--ink3)",lineHeight:1.55,margin:0}}>{(art.deck||"").substring(0,80)}…</p>
                   <div style={{fontFamily:"var(--fs)",fontSize:".58rem",letterSpacing:".12em",textTransform:"uppercase",color:"var(--ink4)",marginTop:"10px"}}>{art.author} · {art.readTime}</div>
                 </div>
               ))}
@@ -1326,7 +1325,7 @@ export default function BlogPage({ onBack, onNavigate }) {
           </div>
         </div>
         <div className="bg-digest-row">
-          <div className="bg-opinion bg-reveal">
+          {opinion && <div className="bg-opinion bg-reveal">
             <div className="bg-opinion-author">
               <div className="bg-opinion-avatar">{opinion.authorInitial}</div>
               <div className="bg-opinion-author-info">
@@ -1339,7 +1338,7 @@ export default function BlogPage({ onBack, onNavigate }) {
             <button onClick={() => openArticle(opinion)} style={{fontFamily:"var(--fs)",fontSize:".6rem",letterSpacing:".16em",textTransform:"uppercase",background:"none",border:"none",cursor:"pointer",color:"var(--red)",padding:"12px 0 0",display:"flex",alignItems:"center",gap:"8px"}}>
               Read Full Column →
             </button>
-          </div>
+          </div>}
 
           <div className="bg-digest-rule" />
 

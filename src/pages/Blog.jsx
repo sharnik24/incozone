@@ -424,6 +424,94 @@ const CSS = `
 .bg-reveal.in { opacity:1; transform:translateY(0); }
 .bg-d1{transition-delay:.05s}.bg-d2{transition-delay:.12s}.bg-d3{transition-delay:.2s}.bg-d4{transition-delay:.28s}
 
+/* ─── FEATURED CAROUSEL ──────────────────────────────────────── */
+.bg-featured-wrap { position:relative; overflow:hidden; }
+.bg-featured-slide { transition:opacity .55s ease, transform .55s cubic-bezier(0.4,0,0.2,1); }
+.bg-featured-slide.exiting { opacity:0; transform:translateX(-24px); pointer-events:none; }
+.bg-featured-slide.entering { opacity:0; transform:translateX(24px); }
+.bg-featured-slide.visible { opacity:1; transform:translateX(0); }
+.bg-progress-dots { display:flex; gap:6px; justify-content:center; margin-top:14px; }
+.bg-dot { width:20px; height:2px; background:var(--rule); cursor:pointer; transition:background .3s, width .3s; border:none; padding:0; }
+.bg-dot.active { background:var(--ink); width:32px; }
+
+/* ─── MARKET WATCH ───────────────────────────────────────────── */
+.bg-market-watch {
+  border:1px solid var(--rule); padding:14px 16px; margin-top:20px;
+  background:var(--paper2);
+}
+.bg-market-title { font-family:var(--fs); font-size:.55rem; letter-spacing:.24em; text-transform:uppercase; color:var(--ink3); border-bottom:1px solid var(--rule); padding-bottom:8px; margin-bottom:10px; }
+.bg-market-row { display:flex; justify-content:space-between; align-items:baseline; padding:4px 0; border-bottom:1px solid var(--rule2); }
+.bg-market-row:last-child { border-bottom:none; }
+.bg-market-label { font-family:var(--fs); font-size:.6rem; color:var(--ink3); }
+.bg-market-val { font-family:var(--fd); font-size:.85rem; font-weight:600; color:var(--ink); }
+.bg-market-chg { font-family:var(--fs); font-size:.56rem; }
+.up { color:#2d6a2d; } .dn { color:var(--red); }
+
+/* ─── ROTATING STAT ──────────────────────────────────────────── */
+.bg-stat-rotator {
+  margin-top:20px; padding:18px 16px; background:var(--ink); color:var(--paper); text-align:center;
+  transition:opacity .4s;
+}
+.bg-stat-num { font-family:var(--fd); font-size:2.4rem; font-weight:700; color:var(--gold2); line-height:1; display:block; }
+.bg-stat-lbl { font-family:var(--fs); font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(245,240,232,.5); margin-top:6px; display:block; }
+
+/* ─── EDITORIAL NOTE ─────────────────────────────────────────── */
+.bg-editorial-note {
+  margin-top:20px; padding:16px 0; border-top:2px solid var(--ink); border-bottom:1px solid var(--rule);
+}
+.bg-editorial-ornament { text-align:center; font-family:var(--fd); font-size:1.2rem; color:var(--ink4); margin-bottom:8px; }
+.bg-editorial-text { font-family:var(--fd); font-size:.85rem; font-style:italic; color:var(--ink2); line-height:1.6; text-align:center; }
+.bg-editorial-cite { font-family:var(--fs); font-size:.55rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink4); text-align:center; display:block; margin-top:8px; }
+
+/* ─── TAG CLOUD ──────────────────────────────────────────────── */
+.bg-tag-cloud { margin-top:20px; }
+.bg-tag-cloud-title { font-family:var(--fs); font-size:.55rem; letter-spacing:.24em; text-transform:uppercase; color:var(--ink3); border-bottom:2px solid var(--ink); padding-bottom:6px; margin-bottom:12px; }
+.bg-tags { display:flex; flex-wrap:wrap; gap:6px; }
+.bg-tag {
+  font-family:var(--fs); font-size:.58rem; letter-spacing:.1em; text-transform:uppercase;
+  border:1px solid var(--rule); padding:4px 10px; cursor:pointer; background:transparent;
+  color:var(--ink3); transition:all .25s;
+}
+.bg-tag:hover,.bg-tag.active { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+.bg-tag-count { font-size:.5rem; opacity:.5; margin-left:4px; }
+
+/* ─── SECOND EDITION ─────────────────────────────────────────── */
+.bg-second-ed-hdr { padding:8px 60px 0; border-bottom:2px solid var(--ink); }
+.bg-second-ed {
+  padding:0 60px 40px; display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0; border-bottom:2px solid var(--ink);
+}
+.bg-se-card {
+  padding:24px 24px 24px 0; border-right:1px solid var(--rule); cursor:pointer; transition:background .3s;
+}
+.bg-se-card:last-child { border-right:none; padding-right:0; padding-left:24px; }
+.bg-se-card:nth-child(2),.bg-se-card:nth-child(3) { padding:24px; }
+.bg-se-card:hover { background:rgba(13,11,8,.025); }
+.bg-se-num { font-family:var(--fd); font-size:2.4rem; font-weight:700; color:var(--paper3); line-height:1; margin-bottom:6px; }
+.bg-se-tag { font-family:var(--fs); font-size:.55rem; letter-spacing:.2em; text-transform:uppercase; color:var(--red); margin-bottom:7px; display:block; }
+.bg-se-title { font-family:var(--fd); font-size:1rem; font-weight:600; line-height:1.28; color:var(--ink); margin-bottom:8px; transition:color .3s; }
+.bg-se-card:hover .bg-se-title { color:var(--red); }
+.bg-se-deck { font-size:.72rem; color:var(--ink3); line-height:1.5; font-family:var(--fb); margin-bottom:8px; }
+.bg-se-meta { font-family:var(--fs); font-size:.56rem; color:var(--ink4); }
+
+/* ─── SPECIAL REPORT BAND ────────────────────────────────────── */
+.bg-special-band {
+  background:var(--red); color:var(--paper); padding:28px 60px;
+  display:flex; align-items:center; gap:40px; cursor:pointer;
+  border-bottom:2px solid var(--ink); transition:background .3s;
+}
+.bg-special-band:hover { background:#6e1414; }
+.bg-special-label { font-family:var(--fs); font-size:.55rem; letter-spacing:.3em; text-transform:uppercase; opacity:.65; white-space:nowrap; }
+.bg-special-title { font-family:var(--fd); font-size:clamp(1.2rem,2.5vw,1.8rem); font-weight:700; flex:1; line-height:1.2; }
+.bg-special-arrow { font-family:var(--fd); font-size:2rem; opacity:.5; flex-shrink:0; }
+
+@media(max-width:768px) {
+  .bg-second-ed,.bg-se-card { grid-template-columns:1fr 1fr; }
+  .bg-second-ed-hdr,.bg-second-ed { padding-left:20px; padding-right:20px; }
+  .bg-special-band { padding:20px; flex-direction:column; align-items:flex-start; gap:10px; }
+}
+
 /* ─── RESPONSIVE ─────────────────────────────────────────────── */
 @media(max-width:1100px) {
   .bg-broadsheet { grid-template-columns:1fr; }
@@ -680,6 +768,39 @@ const TICKER_ITEMS = [
 
 const CATS = ["All", "Free Zone Guide", "Market Intelligence", "Incorporation Guide", "Banking & Finance", "Visa & Residency", "PRO Services"];
 
+// ─── PAGE-FLIP SOUND (synthesized via Web Audio API) ──────────
+function playPageFlip() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const buf = ctx.createBuffer(1, Math.floor(ctx.sampleRate * 0.16), ctx.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < data.length; i++) {
+      const t = i / data.length;
+      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - t, 2.8) * 0.15;
+    }
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+    const bpf = ctx.createBiquadFilter();
+    bpf.type = "bandpass"; bpf.frequency.value = 3600; bpf.Q.value = 0.35;
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.8, 0); gain.gain.exponentialRampToValueAtTime(0.001, 0.18);
+    src.connect(bpf); bpf.connect(gain); gain.connect(ctx.destination);
+    src.start();
+    setTimeout(() => ctx.close(), 500);
+  } catch(_) {}
+}
+
+const UAE_STATS = [
+  { val:"180,000+", lbl:"New companies registered in UAE — 2025" },
+  { val:"AED 0",    lbl:"Personal income tax in UAE" },
+  { val:"3 days",   lbl:"Fastest free zone setup (AFZ)" },
+  { val:"68+",      lbl:"Nationalities served by INCOZONE" },
+  { val:"100%",     lbl:"Foreign ownership allowed in most sectors" },
+  { val:"3,200+",   lbl:"Companies incorporated by INCOZONE" },
+  { val:"4.9 ★",    lbl:"INCOZONE average client rating" },
+  { val:"96%",      lbl:"INCOZONE client retention rate" },
+];
+
 // ─── REVEAL HOOK ──────────────────────────────────────────────
 function useReveal() {
   useEffect(() => {
@@ -763,19 +884,47 @@ export default function BlogPage({ onBack, onNavigate }) {
   const [_bgOpen, setbgOpen] = useState(false);
   const { blogPosts } = useContent();
 
-  const [scrolled, setScrolled]     = useState(false);
-  const [activeCat, setActiveCat]   = useState("All");
-  const [activeArt, setActiveArt]   = useState(null);
-  const [folded, setFolded]         = useState(true);
+  const [scrolled, setScrolled]       = useState(false);
+  const [activeCat, setActiveCat]     = useState("All");
+  const [activeArt, setActiveArt]     = useState(null);
+  const [folded, setFolded]           = useState(true);
+  const [featuredIdx, setFeaturedIdx] = useState(0);
+  const [featSlide, setFeatSlide]     = useState("visible"); // visible | exiting | entering
+  const [statIdx, setStatIdx]         = useState(0);
+  const [statFade, setStatFade]       = useState(true);
   useReveal();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    // Paper unfold on mount
-    setTimeout(() => setFolded(false), 50);
+    setTimeout(() => { setFolded(false); playPageFlip(); }, 50);
     const h = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", h);
     return () => window.removeEventListener("scroll", h);
+  }, []);
+
+  // Reset carousel when category changes
+  useEffect(() => { setFeaturedIdx(0); setFeatSlide("visible"); }, [activeCat]);
+
+  // Auto-rotate featured article every 4 s
+  useEffect(() => {
+    const t = setInterval(() => {
+      setFeatSlide("exiting");
+      setTimeout(() => {
+        setFeaturedIdx(i => (i + 1) % Math.min(5, allArticles.length || 1));
+        setFeatSlide("entering");
+        setTimeout(() => setFeatSlide("visible"), 60);
+      }, 320);
+    }, 4000);
+    return () => clearInterval(t);
+  }, [allArticles.length]);
+
+  // Auto-rotate UAE stat every 3 s
+  useEffect(() => {
+    const t = setInterval(() => {
+      setStatFade(false);
+      setTimeout(() => { setStatIdx(i => (i + 1) % UAE_STATS.length); setStatFade(true); }, 300);
+    }, 3200);
+    return () => clearInterval(t);
   }, []);
 
   // Map admin blog posts to article format, fall back to hardcoded ARTICLES
@@ -803,12 +952,17 @@ export default function BlogPage({ onBack, onNavigate }) {
     ? allArticles
     : allArticles.filter(a => a.cat === activeCat);
 
-  const featured   = filtered[0];
+  const carouselMax = Math.min(5, filtered.length);
+  const featured   = filtered[featuredIdx % Math.max(1, carouselMax)] || filtered[0];
   const sideLeft   = filtered.slice(1, 3);
   const sideRight  = filtered.slice(3, 5);
   const belowFold  = filtered.slice(1, 5);
+  const secondEd   = filtered.slice(4, 8);
   const opinion    = filtered[5] || filtered[0];
   const digest     = filtered.slice(5, 9).length >= 3 ? filtered.slice(5, 9) : filtered.slice(0, 4);
+  const specialArt = filtered[7] || filtered[6] || filtered[0];
+
+  const openArticle = (art) => { playPageFlip(); setActiveArt(art); };
 
   const today = new Date().toLocaleDateString("en-GB", { weekday:"long", day:"numeric", month:"long", year:"numeric" });
 
@@ -924,7 +1078,8 @@ export default function BlogPage({ onBack, onNavigate }) {
               <div className="bg-datebox-info">
                 Dubai: 31°C Sunny<br/>
                 AED/USD: 3.6725<br/>
-                Brent: $76.40/bbl
+                Brent: $76.40/bbl<br/>
+                FTSE: 8,247.35
               </div>
             </div>
 
@@ -934,7 +1089,7 @@ export default function BlogPage({ onBack, onNavigate }) {
             </div>
 
             {sideLeft.map((art, i) => (
-              <div className={`bg-side-story bg-reveal bg-d${i+1}`} key={art.id} onClick={() => setActiveArt(art)}>
+              <div className={`bg-side-story bg-reveal bg-d${i+1}`} key={art.id} onClick={() => openArticle(art)}>
                 {art.imageUrl && <img src={art.imageUrl} alt={art.title} style={{width:"100%",aspectRatio:"16/7",objectFit:"cover",display:"block",marginBottom:"10px"}} />}
                 <span className="bg-side-story-cat">{art.cat}</span>
                 <div className="bg-side-story-title">{art.title}</div>
@@ -943,62 +1098,100 @@ export default function BlogPage({ onBack, onNavigate }) {
               </div>
             ))}
 
-            {/* Small pull quote box */}
-            <div className="bg-reveal bg-d3" style={{marginTop:"24px",padding:"18px 0",borderTop:"2px solid var(--ink)"}}>
-              <p style={{fontFamily:"var(--fd)",fontSize:"1rem",fontStyle:"italic",color:"var(--ink2)",lineHeight:1.5}}>
-                "The UAE received more new business registrations in 2025 than the entire previous five years combined."
-              </p>
-              <span style={{fontFamily:"var(--fs)",fontSize:".58rem",letterSpacing:".16em",textTransform:"uppercase",color:"var(--ink4)",display:"block",marginTop:"10px"}}>— DED Annual Report, 2025</span>
+            {/* Market Watch */}
+            <div className="bg-market-watch bg-reveal bg-d3">
+              <div className="bg-market-title">Market Watch</div>
+              {[
+                { label:"AED / USD",    val:"3.6725", chg:"+0.01%", up:true },
+                { label:"Brent Crude",  val:"$76.40", chg:"-0.8%",  up:false },
+                { label:"Gold",         val:"$2,341", chg:"+0.4%",  up:true },
+                { label:"UAE Corp Tax", val:"9%",     chg:"QFZP: 0%", up:true },
+              ].map(r => (
+                <div className="bg-market-row" key={r.label}>
+                  <span className="bg-market-label">{r.label}</span>
+                  <span className="bg-market-val">{r.val}</span>
+                  <span className={`bg-market-chg ${r.up ? "up":"dn"}`}>{r.chg}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Rotating UAE stat */}
+            <div className="bg-stat-rotator bg-reveal bg-d4" style={{opacity: statFade ? 1 : 0}}>
+              <span className="bg-stat-num">{UAE_STATS[statIdx].val}</span>
+              <span className="bg-stat-lbl">{UAE_STATS[statIdx].lbl}</span>
+            </div>
+
+            {/* Editorial note */}
+            <div className="bg-editorial-note bg-reveal">
+              <div className="bg-editorial-ornament">❧</div>
+              <p className="bg-editorial-text">"The right UAE structure is decided once. Every subsequent cost, every banking approval, every government interaction flows from that first decision."</p>
+              <span className="bg-editorial-cite">— INCOZONE Advisory, est. 2012</span>
             </div>
           </div>
 
           {/* COLUMN RULE */}
           <div className="bg-col-rule" />
 
-          {/* CENTER COLUMN — HEADLINE */}
+          {/* CENTER COLUMN — AUTO-ROTATING FEATURED */}
           {featured && (
             <div className="bg-col-center">
-              <div className="bg-section-label bg-reveal">
-                Today's Lead
-                <span className="bg-section-label-tag">FEATURED</span>
+              <div className="bg-section-label bg-reveal" style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+                <span>Today's Lead <span className="bg-section-label-tag">FEATURED</span></span>
+                <span style={{fontFamily:"var(--fs)",fontSize:".54rem",color:"var(--ink4)",letterSpacing:".1em"}}>
+                  {featuredIdx + 1} / {carouselMax}
+                </span>
               </div>
-              <div className="bg-headline-story bg-reveal" onClick={() => setActiveArt(featured)}>
-                <span className="bg-headline-kicker">{featured.kicker} · {featured.cat}</span>
-                <h2 className="bg-headline-h1">{featured.title}</h2>
-                <div className="bg-headline-img">
-                  {featured.imageUrl
-                    ? <img src={featured.imageUrl} alt={featured.imgLabel || featured.title} style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",zIndex:1}} />
-                    : <span className="bg-headline-img-label">{featured.imgLabel}</span>
-                  }
+
+              <div className="bg-featured-wrap">
+                <div className={`bg-featured-slide ${featSlide}`}>
+                  <div className="bg-headline-story" onClick={() => openArticle(featured)}>
+                    <span className="bg-headline-kicker">{featured.kicker} · {featured.cat}</span>
+                    <h2 className="bg-headline-h1">{featured.title}</h2>
+                    <div className="bg-headline-img">
+                      {featured.imageUrl
+                        ? <img src={featured.imageUrl} alt={featured.imgLabel || featured.title} style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",zIndex:1}} />
+                        : <span className="bg-headline-img-label">{featured.imgLabel}</span>
+                      }
+                    </div>
+                    <p className="bg-headline-deck">{featured.deck}</p>
+                    <div className="bg-headline-byline">By {featured.author} · {featured.date} · {featured.readTime}</div>
+                  </div>
+
+                  <div className="bg-body-cols" style={{marginTop:"20px"}}>
+                    <p>{featured.body[0]}</p>
+                    <p>{featured.body[1]}</p>
+                  </div>
+
+                  {featured.pullQuote && (
+                    <div className="bg-pull-quote">
+                      "{featured.pullQuote}"
+                      <cite>— {featured.author}, INCOZONE</cite>
+                    </div>
+                  )}
+
+                  <div className="bg-body-cols" style={{marginTop:"0"}}>
+                    <p>{featured.body[2]}</p>
+                  </div>
+
+                  <div style={{marginTop:"18px",paddingTop:"14px",borderTop:"1px solid var(--rule)",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+                    <button onClick={() => openArticle(featured)}
+                      style={{fontFamily:"var(--fs)",fontSize:".65rem",letterSpacing:".18em",textTransform:"uppercase",background:"none",border:"none",cursor:"pointer",color:"var(--red)",padding:0}}>
+                      Continue Reading →
+                    </button>
+                  </div>
                 </div>
-                <p className="bg-headline-deck">{featured.deck}</p>
-                <div className="bg-headline-byline">By {featured.author} · {featured.date} · {featured.readTime}</div>
               </div>
 
-              {/* Body copy, 2-col newspaper style */}
-              <div className="bg-body-cols bg-reveal bg-d2" style={{marginTop:"20px"}}>
-                <p>{featured.body[0]}</p>
-                <p>{featured.body[1]}</p>
-              </div>
-
-              {/* Pull quote */}
-              <div className="bg-pull-quote bg-reveal bg-d3">
-                "{featured.pullQuote}"
-                <cite>— {featured.author}, INCOZONE</cite>
-              </div>
-
-              <div className="bg-body-cols bg-reveal bg-d4" style={{marginTop:"0"}}>
-                <p>{featured.body[2]}</p>
-              </div>
-
-              <div className="bg-reveal bg-d4" style={{marginTop:"18px",paddingTop:"14px",borderTop:"1px solid var(--rule)"}}>
-                <button
-                  onClick={() => setActiveArt(featured)}
-                  style={{fontFamily:"var(--fs)",fontSize:".65rem",letterSpacing:".18em",textTransform:"uppercase",background:"none",border:"none",cursor:"pointer",color:"var(--red)",padding:0,display:"flex",alignItems:"center",gap:"8px"}}
-                >
-                  Continue Reading →
-                </button>
-              </div>
+              {/* Carousel progress dots */}
+              {carouselMax > 1 && (
+                <div className="bg-progress-dots">
+                  {Array.from({length: carouselMax}).map((_, i) => (
+                    <button key={i} className={`bg-dot${i === featuredIdx ? " active" : ""}`}
+                      onClick={() => { setFeatSlide("exiting"); setTimeout(() => { setFeaturedIdx(i); setFeatSlide("entering"); setTimeout(() => setFeatSlide("visible"), 60); }, 320); }}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
@@ -1013,7 +1206,7 @@ export default function BlogPage({ onBack, onNavigate }) {
             </div>
 
             {sideRight.map((art, i) => (
-              <div className={`bg-side-story bg-reveal bg-d${i+1}`} key={art.id} onClick={() => setActiveArt(art)}>
+              <div className={`bg-side-story bg-reveal bg-d${i+1}`} key={art.id} onClick={() => openArticle(art)}>
                 {art.imageUrl && <img src={art.imageUrl} alt={art.title} style={{width:"100%",aspectRatio:"16/7",objectFit:"cover",display:"block",marginBottom:"10px"}} />}
                 <span className="bg-side-story-cat">{art.cat}</span>
                 <div className="bg-side-story-title">{art.title}</div>
@@ -1022,15 +1215,42 @@ export default function BlogPage({ onBack, onNavigate }) {
               </div>
             ))}
 
-            {/* Advert-style box */}
-            <div className="bg-reveal bg-d3" style={{marginTop:"24px",background:"var(--ink)",color:"var(--paper)",padding:"22px 18px",textAlign:"center"}}>
-              <div style={{fontFamily:"var(--ff)",fontSize:"1.4rem",marginBottom:"8px"}}>Free Consultation</div>
+            {/* Trending Topics tag cloud */}
+            <div className="bg-tag-cloud bg-reveal bg-d3">
+              <div className="bg-tag-cloud-title">Trending Topics</div>
+              <div className="bg-tags">
+                {CATS.filter(c => c !== "All").map(cat => {
+                  const count = allArticles.filter(a => a.cat === cat).length;
+                  if (!count) return null;
+                  return (
+                    <button key={cat} className={`bg-tag${activeCat === cat ? " active" : ""}`}
+                      onClick={() => setActiveCat(activeCat === cat ? "All" : cat)}>
+                      {cat}<span className="bg-tag-count">{count}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Private Advisory CTA */}
+            <div className="bg-reveal bg-d4" style={{marginTop:"20px",background:"var(--ink)",color:"var(--paper)",padding:"22px 18px",textAlign:"center"}}>
+              <div style={{fontFamily:"var(--fs)",fontSize:".52rem",letterSpacing:".22em",textTransform:"uppercase",opacity:.5,marginBottom:"10px"}}>Private Advisory</div>
+              <div style={{fontFamily:"var(--ff)",fontSize:"1.35rem",marginBottom:"8px",lineHeight:1.2}}>Free Consultation</div>
               <p style={{fontFamily:"var(--fb)",fontSize:".72rem",color:"rgba(245,240,232,.7)",lineHeight:1.6,marginBottom:"14px",fontStyle:"italic"}}>
-                Schedule a private advisory session with an INCOZONE specialist.
+                30 minutes with a senior INCOZONE advisor. Structured, no obligation.
               </p>
-              <button style={{fontFamily:"var(--fs)",fontSize:".6rem",letterSpacing:".18em",textTransform:"uppercase",background:"var(--gold)",color:"var(--ink)",border:"none",padding:"9px 20px",cursor:"pointer",fontWeight:700}}>
+              <button onClick={() => onNavigate && onNavigate("schedule")}
+                style={{fontFamily:"var(--fs)",fontSize:".6rem",letterSpacing:".18em",textTransform:"uppercase",background:"var(--gold)",color:"var(--ink)",border:"none",padding:"9px 20px",cursor:"pointer",fontWeight:700,width:"100%"}}>
                 Book Now →
               </button>
+            </div>
+
+            {/* Editor's note */}
+            <div className="bg-reveal" style={{marginTop:"20px",padding:"14px 0",borderTop:"1px solid var(--rule)"}}>
+              <div style={{fontFamily:"var(--fs)",fontSize:".54rem",letterSpacing:".2em",textTransform:"uppercase",color:"var(--ink4)",marginBottom:"8px"}}>Editor's Note</div>
+              <p style={{fontFamily:"var(--fd)",fontSize:".88rem",fontStyle:"italic",color:"var(--ink3)",lineHeight:1.6}}>
+                All editorial content is verified against UAE authority publications and updated quarterly. Formation costs and timelines reflect 2026 government fee schedules.
+              </p>
             </div>
           </div>
         </div>
@@ -1044,7 +1264,7 @@ export default function BlogPage({ onBack, onNavigate }) {
         </div>
         <div className="bg-below-fold">
           {belowFold.map((art, i) => (
-            <div className={`bg-bf-card bg-reveal bg-d${i+1}`} key={art.id} onClick={() => setActiveArt(art)}>
+            <div className={`bg-bf-card bg-reveal bg-d${i+1}`} key={art.id} onClick={() => openArticle(art)}>
               <div className="bg-bf-img">
                 {art.imageUrl && <img src={art.imageUrl} alt={art.title} style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",zIndex:1}} />}
               </div>
@@ -1055,6 +1275,54 @@ export default function BlogPage({ onBack, onNavigate }) {
             </div>
           ))}
         </div>
+
+        {/* ══ SECOND EDITION ════════════════════════════════════ */}
+        {secondEd.length > 0 && (
+          <>
+            <div style={{padding:"8px 60px 0",borderBottom:"2px solid var(--ink)"}}>
+              <div className="bg-section-label bg-reveal" style={{marginBottom:"0"}}>
+                Second Edition
+                <span className="bg-section-label-tag">CONTINUED COVERAGE</span>
+              </div>
+            </div>
+            <div className="bg-second-ed">
+              {secondEd.map((art, i) => (
+                <div className={`bg-se-card bg-reveal bg-d${i+1}`} key={art.id} onClick={() => openArticle(art)}>
+                  {art.imageUrl && (
+                    <div style={{width:"100%",height:"110px",overflow:"hidden",marginBottom:"10px",position:"relative"}}>
+                      <img src={art.imageUrl} alt={art.title}
+                        style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}} />
+                    </div>
+                  )}
+                  <span style={{fontFamily:"var(--fs)",fontSize:".54rem",letterSpacing:".18em",textTransform:"uppercase",color:"var(--red)",display:"block",marginBottom:"6px"}}>{art.cat}</span>
+                  <div style={{fontFamily:"'Cormorant Garamond',Georgia,serif",fontSize:"1.05rem",fontWeight:700,lineHeight:1.25,color:"var(--ink)",marginBottom:"8px"}}>{art.title}</div>
+                  <p style={{fontFamily:"var(--fd)",fontSize:".82rem",color:"var(--ink3)",lineHeight:1.55,margin:0}}>{art.deck.substring(0,80)}…</p>
+                  <div style={{fontFamily:"var(--fs)",fontSize:".58rem",letterSpacing:".12em",textTransform:"uppercase",color:"var(--ink4)",marginTop:"10px"}}>{art.author} · {art.readTime}</div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* ══ SPECIAL REPORT BAND ═══════════════════════════════ */}
+        {specialArt && (
+          <div className="bg-special-band" onClick={() => openArticle(specialArt)}>
+            <div style={{display:"flex",alignItems:"center",gap:"18px",flexWrap:"wrap"}}>
+              <span style={{fontFamily:"var(--fs)",fontSize:".6rem",letterSpacing:".22em",textTransform:"uppercase",background:"var(--paper)",color:"var(--red)",padding:"4px 10px",fontWeight:700,flexShrink:0}}>
+                Special Report
+              </span>
+              <div style={{fontFamily:"'Cormorant Garamond',Georgia,serif",fontSize:"1.3rem",fontWeight:700,lineHeight:1.2,flex:1,minWidth:"200px"}}>
+                {specialArt.title}
+              </div>
+              <div style={{fontFamily:"var(--fd)",fontSize:".85rem",opacity:.85,flex:2,minWidth:"200px",lineHeight:1.5}}>
+                {specialArt.deck.substring(0,120)}…
+              </div>
+              <span style={{fontFamily:"var(--fs)",fontSize:".62rem",letterSpacing:".14em",textTransform:"uppercase",opacity:.7,flexShrink:0,cursor:"pointer"}}>
+                Read Full Report →
+              </span>
+            </div>
+          </div>
+        )}
 
         {/* ══ OPINION + DIGEST ══════════════════════════════════ */}
         <div style={{padding:"8px 60px 0",borderBottom:"2px solid var(--ink)"}}>
@@ -1072,9 +1340,9 @@ export default function BlogPage({ onBack, onNavigate }) {
                 <div style={{marginTop:"2px"}}>Senior Advisor, INCOZONE</div>
               </div>
             </div>
-            <div className="bg-opinion-title" onClick={() => setActiveArt(opinion)}>{opinion.title}</div>
+            <div className="bg-opinion-title" onClick={() => openArticle(opinion)}>{opinion.title}</div>
             <p className="bg-opinion-body">{opinion.deck}</p>
-            <button onClick={() => setActiveArt(opinion)} style={{fontFamily:"var(--fs)",fontSize:".6rem",letterSpacing:".16em",textTransform:"uppercase",background:"none",border:"none",cursor:"pointer",color:"var(--red)",padding:"12px 0 0",display:"flex",alignItems:"center",gap:"8px"}}>
+            <button onClick={() => openArticle(opinion)} style={{fontFamily:"var(--fs)",fontSize:".6rem",letterSpacing:".16em",textTransform:"uppercase",background:"none",border:"none",cursor:"pointer",color:"var(--red)",padding:"12px 0 0",display:"flex",alignItems:"center",gap:"8px"}}>
               Read Full Column →
             </button>
           </div>
@@ -1085,7 +1353,7 @@ export default function BlogPage({ onBack, onNavigate }) {
           <div className="bg-digest bg-reveal bg-d2">
             <div className="bg-section-label" style={{marginBottom:"16px"}}>Most Read</div>
             {digest.map((art, i) => (
-              <div className="bg-digest-item" key={art.id} onClick={() => setActiveArt(art)}>
+              <div className="bg-digest-item" key={art.id} onClick={() => openArticle(art)}>
                 <div className="bg-digest-item-num">{i+1}</div>
                 <div className="bg-digest-item-title">{art.title}</div>
                 <div className="bg-digest-item-meta" style={{marginTop:"4px"}}>{art.cat} · {art.readTime}</div>

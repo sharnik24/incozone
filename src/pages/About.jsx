@@ -1058,7 +1058,7 @@ export default function AboutPage({ onBack, onNavigate }) {
           {AB_TEAM.map((m, i) => (
             <div className={`ab-team-card ab-reveal ab-d${i+1}`} key={i}>
               {m.imageUrl
-                ? <img src={m.imageUrl} alt={m.name} style={{width:"100%",height:"180px",objectFit:"cover",marginBottom:"16px",borderRadius:"4px"}} onError={e=>{e.target.style.display="none";e.target.nextSibling.style.display="flex";}} />
+                ? <img src={m.imageUrl} alt={m.name} style={{width:"120px",height:"120px",objectFit:"cover",objectPosition:"center top",borderRadius:"50%",border:"1.5px solid rgba(201,168,76,.25)",marginBottom:"24px",display:"block",flexShrink:0}} onError={e=>{e.target.style.display="none";e.target.nextSibling.style.display="flex";}} />
                 : null
               }
               {(!m.imageUrl) && <div className="ab-team-avatar">{m.initial}</div>}

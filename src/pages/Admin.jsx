@@ -13,59 +13,36 @@ const CRM_REPO = "sharnik24/incozone-crm";
 // Retrieve stored GitHub token (set on first login)
 const getToken = () => sessionStorage.getItem("gh_token") || "";
 
-// Commit content.json to GitHub → triggers Vercel redeploy
+// Save content.json via server-side API → triggers Vercel redeploy
+// Token is in Vercel env var GITHUB_TOKEN — no browser token needed
 async function pushContent(contentObj) {
-  const token = getToken();
-  if (!token) throw new Error("No GitHub token");
-
-  // Get current file SHA (required for update)
-  const info = await fetch(GH_API, {
-    headers: { Authorization: `token ${token}`, Accept: "application/vnd.github.v3+json" },
-  }).then(r => r.json());
-
-  const sha = info.sha;
-  const body = JSON.stringify(contentObj, null, 2);
-  const encoded = btoa(unescape(encodeURIComponent(body)));
-
-  const res = await fetch(GH_API, {
-    method: "PUT",
-    headers: {
-      Authorization: `token ${token}`,
-      Accept: "application/vnd.github.v3+json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      message: "CMS: update site content",
-      content: encoded,
-      sha,
-    }),
+  const res = await fetch("/api/save-content", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(contentObj),
   });
-  if (!res.ok) throw new Error("GitHub push failed: " + res.status);
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(json.error || "Save failed: " + res.status);
 }
 
-// Upload an image file to GitHub → public/images/cms/
+// Upload an image via server-side API → public/images/cms/
 async function uploadImage(file) {
-  const token = getToken();
-  if (!token) throw new Error("No GitHub token");
-  const ext = file.name.split(".").pop();
-  const fname = `${Date.now()}.${ext}`;
-  const GH_IMG = `https://api.github.com/repos/${GH_REPO}/contents/public/images/cms/${fname}`;
-  const base64 = await new Promise((res, rej) => {
+  const ext    = file.name.split(".").pop();
+  const fname  = `${Date.now()}.${ext}`;
+  const base64 = await new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onload = () => res(reader.result.split(",")[1]);
-    reader.onerror = rej;
+    reader.onload  = () => resolve(reader.result.split(",")[1]);
+    reader.onerror = reject;
     reader.readAsDataURL(file);
   });
-  const existing = await fetch(GH_IMG, { headers: { Authorization: `token ${token}` } }).then(r => r.ok ? r.json() : null);
-  const body = { message: `CMS: upload image ${fname}`, content: base64 };
-  if (existing?.sha) body.sha = existing.sha;
-  const res = await fetch(GH_IMG, {
-    method: "PUT",
-    headers: { Authorization: `token ${token}`, Accept: "application/vnd.github.v3+json", "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+  const res = await fetch("/api/upload-image", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ filename: fname, content: base64 }),
   });
-  if (!res.ok) throw new Error("Image upload failed: " + res.status);
-  return `/images/cms/${fname}`;
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(json.error || "Image upload failed: " + res.status);
+  return json.path || `/images/cms/${fname}`;
 }
 
 // Push CRM data (enquiries.json or consultations.json) to private GitHub CRM repo
@@ -1407,19 +1384,22 @@ function BlogSection({ d, oc }) {
             </div>
           </div>
           <div className="card-body">
+            {/* ── Metadata ── */}
             <div className="g3">
               <F label="Category">
-                <Sel value={post.cat} onChange={e=>u("cat",e.target.value)} opts={CATS} />
+                <Sel value={post.cat||""} onChange={e=>u("cat",e.target.value)} opts={CATS} />
               </F>
-              <F label="Author"><Inp value={post.author} onChange={e=>u("author",e.target.value)} /></F>
-              <F label="Publish Date"><Inp value={post.date} onChange={e=>u("date",e.target.value)} /></F>
+              <F label="Author"><Inp value={post.author||""} onChange={e=>u("author",e.target.value)} /></F>
+              <F label="Publish Date"><Inp value={post.date||""} onChange={e=>u("date",e.target.value)} placeholder="April 18, 2026" /></F>
+              <F label="Read Time" hint='e.g. "6 min read"'><Inp value={post.readTime||""} onChange={e=>u("readTime",e.target.value)} placeholder="5 min read" /></F>
+              <F label="Kicker Label" hint='e.g. "EXCLUSIVE ANALYSIS"'><Inp value={post.kicker||""} onChange={e=>u("kicker",e.target.value)} placeholder="FEATURED" /></F>
               <F label="Status">
-                <Sel value={post.status} onChange={e=>u("status",e.target.value)}>
+                <Sel value={post.status||"draft"} onChange={e=>u("status",e.target.value)}>
                   <option value="draft">Draft</option>
                   <option value="published">Published</option>
                 </Sel>
               </F>
-              <F label="Featured Article">
+              <F label="Featured Article" full>
                 <div className="toggle-wrap">
                   <label className="toggle">
                     <input type="checkbox" checked={!!post.featured} onChange={e=>u("featured",e.target.checked)} />
@@ -1430,19 +1410,54 @@ function BlogSection({ d, oc }) {
                 </div>
               </F>
             </div>
+
+            <div className="divider" />
+
+            {/* ── Core content ── */}
             <F label="Article Title">
-              <CharTa value={post.title} onChange={e=>u("title",e.target.value)} max={120} style={{minHeight:52}} />
+              <CharTa value={post.title||""} onChange={e=>u("title",e.target.value)} max={120} style={{minHeight:52}} />
             </F>
-            <F label="Excerpt / Deck" hint="Shown on blog index cards and meta description">
-              <CharTa value={post.excerpt} onChange={e=>u("excerpt",e.target.value)} max={240} />
+            <F label="Excerpt / Deck" hint="Shown on blog index cards and in Google search results">
+              <CharTa value={post.excerpt||post.deck||""} onChange={e=>u("excerpt",e.target.value)} max={280} />
             </F>
+            <F label="Image Caption / Label" hint="Descriptive label shown under the article hero image">
+              <Inp value={post.imgLabel||""} onChange={e=>u("imgLabel",e.target.value)} placeholder="Dubai Skyline · DMCC Headquarters" />
+            </F>
+
+            <div className="divider" />
+
+            {/* ── Article body ── */}
+            <F label="Article Body — Part 1" hint="Write full paragraphs. Separate paragraphs with a blank line (press Enter twice). This is the main article content shown to readers.">
+              <Ta
+                value={Array.isArray(post.body) ? post.body.join("\n\n") : (post.body||"")}
+                onChange={e => u("body", e.target.value.split(/\n{2,}/).map(p=>p.trim()).filter(Boolean))}
+                style={{minHeight:260,lineHeight:1.7}}
+              />
+              <div className="hint" style={{marginTop:4}}>
+                {(Array.isArray(post.body) ? post.body : (post.body||"").split(/\n{2,}/)).filter(Boolean).length} paragraph(s)
+              </div>
+            </F>
+            <F label="Pull Quote" hint="Highlighted quote shown mid-article in large italic text">
+              <Inp value={post.pullQuote||""} onChange={e=>u("pullQuote",e.target.value)} placeholder='"Your most compelling insight from the article."' />
+            </F>
+            <F label="Subheading (optional)" hint="Shown as a bold heading before Part 2">
+              <Inp value={post.subhead||""} onChange={e=>u("subhead",e.target.value)} placeholder="Section heading..." />
+            </F>
+            <F label="Article Body — Part 2 (optional)" hint="Continuation after the subheading. Separate paragraphs with a blank line.">
+              <Ta
+                value={Array.isArray(post.body2) ? post.body2.join("\n\n") : (post.body2||"")}
+                onChange={e => u("body2", e.target.value ? e.target.value.split(/\n{2,}/).map(p=>p.trim()).filter(Boolean) : [])}
+                style={{minHeight:140,lineHeight:1.7}}
+              />
+            </F>
+
             <div className="preview">
               <div className="preview-lbl">Card Preview</div>
               <span className="tag">{post.cat}</span>
               {post.featured && <span className="tag" style={{background:"var(--purfaint)",color:"var(--pur)"}}>Featured</span>}
               <div className="preview-h" style={{marginTop:"8px",fontSize:"1.2rem"}}>{post.title}</div>
-              <div className="preview-p" style={{marginTop:"5px"}}>{post.excerpt}</div>
-              <div style={{fontSize:".63rem",color:"var(--txt3)",marginTop:"8px"}}>{post.author} · {post.date}</div>
+              <div className="preview-p" style={{marginTop:"5px"}}>{post.excerpt||post.deck}</div>
+              <div style={{fontSize:".63rem",color:"var(--txt3)",marginTop:"8px"}}>{post.author} · {post.date} · {post.readTime||"5 min read"}</div>
             </div>
           </div>
         </div>
@@ -1664,12 +1679,7 @@ export default function AdminPage() {
       })
       .catch(err => {
         setSaving(false);
-        if (err.message.includes("No GitHub token")) {
-          setPassErr("Enter your GitHub token in the login screen first.");
-          setAuthed(false);
-        } else {
-          alert("Save failed: " + err.message);
-        }
+        alert("Save failed: " + err.message + "\n\nMake sure GITHUB_TOKEN is set in Vercel environment variables.");
       });
   };
 
@@ -1693,13 +1703,6 @@ export default function AdminPage() {
               value={pass} onChange={e=>{setPass(e.target.value);setPassErr("");}}
               onKeyDown={e=>e.key==="Enter"&&login()} autoFocus />
             {passErr && <span className="login-err">{passErr}</span>}
-          </div>
-          <div className="field">
-            <label className="lbl">GitHub Token <span style={{color:"var(--txt3)",fontWeight:400,textTransform:"none",letterSpacing:0}}>(required to publish changes)</span></label>
-            <input className="inp" type="password" placeholder="ghp_... or gho_..."
-              value={ghToken} onChange={e=>setGhToken(e.target.value)}
-              onKeyDown={e=>e.key==="Enter"&&login()} />
-            <div className="hint">Your GitHub personal access token with <strong>repo</strong> scope. Stored in session only, never saved.</div>
           </div>
           <button className="btn btn-p" style={{width:"100%",marginTop:4,justifyContent:"center",padding:"11px"}} onClick={login}>
             Access Dashboard →

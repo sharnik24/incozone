@@ -28,7 +28,7 @@ import OffshoreFormationPage from "./pages/OffshoreFormation";
 import CompanyLiquidationPage from "./pages/CompanyLiquidation";
 import FreeZoneIncorporationPage from "./pages/FreeZoneIncorporation";
 import CompanyAmendmentsPage from "./pages/CompanyAmendments";
-import heroBg from "./images/business-data-analysis.jpg";
+const heroVideo = "/hero_page_earth.mp4";
 import imgDMCC   from "./images/compressed/aerial-view-tall-skyscraper-city.webp";
 import imgIFZA   from "./images/compressed/futuristic-landscape-dubai.webp";
 import imgMeydan from "./images/compressed/dramatic-perspective-with-low-angle-view-skyscrapers-looking-up-sky-dubai-vanishing-point.webp";
@@ -38,8 +38,7 @@ import imgJAFZA  from "./images/compressed/bridge-with-city.webp";
 import imgAFZ    from "./images/compressed/landscape-with-colorful-rainbow-appearing-sky.webp";
 import imgADGM   from "./images/compressed/representation-ecology-sustainability.webp";
 
-// Preload hero image at module level so it's in browser cache before any navigation
-const _heroBgPreload = new Image(); _heroBgPreload.src = heroBg;
+
 
 // Preload all zone images immediately so cards render without flicker
 [imgDMCC, imgIFZA, imgMeydan, imgRAKEZ, imgSHAMS, imgJAFZA, imgAFZ, imgADGM].forEach(src => {
@@ -150,6 +149,11 @@ const CSS = `
     background: rgba(6, 14, 35, 0.72);
   }
   .hero-canvas { position: absolute; inset: 0; z-index: 0; }
+  .hero-video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: 0; pointer-events: none;
+    will-change: transform; transform: translateZ(0);
+  }
   .hero-content {
     position: relative; z-index: 2; max-width: 820px; text-align: center;
     opacity: 0; transform: translateY(28px);
@@ -1927,9 +1931,17 @@ export default function App() {
       {/* NAV — shared GlobalNav component */}
       <GlobalNav onNavigate={goPage} scrolled={scrolled} />
 
-      {/* HERO — dark navy with particles */}
-      <section className="hero" style={{ backgroundImage: `url(${heroBg})`, backgroundSize: "cover", backgroundPosition: "center" }}>
-        <HeroCanvas />
+      {/* HERO — full-bleed video background */}
+      <section className="hero">
+        <video
+          className="hero-video"
+          src={heroVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        />
         <div className="hero-content">
           <span className="hero-eyebrow">{content.hero.eyebrow}</span>
           <h1 className="hero-h1">{content.hero.headline.replace(content.hero.headlineItalic, "").trim()}<br /><em>{content.hero.headlineItalic}</em></h1>

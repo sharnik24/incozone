@@ -8,7 +8,6 @@ import { useContent } from "../context/ContentContext";
 // ═══════════════════════════════════════════════════════════════
 
 const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
 
 /* ─── RESET ─────────────────────────────────────────────────── */
 .bg-root *, .bg-root *::before, .bg-root *::after { box-sizing:border-box; margin:0; padding:0; }
@@ -1150,7 +1149,7 @@ export default function BlogPage({ onBack, onNavigate }) {
             </div>
 
             {/* More articles — fill left column */}
-            {allArticles.slice(2).map((art, i) => (
+            {allArticles.slice(6).map((art, i) => (
               <div key={`lx-${art.id}`} onClick={() => openArticle(art)}
                 style={{borderTop:"1px solid var(--rule)",paddingTop:"14px",marginTop:"14px",cursor:"pointer"}}>
                 <span style={{fontFamily:"var(--fs)",fontSize:".54rem",letterSpacing:".16em",textTransform:"uppercase",color:"var(--red)",display:"block",marginBottom:"5px"}}>{art.cat}</span>
@@ -1224,6 +1223,38 @@ export default function BlogPage({ onBack, onNavigate }) {
                   ))}
                 </div>
               )}
+
+              {/* Also In This Edition — fill center column */}
+              {allArticles.slice(2, 5).length > 0 && (
+                <div style={{marginTop:"24px",borderTop:"2px solid var(--ink)"}}>
+                  <div className="bg-section-label bg-reveal" style={{marginBottom:"14px"}}>
+                    Also In This Edition
+                    <span className="bg-section-label-tag">MORE</span>
+                  </div>
+                  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"0 20px"}}>
+                    {allArticles.slice(2, 5).map((art, i) => (
+                      <div key={`cx-${art.id}`} onClick={() => openArticle(art)}
+                        style={{borderTop:"1px solid var(--rule)",paddingTop:"13px",marginBottom:"16px",cursor:"pointer",gridColumn: i === 2 ? "1 / -1" : "auto"}}>
+                        <span style={{fontFamily:"var(--fs)",fontSize:".52rem",letterSpacing:".16em",textTransform:"uppercase",color:"var(--red)",display:"block",marginBottom:"5px"}}>{art.cat}</span>
+                        <div style={{fontFamily:"var(--fd)",fontSize:i === 2 ? ".82rem" : ".9rem",fontWeight:700,lineHeight:1.25,color:"var(--ink)",marginBottom:"6px"}}>{art.title}</div>
+                        <p style={{fontFamily:"var(--fb)",fontSize:".72rem",color:"var(--ink3)",lineHeight:1.5,margin:"0 0 6px"}}>{(art.deck||"").substring(0, i === 2 ? 120 : 90)}…</p>
+                        <span style={{fontFamily:"var(--fs)",fontSize:".57rem",color:"var(--ink4)",letterSpacing:".08em"}}>{art.author} · {art.date}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Opinion / Analysis spotlight */}
+              {allArticles.slice(5, 6).map(art => (
+                <div key={`co-${art.id}`} onClick={() => openArticle(art)}
+                  style={{marginTop:"4px",background:"var(--ink)",color:"var(--paper)",padding:"18px 16px",cursor:"pointer"}}>
+                  <div style={{fontFamily:"var(--fs)",fontSize:".5rem",letterSpacing:".22em",textTransform:"uppercase",opacity:.5,marginBottom:"8px"}}>Analysis</div>
+                  <div style={{fontFamily:"var(--fd)",fontSize:"1rem",fontWeight:700,lineHeight:1.3,marginBottom:"8px"}}>{art.title}</div>
+                  <p style={{fontFamily:"var(--fb)",fontSize:".72rem",color:"rgba(245,240,232,.75)",lineHeight:1.55,margin:"0 0 10px",fontStyle:"italic"}}>{(art.deck||"").substring(0,110)}…</p>
+                  <span style={{fontFamily:"var(--fs)",fontSize:".56rem",letterSpacing:".1em",color:"var(--gold)"}}>Read Analysis →</span>
+                </div>
+              ))}
             </div>
           )}
 
@@ -1286,15 +1317,21 @@ export default function BlogPage({ onBack, onNavigate }) {
             </div>
 
             {/* More articles — fill right column */}
-            {allArticles.slice(4).map((art, i) => (
-              <div key={`rx-${art.id}`} onClick={() => openArticle(art)}
-                style={{borderTop:"1px solid var(--rule)",paddingTop:"14px",marginTop:"14px",cursor:"pointer"}}>
-                <span style={{fontFamily:"var(--fs)",fontSize:".54rem",letterSpacing:".16em",textTransform:"uppercase",color:"var(--red)",display:"block",marginBottom:"5px"}}>{art.cat}</span>
-                <div style={{fontFamily:"var(--fd)",fontSize:".92rem",fontWeight:700,lineHeight:1.25,color:"var(--ink)",marginBottom:"6px"}}>{art.title}</div>
-                <p style={{fontFamily:"var(--fb)",fontSize:".74rem",color:"var(--ink3)",lineHeight:1.5,margin:"0 0 6px"}}>{(art.deck||"").substring(0,90)}…</p>
-                <span style={{fontFamily:"var(--fs)",fontSize:".58rem",color:"var(--ink4)",letterSpacing:".08em"}}>{art.author} · {art.date}</span>
+            <div style={{marginTop:"20px",borderTop:"2px solid var(--ink)"}}>
+              <div className="bg-section-label" style={{marginBottom:"12px"}}>
+                Further Reading
+                <span className="bg-section-label-tag">MORE</span>
               </div>
-            ))}
+              {allArticles.slice(5).map((art, i) => (
+                <div key={`rx-${art.id}`} onClick={() => openArticle(art)}
+                  style={{borderTop:"1px solid var(--rule)",paddingTop:"14px",marginTop:"14px",cursor:"pointer"}}>
+                  <span style={{fontFamily:"var(--fs)",fontSize:".54rem",letterSpacing:".16em",textTransform:"uppercase",color:"var(--red)",display:"block",marginBottom:"5px"}}>{art.cat}</span>
+                  <div style={{fontFamily:"var(--fd)",fontSize:".92rem",fontWeight:700,lineHeight:1.25,color:"var(--ink)",marginBottom:"6px"}}>{art.title}</div>
+                  <p style={{fontFamily:"var(--fb)",fontSize:".74rem",color:"var(--ink3)",lineHeight:1.5,margin:"0 0 6px"}}>{(art.deck||"").substring(0,90)}…</p>
+                  <span style={{fontFamily:"var(--fs)",fontSize:".58rem",color:"var(--ink4)",letterSpacing:".08em"}}>{art.author} · {art.date}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 

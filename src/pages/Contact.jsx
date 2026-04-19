@@ -7,7 +7,6 @@ import { useContent } from "../context/ContentContext";
 // ═══════════════════════════════════════════════════════════════
 
 const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap');
 
 .ct-root*,.ct-root*::before,.ct-root*::after{box-sizing:border-box;margin:0;padding:0}
 .ct-root{

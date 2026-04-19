@@ -7,7 +7,6 @@ import { ICreditCard, ITrendingUp, ICross, IBookOpen, ICompass, IWifi, ILeaf, IB
 // ═══════════════════════════════════════════════════════════════
 
 const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
 .sa-root*,.sa-root *::before,.sa-root *::after{box-sizing:border-box;margin:0;padding:0}
 .sa-root{--n950:#020b14;--n900:#05111e;--n800:#091928;--n750:#0c2033;--n700:#102540;--n600:#163354;--g400:#C9A84C;--g300:#D4B468;--g200:#E2CC98;--glow2:rgba(201,168,76,0.07);--cream-bg:#FAF6EE;--cream-100:#F4ECD8;--cream-200:#EDE0C4;--cream-ink:#1A120A;--cream-ink2:#3D2E1A;--cream-ink3:#7A6040;--cream-bdr:rgba(180,150,90,0.2);--w:#F8F5EE;--w80:rgba(248,245,238,0.80);--w60:rgba(248,245,238,0.60);--w30:rgba(248,245,238,0.30);--w12:rgba(248,245,238,0.12);--w06:rgba(248,245,238,0.06);--fd:'Cormorant Garamond',Georgia,serif;--fb:'DM Sans',system-ui,sans-serif;--ease:cubic-bezier(0.16,1,0.3,1);font-family:var(--fb);font-weight:300;line-height:1.6;color:var(--w);background:var(--n900);overflow-x:hidden;width:100%}
 .sa-nav{position:fixed;inset-inline:0;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:22px 60px;transition:background 0.5s,padding 0.4s,border-color 0.5s;border-bottom:1px solid transparent}

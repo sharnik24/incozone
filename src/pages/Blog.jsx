@@ -830,7 +830,7 @@ function ArticlePage({ article, onClose, onNavigate }) {
   }, []); // empty deps — only runs once on mount, never resets scroll
 
   return (
-    <div className="bg-root">
+    <div className="bg-root" data-lenis-prevent>
       <style>{CSS}</style>
 
       {/* NAV */}

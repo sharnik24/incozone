@@ -51,29 +51,13 @@ const CSS = `
   transform-origin: top center;
 }
 @keyframes paperUnfold {
-  0%  { transform: perspective(1200px) rotateX(-12deg) translateY(-20px); }
-  100%{ transform: perspective(1200px) rotateX(0deg) translateY(0); }
+  0%  { transform: perspective(1200px) rotateX(-12deg) translateY(-20px); opacity: 0.8; }
+  100%{ transform: none; opacity: 1; }
 }
 
-/* Article open: newspaper page-turn from right */
-.bg-article-enter {
-  animation: pageTurn 0.7s cubic-bezier(0.4,0,0.2,1) forwards;
-  transform-origin: left center;
-}
-@keyframes pageTurn {
-  0%  { transform: perspective(1400px) rotateY(-80deg) translateX(60px); opacity:0; }
-  60% { opacity:1; }
-  100%{ transform: perspective(1400px) rotateY(0deg) translateX(0); opacity:1; }
-}
-
-/* Article close: fold back */
-.bg-article-exit {
-  animation: pageFold 0.45s cubic-bezier(0.4,0,0.6,1) forwards;
-  transform-origin: left center;
-}
-@keyframes pageFold {
-  0%  { transform:perspective(1400px) rotateY(0deg); opacity:1; }
-  100%{ transform:perspective(1400px) rotateY(-80deg) translateX(60px); opacity:0; }
+/* Article overlay — no transforms on scroll container, only opacity */
+.bg-overlay-content {
+  transition: opacity 0.35s ease;
 }
 
 /* Ink stamp reveal for headlines */
@@ -494,7 +478,7 @@ const CSS = `
 .bg-se-meta { font-family:var(--fs); font-size:.56rem; color:var(--ink4); }
 
 /* ─── EXTRA COLUMN WIDGETS ──────────────────────────────────── */
-html { scroll-behavior:smooth; }
+html { scroll-behavior:auto; }
 .bg-zone-spotlight { margin-top:20px; border-top:1px solid var(--rule); padding-top:16px; }
 .bg-zone-name { font-family:var(--fd); font-size:1.1rem; font-weight:700; color:var(--ink); margin:8px 0 4px; }
 .bg-zone-desc { font-family:var(--fb); font-size:.75rem; color:var(--ink3); line-height:1.55; }
@@ -833,66 +817,73 @@ function useReveal() {
   useEffect(() => {}, []);
 }
 
-// ─── ARTICLE OVERLAY ──────────────────────────────────────────
-function ArticleOverlay({ article, onClose }) {
-  const [exiting, setExiting] = useState(false);
-
-  const handleClose = useCallback(() => {
-    setExiting(true);
-    setTimeout(onClose, 420);
-  }, [onClose]);
+// ─── ARTICLE PAGE (full page replace — normal window scroll) ───
+function ArticlePage({ article, onClose, onNavigate }) {
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
-    const handler = (e) => { if (e.key === "Escape") handleClose(); };
+    window.scrollTo(0, 0);
+    const handler = (e) => { if (e.key === "Escape") onCloseRef.current(); };
     window.addEventListener("keydown", handler);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", handler);
-    };
-  }, [handleClose]);
+    return () => window.removeEventListener("keydown", handler);
+  }, []); // empty deps — only runs once on mount, never resets scroll
 
   return (
-    <div className={`bg-overlay ${exiting ? "bg-article-exit" : "bg-article-enter"}`}>
-      <button className="bg-overlay-close" onClick={handleClose} aria-label="Close"></button>
-      <div className="bg-overlay-inner">
-        {/* Masthead strip inside article */}
-        <div style={{textAlign:"center",borderBottom:"3px double #0d0b08",paddingBottom:"14px",marginBottom:"28px"}}>
-          <span style={{fontFamily:"'Cormorant Garamond',Georgia,serif",fontSize:"1.8rem",color:"var(--ink)"}}>The UAE Business Gazette</span>
-        </div>
+    <div className="bg-root">
+      <style>{CSS}</style>
 
-        <span className="bg-art-kicker ink-stamp">{article.kicker} · {article.cat}</span>
-        <h1 className="bg-art-h1 ink-stamp" style={{animationDelay:".05s"}}>{article.title}</h1>
-        <p className="bg-art-deck ink-stamp" style={{animationDelay:".1s"}}>{article.deck}</p>
-        <div className="bg-art-byline-row">
-          <div className="bg-art-byline">By <strong>{article.author}</strong> · INCOZONE Advisory</div>
-          <div className="bg-art-date">{article.date} · {article.readTime}</div>
+      {/* NAV */}
+      <nav className="bg-nav">
+        <div className="bg-nav-logo" onClick={()=>{if(onNavigate){onNavigate("home");window.scrollTo(0,0);}}}>INCO<em>ZONE</em></div>
+        <ul className="bg-nav-links">{["Services","Free Zones","About","Blog","Contact"].map(l=>{const m={"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};return <li key={l}><a href="#" onClick={e=>{e.preventDefault();if(onNavigate){onNavigate(m[l]);window.scrollTo(0,0);}}}>{l}</a></li>;})}</ul>
+        <div style={{display:"flex",alignItems:"center",gap:"16px"}}>
+          <button className="bg-back-btn" onClick={onClose}>← Back to Gazette</button>
         </div>
+      </nav>
 
-        <div className="bg-art-img ink-press">
-          {article.imageUrl
-            ? <img src={article.imageUrl} alt={article.imgLabel || article.title} style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}} />
-            : <div style={{position:"absolute",inset:0,background:"repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(13,11,8,.05) 28px,rgba(13,11,8,.05) 29px)"}}/>
-          }
-          {!article.imageUrl && <span className="bg-art-img-label" style={{position:"relative",zIndex:1,fontFamily:"var(--fb)",fontSize:".7rem",fontStyle:"italic",color:"var(--ink4)",textAlign:"center",padding:"0 40px"}}>{article.imgLabel}</span>}
-        </div>
-        <p className="bg-art-caption">{article.imageUrl ? (article.imgLabel || "") : "Illustration: INCOZONE Research Division"}</p>
-
-        <div className="bg-art-body">
-          {article.body.map((p, i) => <p key={i}>{p}</p>)}
-          <blockquote className="bg-art-pull">"{article.pullQuote}"</blockquote>
-          {article.subhead && <h3 className="bg-art-subhead">{article.subhead}</h3>}
-          {article.body2?.map((p, i) => <p key={i}>{p}</p>)}
-        </div>
-
-        {/* Footer inside article */}
-        <div style={{marginTop:"48px",paddingTop:"20px",borderTop:"2px solid var(--ink)",display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:"16px"}}>
-          <div style={{fontFamily:"var(--fs)",fontSize:".65rem",color:"var(--ink4)",letterSpacing:".1em"}}>
-            © 2026 INCOZONE · The UAE Business Gazette · All Rights Reserved
+      {/* ARTICLE CONTENT — normal page flow, window scrolls */}
+      <div style={{paddingTop:"80px", background:"var(--paper)", minHeight:"100vh",
+        backgroundImage:"url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E")"}}>
+        <div className="bg-overlay-inner">
+          {/* Masthead strip */}
+          <div style={{textAlign:"center",borderBottom:"3px double #0d0b08",paddingBottom:"14px",marginBottom:"28px"}}>
+            <span style={{fontFamily:"'Cormorant Garamond',Georgia,serif",fontSize:"1.8rem",color:"var(--ink)"}}>The UAE Business Gazette</span>
           </div>
-          <button onClick={handleClose} style={{fontFamily:"var(--fs)",fontSize:".65rem",letterSpacing:".16em",textTransform:"uppercase",background:"none",border:"1px solid var(--rule)",padding:"8px 20px",cursor:"pointer",color:"var(--ink3)",transition:"all .3s"}}>
-            ← Back to Gazette
-          </button>
+
+          <span className="bg-art-kicker">{article.kicker} · {article.cat}</span>
+          <h1 className="bg-art-h1">{article.title}</h1>
+          <p className="bg-art-deck">{article.deck}</p>
+          <div className="bg-art-byline-row">
+            <div className="bg-art-byline">By <strong>{article.author}</strong> · INCOZONE Advisory</div>
+            <div className="bg-art-date">{article.date} · {article.readTime}</div>
+          </div>
+
+          <div className="bg-art-img">
+            {article.imageUrl
+              ? <img src={article.imageUrl} alt={article.imgLabel || article.title} style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}} />
+              : <div style={{position:"absolute",inset:0,background:"repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(13,11,8,.05) 28px,rgba(13,11,8,.05) 29px)"}}/>
+            }
+            {!article.imageUrl && <span style={{position:"relative",zIndex:1,fontFamily:"var(--fb)",fontSize:".7rem",fontStyle:"italic",color:"var(--ink4)",textAlign:"center",padding:"0 40px"}}>{article.imgLabel}</span>}
+          </div>
+          <p className="bg-art-caption">{article.imageUrl ? (article.imgLabel || "") : "Illustration: INCOZONE Research Division"}</p>
+
+          <div className="bg-art-body">
+            {article.body.map((p, i) => <p key={i}>{p}</p>)}
+            <blockquote className="bg-art-pull">"{article.pullQuote}"</blockquote>
+            {article.subhead && <h3 className="bg-art-subhead">{article.subhead}</h3>}
+            {article.body2?.map((p, i) => <p key={i}>{p}</p>)}
+          </div>
+
+          {/* Footer */}
+          <div style={{marginTop:"48px",paddingTop:"20px",borderTop:"2px solid var(--ink)",display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:"16px"}}>
+            <div style={{fontFamily:"var(--fs)",fontSize:".65rem",color:"var(--ink4)",letterSpacing:".1em"}}>
+              © 2026 INCOZONE · The UAE Business Gazette · All Rights Reserved
+            </div>
+            <button onClick={onClose} style={{fontFamily:"var(--fs)",fontSize:".65rem",letterSpacing:".16em",textTransform:"uppercase",background:"none",border:"1px solid var(--rule)",padding:"8px 20px",cursor:"pointer",color:"var(--ink3)",transition:"all .3s"}}>
+              ← Back to Gazette
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -984,7 +975,17 @@ export default function BlogPage({ onBack, onNavigate }) {
 
   const openArticle = (art) => { playPageFlip(); setActiveArt(art); };
 
+  const closeArticle = useCallback(() => {
+    setActiveArt(null);
+    window.scrollTo(0, 0);
+  }, []);
+
   const today = new Date().toLocaleDateString("en-GB", { weekday:"long", day:"numeric", month:"long", year:"numeric" });
+
+  // When an article is open, render it as a full page (normal scroll) instead of an overlay
+  if (activeArt) {
+    return <ArticlePage article={activeArt} onClose={closeArticle} onNavigate={onNavigate} />;
+  }
 
   return (
     <div className="bg-root">
@@ -1468,10 +1469,6 @@ export default function BlogPage({ onBack, onNavigate }) {
 
       </div>{/* end paper-fold wrapper */}
 
-      {/* ══ ARTICLE OVERLAY ═══════════════════════════════════ */}
-      {activeArt && (
-        <ArticleOverlay article={activeArt} onClose={() => setActiveArt(null)} />
-      )}
     </div>
   );
 }

@@ -830,7 +830,7 @@ function ArticlePage({ article, onClose, onNavigate }) {
   }, []); // empty deps — only runs once on mount, never resets scroll
 
   return (
-    <div className="bg-root" data-lenis-prevent>
+    <div className="bg-root" data-lenis-prevent style={{overflow:"visible"}}>
       <style>{CSS}</style>
 
       {/* NAV */}
@@ -843,9 +843,8 @@ function ArticlePage({ article, onClose, onNavigate }) {
       </nav>
 
       {/* ARTICLE CONTENT — normal page flow, window scrolls */}
-      <div style={{paddingTop:"80px", background:"var(--paper)", minHeight:"100vh",
-        backgroundImage:"url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E")"}}>
-        <div className="bg-overlay-inner">
+      <div style={{paddingTop:"80px"}}>
+        <div style={{maxWidth:"840px",margin:"0 auto",padding:"80px 24px"}}>
           {/* Masthead strip */}
           <div style={{textAlign:"center",borderBottom:"3px double #0d0b08",paddingBottom:"14px",marginBottom:"28px"}}>
             <span style={{fontFamily:"'Cormorant Garamond',Georgia,serif",fontSize:"1.8rem",color:"var(--ink)"}}>The UAE Business Gazette</span>

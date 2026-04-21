@@ -721,7 +721,7 @@
       "excerpt": "UAE Tax Procedures: What the 2026 Update Means for Your Business",
       "author": "Admin",
       "date": "21 April 2026",
-      "status": "draft",
+      "status": "published",
       "featured": false,
       "imgLabel": "UAE Tax Procedures: What the 2026 Update Means for Your Business",
       "body": [
@@ -732,7 +732,9 @@
       "body2": [
         "Start by reviewing your records retention schedule. If you have any open refund applications awaiting an FTA decision, your standard five-year retention period is extended by a further two years — update your document management policy to reflect this.\nNext, ensure your finance and tax teams understand the revised Voluntary Disclosure thresholds. The AED 10,000 dividing line determines whether you file a formal disclosure or correct via a Tax Return, and the 20-day window runs from the date of awareness, not confirmation. Build that trigger into your internal error-discovery process.\nCheck the status of any pending refund claims. If returns are outstanding, clear them — the FTA will not process your refund until your filing position is up to date.\nFinally, if your business shares data with other UAE government entities, review those arrangements against the updated Article 28 requirements. Any information-sharing that previously happened informally or under older agreements may now need a formal confidentiality framework in place.\nIf you are unsure how any of these changes apply to your specific situation, speak with a registered Tax Agent. The amendments are not complex, but the consequences of missing a deadline or misreading a threshold are.\nThis content is for informational purposes only and does not constitute legal or tax advice. Consult a qualified tax professional for guidance specific to your circumstances."
       ],
-      "imageUrl": "https://raw.githubusercontent.com/sharnik24/incozone/main/public/images/cms/1776782079837.jpg"
+      "imageUrl": "https://raw.githubusercontent.com/sharnik24/incozone/main/public/images/cms/1776782079837.jpg",
+      "readTime": "7 min",
+      "kicker": "2026 Update for Your Business"
     }
   ]
 }

@@ -597,10 +597,15 @@ html { scroll-behavior:auto; }
   }
   .bg-drawer.open .bg-dcta { opacity: 1; transform: translateY(0); }
   .bg-dcta:hover { background: #C9A84C; color: #05111e; }
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
+    .bg-nav { padding: 16px 32px; }
+    .bg-nav.scrolled { padding: 12px 32px; }
+  }
+  @media (max-width: 768px) {
     .bg-nav-links { display: none; }
     .bg-nav-cta { display: none !important; }
     .bg-nav-hamburger { display: flex; }
+    .bg-back-btn { display: none; }
   }
 `;
 
@@ -821,6 +826,7 @@ function useReveal() {
 function ArticlePage({ article, onClose, onNavigate }) {
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
+  const [_artOpen, setArtOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -828,6 +834,11 @@ function ArticlePage({ article, onClose, onNavigate }) {
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, []); // empty deps — only runs once on mount, never resets scroll
+
+  const artGo = useCallback((page) => {
+    setArtOpen(false);
+    if (onNavigate) { onNavigate(page); window.scrollTo(0, 0); }
+  }, [onNavigate]);
 
   return (
     <div className="bg-root" data-lenis-prevent style={{overflow:"visible"}}>
@@ -840,7 +851,25 @@ function ArticlePage({ article, onClose, onNavigate }) {
         <div style={{display:"flex",alignItems:"center",gap:"16px"}}>
           <button className="bg-back-btn" onClick={onClose}>← Back to Gazette</button>
         </div>
+        <button
+          className={`bg-nav-hamburger${_artOpen ? " open" : ""}`}
+          onClick={() => setArtOpen(o => !o)}
+          aria-label="Toggle menu"
+        >
+          <span /><span /><span />
+        </button>
       </nav>
+
+      {/* Mobile drawer for article page */}
+      <div className={`bg-drawer${_artOpen ? " open" : ""}`}>
+        <div className="bg-drawer-brand" onClick={() => artGo("home")}>INCO<em>ZONE</em></div>
+        {["Services","Free Zones","About","Blog","Contact"].map((l) => {
+          const pm = {"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};
+          return <button key={l} className="bg-dlink" onClick={() => artGo(pm[l])}>{l}</button>;
+        })}
+        <div className="bg-drawer-div" />
+        <button className="bg-dcta" onClick={() => { setArtOpen(false); onClose(); }}>← Back to Gazette</button>
+      </div>
 
       {/* ARTICLE CONTENT — normal page flow, window scrolls */}
       <div style={{paddingTop:"80px"}}>

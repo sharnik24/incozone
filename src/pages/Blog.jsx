@@ -847,7 +847,7 @@ function ArticlePage({ article, onClose, onNavigate }) {
       {/* NAV */}
       <nav className="bg-nav">
         <div className="bg-nav-logo" onClick={()=>{if(onNavigate){onNavigate("home");window.scrollTo(0,0);}}}>INCO<em>ZONE</em></div>
-        <ul className="bg-nav-links">{["Services","Free Zones","About","Blog","Contact"].map(l=>{const m={"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};return <li key={l}><a href="#" onClick={e=>{e.preventDefault();if(onNavigate){onNavigate(m[l]);window.scrollTo(0,0);}}}>{l}</a></li>;})}</ul>
+        <ul className="bg-nav-links">{["Home","Services","Free Zones","About","Blog","Contact"].map(l=>{const m={"Home":"home","Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};return <li key={l}><a href="#" onClick={e=>{e.preventDefault();if(onNavigate){onNavigate(m[l]);window.scrollTo(0,0);}}}>{l}</a></li>;})}</ul>
         <div style={{display:"flex",alignItems:"center",gap:"16px"}}>
           <button className="bg-back-btn" onClick={onClose}>← Back to Gazette</button>
         </div>
@@ -863,8 +863,8 @@ function ArticlePage({ article, onClose, onNavigate }) {
       {/* Mobile drawer for article page */}
       <div className={`bg-drawer${_artOpen ? " open" : ""}`}>
         <div className="bg-drawer-brand" onClick={() => artGo("home")}>INCO<em>ZONE</em></div>
-        {["Services","Free Zones","About","Blog","Contact"].map((l) => {
-          const pm = {"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};
+        {["Home","Services","Free Zones","About","Blog","Contact"].map((l) => {
+          const pm = {"Home":"home","Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};
           return <button key={l} className="bg-dlink" onClick={() => artGo(pm[l])}>{l}</button>;
         })}
         <div className="bg-drawer-div" />
@@ -1043,7 +1043,7 @@ export default function BlogPage({ onBack, onNavigate }) {
       {/* ── NAV ── */}
       <nav className={`bg-nav${scrolled ? " scrolled" : ""}`}>
         <div className="bg-nav-logo" onClick={()=>{if(onNavigate){onNavigate("home");window.scrollTo(0,0);}}}>INCO<em>ZONE</em></div>
-        <ul className="bg-nav-links">{["Services","Free Zones","About","Blog","Contact"].map(l=>{const m={"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};return <li key={l}><a href="#" onClick={e=>{e.preventDefault();if(onNavigate){onNavigate(m[l]);window.scrollTo(0,0);}}}>{l}</a></li>;})}</ul>
+        <ul className="bg-nav-links">{["Home","Services","Free Zones","About","Blog","Contact"].map(l=>{const m={"Home":"home","Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};return <li key={l}><a href="#" onClick={e=>{e.preventDefault();if(onNavigate){onNavigate(m[l]);window.scrollTo(0,0);}}}>{l}</a></li>;})}</ul>
         <div style={{display:"flex",alignItems:"center",gap:"16px"}}>
           <button className="bg-back-btn" onClick={onBack}>Back to Home</button>
           <button className="bg-nav-cta">Consult Now</button>
@@ -1065,8 +1065,8 @@ export default function BlogPage({ onBack, onNavigate }) {
           onClick={() => { setbgOpen(false); if(onNavigate) { onNavigate("home"); window.scrollTo(0,0); } }}>
           INCO<em>ZONE</em>
         </div>
-        {["Services","Free Zones","About","Blog","Contact"].map((l) => {
-          const pm = {"Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};
+        {["Home","Services","Free Zones","About","Blog","Contact"].map((l) => {
+          const pm = {"Home":"home","Services":"services","Free Zones":"home","About":"about","Blog":"blog","Contact":"contact"};
           return (
             <button key={l} className="bg-dlink"
               onClick={() => { setbgOpen(false); if(onNavigate) { onNavigate(pm[l]); window.scrollTo(0,0); } }}>

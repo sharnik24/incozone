@@ -776,7 +776,7 @@ const TICKER_ITEMS = [
   "Golden Visa applications from European founders up 340% year-on-year",
 ];
 
-const CATS = ["All", "Free Zone Guide", "Market Intelligence", "Incorporation Guide", "Banking & Finance", "Visa & Residency", "PRO Services"];
+const STATIC_CATS = ["All", "Company Formation", "Free Zone Guide", "Free Zone Comparison", "Cost Guide", "Visa & Immigration", "Visa & Residency", "Company Structure", "Banking Guide", "Banking & Finance", "Market Intelligence", "Incorporation Guide", "PRO Services", "General"];
 
 // ─── PAGE-FLIP SOUND (synthesized via Web Audio API) ──────────
 function playPageFlip() {
@@ -915,6 +915,17 @@ export default function BlogPage({ onBack, onNavigate }) {
   // Reset carousel when category changes
   useEffect(() => { setFeaturedIdx(0); setFeatSlide("visible"); }, [activeCat]);
 
+  // When real posts load, reset category if current selection has no matches
+  useEffect(() => {
+    if (blogPosts.length > 0) {
+      setActiveCat(prev => {
+        if (prev === "All") return prev;
+        const hasMatch = blogPosts.some(p => (p.cat || "General") === prev);
+        return hasMatch ? prev : "All";
+      });
+    }
+  }, [blogPosts.length]);
+
   // Auto-rotate featured article every 4 s
   useEffect(() => {
     const t = setInterval(() => {
@@ -958,12 +969,27 @@ export default function BlogPage({ onBack, onNavigate }) {
   });
   const allArticles = blogPosts.length > 0 ? blogPosts.map(mapPost) : ARTICLES;
 
+  // Build category list dynamically from actual articles so the filter always matches
+  const cats = allArticles.reduce((acc, art) => {
+    if (art.cat && !acc.includes(art.cat)) acc.push(art.cat);
+    return acc;
+  }, ["All"]);
+
   const filtered = activeCat === "All"
     ? allArticles
     : allArticles.filter(a => a.cat === activeCat);
 
-  const carouselMax = Math.min(5, filtered.length);
-  const featured   = filtered[featuredIdx % Math.max(1, carouselMax)] || filtered[0];
+  // The admin-marked featured post is always pinned as the lead article
+  const pinnedFeatured = filtered.find(a => a.featured);
+  // Carousel pool: featured post first, then others (for dot nav / auto-rotate)
+  const carouselPool = pinnedFeatured
+    ? [pinnedFeatured, ...filtered.filter(a => !a.featured)]
+    : filtered;
+  const carouselMax = Math.min(5, carouselPool.length);
+  // Always show the pinned featured post; only rotate if no post is marked featured
+  const featured = pinnedFeatured
+    ? pinnedFeatured
+    : (carouselPool[featuredIdx % Math.max(1, carouselMax)] || carouselPool[0]);
   const sideLeft   = filtered.slice(1, 3);
   const sideRight  = filtered.slice(3, 5);
   const belowFold  = filtered.slice(1, 5);
@@ -1069,7 +1095,7 @@ export default function BlogPage({ onBack, onNavigate }) {
 
           {/* Category bar */}
           <div className="bg-catbar">
-            {CATS.map(cat => (
+            {cats.map(cat => (
               <button key={cat} className={`bg-cat-btn${activeCat===cat?" active":""}`} onClick={() => setActiveCat(cat)}>{cat}</button>
             ))}
           </div>
@@ -1282,7 +1308,7 @@ export default function BlogPage({ onBack, onNavigate }) {
             <div className="bg-tag-cloud bg-reveal bg-d3">
               <div className="bg-tag-cloud-title">Trending Topics</div>
               <div className="bg-tags">
-                {CATS.filter(c => c !== "All").map(cat => {
+                {cats.filter(c => c !== "All").map(cat => {
                   const count = allArticles.filter(a => a.cat === cat).length;
                   if (!count) return null;
                   return (

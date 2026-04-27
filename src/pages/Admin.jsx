@@ -1382,7 +1382,7 @@ function BlogSection({ d, oc }) {
     oc("blog",[...posts,np]); setSelId(nid);
   };
   const del = (id) => { oc("blog",posts.filter(p=>p.id!==id)); setSelId(posts[0]?.id||null); };
-  const CATS = ["Free Zone Guide","Market Intelligence","Incorporation Guide","Banking & Finance","Visa & Residency","PRO Services","General"];
+  const CATS = ["Company Formation","Free Zone Guide","Free Zone Comparison","Cost Guide","Visa & Immigration","Visa & Residency","Company Structure","Banking Guide","Banking & Finance","Market Intelligence","Incorporation Guide","PRO Services","General"];
 
   return (
     <div style={{display:"grid",gridTemplateColumns:"270px 1fr",gap:"16px"}}>
@@ -1435,7 +1435,14 @@ function BlogSection({ d, oc }) {
               <F label="Featured Article" full>
                 <div className="toggle-wrap">
                   <label className="toggle">
-                    <input type="checkbox" checked={!!post.featured} onChange={e=>u("featured",e.target.checked)} />
+                    <input type="checkbox" checked={!!post.featured} onChange={e=>{
+                      if(e.target.checked){
+                        // Only one post can be featured at a time — clear others
+                        oc("blog", posts.map(p => p.id===selId ? {...p,featured:true} : {...p,featured:false}));
+                      } else {
+                        u("featured",false);
+                      }
+                    }} />
                     <div className="toggle-track" />
                     <div className="toggle-thumb" />
                   </label>

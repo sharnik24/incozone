@@ -1435,14 +1435,7 @@ function BlogSection({ d, oc }) {
               <F label="Featured Article" full>
                 <div className="toggle-wrap">
                   <label className="toggle">
-                    <input type="checkbox" checked={!!post.featured} onChange={e=>{
-                      if(e.target.checked){
-                        // Only one post can be featured at a time — clear others
-                        oc("blog", posts.map(p => p.id===selId ? {...p,featured:true} : {...p,featured:false}));
-                      } else {
-                        u("featured",false);
-                      }
-                    }} />
+                    <input type="checkbox" checked={!!post.featured} onChange={e=>u("featured",e.target.checked)} />
                     <div className="toggle-track" />
                     <div className="toggle-thumb" />
                   </label>

@@ -979,17 +979,12 @@ export default function BlogPage({ onBack, onNavigate }) {
     ? allArticles
     : allArticles.filter(a => a.cat === activeCat);
 
-  // The admin-marked featured post is always pinned as the lead article
-  const pinnedFeatured = filtered.find(a => a.featured);
-  // Carousel pool: featured post first, then others (for dot nav / auto-rotate)
-  const carouselPool = pinnedFeatured
-    ? [pinnedFeatured, ...filtered.filter(a => !a.featured)]
-    : filtered;
-  const carouselMax = Math.min(5, carouselPool.length);
-  // Always show the pinned featured post; only rotate if no post is marked featured
-  const featured = pinnedFeatured
-    ? pinnedFeatured
-    : (carouselPool[featuredIdx % Math.max(1, carouselMax)] || carouselPool[0]);
+  // Carousel only rotates through admin-marked featured posts.
+  // If none are marked featured, fall back to rotating all posts.
+  const featuredPool = filtered.filter(a => a.featured);
+  const carouselPool = featuredPool.length > 0 ? featuredPool : filtered;
+  const carouselMax  = Math.min(5, carouselPool.length);
+  const featured     = carouselPool[featuredIdx % Math.max(1, carouselMax)] || carouselPool[0];
   const sideLeft   = filtered.slice(1, 3);
   const sideRight  = filtered.slice(3, 5);
   const belowFold  = filtered.slice(1, 5);

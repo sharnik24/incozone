@@ -524,6 +524,67 @@ const CSS = `
 .ab-recog-card:hover .ab-recog-title { color:var(--g300); }
 .ab-recog-body { font-size:.78rem; color:var(--w60); line-height:1.78; }
 
+/* ══ VIDEO SECTION ══════════════════════════════════════════════ */
+.ab-video-section { background:var(--n900); padding:96px 60px; position:relative; }
+.ab-video-section::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 60% 80% at 30% 50%, rgba(201,168,76,.04), transparent);
+  pointer-events:none;
+}
+.ab-video-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; position:relative; z-index:1; }
+.ab-video-copy { }
+.ab-video-label { font-size:.58rem; letter-spacing:.32em; text-transform:uppercase; color:var(--g400); display:block; margin-bottom:16px; }
+.ab-video-h2 { font-family:var(--fd); font-size:clamp(2rem,3.5vw,3rem); font-weight:300; color:var(--w); line-height:1.1; margin-bottom:16px; }
+.ab-video-h2 em { color:var(--g400); font-style:italic; }
+.ab-video-p { font-size:.82rem; color:var(--w60); line-height:1.85; }
+.ab-video-player {
+  position:relative; aspect-ratio:16/9; background:var(--n800);
+  border:1px solid var(--w06); overflow:hidden; cursor:pointer;
+}
+.ab-video-player::before {
+  content:''; position:absolute; inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(201,168,76,.015) 40px,rgba(201,168,76,.015) 41px);
+}
+.ab-video-play {
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:16px;
+  transition:background .3s;
+}
+.ab-video-player:hover .ab-video-play { background:rgba(201,168,76,.04); }
+.ab-video-play-btn {
+  width:64px; height:64px; border-radius:50%;
+  border:1px solid rgba(201,168,76,.5); display:flex; align-items:center; justify-content:center;
+  transition:border-color .3s, background .3s;
+}
+.ab-video-player:hover .ab-video-play-btn { background:rgba(201,168,76,.1); border-color:var(--g400); }
+.ab-video-play-label { font-family:var(--fb); font-size:.65rem; letter-spacing:.18em; text-transform:uppercase; color:var(--w60); }
+@media(max-width:900px){ .ab-video-inner { grid-template-columns:1fr; gap:40px; } }
+@media(max-width:768px){ .ab-video-section { padding:64px 24px; } }
+
+/* ══ CASE STUDIES ═══════════════════════════════════════════════ */
+.ab-cases { background:var(--n950); padding:96px 60px; }
+.ab-cases-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--w06); margin-top:52px; }
+.ab-case-card {
+  background:var(--n950); padding:44px 36px; position:relative; overflow:hidden;
+  transition:background .4s;
+}
+.ab-case-card:hover { background:#081521; }
+.ab-case-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, var(--g400), transparent);
+  transform:scaleX(0); transform-origin:left; transition:transform .5s var(--ease);
+}
+.ab-case-card:hover::before { transform:scaleX(1); }
+.ab-case-tag { font-family:var(--fb); font-size:.56rem; letter-spacing:.22em; text-transform:uppercase; color:var(--g400); margin-bottom:20px; display:block; }
+.ab-case-title { font-family:var(--fd); font-size:1.45rem; font-weight:400; color:var(--w); margin-bottom:14px; line-height:1.2; }
+.ab-case-body { font-size:.78rem; color:var(--w60); line-height:1.78; margin-bottom:20px; }
+.ab-case-outcome { border-top:1px solid var(--w06); padding-top:18px; display:flex; flex-direction:column; gap:8px; }
+.ab-case-stat { display:flex; justify-content:space-between; align-items:baseline; }
+.ab-case-stat-val { font-family:var(--fd); font-size:1.2rem; color:var(--g300); }
+.ab-case-stat-lbl { font-size:.62rem; color:var(--w30); letter-spacing:.06em; }
+@media(max-width:900px){ .ab-cases-grid { grid-template-columns:1fr; } }
+@media(max-width:768px){ .ab-cases { padding:64px 24px; } }
+
 /* ══ CTA ════════════════════════════════════════════════════════ */
 .ab-cta {
   background:var(--n900); padding:140px 60px;
@@ -1122,6 +1183,79 @@ export default function AboutPage({ onBack, onNavigate }) {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          VIDEO — OFFICE & TEAM
+      ═══════════════════════════════════════ */}
+      <section className="ab-video-section">
+        <div className="ab-video-inner">
+          <div className="ab-video-copy ab-reveal">
+            <span className="ab-video-label">Inside INCOZONE</span>
+            <h2 className="ab-video-h2">
+              Where <em>strategy</em> meets<br />execution.
+            </h2>
+            <p className="ab-video-p">
+              Our Business Bay advisory office is where hundreds of market-entry decisions are made each year — structured, documented, and executed with precision. Meet the team behind 3,200+ UAE incorporations.
+            </p>
+          </div>
+          <div className="ab-video-player ab-reveal ab-d2" onClick={() => window.open("https://www.incozone.com", "_blank")} role="button" tabIndex={0} aria-label="Watch INCOZONE team video">
+            <div className="ab-video-play">
+              <div className="ab-video-play-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <polygon points="5,3 19,12 5,21" fill="#C9A84C"/>
+                </svg>
+              </div>
+              <span className="ab-video-play-label">Watch: Our Advisory Practice</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          CASE STUDIES
+      ═══════════════════════════════════════ */}
+      <section className="ab-cases">
+        <span className="ab-reveal" style={{fontSize:".58rem",letterSpacing:".32em",textTransform:"uppercase",color:"var(--g400)",display:"block",marginBottom:"14px"}}>Client Outcomes</span>
+        <h2 className="ab-reveal ab-d1" style={{fontFamily:"var(--fd)",fontSize:"clamp(2rem,3.8vw,3.2rem)",fontWeight:300,color:"var(--w)",lineHeight:1.1,marginBottom:0}}>
+          Real results for<br/><em style={{color:"var(--g400)",fontStyle:"italic"}}>real businesses.</em>
+        </h2>
+        <div className="ab-cases-grid">
+          {[
+            {
+              tag: "Tech · IFZA · 2025",
+              title: "European SaaS Founder — Dubai Base in 9 Days",
+              body: "A Berlin-based software entrepreneur needed a UAE entity to access Gulf enterprise contracts and establish tax residency. We recommended IFZA for its multi-activity license and fast processing. Trade license issued in 9 days; corporate bank account opened at Mashreq within 3 weeks.",
+              stats: [{ val:"9 days", lbl:"License to trade" }, { val:"100%", lbl:"Foreign owned" }, { val:"AED 12,900", lbl:"Total setup cost" }],
+            },
+            {
+              tag: "Trading · DMCC · 2024",
+              title: "Commodities Trader — Institutional Banking Unlocked",
+              body: "A Singapore-based commodities firm needed a DMCC entity specifically for Emirates NBD institutional banking access and counterparty credibility with European clients. Our preparation and bank-matching reduced account approval to 18 days — versus the 8-week industry average.",
+              stats: [{ val:"18 days", lbl:"Bank account approved" }, { val:"Tier-1", lbl:"Banking achieved" }, { val:"4.9 ★", lbl:"Client rating" }],
+            },
+            {
+              tag: "Consulting · ADGM · 2025",
+              title: "Family Office — Abu Dhabi Financial Centre Setup",
+              body: "A UAE-resident HNWI relocating family office operations from DIFC to ADGM for its digital assets framework and Abu Dhabi sovereign positioning. We navigated FSRA requirements and delivered a fully licensed ADGM entity with UAE Golden Visa applications submitted simultaneously.",
+              stats: [{ val:"21 days", lbl:"Full ADGM setup" }, { val:"10-year", lbl:"Golden Visa secured" }, { val:"FSRA", lbl:"Regulatory compliant" }],
+            },
+          ].map((cs, i) => (
+            <div className={`ab-case-card ab-reveal ab-d${i+1}`} key={i}>
+              <span className="ab-case-tag">{cs.tag}</span>
+              <div className="ab-case-title">{cs.title}</div>
+              <p className="ab-case-body">{cs.body}</p>
+              <div className="ab-case-outcome">
+                {cs.stats.map((s, j) => (
+                  <div className="ab-case-stat" key={j}>
+                    <span className="ab-case-stat-val">{s.val}</span>
+                    <span className="ab-case-stat-lbl">{s.lbl}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

@@ -429,6 +429,30 @@ const CSS = `
 .bg-market-chg { font-family:var(--fs); font-size:.56rem; }
 .up { color:#2d6a2d; } .dn { color:var(--red); }
 
+/* ─── SEARCH BAR ────────────────────────────────────────────── */
+.bg-search-wrap {
+  padding:10px 0 12px; border-top:1px solid var(--rule);
+  display:flex; align-items:center; gap:12px;
+}
+.bg-search-input {
+  flex:1; background:transparent; border:none; border-bottom:1px solid var(--rule);
+  font-family:var(--fb); font-size:.75rem; color:var(--ink); padding:6px 0;
+  outline:none; letter-spacing:.02em;
+}
+.bg-search-input::placeholder { color:var(--ink4); font-style:italic; }
+.bg-search-input:focus { border-bottom-color:var(--ink); }
+.bg-search-icon { color:var(--ink4); font-size:.85rem; flex-shrink:0; }
+.bg-search-clear {
+  background:none; border:none; cursor:pointer; color:var(--ink4);
+  font-family:var(--fs); font-size:.6rem; letter-spacing:.12em; text-transform:uppercase;
+  padding:0; transition:color .2s;
+}
+.bg-search-clear:hover { color:var(--ink); }
+.bg-no-results {
+  padding:60px 60px; text-align:center;
+  font-family:var(--fd); font-size:1.4rem; font-style:italic; color:var(--ink4);
+}
+
 /* ─── ROTATING STAT ──────────────────────────────────────────── */
 .bg-stat-rotator {
   margin-top:20px; padding:18px 16px; background:var(--ink); color:var(--paper); text-align:center;
@@ -925,6 +949,7 @@ export default function BlogPage({ onBack, onNavigate }) {
 
   const [scrolled, setScrolled]       = useState(false);
   const [activeCat, setActiveCat]     = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
   const [activeArt, setActiveArt]     = useState(null);
   const [folded, setFolded]           = useState(false);
   const [featuredIdx, setFeaturedIdx] = useState(0);
@@ -1004,9 +1029,12 @@ export default function BlogPage({ onBack, onNavigate }) {
     return acc;
   }, ["All"]);
 
-  const filtered = activeCat === "All"
-    ? allArticles
-    : allArticles.filter(a => a.cat === activeCat);
+  const filtered = allArticles.filter(a => {
+    const catMatch = activeCat === "All" || a.cat === activeCat;
+    const q = searchQuery.trim().toLowerCase();
+    const searchMatch = !q || a.title.toLowerCase().includes(q) || (a.deck||"").toLowerCase().includes(q) || (a.cat||"").toLowerCase().includes(q);
+    return catMatch && searchMatch;
+  });
 
   // Carousel only rotates through admin-marked featured posts.
   // If none are marked featured, fall back to rotating all posts.
@@ -1123,7 +1151,30 @@ export default function BlogPage({ onBack, onNavigate }) {
               <button key={cat} className={`bg-cat-btn${activeCat===cat?" active":""}`} onClick={() => setActiveCat(cat)}>{cat}</button>
             ))}
           </div>
+
+          {/* Search bar */}
+          <div className="bg-search-wrap">
+            <span className="bg-search-icon">⌕</span>
+            <input
+              className="bg-search-input"
+              type="text"
+              placeholder="Search articles — free zones, visas, banking, tax…"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              aria-label="Search articles"
+            />
+            {searchQuery && (
+              <button className="bg-search-clear" onClick={() => setSearchQuery("")}>Clear ×</button>
+            )}
+          </div>
         </div>
+
+        {/* No results message */}
+        {filtered.length === 0 && (
+          <div className="bg-no-results">
+            No articles match "{searchQuery || activeCat}" — try a different search or category.
+          </div>
+        )}
 
         {/* ── BREAKING NEWS TICKER ── */}
         <div className="bg-ticker">
@@ -1160,7 +1211,7 @@ export default function BlogPage({ onBack, onNavigate }) {
 
             {sideLeft.map((art, i) => (
               <div className={`bg-side-story bg-reveal bg-d${i+1}`} key={art.id} onClick={() => openArticle(art)}>
-                {art.imageUrl && <img src={art.imageUrl} alt={art.title} style={{width:"100%",aspectRatio:"16/7",objectFit:"cover",display:"block",marginBottom:"10px"}} />}
+                {art.imageUrl && <img src={art.imageUrl} alt={art.title} loading="lazy" style={{width:"100%",aspectRatio:"16/7",objectFit:"cover",display:"block",marginBottom:"10px"}} />}
                 <span className="bg-side-story-cat">{art.cat}</span>
                 <div className="bg-side-story-title">{art.title}</div>
                 <p className="bg-side-story-deck">{(art.deck||"").substring(0,110)}…</p>
@@ -1320,7 +1371,7 @@ export default function BlogPage({ onBack, onNavigate }) {
 
             {sideRight.map((art, i) => (
               <div className={`bg-side-story bg-reveal bg-d${i+1}`} key={art.id} onClick={() => openArticle(art)}>
-                {art.imageUrl && <img src={art.imageUrl} alt={art.title} style={{width:"100%",aspectRatio:"16/7",objectFit:"cover",display:"block",marginBottom:"10px"}} />}
+                {art.imageUrl && <img src={art.imageUrl} alt={art.title} loading="lazy" style={{width:"100%",aspectRatio:"16/7",objectFit:"cover",display:"block",marginBottom:"10px"}} />}
                 <span className="bg-side-story-cat">{art.cat}</span>
                 <div className="bg-side-story-title">{art.title}</div>
                 <p className="bg-side-story-deck">{(art.deck||"").substring(0,110)}…</p>
@@ -1396,7 +1447,7 @@ export default function BlogPage({ onBack, onNavigate }) {
           {belowFold.map((art, i) => (
             <div className={`bg-bf-card bg-reveal bg-d${i+1}`} key={art.id} onClick={() => openArticle(art)}>
               <div className="bg-bf-img">
-                {art.imageUrl && <img src={art.imageUrl} alt={art.title} style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",zIndex:1}} />}
+                {art.imageUrl && <img src={art.imageUrl} alt={art.title} loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",zIndex:1}} />}
               </div>
               <span className="bg-bf-tag">{art.cat}</span>
               <div className="bg-bf-title">{art.title}</div>
@@ -1503,6 +1554,35 @@ export default function BlogPage({ onBack, onNavigate }) {
                 <div className="bg-digest-item-meta" style={{marginTop:"4px"}}>UAE Regulatory Update</div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* ══ NEWSLETTER SIGNUP ═════════════════════════════════ */}
+        <div style={{background:"var(--paper2)",borderTop:"2px solid var(--ink)",borderBottom:"2px solid var(--ink)",padding:"44px 60px",display:"flex",alignItems:"center",gap:"48px",flexWrap:"wrap"}}>
+          <div style={{flex:"1",minWidth:"220px"}}>
+            <div style={{fontFamily:"var(--fs)",fontSize:".55rem",letterSpacing:".28em",textTransform:"uppercase",color:"var(--ink3)",marginBottom:"10px"}}>The Gazette · Weekly Briefing</div>
+            <div style={{fontFamily:"var(--ff)",fontSize:"clamp(1.4rem,2.8vw,2.2rem)",color:"var(--ink)",lineHeight:1.15,marginBottom:"8px"}}>UAE business intelligence,<br/><em>delivered weekly.</em></div>
+            <p style={{fontFamily:"var(--fb)",fontSize:".78rem",color:"var(--ink3)",lineHeight:1.65,margin:0}}>Zone updates, regulatory changes, formation cost movements and market analysis — curated for founders and investors.</p>
+          </div>
+          <div style={{flex:"1",minWidth:"260px"}}>
+            <form onSubmit={e=>{e.preventDefault();const el=e.target.querySelector("input");if(el&&el.value){el.value="";const msg=e.target.querySelector(".bg-nl-confirm");if(msg){msg.style.display="block";setTimeout(()=>{msg.style.display="none";},3000);}}}} style={{display:"flex",flexDirection:"column",gap:"10px"}}>
+              <div style={{display:"flex",gap:"0",border:"1px solid var(--ink)",overflow:"hidden"}}>
+                <input
+                  type="email"
+                  required
+                  placeholder="your@email.com"
+                  style={{flex:1,border:"none",outline:"none",padding:"11px 14px",fontFamily:"var(--fb)",fontSize:".8rem",background:"transparent",color:"var(--ink)"}}
+                  aria-label="Email address for newsletter"
+                />
+                <button type="submit" style={{background:"var(--ink)",color:"var(--paper)",border:"none",padding:"11px 20px",fontFamily:"var(--fs)",fontSize:".6rem",letterSpacing:".16em",textTransform:"uppercase",cursor:"pointer",whiteSpace:"nowrap"}}>
+                  Subscribe
+                </button>
+              </div>
+              <div className="bg-nl-confirm" style={{display:"none",fontFamily:"var(--fs)",fontSize:".65rem",color:"var(--ink3)",letterSpacing:".06em"}}>
+                ✓ Subscribed. First edition arrives Friday.
+              </div>
+              <div style={{fontFamily:"var(--fs)",fontSize:".58rem",color:"var(--ink4)",letterSpacing:".04em"}}>No spam. Unsubscribe at any time. Your data is never shared.</div>
+            </form>
           </div>
         </div>
 

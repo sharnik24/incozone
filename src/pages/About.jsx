@@ -768,10 +768,10 @@ const PILLARS = [
 ];
 
 const TEAM = [
-  { initial:"R", name:"Chirag Mahyavansi", role:"Managing Director", bio:"Leads INCOZONE's advisory practice with 12 years of experience guiding high-net-worth individuals, family offices, and institutional investors through UAE market entry and corporate structuring.", exp:"12yr UAE" },
-  { initial:"A", name:"Tushar Rathod", role:"Business Setup Consultant", bio:"Specialist in UAE free zone incorporation across all 8 major zones. Advises founders and SMEs on optimal zone selection, licensing strategy, and end-to-end company formation.", exp:"2yr Advisory" },
-  { initial:"K", name:"Aakash Palgamkar", role:"Accountant", bio:"Manages corporate financial compliance, bookkeeping, VAT registration, and financial reporting for INCOZONE clients across free zone and mainland structures.", exp:"2yr Accounting" },
-  { initial:"S", name:"Dharmesh Mahyavanshi", role:"Accounting Head", bio:"Heads INCOZONE's accounting and financial compliance practice. Oversees corporate financial structuring, VAT compliance, and financial reporting for high-value clients across free zone and mainland entities.", exp:"10yr Accounting" },
+  { initial:"R", name:"Chirag Mahyavansi", role:"Founder", bio:"Leads INCOZONE's vision, strategy, and business growth. Helps entrepreneurs and investors establish and expand their businesses in the UAE with expert guidance and industry insights" },
+  { initial:"A", name:"Tushar Rathod", role:"Co-Founder", bio:"Supports business operations and company formation services. Assists startups and SMEs in navigating UAE regulations and choosing the right setup solutions for their goals" },
+  { initial:"K", name:"Aakash Palgamkar", role:"Business Development Manager", bio:"Focuses on client acquisition, partnerships, and business growth. Works closely with prospective clients to understand their requirements and provide tailored business setup solutions" },
+  { initial:"S", name:"Yash Kathekar", role:"Relationship Manager", bio:"Manages client relationships and ensures a smooth service experience. Acts as a trusted point of contact, helping clients with ongoing support, coordination, and business needs" },
 ];
 
 const VALUES = [

@@ -449,7 +449,7 @@ const CSS = `
 const STATS = [
   { v:"20,000+", k:"Companies" }, { v:"3–7", k:"Setup Days" },
   { v:"100%", k:"Foreign Ownership" }, { v:"0%", k:"Income Tax" },
-  { v:"AED 8.5K", k:"Starting Cost" }, { v:"Saqr Port", k:"Direct Access" },
+  { v:"5,000+", k:"Activities" }, { v:"Saqr Port", k:"Direct Access" },
 ];
 
 const ACTIVITIES = [
@@ -489,13 +489,13 @@ const DOCUMENTS = [
 ];
 
 const FAQS = [
-  { q:"How affordable is RAKEZ compared to other UAE free zones?", a:"RAKEZ starts from AED 8,500 — the most affordable major free zone in the UAE. IFZA starts from AED 12,000, Meydan from AED 14,500, and DMCC from AED 18,500. For budget-conscious businesses that don't need a Dubai address, RAKEZ is unbeatable on price." },
+  { q:"How affordable is RAKEZ compared to other UAE free zones?", a:"RAKEZ is the most affordable major free zone in the UAE. For budget-conscious businesses that don't need a Dubai address, RAKEZ is unbeatable on price. Contact us for a personalised quote." },
   { q:"Is RAKEZ a legitimate and internationally recognised free zone?", a:"Yes — RAKEZ is a UAE government free zone established under RAK Government authority. It is fully recognised by UAE banks, government entities, Emirates ID authority, and international partners. Over 20,000 companies from 100+ countries operate from RAKEZ." },
   { q:"Can I get a UAE residence visa through RAKEZ?", a:"Yes. A RAKEZ investor visa is a UAE residence visa — the same Emirates ID, the same residency rights, and the same banking access as any Dubai free zone visa. The zone address on your visa has no practical impact on your UAE residency." },
   { q:"How many visas can I get with a RAKEZ license?", a:"Visa allocation depends on your package and office type.", list:["Virtual Office: 1–2 Visas","Flexi Desk: 3 Visas","Office Unit: 5 Visas","Industrial / Warehouse Unit: 8+ Visas"] },
   { q:"Does RAKEZ have warehousing and industrial facilities?", a:"Yes — RAKEZ has dedicated industrial parks with warehouses, light industrial units, factories, and land plots. These are available at costs significantly below Dubai equivalents — making RAKEZ the go-to for any business that needs physical operational space." },
   { q:"Can RAKEZ companies serve Dubai-based clients?", a:"Yes. RAKEZ companies can provide services to clients across the UAE, including Dubai. For physical goods trading on the UAE mainland, a local distributor or customs arrangement is required — standard practice for all free zone companies." },
-  { q:"What is the annual renewal cost for RAKEZ?", a:"RAKEZ annual renewal ranges from AED 6,000 to AED 11,000 depending on your license type, activities, and office arrangement — the lowest renewal cost of any major UAE free zone." },
+  { q:"What is the annual renewal cost for RAKEZ?", a:"RAKEZ has the lowest annual renewal cost of any major UAE free zone. The exact amount depends on your license type, activities, and office arrangement — our team will provide a clear breakdown upfront." },
   { q:"How does RAKEZ compare to IFZA?", a:"Both are affordable. RAKEZ wins on starting price, industrial infrastructure, warehouse availability, and visa quota for industrial setups. IFZA wins on its Dubai Silicon Oasis location and established banking recognition. INCOZONE will advise based on your specific business needs." },
   { q:"Can I set up RAKEZ remotely?", a:"Yes — RAKEZ license formation can be completed fully remotely. Visa processing and biometric registration require a brief UAE visit. INCOZONE helps you plan one efficient trip to complete visas and banking simultaneously." },
   { q:"What makes RAKEZ suitable for manufacturing?", a:"RAKEZ has purpose-built industrial zones with dedicated electricity, water, and logistics infrastructure. Companies can lease warehouses, factories, and land plots on flexible terms — with direct access to Saqr Port, one of the largest bulk cargo ports in the Middle East." },
@@ -562,71 +562,6 @@ function useReveal() {
     els.forEach(el => obs.observe(el));
     return () => obs.disconnect();
   });
-}
-
-// ── CALCULATOR ────────────────────────────────────────────────
-function Calculator() {
-  const [pkg, setPkg] = useState("starter");
-  const [off, setOff] = useState("virtual");
-  const [vis, setVis] = useState("1");
-  const [pro, setPro] = useState(false);
-  const [bnk, setBnk] = useState(false);
-  const pkgC = { starter: 8500, standard: 12500, business: 18000, industrial: 28000 };
-  const offC = { virtual: 0, flexi: 2800, office: 6500, warehouse: 14000 };
-  const visC = { "0": 0, "1": 0, "3": 2600, "5": 4800, "8": 7600 };
-  const total = (pkgC[pkg] || 0) + (offC[off] || 0) + (visC[vis] || 0) + (pro ? 2800 : 0) + (bnk ? 2200 : 0);
-  const f = n => "AED " + n.toLocaleString();
-  return (
-    <div className="rkz-calc-inner">
-      <div>
-        <h2 className="rkz-h2 rkz-reveal">Build Your <em>Custom Package</em></h2>
-        <p className="rkz-reveal rr1" style={{ fontSize: "0.84rem", color: "var(--w60)", margin: "12px 0 36px" }}>Configure your RAKEZ requirements and get an instant cost breakdown.</p>
-        <div className="rkz-calc-form">
-          {[
-            { l: "License Package", id: "pkg", val: pkg, set: setPkg, opts: [["starter","Starter (AED 8,500)"],["standard","Standard (AED 12,500)"],["business","Business Office (AED 18,000)"],["industrial","Industrial / Warehouse (AED 28,000)"]] },
-            { l: "Office / Facility Type", id: "off", val: off, set: setOff, opts: [["virtual","Virtual Office (Included)"],["flexi","Flexi Desk (+AED 2,800/yr)"],["office","Office Unit (+AED 6,500/yr)"],["warehouse","Warehouse Unit (+AED 14,000/yr)"]] },
-            { l: "Visa Allocation", id: "vis", val: vis, set: setVis, opts: [["0","No Visas"],["1","1 Visa (Included)"],["3","3 Visas (+AED 2,600)"],["5","5 Visas (+AED 4,800)"],["8","8 Visas (+AED 7,600)"]] },
-          ].map(({ l, id, val, set, opts }) => (
-            <div className="rkz-calc-field rkz-reveal" key={id}>
-              <label className="rkz-calc-label">{l}</label>
-              <select className="rkz-calc-select" value={val} onChange={e => set(e.target.value)}>
-                {opts.map(([v, lab]) => <option key={v} value={v}>{lab}</option>)}
-              </select>
-            </div>
-          ))}
-          <div className="rkz-calc-field rkz-reveal">
-            <label className="rkz-calc-label">PRO & Government Services</label>
-            <div className="rkz-toggle-row">
-              <button className={`rkz-toggle${!pro ? " on" : ""}`} onClick={() => setPro(false)}>Not Required</button>
-              <button className={`rkz-toggle${pro ? " on" : ""}`} onClick={() => setPro(true)}>Add PRO (+AED 2,800)</button>
-            </div>
-          </div>
-          <div className="rkz-calc-field rkz-reveal">
-            <label className="rkz-calc-label">Banking Assistance</label>
-            <div className="rkz-toggle-row">
-              <button className={`rkz-toggle${!bnk ? " on" : ""}`} onClick={() => setBnk(false)}>Not Required</button>
-              <button className={`rkz-toggle${bnk ? " on" : ""}`} onClick={() => setBnk(true)}>Add Banking (+AED 2,200)</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="rkz-result rkz-reveal">
-        <span className="rkz-result-tag">Estimated Total</span>
-        <div className="rkz-result-amount"><span className="rkz-result-currency">AED </span>{total.toLocaleString()}</div>
-        <div className="rkz-result-note">One-time cost · excludes annual renewal</div>
-        <div className="rkz-result-lines">
-          <div className="rkz-result-line"><span className="rkz-result-line-lbl">Base License Fee</span><span className="rkz-result-line-val">{f(pkgC[pkg])}</span></div>
-          {offC[off] > 0 && <div className="rkz-result-line"><span className="rkz-result-line-lbl">Facility (Annual)</span><span className="rkz-result-line-val">+{f(offC[off])}</span></div>}
-          {visC[vis] > 0 && <div className="rkz-result-line"><span className="rkz-result-line-lbl">Visa Processing</span><span className="rkz-result-line-val">+{f(visC[vis])}</span></div>}
-          {pro && <div className="rkz-result-line"><span className="rkz-result-line-lbl">PRO Services</span><span className="rkz-result-line-val">+{f(2800)}</span></div>}
-          {bnk && <div className="rkz-result-line"><span className="rkz-result-line-lbl">Banking Assistance</span><span className="rkz-result-line-val">+{f(2200)}</span></div>}
-        </div>
-        <div className="rkz-result-total-row"><span style={{ color: "var(--w)", fontWeight: 500 }}>Total Estimate</span><span style={{ color: "var(--g400)", fontWeight: 600 }}>{f(total)}</span></div>
-        <p className="rkz-result-disclaimer">Estimate only. Final cost depends on current authority fees and specific requirements.</p>
-        <button className="rkz-btn-gold" style={{ width: "100%" }}>Get Exact Quote →</button>
-      </div>
-    </div>
-  );
 }
 
 // ── MAIN PAGE ─────────────────────────────────────────────────
@@ -703,7 +638,7 @@ export default function RAKEZPage({ onBack, onNavigate }) {
           <h1 className="rkz-hero-h1">RAKEZ<em>Free Zone</em></h1>
           <div className="rkz-hero-fullname">Ras Al Khaimah Economic Zone Authority</div>
           <p className="rkz-hero-desc">
-            The Northern Emirates' most competitive free zone — purpose-built for manufacturing, trading, and industrial operations. Full UAE company ownership and residency at the lowest cost in the region, from just <strong style={{ color: "var(--g300)" }}>AED 8,500.</strong>
+            The Northern Emirates' most competitive free zone — purpose-built for manufacturing, trading, and industrial operations. Full UAE company ownership and residency at the lowest cost in the region.
           </p>
           <div className="rkz-hero-actions">
             <button className="rkz-btn-gold">Start RAKEZ Setup →</button>
@@ -715,10 +650,10 @@ export default function RAKEZPage({ onBack, onNavigate }) {
           <div className="rkz-hero-card">
             <span className="rkz-hero-card-label">Quick Reference</span>
             {[
-              ["Location","Ras Al Khaimah, UAE"], ["Setup From","AED 8,500","gold"],
+              ["Location","Ras Al Khaimah, UAE"],
               ["Setup Time","3–7 Days","gold"], ["Min. Capital","Not Required"],
               ["Ownership","100% Foreign","gold"], ["Visa Quota","Up to 8"],
-              ["Annual Renewal","AED 6–11K"], ["Tax","0% Personal"],
+              ["Tax","0% Personal"],
             ].map(([l, v, cls]) => (
               <div className="rkz-hero-card-row" key={l}>
                 <span>{l}</span><span className={cls || ""}>{v}</span>
@@ -754,7 +689,7 @@ export default function RAKEZPage({ onBack, onNavigate }) {
           <div className="rkz-reveal rr2">
             <div className="rkz-pillars">
               {[
-                { i:ITag, h:"UAE's Most Affordable Free Zone", p:"Starting from AED 8,500 — the lowest setup cost of any major UAE free zone. Full company benefits, UAE residency, and zero taxes at an unbeatable price." },
+                { i:ITag, h:"UAE's Most Affordable Free Zone", p:"The lowest setup cost of any major UAE free zone. Full company benefits, UAE residency, and zero taxes at an unbeatable price." },
                 { i:IGrid, h:"Industrial Infrastructure", p:"Dedicated warehouses, factories, land plots, and industrial parks at costs 40–60% lower than Dubai equivalents. The only free zone to offer this scale of physical infrastructure at this price." },
                 { i:IClock, h:"3 to 7 Day Setup", p:"One of the fastest formation processes in the UAE. Simple digital application, straightforward requirements, and quick authority approvals." },
                 { i:IIdCard, h:"Full UAE Residency & Ownership", p:"UAE investor visa, Emirates ID, and 100% foreign company ownership — without paying the Dubai premium. Same residency rights, same banking access." },
@@ -767,39 +702,6 @@ export default function RAKEZPage({ onBack, onNavigate }) {
               ))}
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* ── PACKAGES ── */}
-      <div className="rkz-packages rkz-section">
-        <span className="rkz-section-label rkz-reveal">Setup Packages</span>
-        <h2 className="rkz-h2 rkz-reveal rr1">Choose Your <em>RAKEZ Package</em></h2>
-        <p className="rkz-reveal rr2" style={{ fontSize: "0.84rem", color: "var(--cream-ink3)", marginTop: "10px", maxWidth: "520px" }}>All packages include full company incorporation, trade license, and corporate documents. Industrial packages quoted on request.</p>
-        <div className="rkz-pkg-grid">
-          {[
-            { name:"Starter", tag:"Trading & service businesses", price:"8,500", badge:"Most Affordable in UAE", featured:false, feats:[["1 Trade License Activity",true],["Virtual Office",true],["1 Investor Visa",true],["Company Stamp & MOA",true],["Bank Account Assistance",false],["Dedicated Account Manager",false]] },
-            { name:"Business", tag:"Growing teams & trading companies", price:"12,500", badge:"Most Popular", featured:true, feats:[["3 Trade License Activities",true],["Flexi Desk / Office",true],["3 Investor Visas",true],["Full Corporate Documents",true],["Bank Account Assistance",true],["Dedicated Account Manager",false]] },
-            { name:"Industrial", tag:"Manufacturing & warehouse operations", price:"Custom", badge:"Industrial Package", featured:false, feats:[["Unlimited Activities",true],["Warehouse / Factory Unit",true],["5+ Investor Visas",true],["Full Corporate Documents",true],["Priority Bank Account Setup",true],["Dedicated Account Manager",true]] },
-          ].map((pkg, i) => (
-            <div className={`rkz-pkg rkz-reveal rr${i+1}${pkg.featured ? " featured" : ""}`} key={i}>
-              <div className="rkz-pkg-badge">{pkg.badge}</div>
-              <div className="rkz-pkg-name">{pkg.name}</div>
-              <p className="rkz-pkg-tag">{pkg.tag}</p>
-              <div className="rkz-pkg-price">
-                <div className="rkz-pkg-amount">{pkg.price === "Custom" ? "Custom" : `AED ${pkg.price}`}</div>
-                <div className="rkz-pkg-period">{pkg.price === "Custom" ? "Quoted based on space & activities" : "One-time setup · excludes annual renewal"}</div>
-              </div>
-              <ul className="rkz-pkg-features">
-                {pkg.feats.map(([t, on], j) => (
-                  <li className="rkz-pkg-feat" key={j}>
-                    <span className={on ? "rkz-feat-on" : "rkz-feat-off"}>{on ? "" : "×"}</span>
-                    <span className={on ? "rkz-feat-label-on" : "rkz-feat-label-off"}>{t}</span>
-                  </li>
-                ))}
-              </ul>
-              <button className="rkz-pkg-btn">{pkg.featured ? "Select This Package →" : pkg.price === "Custom" ? "Get Custom Quote →" : "Get Started →"}</button>
-            </div>
-          ))}
         </div>
       </div>
 
@@ -851,12 +753,6 @@ export default function RAKEZPage({ onBack, onNavigate }) {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* ── CALCULATOR ── */}
-      <div className="rkz-calc rkz-section">
-        <span className="rkz-section-label rkz-reveal">Cost Estimator</span>
-        <Calculator />
       </div>
 
       {/* ── FAQ ── */}

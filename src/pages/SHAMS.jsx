@@ -449,7 +449,7 @@ const CSS = `
 const STATS = [
   { v:"30,000+", k:"Companies" }, { v:"5–8", k:"Setup Days" },
   { v:"100%", k:"Foreign Ownership" }, { v:"0%", k:"Income Tax" },
-  { v:"AED 11.5K", k:"Starting Cost" }, { v:"Media City", k:"Sharjah" },
+  { v:"Fast Setup", k:"Starting Cost" }, { v:"Media City", k:"Sharjah" },
 ];
 
 const ACTIVITIES = [
@@ -491,11 +491,11 @@ const DOCUMENTS = [
 const FAQS = [
   { q:"What makes SHAMS the right choice for media and creative businesses?", a:"SHAMS (Sharjah Media City) is the only UAE free zone purpose-built for media and creative industries. It explicitly licenses social media management, influencer marketing, content creation, broadcasting, and digital publishing — activities that some other zones classify ambiguously. It's the most affordable media-specific free zone in the UAE." },
   { q:"Can influencers and content creators set up a company in SHAMS?", a:"Yes — SHAMS explicitly supports content creation, social media management, and influencer marketing as licensed business activities. This is one of SHAMS' key advantages over general free zones. Many UAE-based influencers and content creators operate legally under SHAMS licenses." },
-  { q:"How does SHAMS compare in cost to other UAE free zones?", a:"SHAMS starts from AED 11,500 — competitive with RAKEZ and significantly more affordable than DMCC or JAFZA. For businesses in media and creative industries, SHAMS offers the best combination of activity-specific licensing and affordable cost." },
+  { q:"How does SHAMS compare in cost to other UAE free zones?", a:"SHAMS is highly competitive in cost — significantly more affordable than DMCC or JAFZA. For businesses in media and creative industries, SHAMS offers the best combination of activity-specific licensing and affordable cost." },
   { q:"Can I get a UAE residence visa through SHAMS?", a:"Yes. A SHAMS investor visa is a standard UAE residence visa — Emirates ID, residency rights, and banking access are identical to any Dubai or Abu Dhabi free zone visa. The Sharjah location has no negative impact on UAE residency.", list:["Virtual Office: 1 Visa","Flexi Desk: 2–3 Visas","Studio Office: 3–4 Visas","Private Office: 5+ Visas"] },
   { q:"Is SHAMS recognised by UAE banks for account opening?", a:"Yes — SHAMS is well-recognised by all major UAE banks. Account opening with SHAMS companies follows the same process as any other free zone. The key factor is your source-of-funds documentation, business plan, and personal banking history." },
   { q:"Can SHAMS companies work with Dubai-based clients?", a:"Yes. SHAMS companies can provide services to clients across the UAE including Dubai and Abu Dhabi. There is no restriction on who you can serve — only on physically operating a retail or consumer-facing establishment on the mainland without a mainland license." },
-  { q:"What is the annual renewal cost for SHAMS?", a:"SHAMS annual renewal ranges from AED 8,000 to AED 13,000 depending on your license type, activities, and office arrangement — among the most affordable annual renewals for a UAE media-specific free zone." },
+  { q:"What is the annual renewal cost for SHAMS?", a:"SHAMS annual renewal is among the most affordable for a UAE media-specific free zone, depending on your license type, activities, and office arrangement. Contact us for a current quote." },
   { q:"Can I set up SHAMS remotely without visiting the UAE?", a:"Yes — SHAMS license formation can be completed remotely for most applicants. Visa biometric registration and bank account opening require a UAE visit. INCOZONE coordinates one efficient visit to complete all remaining steps." },
   { q:"Does SHAMS allow me to hire staff?", a:"Yes — your visa allocation allows you to sponsor employees. The number of employee visas you can hold depends on your office type. INCOZONE advises on the optimal setup for your team size from the beginning." },
   { q:"What are the most popular activities on a SHAMS license?", a:"The most commonly licensed activities include:", list:["Social Media Management & Consulting","Content Creation (Video, Photo, Written)","Influencer Marketing & Talent Management","Digital Marketing & Advertising","Publishing & Journalism","PR & Communications","Broadcasting & Podcasting"] },
@@ -562,71 +562,6 @@ function useReveal() {
     els.forEach(el => obs.observe(el));
     return () => obs.disconnect();
   });
-}
-
-// ── CALCULATOR ────────────────────────────────────────────────
-function Calculator() {
-  const [pkg, setPkg] = useState("creator");
-  const [off, setOff] = useState("virtual");
-  const [vis, setVis] = useState("1");
-  const [pro, setPro] = useState(false);
-  const [bnk, setBnk] = useState(false);
-  const pkgC = { creator: 11500, studio: 16500, enterprise: 24500 };
-  const offC = { virtual: 0, flexi: 2600, studio: 7800, private: 9200 };
-  const visC = { "0": 0, "1": 0, "3": 2600, "5": 4800, "6": 5800 };
-  const total = (pkgC[pkg] || 0) + (offC[off] || 0) + (visC[vis] || 0) + (pro ? 3000 : 0) + (bnk ? 2500 : 0);
-  const f = n => "AED " + n.toLocaleString();
-  return (
-    <div className="sms-calc-inner">
-      <div>
-        <h2 className="sms-h2 sms-reveal">Build Your <em>Custom Package</em></h2>
-        <p className="sms-reveal sr1" style={{ fontSize: "0.84rem", color: "var(--w60)", margin: "12px 0 36px" }}>Configure your SHAMS requirements and get an instant cost breakdown.</p>
-        <div className="sms-calc-form">
-          {[
-            { l: "License Package", id: "pkg", val: pkg, set: setPkg, opts: [["creator","Creator (AED 11,500)"],["studio","Studio (AED 16,500)"],["enterprise","Enterprise (AED 24,500)"]] },
-            { l: "Office / Workspace", id: "off", val: off, set: setOff, opts: [["virtual","Virtual Office (Included)"],["flexi","Flexi Desk (+AED 2,600/yr)"],["studio","Studio Office (+AED 7,800/yr)"],["private","Private Office (+AED 9,200/yr)"]] },
-            { l: "Visa Allocation", id: "vis", val: vis, set: setVis, opts: [["0","No Visas"],["1","1 Visa (Included)"],["3","3 Visas (+AED 2,600)"],["5","5 Visas (+AED 4,800)"],["6","6 Visas (+AED 5,800)"]] },
-          ].map(({ l, id, val, set, opts }) => (
-            <div className="sms-calc-field sms-reveal" key={id}>
-              <label className="sms-calc-label">{l}</label>
-              <select className="sms-calc-select" value={val} onChange={e => set(e.target.value)}>
-                {opts.map(([v, lab]) => <option key={v} value={v}>{lab}</option>)}
-              </select>
-            </div>
-          ))}
-          <div className="sms-calc-field sms-reveal">
-            <label className="sms-calc-label">PRO & Government Services</label>
-            <div className="sms-toggle-row">
-              <button className={`sms-toggle${!pro ? " on" : ""}`} onClick={() => setPro(false)}>Not Required</button>
-              <button className={`sms-toggle${pro ? " on" : ""}`} onClick={() => setPro(true)}>Add PRO (+AED 3,000)</button>
-            </div>
-          </div>
-          <div className="sms-calc-field sms-reveal">
-            <label className="sms-calc-label">Banking Assistance</label>
-            <div className="sms-toggle-row">
-              <button className={`sms-toggle${!bnk ? " on" : ""}`} onClick={() => setBnk(false)}>Not Required</button>
-              <button className={`sms-toggle${bnk ? " on" : ""}`} onClick={() => setBnk(true)}>Add Banking (+AED 2,500)</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="sms-result sms-reveal">
-        <span className="sms-result-tag">Estimated Total</span>
-        <div className="sms-result-amount"><span className="sms-result-currency">AED </span>{total.toLocaleString()}</div>
-        <div className="sms-result-note">One-time cost · excludes annual renewal</div>
-        <div className="sms-result-lines">
-          <div className="sms-result-line"><span className="sms-result-line-lbl">Base License Fee</span><span className="sms-result-line-val">{f(pkgC[pkg])}</span></div>
-          {offC[off] > 0 && <div className="sms-result-line"><span className="sms-result-line-lbl">Office / Studio (Annual)</span><span className="sms-result-line-val">+{f(offC[off])}</span></div>}
-          {visC[vis] > 0 && <div className="sms-result-line"><span className="sms-result-line-lbl">Visa Processing</span><span className="sms-result-line-val">+{f(visC[vis])}</span></div>}
-          {pro && <div className="sms-result-line"><span className="sms-result-line-lbl">PRO Services</span><span className="sms-result-line-val">+{f(3000)}</span></div>}
-          {bnk && <div className="sms-result-line"><span className="sms-result-line-lbl">Banking Assistance</span><span className="sms-result-line-val">+{f(2500)}</span></div>}
-        </div>
-        <div className="sms-result-total-row"><span style={{ color: "var(--w)", fontWeight: 500 }}>Total Estimate</span><span style={{ color: "var(--g400)", fontWeight: 600 }}>{f(total)}</span></div>
-        <p className="sms-result-disclaimer">Estimate only. Final cost depends on current authority fees and specific requirements.</p>
-        <button className="sms-btn-gold" style={{ width: "100%" }}>Get Exact Quote →</button>
-      </div>
-    </div>
-  );
 }
 
 // ── MAIN PAGE ─────────────────────────────────────────────────
@@ -703,7 +638,7 @@ export default function SHAMSPage({ onBack, onNavigate }) {
           <h1 className="sms-hero-h1">SHAMS<em>Free Zone</em></h1>
           <div className="sms-hero-fullname">Sharjah Media City — UAE's Creative Capital</div>
           <p className="sms-hero-desc">
-            The UAE's only free zone purpose-built for media, content creation, and creative industries. Explicit licensing for influencers, social media managers, and digital agencies — starting from just <strong style={{ color: "var(--g300)" }}>AED 11,500.</strong>
+            The UAE's only free zone purpose-built for media, content creation, and creative industries. Explicit licensing for influencers, social media managers, and digital agencies.
           </p>
           <div className="sms-hero-actions">
             <button className="sms-btn-gold">Start SHAMS Setup →</button>
@@ -715,10 +650,10 @@ export default function SHAMSPage({ onBack, onNavigate }) {
           <div className="sms-hero-card">
             <span className="sms-hero-card-label">Quick Reference</span>
             {[
-              ["Location","Sharjah, UAE"], ["Setup From","AED 11,500","gold"],
+              ["Location","Sharjah, UAE"],
               ["Setup Time","5–8 Days","gold"], ["Min. Capital","Not Required"],
               ["Ownership","100% Foreign","gold"], ["Visa Quota","Up to 6"],
-              ["Annual Renewal","AED 8–13K"], ["Tax","0% Personal"],
+              ["Tax","0% Personal"],
             ].map(([l, v, cls]) => (
               <div className="sms-hero-card-row" key={l}>
                 <span>{l}</span><span className={cls || ""}>{v}</span>
@@ -756,7 +691,7 @@ export default function SHAMSPage({ onBack, onNavigate }) {
               {[
                 { i:IFilm, h:"Purpose-Built for Media", p:"The UAE's only free zone specifically designed for content creation, media production, and creative industries — not an afterthought. Activity licensing is explicit and legally precise." },
                 { i:IShare, h:"Creator Economy Friendly", p:"Influencer marketing, social media management, and content creation are explicitly licensed activities — giving creators and agencies clear legal standing for their business model." },
-                { i:ITag, h:"Most Affordable Media Zone", p:"Starting from AED 11,500 — the lowest setup cost of any UAE media-specific free zone. Annual renewals from AED 8,000, making SHAMS ideal for early-stage creative businesses." },
+                { i:ITag, h:"Most Affordable Media Zone", p:"The lowest setup cost of any UAE media-specific free zone. Affordable annual renewals make SHAMS ideal for early-stage creative businesses." },
                 { i:IGrid, h:"Studio Workspaces Available", p:"Beyond virtual offices, SHAMS offers dedicated studio spaces and creative offices suited to production businesses. Purpose-built creative infrastructure at competitive rates." },
                 { i:IClock, h:"5 to 8 Day Setup", p:"Streamlined digital application with fast authority turnaround. Most SHAMS licenses are issued within 5–8 working days from document submission." },
               ].map((p, i) => (
@@ -767,39 +702,6 @@ export default function SHAMSPage({ onBack, onNavigate }) {
               ))}
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* ── PACKAGES ── */}
-      <div className="sms-packages sms-section">
-        <span className="sms-section-label sms-reveal">Setup Packages</span>
-        <h2 className="sms-h2 sms-reveal sr1">Choose Your <em>SHAMS Package</em></h2>
-        <p className="sms-reveal sr2" style={{ fontSize: "0.84rem", color: "var(--cream-ink3)", marginTop: "10px", maxWidth: "520px" }}>All packages include full company incorporation, trade license, and corporate documents.</p>
-        <div className="sms-pkg-grid">
-          {[
-            { name:"Creator", tag:"Solo creators & freelancers", price:"11,500", badge:"Most Affordable", featured:false, feats:[["1 Media License Activity",true],["Virtual Office (UAE Address)",true],["1 Investor Visa",true],["Company Stamp & MOA",true],["Bank Account Assistance",false],["Dedicated Account Manager",false]] },
-            { name:"Studio", tag:"Agencies & production companies", price:"16,500", badge:"Most Popular", featured:true, feats:[["3 Media License Activities",true],["Flexi Desk / Studio Access",true],["3 Investor Visas",true],["Full Corporate Documents",true],["Bank Account Assistance",true],["Dedicated Account Manager",false]] },
-            { name:"Enterprise", tag:"Full media enterprise setup", price:"24,500", badge:"Full Service", featured:false, feats:[["Unlimited Activities",true],["Private Office / Studio",true],["5+ Investor Visas",true],["Full Corporate Documents",true],["Priority Bank Account Setup",true],["Dedicated Account Manager",true]] },
-          ].map((pkg, i) => (
-            <div className={`sms-pkg sms-reveal sr${i+1}${pkg.featured ? " featured" : ""}`} key={i}>
-              <div className="sms-pkg-badge">{pkg.badge}</div>
-              <div className="sms-pkg-name">{pkg.name}</div>
-              <p className="sms-pkg-tag">{pkg.tag}</p>
-              <div className="sms-pkg-price">
-                <div className="sms-pkg-amount">AED {pkg.price}</div>
-                <div className="sms-pkg-period">One-time setup · excludes annual renewal</div>
-              </div>
-              <ul className="sms-pkg-features">
-                {pkg.feats.map(([t, on], j) => (
-                  <li className="sms-pkg-feat" key={j}>
-                    <span className={on ? "sms-feat-on" : "sms-feat-off"}>{on ? "" : "×"}</span>
-                    <span className={on ? "sms-feat-label-on" : "sms-feat-label-off"}>{t}</span>
-                  </li>
-                ))}
-              </ul>
-              <button className="sms-pkg-btn">{pkg.featured ? "Select This Package →" : "Get Started →"}</button>
-            </div>
-          ))}
         </div>
       </div>
 
@@ -853,12 +755,6 @@ export default function SHAMSPage({ onBack, onNavigate }) {
         </div>
       </div>
 
-      {/* ── CALCULATOR ── */}
-      <div className="sms-calc sms-section">
-        <span className="sms-section-label sms-reveal">Cost Estimator</span>
-        <Calculator />
-      </div>
-
       {/* ── FAQ ── */}
       <div className="sms-faq sms-section">
         <span className="sms-section-label sms-reveal" style={{ textAlign: "center", display: "block" }}>FAQ</span>
@@ -888,7 +784,7 @@ export default function SHAMSPage({ onBack, onNavigate }) {
         <div className="sms-advisory-inner">
           <div className="sms-advisory-quote sms-reveal sr2">
             "For content creators, influencers, and digital agencies — SHAMS removes the ambiguity that plagues other free zones.{" "}
-            <strong>You don't want to spend AED 18,000 on a DMCC license only to find your social media management activities are classified under a different, unlicensed category. SHAMS was built for this business model.</strong>"
+            <strong>You don't want to pay a premium for a DMCC license only to find your social media management activities are classified under a different, unlicensed category. SHAMS was built for this business model.</strong>"
             <div className="sms-advisory-quote-attr">— INCOZONE Advisory Team</div>
           </div>
           <div className="sms-advisory-tips">

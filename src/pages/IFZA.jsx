@@ -491,7 +491,7 @@ const CSS = `
 const STATS = [
   { v:"10,000+", k:"Companies" }, { v:"5–7", k:"Setup Days" },
   { v:"100%", k:"Foreign Ownership" }, { v:"0%", k:"Income Tax" },
-  { v:"AED 12K", k:"Starting Cost" }, { v:"170+", k:"Nationalities" },
+  { v:"Fast Setup", k:"Starting Cost" }, { v:"170+", k:"Nationalities" },
 ];
 
 const ACTIVITIES = [
@@ -530,13 +530,13 @@ const DOCUMENTS = [
 ];
 
 const FAQS = [
-  { q:"How affordable is IFZA compared to DMCC and other free zones?", a:"IFZA is one of the most cost-effective free zones in the UAE. Setup starts from AED 12,000 — significantly lower than DMCC (AED 18,500+) or JAFZA. For SMEs, consultants, and digital businesses, IFZA delivers full UAE company benefits at a fraction of the cost of premium zones." },
+  { q:"How affordable is IFZA compared to DMCC and other free zones?", a:"IFZA is one of the most cost-effective free zones in the UAE — significantly more affordable than DMCC or JAFZA. For SMEs, consultants, and digital businesses, IFZA delivers full UAE company benefits at a fraction of the cost of premium zones." },
   { q:"How fast can I get my IFZA license?", a:"IFZA is one of the fastest free zones for company formation — typically 5 to 7 working days from document submission to license issuance. Investor visa processing takes an additional 7–14 days. You can be fully operational in under 4 weeks." },
   { q:"Can I have 100% foreign ownership with IFZA?", a:"Yes. IFZA is a UAE free zone and allows 100% foreign ownership with no UAE national partner or local sponsor required. You have full control of your company." },
   { q:"How many visas can I get with an IFZA license?", a:"Visa allocation depends on your package and office type.", list:["Starter (Virtual Office): 1–2 Visas","Standard Package: 3 Visas","Business Package: 5 Visas","Custom / Flexi Desk: Up to 6+ Visas"] },
   { q:"Can I trade with mainland UAE companies from IFZA?", a:"IFZA companies can provide services to mainland UAE companies. For physical goods trading into the mainland, you need a customs clearance agent or mainland distributor. We can structure your setup to facilitate smooth mainland dealings." },
   { q:"Is IFZA good for e-commerce and digital businesses?", a:"Yes — IFZA is particularly popular with e-commerce, digital marketing, SaaS, and online service businesses. The virtual office package makes it ideal for solo operators and digital-first companies who do not need a physical UAE office." },
-  { q:"What is the annual renewal cost for IFZA?", a:"IFZA annual renewal typically ranges from AED 8,000 to AED 14,000 depending on your package, license activities, and visa count. Our team sends renewal reminders 90 days in advance." },
+  { q:"What is the annual renewal cost for IFZA?", a:"IFZA annual renewal is competitive — among the most affordable of any major UAE free zone. Our team sends renewal reminders 90 days in advance and provides a clear breakdown at that time." },
   { q:"Can I open an IFZA company without visiting the UAE?", a:"Yes — IFZA license formation can be completed 100% remotely. For visa processing, a short UAE visit is required. Bank account opening typically requires a visit too. INCOZONE helps you plan one efficient trip to complete both." },
   { q:"What is the difference between IFZA and DMCC?", a:"IFZA is more affordable, faster to set up, and better for SMEs, consultancies, e-commerce, and general trading. DMCC is more prestigious, better for commodities, fintech, and financial services, but significantly more expensive. Both offer 100% ownership. INCOZONE will recommend the right fit for your specific situation." },
   { q:"Does IFZA support multiple shareholders?", a:"Yes. IFZA supports sole proprietorships, FZ-LLCs with multiple shareholders (up to 50), and corporate shareholders. Our team will structure ownership in the most tax-efficient and practical way for your situation." },
@@ -605,79 +605,6 @@ function useReveal() {
     els.forEach(el => obs.observe(el));
     return () => obs.disconnect();
   });
-}
-
-// ── CALCULATOR ────────────────────────────────────────────────
-function Calculator() {
-  const [pkg, setPkg] = useState("standard");
-  const [vis, setVis] = useState("2");
-  const [pro, setPro] = useState(false);
-  const [bnk, setBnk] = useState(false);
-
-  const pkgC = { starter: 12000, standard: 15500, business: 21900, corporate: 31500 };
-  const vC = { "0": 0, "2": 0, "3": 2800, "5": 5200, "8": 8400 };
-  const total = pkgC[pkg] + (vC[vis] || 0) + (pro ? 2800 : 0) + (bnk ? 2200 : 0);
-  const f = n => "AED " + n.toLocaleString();
-
-  return (
-    <div className="ifza-calc-inner">
-      <div>
-        <h2 className="ifza-h2 ifza-reveal">Build Your <em>Custom Package</em></h2>
-        <p className="ifza-reveal ir1" style={{ fontSize: "0.84rem", color: "var(--w60)", margin: "12px 0 36px" }}>
-          Configure your IFZA requirements and get an instant cost breakdown. All packages include full company incorporation.
-        </p>
-        <div className="ifza-calc-form">
-          <div className="ifza-calc-field ifza-reveal">
-            <label className="ifza-calc-label">License Package</label>
-            <select className="ifza-calc-select" value={pkg} onChange={e => setPkg(e.target.value)}>
-              <option value="starter">Starter — Virtual Office (AED 12,000)</option>
-              <option value="standard">Standard — Flexi Desk (AED 15,500)</option>
-              <option value="business">Business — Serviced Office (AED 21,900)</option>
-              <option value="corporate">Corporate — Private Office (AED 31,500)</option>
-            </select>
-          </div>
-          <div className="ifza-calc-field ifza-reveal">
-            <label className="ifza-calc-label">Visa Allocation</label>
-            <select className="ifza-calc-select" value={vis} onChange={e => setVis(e.target.value)}>
-              <option value="0">No Visas</option>
-              <option value="2">2 Visas (Included in Standard+)</option>
-              <option value="3">3 Visas (+AED 2,800)</option>
-              <option value="5">5 Visas (+AED 5,200)</option>
-              <option value="8">8 Visas (+AED 8,400)</option>
-            </select>
-          </div>
-          <div className="ifza-calc-field ifza-reveal">
-            <label className="ifza-calc-label">PRO & Government Services</label>
-            <div className="ifza-toggle-row">
-              <button className={`ifza-toggle${!pro ? " on" : ""}`} onClick={() => setPro(false)}>Not Required</button>
-              <button className={`ifza-toggle${pro ? " on" : ""}`} onClick={() => setPro(true)}>Add PRO (+AED 2,800)</button>
-            </div>
-          </div>
-          <div className="ifza-calc-field ifza-reveal">
-            <label className="ifza-calc-label">Banking Assistance</label>
-            <div className="ifza-toggle-row">
-              <button className={`ifza-toggle${!bnk ? " on" : ""}`} onClick={() => setBnk(false)}>Not Required</button>
-              <button className={`ifza-toggle${bnk ? " on" : ""}`} onClick={() => setBnk(true)}>Add Banking (+AED 2,200)</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="ifza-result ifza-reveal">
-        <span className="ifza-result-tag">Estimated Total</span>
-        <div className="ifza-result-amount"><span className="ifza-result-currency">AED </span>{total.toLocaleString()}</div>
-        <div className="ifza-result-note">One-time cost · excludes annual renewal</div>
-        <div className="ifza-result-lines">
-          <div className="ifza-result-line"><span className="ifza-result-line-lbl">License Package</span><span className="ifza-result-line-val">{f(pkgC[pkg])}</span></div>
-          {vC[vis] > 0 && <div className="ifza-result-line"><span className="ifza-result-line-lbl">Visa Processing</span><span className="ifza-result-line-val">+{f(vC[vis])}</span></div>}
-          {pro && <div className="ifza-result-line"><span className="ifza-result-line-lbl">PRO Services</span><span className="ifza-result-line-val">+{f(2800)}</span></div>}
-          {bnk && <div className="ifza-result-line"><span className="ifza-result-line-lbl">Banking Assistance</span><span className="ifza-result-line-val">+{f(2200)}</span></div>}
-        </div>
-        <div className="ifza-result-total-row"><span style={{ color: "var(--w)", fontWeight: 500 }}>Total Estimate</span><span style={{ color: "var(--a400)", fontWeight: 600 }}>{f(total)}</span></div>
-        <p className="ifza-result-disclaimer">Estimate only. Final cost depends on current authority fees and your specific requirements.</p>
-        <button className="ifza-btn-teal" style={{ width: "100%" }}>Get Exact Quote →</button>
-      </div>
-    </div>
-  );
 }
 
 // ── MAIN PAGE ─────────────────────────────────────────────────
@@ -755,12 +682,12 @@ export default function IFZAPage({ onBack, onNavigate }) {
           <h1 className="ifza-hero-h1">IFZA<em>Free Zone</em></h1>
           <div className="ifza-hero-fullname">International Free Zone Authority</div>
           <div className="ifza-hero-pills">
-            {["From AED 12,000","5–7 Day Setup","100% Ownership","0% Tax","Virtual Office Available"].map(p => (
+            {["Fast Setup","100% Ownership","0% Tax","Virtual Office Available"].map(p => (
               <span className="ifza-pill" key={p}>{p}</span>
             ))}
           </div>
           <p className="ifza-hero-desc">
-            The UAE's most affordable and fastest-growing free zone — purpose-built for SMEs, consultants, e-commerce businesses, and digital entrepreneurs. Set up your UAE company in as little as <strong style={{ color: "var(--a300)" }}>5 working days</strong>, starting from just AED 12,000.
+            The UAE's most affordable and fastest-growing free zone — purpose-built for SMEs, consultants, e-commerce businesses, and digital entrepreneurs. Set up your UAE company in as little as <strong style={{ color: "var(--a300)" }}>5 working days</strong>.
           </p>
           <div className="ifza-hero-actions">
             <button className="ifza-btn-teal">Start IFZA Setup →</button>
@@ -772,10 +699,10 @@ export default function IFZAPage({ onBack, onNavigate }) {
           <div className="ifza-hero-card">
             <span className="ifza-hero-card-label">Quick Reference</span>
             {[
-              ["Location","Dubai Silicon Oasis"],["Setup From","AED 12,000","teal"],
+              ["Location","Dubai Silicon Oasis"],
               ["Setup Time","5–7 Days","teal"],["Min. Capital","Not Required"],
               ["Ownership","100% Foreign","teal"],["Visa Quota","Up to 8"],
-              ["Annual Renewal","AED 8–14K"],["Tax","0% Personal"],
+              ["Tax","0% Personal"],
             ].map(([l,v,cls])=>(
               <div className="ifza-hero-card-row" key={l}>
                 <span>{l}</span>
@@ -824,10 +751,10 @@ export default function IFZAPage({ onBack, onNavigate }) {
           <div className="ifza-reveal ir2">
             <div className="ifza-pillars">
               {[
-                { i:ITag, h:"Most Affordable UAE Free Zone", p:"Starting from AED 12,000 — the lowest entry cost of any major UAE free zone. Ideal for bootstrapped founders and growing SMEs." },
+                { i:ITag, h:"Most Affordable UAE Free Zone", p:"The lowest entry cost of any major UAE free zone. Ideal for bootstrapped founders and growing SMEs." },
                 { i:IClock, h:"Fastest Setup — 5 to 7 Days", p:"IFZA's streamlined digital process delivers your trade license in 5–7 working days. Faster than DMCC, JAFZA, and most other zones." },
                 { i:ILaptop, h:"Virtual Office Available", p:"No need for a physical office. IFZA's virtual office package gives you a legitimate UAE business address and mailing services from anywhere." },
-                { i:IShield, h:"No Minimum Share Capital", p:"Unlike DMCC (AED 50,000 declared) and many other zones, IFZA has no minimum share capital requirement — freeing up your working capital." },
+                { i:IShield, h:"No Minimum Share Capital", p:"Unlike DMCC and many other zones, IFZA has no minimum share capital requirement — freeing up your working capital." },
                 { i:IUsers, h:"Multi-Shareholder Friendly", p:"IFZA supports sole proprietors, FZ-LLCs with up to 50 shareholders, and corporate shareholders — flexible for joint ventures and group structures." },
               ].map((p,i)=>(
                 <div className="ifza-pillar" key={i}>
@@ -852,13 +779,11 @@ export default function IFZAPage({ onBack, onNavigate }) {
             {
               label: "IFZA", highlight: true,
               rows: [
-                ["Setup Cost", "From AED 12,000", "win"],
                 ["Setup Speed", "5–7 Working Days", "win"],
                 ["Min. Share Capital", "Not Required", "win"],
                 ["Virtual Office", "Yes — Available", "win"],
                 ["Prestige Level", "Growing, Well-Respected"],
                 ["Best For", "SMEs, E-commerce, Consultants", "win"],
-                ["Annual Renewal", "AED 8,000–14,000", "win"],
                 ["Visa Quota", "Up to 8 Visas"],
                 ["Crypto / Fintech", "General IT License"],
                 ["Banking Ease", "Good"],
@@ -867,13 +792,11 @@ export default function IFZAPage({ onBack, onNavigate }) {
             {
               label: "DMCC", highlight: false,
               rows: [
-                ["Setup Cost", "From AED 18,500"],
                 ["Setup Speed", "7–14 Working Days"],
-                ["Min. Share Capital", "AED 50,000 Declared"],
+                ["Min. Share Capital", "Required (Declared)"],
                 ["Virtual Office", "No — Physical Required"],
                 ["Prestige Level", "World's #1 Free Zone"],
                 ["Best For", "Commodities, Fintech, Finance"],
-                ["Annual Renewal", "AED 12,000–18,000"],
                 ["Visa Quota", "Up to 6 (standard)"],
                 ["Crypto / Fintech", "Dedicated VA License"],
                 ["Banking Ease", "Excellent (Premium Banks)"],
@@ -891,50 +814,6 @@ export default function IFZAPage({ onBack, onNavigate }) {
                   <span className={`ifza-vs-row-val${cls?" "+cls:""}`}>{v}</span>
                 </div>
               ))}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── PACKAGES ── */}
-      <div className="ifza-packages ifza-section">
-        <span className="ifza-label ifza-reveal">Setup Packages</span>
-        <h2 className="ifza-h2 ifza-reveal ir1">Choose Your <em>IFZA Package</em></h2>
-        <p className="ifza-reveal ir2" style={{ fontSize: "0.84rem", color: "var(--cream-ink3)", marginTop: "10px", maxWidth: "520px" }}>
-          All packages include full company incorporation, trade license, and corporate documents. Choose based on your workspace and visa needs.
-        </p>
-        <div className="ifza-pkg-grid">
-          {[
-            {
-              name:"Starter", tag:"Solo founders & remote operators", price:"12,000", badge:"Most Affordable",
-              feats:[{t:"1 Trade License Activity",on:true},{t:"Virtual Office (UAE Address)",on:true},{t:"1 Investor Visa",on:true},{t:"Company Stamp & MOA",on:true},{t:"Bank Account Assistance",on:false},{t:"Dedicated Account Manager",on:false}]
-            },
-            {
-              name:"Business", tag:"Growing teams & multi-activity SMEs", price:"15,500", badge:"Most Popular", featured:true,
-              feats:[{t:"3 Trade License Activities",on:true},{t:"Flexi Desk Workspace",on:true},{t:"3 Investor Visas",on:true},{t:"Full Corporate Documents",on:true},{t:"Bank Account Assistance",on:true},{t:"Dedicated Account Manager",on:false}]
-            },
-            {
-              name:"Corporate", tag:"Established businesses & larger teams", price:"21,900", badge:"Full Service",
-              feats:[{t:"Unlimited Activities",on:true},{t:"Serviced Office",on:true},{t:"5+ Investor Visas",on:true},{t:"Full Corporate Documents",on:true},{t:"Priority Bank Account Setup",on:true},{t:"Dedicated Account Manager",on:true}]
-            },
-          ].map((pkg,i)=>(
-            <div className={`ifza-pkg ifza-reveal ir${i+1}${pkg.featured?" featured":""}`} key={i}>
-              {pkg.badge&&<div className="ifza-pkg-badge">{pkg.badge}</div>}
-              <div className="ifza-pkg-name">{pkg.name}</div>
-              <p className="ifza-pkg-tag">{pkg.tag}</p>
-              <div className="ifza-pkg-price">
-                <div className="ifza-pkg-amount">AED {pkg.price}</div>
-                <div className="ifza-pkg-period">One-time setup · excludes annual renewal</div>
-              </div>
-              <ul className="ifza-pkg-features">
-                {pkg.feats.map((f,j)=>(
-                  <li className="ifza-pkg-feat" key={j}>
-                    <span className={f.on?"ifza-feat-on":"ifza-feat-off"}>{f.on?"":"×"}</span>
-                    <span className={f.on?"ifza-feat-label-on":"ifza-feat-label-off"}>{f.t}</span>
-                  </li>
-                ))}
-              </ul>
-              <button className="ifza-pkg-btn">{pkg.featured?"Select This Package →":"Get Started →"}</button>
             </div>
           ))}
         </div>
@@ -994,12 +873,6 @@ export default function IFZAPage({ onBack, onNavigate }) {
         </div>
       </div>
 
-      {/* ── CALCULATOR ── */}
-      <div className="ifza-calc ifza-section">
-        <span className="ifza-label ifza-reveal">Cost Estimator</span>
-        <Calculator />
-      </div>
-
       {/* ── FAQ ── */}
       <div className="ifza-faq ifza-section">
         <span className="ifza-label ifza-reveal" style={{ textAlign:"center", display:"block" }}>FAQ</span>
@@ -1029,7 +902,7 @@ export default function IFZAPage({ onBack, onNavigate }) {
         <div className="ifza-advisory-inner">
           <div className="ifza-advisory-quote ifza-reveal ir2">
             "IFZA is our most recommended zone for first-time UAE business owners, digital entrepreneurs, and anyone who wants a credible UAE company without overpaying.{" "}
-            <strong>If your business doesn't specifically require DMCC's commodities network or JAFZA's logistics infrastructure, IFZA is almost always the smarter financial choice.</strong>"
+            <strong>If your business doesn't specifically require DMCC's commodities network or JAFZA's logistics infrastructure, IFZA is almost always the smarter choice.</strong>"
             <div className="ifza-advisory-quote-attr">— INCOZONE Advisory Team</div>
           </div>
           <div className="ifza-advisory-tips">

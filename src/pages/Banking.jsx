@@ -564,7 +564,7 @@ const FAQS = [
   { q: "How long does UAE corporate bank account opening take?", a: "Typically 3–6 weeks from document submission to account activation. Digital banks like Wio can be faster — sometimes within a week. International banks like HSBC and Standard Chartered take longer due to more thorough compliance reviews." },
   { q: "Which bank is easiest to open an account with in the UAE?", a: "RAKBank and Wio Bank are generally the most accessible for SMEs and free zone companies. ADCB is also known for efficient SME account opening. The 'easiest' bank depends on your business type, nationality, and transaction profile — we assess this before recommending." },
   { q: "Can a free zone company open a UAE bank account?", a: "Yes — all UAE banks accept free zone company accounts. Some banks have preferences for specific free zones (e.g., DMCC companies tend to have high approval rates). We align your bank selection to your free zone for maximum success." },
-  { q: "What is the minimum balance requirement for a UAE business account?", a: "It varies significantly. Wio Bank has no minimum. RAKBank requires around AED 10,000. Local banks like ENBD and FAB typically require AED 50,000+. International banks can require AED 100,000–150,000. We recommend banks that match your capital position." },
+  { q: "What is the minimum balance requirement for a UAE business account?", a: "It varies significantly by bank — from no minimum for digital banks like Wio, to moderate requirements for local banks, to higher thresholds for international banks. We recommend banks that match your capital position and business profile." },
   { q: "Why was my UAE bank account application rejected?", a: "Common reasons include incomplete documentation, unclear source of funds, high-risk business activity, nationality considerations, or mismatched business model. We review rejected cases and often successfully reapply to a different bank with a restructured application." },
   { q: "Do I need to be present in the UAE to open a business bank account?", a: "Most UAE banks require at least one visit for KYC verification and signature. However, Wio Bank is fully digital and can be opened remotely. We advise on the minimum visit requirement for your target bank." },
 ];
@@ -721,7 +721,7 @@ export default function BankingPage({ onBack, onNavigate }) {
           { val: "12", key: "Partner Banks" },
           { val: "95%", key: "Approval Rate" },
           { val: "21 Days", key: "Avg. Opening" },
-          { val: "AED 0", key: "Min. (Digital)" },
+          { val: "10+", key: "Banking Partners" },
           { val: "500+", key: "Accounts Opened" },
         ].map((s, i) => (
           <div className="bk-stat" key={i}>
@@ -767,10 +767,6 @@ export default function BankingPage({ onBack, onNavigate }) {
                 {bank.features.map(f => <span className="bk-bank-feat" key={f}>{f}</span>)}
               </div>
               <div className="bk-bank-footer">
-                <div className="bk-bank-min">
-                  Min. Balance<br />
-                  <strong>{bank.minBalance}</strong>
-                </div>
                 <div style={{ textAlign: "right" }}>
                   <div style={{ fontSize: "0.58rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--w30)", marginBottom: "4px" }}>Approval</div>
                   <div style={{ fontSize: "0.72rem", fontWeight: "500", color: approvalColor[bank.approval] || "var(--g400)" }}>{bank.approval}</div>
@@ -793,7 +789,7 @@ export default function BankingPage({ onBack, onNavigate }) {
               <div className="bk-selected-panel-left">
                 <span className="bk-selected-label">Selected Bank</span>
                 <div className="bk-selected-name">{bank.full}</div>
-                <div className="bk-selected-sub">Best for: {bank.bestFor} · Min. Balance: {bank.minBalance} · Approval: {bank.approval}</div>
+                <div className="bk-selected-sub">Best for: {bank.bestFor} · Approval: {bank.approval}</div>
               </div>
               <button className="bk-selected-btn" onClick={() => go("schedule")}>
                 Open Account with {bank.name} →

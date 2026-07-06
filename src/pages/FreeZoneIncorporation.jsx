@@ -439,7 +439,6 @@ const ZONES = [
     fullName: "Dubai Multi Commodities Centre",
     badge: null,
     desc: "The world's most connected free zone, hosting 23,000+ companies across commodities, fintech, and professional services.",
-    price: "AED 18,500",
     timeline: "7–14 days",
     img: imgDMCC,
     nav: "dmcc"
@@ -449,7 +448,6 @@ const ZONES = [
     fullName: "International Free Zone Authority",
     badge: "Multi-Activity",
     desc: "One of UAE's most competitive free zones. Fast, flexible, and cost-effective with broad activity coverage.",
-    price: "AED 12,900",
     timeline: "3–7 days",
     img: imgIFZA,
     nav: "ifza"
@@ -459,7 +457,6 @@ const ZONES = [
     fullName: "Meydan Free Zone",
     badge: "Premium Location",
     desc: "Premium free zone in the heart of Dubai's most iconic district. Ideal for consultancies, tech firms, and lifestyle brands.",
-    price: "AED 14,500",
     timeline: "5–10 days",
     img: imgMeydan,
     nav: "meydan"
@@ -469,7 +466,6 @@ const ZONES = [
     fullName: "Ras Al Khaimah Economic Zone",
     badge: "Industrial & Commercial",
     desc: "Northern Emirates' most competitive zone. Ideal for manufacturing, trading, and industrial operations at low cost.",
-    price: "AED 8,500",
     timeline: "3–7 days",
     img: imgRAKEZ,
     nav: "rakez"
@@ -479,7 +475,6 @@ const ZONES = [
     fullName: "Sharjah Media City",
     badge: "Media & Creative",
     desc: "UAE's leading media-focused free zone. Designed for content creators, media companies, and consultancies.",
-    price: "AED 11,500",
     timeline: "5–8 days",
     img: imgSHAMS,
     nav: "shams"
@@ -489,7 +484,6 @@ const ZONES = [
     fullName: "Jebel Ali Free Zone Authority",
     badge: "Logistics & Trade",
     desc: "The world's largest free zone by area. Unmatched for logistics, import/export, and large-scale trade operations.",
-    price: "AED 22,000",
     timeline: "7–14 days",
     img: imgJAFZA,
     nav: "jafza"
@@ -499,7 +493,6 @@ const ZONES = [
     fullName: "Ajman Free Zone",
     badge: "Budget Friendly",
     desc: "UAE's most affordable free zone option. Perfect for startups, freelancers, and cost-conscious entrepreneurs.",
-    price: "AED 5,500",
     timeline: "2–5 days",
     img: imgAFZ,
     nav: "afz"
@@ -509,7 +502,6 @@ const ZONES = [
     fullName: "Abu Dhabi Global Market",
     badge: "Financial Services",
     desc: "Abu Dhabi's premier international financial centre. Ideal for asset management, fintech, and regulated financial services.",
-    price: "AED 28,500",
     timeline: "10–21 days",
     img: imgADGM,
     nav: "adgm"
@@ -678,10 +670,6 @@ export default function FreeZoneIncorporationPage({ onNavigate }) {
                   <p className="fzi-zone-card-desc">{zone.desc}</p>
                   <div className="fzi-zone-card-divider" />
                   <div className="fzi-zone-card-pricing">
-                    <div className="fzi-zone-card-price">
-                      <span>From</span>
-                      {zone.price}
-                    </div>
                     <div className="fzi-zone-card-time">
                       <strong>{zone.timeline}</strong>
                       setup time

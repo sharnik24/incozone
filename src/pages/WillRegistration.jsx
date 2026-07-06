@@ -279,7 +279,6 @@ const WILL_TYPES = [
       "Guardian WILL appoints legal guardians for children",
       "Full WILL covers all UAE assets comprehensively",
     ],
-    cost: "From AED 2,500",
   },
   {
     icon: IBuilding,
@@ -293,7 +292,6 @@ const WILL_TYPES = [
       "Recognised across all UAE emirates",
       "Lower registration fees than DIFC in some cases",
     ],
-    cost: "From AED 2,000",
   },
   {
     icon: IUsers,
@@ -307,7 +305,6 @@ const WILL_TYPES = [
       "Consistent, coordinated estate planning",
       "Most cost-effective option for married couples",
     ],
-    cost: "From AED 4,200 (pair)",
   },
 ];
 
@@ -524,7 +521,6 @@ export default function WillRegistrationPage({ onBack, onNavigate }) {
                   <div className="wr-type-feat" key={j}><div className="wr-type-dot" /><span>{f}</span></div>
                 ))}
               </div>
-              <div className="wr-type-cost">Starting from <strong>{w.cost}</strong></div>
             </div>
           ))}
         </div>

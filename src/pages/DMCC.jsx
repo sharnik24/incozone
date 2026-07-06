@@ -584,12 +584,11 @@ const DOCUMENTS = [
 
 const FAQS = [
   { q:"How long does it take to set up a company in DMCC?", a:"Standard DMCC company formation takes 7 to 14 working days from document submission to license issuance. Investor visa processing takes an additional 7–14 days. Bank account opening typically takes 2–4 weeks. Total from start to fully operational: 4–6 weeks." },
-  { q:"What is the minimum share capital required?", a:"DMCC requires a minimum share capital of AED 50,000 for most company types. This capital does not need to be deposited upfront — it is a declared amount on your company documents. Banks typically require AED 50,000–100,000 as a minimum opening deposit." },
+  { q:"What is the minimum share capital required?", a:"DMCC requires a minimum share capital of AED 50,000 for most company types. This capital does not need to be deposited upfront — it is a declared amount on your company documents. Banks set their own minimum opening deposit requirements separately." },
   { q:"Can I have 100% foreign ownership in DMCC?", a:"Yes. DMCC is a UAE free zone and allows 100% foreign ownership with no requirement for a UAE national partner or local sponsor. You retain full control of your company." },
   { q:"How many visas can I get with a DMCC license?", a:"The number of visas depends on your office type.", list:["Flexi Desk: 2 Visas","Serviced Office: 3–4 Visas","Private Office: 5–6+ Visas","Additional visas possible with upgrade"] },
   { q:"Can I trade with mainland UAE companies from DMCC?", a:"DMCC companies can provide services to mainland UAE clients. For direct goods trading with the mainland, you will need to appoint a mainland distributor or obtain relevant customs/import permits." },
   { q:"Is DMCC suitable for crypto and blockchain businesses?", a:"Yes. DMCC is one of the most crypto-friendly free zones in the UAE — offering a Virtual Asset License for companies dealing in virtual assets, blockchain technology, cryptocurrency trading, or NFT platforms." },
-  { q:"What are the annual renewal costs?", a:"Annual renewal typically costs AED 12,000–18,000 depending on your license type, activities, and office arrangement. Our team will notify you 90 days before your renewal is due." },
   { q:"Can I open a DMCC company without visiting the UAE?", a:"Yes — for the initial license setup, most documentation can be handled remotely. However, for visa processing and bank account opening, physical presence in the UAE is required. INCOZONE can plan your visit efficiently." },
   { q:"Does DMCC have a corporate tax obligation?", a:"UAE introduced a 9% corporate tax for businesses with annual profits exceeding AED 375,000. Free zone businesses including DMCC may qualify for a 0% rate on qualifying income if they meet specific substance requirements." },
 ];
@@ -660,70 +659,6 @@ function useReveal() {
     els.forEach(el => obs.observe(el));
     return () => obs.disconnect();
   });
-}
-
-// ── CALCULATOR ────────────────────────────────────────────────
-function Calculator() {
-  const [act, setAct] = useState("1"); const [off, setOff] = useState("flexi");
-  const [vis, setVis] = useState("2"); const [pro, setPro] = useState(false); const [bnk, setBnk] = useState(false);
-  const BASE = 18500;
-  const aC = { "1": 0, "3": 3500, "5": 6500, "unlimited": 12000 };
-  const oC = { flexi: 0, serviced: 8400, private: 18000 };
-  const vC = { "0": 0, "2": 0, "4": 3200, "6": 6400, "8": 9600 };
-  const total = BASE + (aC[act] || 0) + (oC[off] || 0) + (vC[vis] || 0) + (pro ? 3500 : 0) + (bnk ? 2500 : 0);
-  const f = n => "AED " + n.toLocaleString();
-  return (
-    <div className="dmcc-calc-inner">
-      <div>
-        <h2 className="dmcc-h2 dmcc-reveal">Build Your <em>Custom Package</em></h2>
-        <p className="dmcc-reveal dr1" style={{ fontSize: "0.84rem", color: "var(--w60)", margin: "12px 0 36px" }}>Configure your DMCC requirements and get an instant cost breakdown.</p>
-        <div className="dmcc-calc-form">
-          {[
-            { l: "Business Activities", id: "act", val: act, set: setAct, opts: [["1","1 Activity (Included)"],["3","3 Activities (+AED 3,500)"],["5","5 Activities (+AED 6,500)"],["unlimited","Unlimited (+AED 12,000)"]] },
-            { l: "Office / Workspace", id: "off", val: off, set: setOff, opts: [["flexi","Flexi Desk (Included)"],["serviced","Serviced Office (+AED 8,400/yr)"],["private","Private Office (+AED 18,000/yr)"]] },
-            { l: "Visa Allocation", id: "vis", val: vis, set: setVis, opts: [["0","No Visas"],["2","2 Visas (Included)"],["4","4 Visas (+AED 3,200)"],["6","6 Visas (+AED 6,400)"],["8","8 Visas (+AED 9,600)"]] },
-          ].map(({ l, id, val, set, opts }) => (
-            <div className="dmcc-calc-field dmcc-reveal" key={id}>
-              <label className="dmcc-calc-label">{l}</label>
-              <select className="dmcc-calc-select" value={val} onChange={e => set(e.target.value)}>
-                {opts.map(([v, lab]) => <option key={v} value={v}>{lab}</option>)}
-              </select>
-            </div>
-          ))}
-          <div className="dmcc-calc-field dmcc-reveal">
-            <label className="dmcc-calc-label">PRO & Government Services</label>
-            <div className="dmcc-toggle-row">
-              <button className={`dmcc-toggle${!pro ? " on" : ""}`} onClick={() => setPro(false)}>Not Required</button>
-              <button className={`dmcc-toggle${pro ? " on" : ""}`} onClick={() => setPro(true)}>Add PRO (+AED 3,500)</button>
-            </div>
-          </div>
-          <div className="dmcc-calc-field dmcc-reveal">
-            <label className="dmcc-calc-label">Banking Assistance</label>
-            <div className="dmcc-toggle-row">
-              <button className={`dmcc-toggle${!bnk ? " on" : ""}`} onClick={() => setBnk(false)}>Not Required</button>
-              <button className={`dmcc-toggle${bnk ? " on" : ""}`} onClick={() => setBnk(true)}>Add Banking (+AED 2,500)</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="dmcc-result dmcc-reveal">
-        <span className="dmcc-result-tag">Estimated Total</span>
-        <div className="dmcc-result-amount"><span className="dmcc-result-currency">AED </span>{total.toLocaleString()}</div>
-        <div className="dmcc-result-note">One-time cost · excludes annual renewal</div>
-        <div className="dmcc-result-lines">
-          <div className="dmcc-result-line"><span className="dmcc-result-line-lbl">Base License Fee</span><span className="dmcc-result-line-val">{f(BASE)}</span></div>
-          {aC[act] > 0 && <div className="dmcc-result-line"><span className="dmcc-result-line-lbl">Additional Activities</span><span className="dmcc-result-line-val">+{f(aC[act])}</span></div>}
-          {oC[off] > 0 && <div className="dmcc-result-line"><span className="dmcc-result-line-lbl">Office Space (Annual)</span><span className="dmcc-result-line-val">+{f(oC[off])}</span></div>}
-          {vC[vis] > 0 && <div className="dmcc-result-line"><span className="dmcc-result-line-lbl">Visa Processing</span><span className="dmcc-result-line-val">+{f(vC[vis])}</span></div>}
-          {pro && <div className="dmcc-result-line"><span className="dmcc-result-line-lbl">PRO Services</span><span className="dmcc-result-line-val">+{f(3500)}</span></div>}
-          {bnk && <div className="dmcc-result-line"><span className="dmcc-result-line-lbl">Banking Assistance</span><span className="dmcc-result-line-val">+{f(2500)}</span></div>}
-        </div>
-        <div className="dmcc-result-total-row"><span style={{ color: "var(--w)", fontWeight: 500 }}>Total Estimate</span><span style={{ color: "var(--g400)", fontWeight: 600 }}>{f(total)}</span></div>
-        <p className="dmcc-result-disclaimer">Estimate only. Final cost depends on current authority fees and specific requirements.</p>
-        <button className="dmcc-btn-gold" style={{ width: "100%" }}>Get Exact Quote →</button>
-      </div>
-    </div>
-  );
 }
 
 // ── MAIN PAGE ─────────────────────────────────────────────────
@@ -812,10 +747,10 @@ export default function DMCCPage({ onBack, onNavigate }) {
           <div className="dmcc-hero-card">
             <span className="dmcc-hero-card-label">Quick Reference</span>
             {[
-              ["Location","JLT, Dubai"], ["Setup From","AED 18,500","gold"],
+              ["Location","JLT, Dubai"],
               ["Setup Time","7–14 Days"], ["Min. Capital","AED 50,000"],
               ["Ownership","100% Foreign","gold"], ["Visa Quota","Up to 6"],
-              ["Annual Renewal","AED 12–18K"], ["Tax","0% Personal"],
+              ["Tax","0% Personal"],
             ].map(([l, v, cls]) => (
               <div className="dmcc-hero-card-row" key={l}>
                 <span>{l}</span>
@@ -878,41 +813,6 @@ export default function DMCCPage({ onBack, onNavigate }) {
         </div>
       </div>
 
-      {/* ── PACKAGES (CREAM) ── */}
-      <div className="dmcc-packages dmcc-section">
-        <span className="dmcc-section-label dmcc-reveal">Setup Packages</span>
-        <h2 className="dmcc-h2 dmcc-reveal dr1">Choose Your <em>DMCC Package</em></h2>
-        <p className="dmcc-reveal dr2" style={{ fontSize: "0.84rem", color: "var(--cream-ink3)", marginTop: "10px", maxWidth: "520px" }}>
-          All packages include full company incorporation. Select based on your activity scope, team size, and workspace needs.
-        </p>
-        <div className="dmcc-pkg-grid">
-          {[
-            { name:"Starter", tag:"Sole operators & single-activity businesses", price:"18,500", badge:null, feats:[{t:"1 Trade License Activity",on:true},{t:"Flexi Desk (Shared Workspace)",on:true},{t:"2 Investor Visa Allocation",on:true},{t:"Company Stamp & MOA",on:true},{t:"Bank Account Assistance",on:false},{t:"Dedicated Relationship Manager",on:false}] },
-            { name:"Business", tag:"Growing SMEs & multi-activity setups", price:"26,900", badge:"Most Popular", featured:true, feats:[{t:"3 Trade License Activities",on:true},{t:"Serviced Office or Flexi Desk",on:true},{t:"4 Investor Visa Allocation",on:true},{t:"Full Corporate Documents",on:true},{t:"Bank Account Assistance",on:true},{t:"Dedicated Relationship Manager",on:false}] },
-            { name:"Elite", tag:"Full-scale corporate & trading operations", price:"44,500", badge:"Premium", feats:[{t:"Unlimited Activities",on:true},{t:"Private Office",on:true},{t:"6+ Investor Visas",on:true},{t:"Full Corporate Documents",on:true},{t:"Priority Bank Account Setup",on:true},{t:"Dedicated Relationship Manager",on:true}] },
-          ].map((pkg, i) => (
-            <div className={`dmcc-pkg dmcc-reveal dr${i+1}${pkg.featured?" featured":""}`} key={i}>
-              {pkg.badge && <div className="dmcc-pkg-badge">{pkg.badge}</div>}
-              <div className="dmcc-pkg-name">{pkg.name}</div>
-              <p className="dmcc-pkg-tag">{pkg.tag}</p>
-              <div className="dmcc-pkg-price">
-                <div className="dmcc-pkg-amount">AED {pkg.price}</div>
-                <div className="dmcc-pkg-period">One-time setup · excludes annual renewal</div>
-              </div>
-              <ul className="dmcc-pkg-features">
-                {pkg.feats.map((f, j) => (
-                  <li className="dmcc-pkg-feat" key={j}>
-                    <span className={f.on ? "feat-on" : "feat-off"}>{f.on ? "" : "×"}</span>
-                    <span className={f.on ? "feat-label-on" : "feat-label-off"}>{f.t}</span>
-                  </li>
-                ))}
-              </ul>
-              <button className="dmcc-pkg-btn">{pkg.featured ? "Select This Package →" : "Get Started →"}</button>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* ── ACTIVITIES ── */}
       <div className="dmcc-activities dmcc-section">
         <span className="dmcc-section-label dmcc-reveal">Licensed Activities</span>
@@ -965,12 +865,6 @@ export default function DMCCPage({ onBack, onNavigate }) {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* ── CALCULATOR ── */}
-      <div className="dmcc-calc dmcc-section">
-        <span className="dmcc-section-label dmcc-reveal">Cost Estimator</span>
-        <Calculator />
       </div>
 
       {/* ── FAQ ── */}

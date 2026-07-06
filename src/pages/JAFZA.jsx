@@ -449,7 +449,7 @@ const CSS = `
 const STATS = [
   { v:"9,000+", k:"Companies" }, { v:"7–14", k:"Setup Days" },
   { v:"100%", k:"Foreign Ownership" }, { v:"0%", k:"Corporate Tax" },
-  { v:"AED 22K", k:"Starting Cost" }, { v:"Jebel Ali", k:"World's 9th Largest Port" },
+  { v:"15 Visas", k:"Max Visa Quota" }, { v:"Jebel Ali", k:"World's 9th Largest Port" },
 ];
 
 const ACTIVITIES = [
@@ -491,11 +491,9 @@ const DOCUMENTS = [
 const FAQS = [
   { q:"What makes JAFZA unique compared to other UAE free zones?", a:"JAFZA's defining advantage is its physical integration with Jebel Ali Port — the world's 9th largest port and the largest in the Middle East. Companies in JAFZA can move goods directly between their facilities and port berths with minimal customs friction. No other UAE free zone offers this level of port connectivity." },
   { q:"What types of businesses are best suited to JAFZA?", a:"JAFZA is purpose-built for businesses that need physical infrastructure and port access:", list:["Import/export and international trading companies","Logistics, freight forwarding, and 3PL operators","Manufacturing and light industrial operations","Oil & gas and energy sector companies","Pharma, FMCG, and food distribution businesses","Large-scale warehousing and distribution centres"] },
-  { q:"How much does JAFZA cost compared to other free zones?", a:"JAFZA starts from AED 22,000 — more expensive than RAKEZ or IFZA, but positioned against the specific infrastructure it offers. If your business requires port access, warehouse space, or large-scale logistics infrastructure, the operational cost savings from port integration typically far exceed the higher setup fee." },
   { q:"Can I get a UAE residence visa through JAFZA?", a:"Yes. JAFZA investor visas are full UAE residence visas — Emirates ID, residency rights, and banking access identical to any other UAE free zone. JAFZA offers up to 15 visas depending on your facility type — the highest quota of any UAE free zone." },
   { q:"What facility types are available in JAFZA?", a:"JAFZA offers a comprehensive range of facilities:", list:["Offices: Standard and premium serviced offices","Warehouses: Various sizes with port connectivity","Industrial Units: Light to heavy manufacturing","Land Plots: For custom-built facilities","Temperature-controlled: Cold storage available","Showrooms: Product display and trading facilities"] },
   { q:"How long does JAFZA setup take?", a:"JAFZA has a more thorough review process than smaller free zones — typically 7–14 working days for license issuance. Facility allocation, visa processing, and bank account opening extend the full operational timeline to 6–10 weeks. INCOZONE manages the entire process." },
-  { q:"What is the annual renewal cost for JAFZA?", a:"JAFZA annual renewal ranges from AED 14,000 to AED 35,000+ depending on your license type, facility size, and number of activities. These are among the higher renewal costs in UAE free zones — reflecting the premium infrastructure and port access provided." },
   { q:"Can JAFZA companies trade with the UAE mainland?", a:"Yes — JAFZA companies can sell goods into the UAE mainland by paying the applicable import duties at UAE customs checkpoints. For services, JAFZA companies can provide services to mainland clients freely. INCOZONE advises on the most efficient customs and trade structure for your specific business model." },
   { q:"What banking options are available for JAFZA companies?", a:"JAFZA companies have access to all major UAE banks. Given JAFZA's established reputation for trade and logistics, banks are typically more comfortable with JAFZA account applications than smaller free zones — particularly for trade finance facilities, letters of credit, and corporate banking services." },
   { q:"How does JAFZA compare to RAKEZ for industrial businesses?", a:"RAKEZ is more affordable and suitable for smaller manufacturing and trading businesses. JAFZA is the choice when port connectivity is operationally critical — when your business model depends on fast, integrated customs clearance and direct port access. For large-scale logistics, JAFZA's infrastructure advantage is unmatched in the UAE." },
@@ -562,71 +560,6 @@ function useReveal() {
     els.forEach(el => obs.observe(el));
     return () => obs.disconnect();
   });
-}
-
-// ── CALCULATOR ────────────────────────────────────────────────
-function Calculator() {
-  const [pkg, setPkg] = useState("trade");
-  const [off, setOff] = useState("office");
-  const [vis, setVis] = useState("3");
-  const [pro, setPro] = useState(false);
-  const [bnk, setBnk] = useState(false);
-  const pkgC = { trade: 22000, logistics: 38500, enterprise: 65000 };
-  const offC = { office: 0, warehouse: 12000, large_warehouse: 28000, land: 45000 };
-  const visC = { "0": 0, "3": 0, "8": 6000, "15": 14000 };
-  const total = (pkgC[pkg] || 0) + (offC[off] || 0) + (visC[vis] || 0) + (pro ? 4500 : 0) + (bnk ? 3500 : 0);
-  const f = n => "AED " + n.toLocaleString();
-  return (
-    <div className="jfz-calc-inner">
-      <div>
-        <h2 className="jfz-h2 jfz-reveal">Build Your <em>Custom Package</em></h2>
-        <p className="jfz-reveal jr1" style={{ fontSize: "0.84rem", color: "var(--w60)", margin: "12px 0 36px" }}>Configure your JAFZA setup and get an instant cost breakdown.</p>
-        <div className="jfz-calc-form">
-          {[
-            { l: "License Package", id: "pkg", val: pkg, set: setPkg, opts: [["trade","Trade (AED 22,000)"],["logistics","Logistics Plus (AED 38,500)"],["enterprise","Enterprise (AED 65,000)"]] },
-            { l: "Facility Type", id: "off", val: off, set: setOff, opts: [["office","Office (Included)"],["warehouse","Warehouse (+AED 12,000/yr)"],["large_warehouse","Large Warehouse (+AED 28,000/yr)"],["land","Land Plot (+AED 45,000/yr)"]] },
-            { l: "Visa Allocation", id: "vis", val: vis, set: setVis, opts: [["0","No Visas"],["3","3 Visas (Included)"],["8","8 Visas (+AED 6,000)"],["15","15 Visas (+AED 14,000)"]] },
-          ].map(({ l, id, val, set, opts }) => (
-            <div className="jfz-calc-field jfz-reveal" key={id}>
-              <label className="jfz-calc-label">{l}</label>
-              <select className="jfz-calc-select" value={val} onChange={e => set(e.target.value)}>
-                {opts.map(([v, lab]) => <option key={v} value={v}>{lab}</option>)}
-              </select>
-            </div>
-          ))}
-          <div className="jfz-calc-field jfz-reveal">
-            <label className="jfz-calc-label">PRO & Government Services</label>
-            <div className="jfz-toggle-row">
-              <button className={`jfz-toggle${!pro ? " on" : ""}`} onClick={() => setPro(false)}>Not Required</button>
-              <button className={`jfz-toggle${pro ? " on" : ""}`} onClick={() => setPro(true)}>Add PRO (+AED 4,500)</button>
-            </div>
-          </div>
-          <div className="jfz-calc-field jfz-reveal">
-            <label className="jfz-calc-label">Banking Assistance</label>
-            <div className="jfz-toggle-row">
-              <button className={`jfz-toggle${!bnk ? " on" : ""}`} onClick={() => setBnk(false)}>Not Required</button>
-              <button className={`jfz-toggle${bnk ? " on" : ""}`} onClick={() => setBnk(true)}>Add Banking (+AED 3,500)</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="jfz-result jfz-reveal">
-        <span className="jfz-result-tag">Estimated Total</span>
-        <div className="jfz-result-amount"><span className="jfz-result-currency">AED </span>{total.toLocaleString()}</div>
-        <div className="jfz-result-note">One-time cost · excludes annual renewal</div>
-        <div className="jfz-result-lines">
-          <div className="jfz-result-line"><span className="jfz-result-line-lbl">Base License Fee</span><span className="jfz-result-line-val">{f(pkgC[pkg])}</span></div>
-          {offC[off] > 0 && <div className="jfz-result-line"><span className="jfz-result-line-lbl">Facility (Annual)</span><span className="jfz-result-line-val">+{f(offC[off])}</span></div>}
-          {visC[vis] > 0 && <div className="jfz-result-line"><span className="jfz-result-line-lbl">Visa Processing</span><span className="jfz-result-line-val">+{f(visC[vis])}</span></div>}
-          {pro && <div className="jfz-result-line"><span className="jfz-result-line-lbl">PRO Services</span><span className="jfz-result-line-val">+{f(4500)}</span></div>}
-          {bnk && <div className="jfz-result-line"><span className="jfz-result-line-lbl">Banking Assistance</span><span className="jfz-result-line-val">+{f(3500)}</span></div>}
-        </div>
-        <div className="jfz-result-total-row"><span style={{ color: "var(--w)", fontWeight: 500 }}>Total Estimate</span><span style={{ color: "var(--g400)", fontWeight: 600 }}>{f(total)}</span></div>
-        <p className="jfz-result-disclaimer">Estimate only. Final costs depend on facility availability, current authority fees, and specific activity requirements.</p>
-        <button className="jfz-btn-gold" style={{ width: "100%" }}>Get Exact Quote →</button>
-      </div>
-    </div>
-  );
 }
 
 // ── MAIN PAGE ──────────────────────────────────────────────────
@@ -703,7 +636,7 @@ export default function JAFZAPage({ onBack, onNavigate }) {
           <h1 className="jfz-hero-h1">JAFZA<em>Free Zone</em></h1>
           <div className="jfz-hero-fullname">Jebel Ali Free Zone Authority — DP World</div>
           <p className="jfz-hero-desc">
-            The world's largest free zone by area — directly integrated with Jebel Ali Port, the Middle East's biggest port. Unmatched for logistics, manufacturing, and large-scale trade operations. Starting from <strong style={{ color: "var(--g300)" }}>AED 22,000.</strong>
+            The world's largest free zone by area — directly integrated with Jebel Ali Port, the Middle East's biggest port. Unmatched for logistics, manufacturing, and large-scale trade operations.
           </p>
           <div className="jfz-hero-actions">
             <button className="jfz-btn-gold">Start JAFZA Setup →</button>
@@ -715,10 +648,10 @@ export default function JAFZAPage({ onBack, onNavigate }) {
           <div className="jfz-hero-card">
             <span className="jfz-hero-card-label">Quick Reference</span>
             {[
-              ["Location","Jebel Ali, Dubai"], ["Setup From","AED 22,000","gold"],
+              ["Location","Jebel Ali, Dubai"],
               ["Setup Time","7–14 Days","gold"], ["Min. Capital","Not Required"],
               ["Ownership","100% Foreign","gold"], ["Visa Quota","Up to 15"],
-              ["Annual Renewal","AED 14–35K"], ["Tax","0% Corporate"],
+              ["Tax","0% Corporate"],
             ].map(([l, v, cls]) => (
               <div className="jfz-hero-card-row" key={l}>
                 <span>{l}</span><span className={cls || ""}>{v}</span>
@@ -767,39 +700,6 @@ export default function JAFZAPage({ onBack, onNavigate }) {
               ))}
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* ── PACKAGES ── */}
-      <div className="jfz-packages jfz-section">
-        <span className="jfz-section-label jfz-reveal">Setup Packages</span>
-        <h2 className="jfz-h2 jfz-reveal jr1">Choose Your <em>JAFZA Package</em></h2>
-        <p className="jfz-reveal jr2" style={{ fontSize: "0.84rem", color: "var(--cream-ink3)", marginTop: "10px", maxWidth: "520px" }}>All packages include full company incorporation, trade license, and corporate documents. Facility costs are additional and depend on size and type.</p>
-        <div className="jfz-pkg-grid">
-          {[
-            { name:"Trade", tag:"Import/export & trading SMEs", price:"22,000", badge:"Entry Level", featured:false, feats:[["1 Trading Activity",true],["Registered Office",true],["3 Investor Visas",true],["Company Stamp & MOA",true],["Bank Account Assistance",false],["Dedicated Account Manager",false]] },
-            { name:"Logistics Plus", tag:"Freight, logistics & distribution", price:"38,500", badge:"Most Popular", featured:true, feats:[["5 Trade Activities",true],["Warehouse Unit Access",true],["8 Investor Visas",true],["Full Corporate Documents",true],["Bank Account Assistance",true],["Dedicated Account Manager",false]] },
-            { name:"Enterprise", tag:"Large-scale industrial operations", price:"65,000", badge:"Enterprise", featured:false, feats:[["Unlimited Activities",true],["Large Warehouse / Land Plot",true],["15 Investor Visas",true],["Full Corporate Documents",true],["Priority Bank Account Setup",true],["Dedicated Account Manager",true]] },
-          ].map((pkg, i) => (
-            <div className={`jfz-pkg jfz-reveal jr${i+1}${pkg.featured ? " featured" : ""}`} key={i}>
-              <div className="jfz-pkg-badge">{pkg.badge}</div>
-              <div className="jfz-pkg-name">{pkg.name}</div>
-              <p className="jfz-pkg-tag">{pkg.tag}</p>
-              <div className="jfz-pkg-price">
-                <div className="jfz-pkg-amount">AED {pkg.price}</div>
-                <div className="jfz-pkg-period">One-time setup · excludes annual renewal & facility</div>
-              </div>
-              <ul className="jfz-pkg-features">
-                {pkg.feats.map(([t, on], j) => (
-                  <li className="jfz-pkg-feat" key={j}>
-                    <span className={on ? "jfz-feat-on" : "jfz-feat-off"}>{on ? "" : "×"}</span>
-                    <span className={on ? "jfz-feat-label-on" : "jfz-feat-label-off"}>{t}</span>
-                  </li>
-                ))}
-              </ul>
-              <button className="jfz-pkg-btn">{pkg.featured ? "Select This Package →" : "Get Started →"}</button>
-            </div>
-          ))}
         </div>
       </div>
 
@@ -853,12 +753,6 @@ export default function JAFZAPage({ onBack, onNavigate }) {
         </div>
       </div>
 
-      {/* ── CALCULATOR ── */}
-      <div className="jfz-calc jfz-section">
-        <span className="jfz-section-label jfz-reveal">Cost Estimator</span>
-        <Calculator />
-      </div>
-
       {/* ── FAQ ── */}
       <div className="jfz-faq jfz-section">
         <span className="jfz-section-label jfz-reveal" style={{ textAlign: "center", display: "block" }}>FAQ</span>
@@ -907,7 +801,7 @@ export default function JAFZAPage({ onBack, onNavigate }) {
           </div>
           <div className="jfz-advisory-warning jfz-reveal">
             <h4> When JAFZA Might Not Be the Best Fit</h4>
-            <p>Consider alternatives if: your business is primarily service-based without physical goods movement — DMCC, IFZA, or Meydan offer better value · you are an early-stage startup or solo operator — RAKEZ or AFZ provide far lower cost with equivalent residency benefits · your budget does not support annual renewal costs of AED 14,000–35,000+ · you are in media or creative industries — SHAMS is more appropriate · or your business requires ADGM's financial services regulatory framework. INCOZONE will always recommend honestly.</p>
+            <p>Consider alternatives if: your business is primarily service-based without physical goods movement — DMCC, IFZA, or Meydan offer better value · you are an early-stage startup or solo operator — RAKEZ or AFZ provide a lower-cost entry point with equivalent residency benefits · you are in media or creative industries — SHAMS is more appropriate · or your business requires ADGM's financial services regulatory framework. INCOZONE will always recommend honestly.</p>
           </div>
         </div>
       </div>

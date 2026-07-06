@@ -449,7 +449,7 @@ const CSS = `
 const STATS = [
   { v:"40,000+", k:"Companies" }, { v:"5–10", k:"Setup Days" },
   { v:"100%", k:"Foreign Ownership" }, { v:"0%", k:"Income Tax" },
-  { v:"AED 14.5K", k:"Starting Cost" }, { v:"1,500+", k:"Activities" },
+  { v:"Fast Setup", k:"Starting Cost" }, { v:"1,500+", k:"Activities" },
 ];
 
 const ACTIVITIES = [
@@ -490,12 +490,12 @@ const DOCUMENTS = [
 
 const FAQS = [
   { q:"How long does it take to set up a company in Meydan?", a:"Meydan company formation typically takes 5–10 working days from document submission to license issuance. Investor visa processing takes a further 7–14 days. Bank account opening typically takes 2–4 weeks. Total from start to fully operational: 4–6 weeks." },
-  { q:"Is there a minimum share capital requirement?", a:"No. Unlike DMCC which requires AED 50,000 declared capital, Meydan has zero minimum share capital requirement. Your full investment is available as working capital from day one." },
+  { q:"Is there a minimum share capital requirement?", a:"No. Unlike DMCC which requires a declared minimum capital, Meydan has zero minimum share capital requirement. Your full investment is available as working capital from day one." },
   { q:"Can I have 100% foreign ownership in Meydan?", a:"Yes. Meydan is a UAE free zone and allows 100% foreign ownership with no requirement for a UAE national partner or local sponsor. You retain full control of your company." },
   { q:"How many visas can I get with a Meydan license?", a:"The number of visas depends on your office type.", list:["Virtual Office: 1–2 Visas","Flexi Desk: 2–3 Visas","Serviced Office: 4–5 Visas","Private Office: 6+ Visas"] },
   { q:"Can I trade with mainland UAE companies from Meydan?", a:"Meydan companies can provide services to mainland UAE clients. For direct goods trading with the mainland, you will need to appoint a mainland distributor or obtain relevant customs permits." },
   { q:"What makes Meydan's location valuable?", a:"Meydan is in Nad Al Sheba — home to the Meydan Racecourse and the Dubai World Cup, the world's richest horse race. This gives your company an internationally recognised, prestigious Dubai address associated with world-class sport and hospitality." },
-  { q:"What are the annual renewal costs?", a:"Annual renewal typically costs AED 10,000–15,000 depending on your license type, activities, and office arrangement — among the lowest of any Dubai free zone." },
+  { q:"What are the annual renewal costs?", a:"Annual renewal costs depend on your license type, activities, and office arrangement — among the lowest of any Dubai free zone. Contact us for a current quote." },
   { q:"Can I open a Meydan company without visiting the UAE?", a:"Yes — for the initial license setup, most documentation can be handled remotely. However, for visa processing and bank account opening, a UAE visit is required. INCOZONE can plan your visit efficiently." },
   { q:"How does Meydan compare to DMCC?", a:"DMCC is better for commodities trading, fintech, and financial services, and has a larger established business community. Meydan is better for consultancies, tech firms, and lifestyle brands who want a prestigious Dubai address at a significantly lower cost." },
   { q:"Does Meydan have a corporate tax obligation?", a:"UAE introduced a 9% corporate tax for businesses with annual profits exceeding AED 375,000. Free zone businesses including Meydan may qualify for a 0% rate on qualifying income if they meet specific substance requirements." },
@@ -562,71 +562,6 @@ function useReveal() {
     els.forEach(el => obs.observe(el));
     return () => obs.disconnect();
   });
-}
-
-// ── CALCULATOR ────────────────────────────────────────────────
-function Calculator() {
-  const [pkg, setPkg] = useState("starter");
-  const [off, setOff] = useState("virtual");
-  const [vis, setVis] = useState("1");
-  const [pro, setPro] = useState(false);
-  const [bnk, setBnk] = useState(false);
-  const pkgC = { starter: 14500, standard: 19900, business: 27500, premium: 38000 };
-  const offC = { virtual: 0, flexi: 3200, serviced: 8500, private: 16000 };
-  const visC = { "0": 0, "1": 0, "3": 2800, "5": 5200, "8": 8800 };
-  const total = (pkgC[pkg] || 0) + (offC[off] || 0) + (visC[vis] || 0) + (pro ? 3000 : 0) + (bnk ? 2500 : 0);
-  const f = n => "AED " + n.toLocaleString();
-  return (
-    <div className="myd-calc-inner">
-      <div>
-        <h2 className="myd-h2 myd-reveal">Build Your <em>Custom Package</em></h2>
-        <p className="myd-reveal mr1" style={{ fontSize: "0.84rem", color: "var(--w60)", margin: "12px 0 36px" }}>Configure your Meydan requirements and get an instant cost breakdown.</p>
-        <div className="myd-calc-form">
-          {[
-            { l: "License Package", id: "pkg", val: pkg, set: setPkg, opts: [["starter","Starter (AED 14,500)"],["standard","Standard (AED 19,900)"],["business","Business (AED 27,500)"],["premium","Premium (AED 38,000)"]] },
-            { l: "Office / Workspace", id: "off", val: off, set: setOff, opts: [["virtual","Virtual Office (Included)"],["flexi","Flexi Desk (+AED 3,200/yr)"],["serviced","Serviced Office (+AED 8,500/yr)"],["private","Private Office (+AED 16,000/yr)"]] },
-            { l: "Visa Allocation", id: "vis", val: vis, set: setVis, opts: [["0","No Visas"],["1","1 Visa (Included)"],["3","3 Visas (+AED 2,800)"],["5","5 Visas (+AED 5,200)"],["8","8 Visas (+AED 8,800)"]] },
-          ].map(({ l, id, val, set, opts }) => (
-            <div className="myd-calc-field myd-reveal" key={id}>
-              <label className="myd-calc-label">{l}</label>
-              <select className="myd-calc-select" value={val} onChange={e => set(e.target.value)}>
-                {opts.map(([v, lab]) => <option key={v} value={v}>{lab}</option>)}
-              </select>
-            </div>
-          ))}
-          <div className="myd-calc-field myd-reveal">
-            <label className="myd-calc-label">PRO & Government Services</label>
-            <div className="myd-toggle-row">
-              <button className={`myd-toggle${!pro ? " on" : ""}`} onClick={() => setPro(false)}>Not Required</button>
-              <button className={`myd-toggle${pro ? " on" : ""}`} onClick={() => setPro(true)}>Add PRO (+AED 3,000)</button>
-            </div>
-          </div>
-          <div className="myd-calc-field myd-reveal">
-            <label className="myd-calc-label">Banking Assistance</label>
-            <div className="myd-toggle-row">
-              <button className={`myd-toggle${!bnk ? " on" : ""}`} onClick={() => setBnk(false)}>Not Required</button>
-              <button className={`myd-toggle${bnk ? " on" : ""}`} onClick={() => setBnk(true)}>Add Banking (+AED 2,500)</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="myd-result myd-reveal">
-        <span className="myd-result-tag">Estimated Total</span>
-        <div className="myd-result-amount"><span className="myd-result-currency">AED </span>{total.toLocaleString()}</div>
-        <div className="myd-result-note">One-time cost · excludes annual renewal</div>
-        <div className="myd-result-lines">
-          <div className="myd-result-line"><span className="myd-result-line-lbl">Base License Fee</span><span className="myd-result-line-val">{f(pkgC[pkg])}</span></div>
-          {offC[off] > 0 && <div className="myd-result-line"><span className="myd-result-line-lbl">Office Space (Annual)</span><span className="myd-result-line-val">+{f(offC[off])}</span></div>}
-          {visC[vis] > 0 && <div className="myd-result-line"><span className="myd-result-line-lbl">Visa Processing</span><span className="myd-result-line-val">+{f(visC[vis])}</span></div>}
-          {pro && <div className="myd-result-line"><span className="myd-result-line-lbl">PRO Services</span><span className="myd-result-line-val">+{f(3000)}</span></div>}
-          {bnk && <div className="myd-result-line"><span className="myd-result-line-lbl">Banking Assistance</span><span className="myd-result-line-val">+{f(2500)}</span></div>}
-        </div>
-        <div className="myd-result-total-row"><span style={{ color: "var(--w)", fontWeight: 500 }}>Total Estimate</span><span style={{ color: "var(--g400)", fontWeight: 600 }}>{f(total)}</span></div>
-        <p className="myd-result-disclaimer">Estimate only. Final cost depends on current authority fees and specific requirements.</p>
-        <button className="myd-btn-gold" style={{ width: "100%" }}>Get Exact Quote →</button>
-      </div>
-    </div>
-  );
 }
 
 // ── MAIN PAGE ─────────────────────────────────────────────────
@@ -703,7 +638,7 @@ export default function MeydanPage({ onBack, onNavigate }) {
           <h1 className="myd-hero-h1">Meydan<em>Free Zone</em></h1>
           <div className="myd-hero-fullname">Meydan Free Zone Authority — Nad Al Sheba, Dubai</div>
           <p className="myd-hero-desc">
-            Dubai's most prestigious affordable free zone — 40,000+ companies set within the iconic Meydan Racecourse complex. A globally recognised address, 5–10 day setup, starting from just <strong style={{ color: "var(--g300)" }}>AED 14,500.</strong>
+            Dubai's most prestigious affordable free zone — 40,000+ companies set within the iconic Meydan Racecourse complex. A globally recognised address with fast 5–10 day setup.
           </p>
           <div className="myd-hero-actions">
             <button className="myd-btn-gold">Start Meydan Setup →</button>
@@ -715,10 +650,10 @@ export default function MeydanPage({ onBack, onNavigate }) {
           <div className="myd-hero-card">
             <span className="myd-hero-card-label">Quick Reference</span>
             {[
-              ["Location","Nad Al Sheba, Dubai"], ["Setup From","AED 14,500","gold"],
+              ["Location","Nad Al Sheba, Dubai"],
               ["Setup Time","5–10 Days","gold"], ["Min. Capital","Not Required"],
               ["Ownership","100% Foreign","gold"], ["Visa Quota","Up to 6"],
-              ["Annual Renewal","AED 10–15K"], ["Tax","0% Personal"],
+              ["Tax","0% Personal"],
             ].map(([l, v, cls]) => (
               <div className="myd-hero-card-row" key={l}>
                 <span>{l}</span><span className={cls || ""}>{v}</span>
@@ -754,10 +689,10 @@ export default function MeydanPage({ onBack, onNavigate }) {
           <div className="myd-reveal mr2">
             <div className="myd-pillars">
               {[
-                { i:ICrown, h:"Most Prestigious Affordable Zone", p:"A globally recognised Dubai address at a fraction of DMCC or DIFC costs. Starting from AED 14,500 — ideal for consultancies and lifestyle brands." },
+                { i:ICrown, h:"Most Prestigious Affordable Zone", p:"A globally recognised Dubai address at a fraction of DMCC or DIFC costs — ideal for consultancies and lifestyle brands." },
                 { i:IClock, h:"5 to 10 Day Setup", p:"Fast-track digital application process. Trade license typically issued within 5–10 working days from document submission." },
                 { i:IMapPin, h:"World-Famous Address", p:"Meydan is known globally through the Dubai World Cup. Your Nad Al Sheba address carries instant prestige with international clients." },
-                { i:IShield, h:"No Minimum Share Capital", p:"Zero declared share capital required — unlike DMCC's AED 50,000. Keep your full working capital available from day one." },
+                { i:IShield, h:"No Minimum Share Capital", p:"Zero declared share capital required — unlike DMCC's declared minimum. Keep your full working capital available from day one." },
                 { i:IStar, h:"Unique Lifestyle Ecosystem", p:"Office within the Meydan Racecourse complex — 5-star hotels, fine dining, events and world-class leisure at your doorstep." },
               ].map((p, i) => (
                 <div className="myd-pillar" key={i}>
@@ -767,39 +702,6 @@ export default function MeydanPage({ onBack, onNavigate }) {
               ))}
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* ── PACKAGES ── */}
-      <div className="myd-packages myd-section">
-        <span className="myd-section-label myd-reveal">Setup Packages</span>
-        <h2 className="myd-h2 myd-reveal mr1">Choose Your <em>Meydan Package</em></h2>
-        <p className="myd-reveal mr2" style={{ fontSize: "0.84rem", color: "var(--cream-ink3)", marginTop: "10px", maxWidth: "520px" }}>All packages include full company incorporation, trade license, and corporate documents.</p>
-        <div className="myd-pkg-grid">
-          {[
-            { name:"Starter", tag:"Solo founders & lifestyle brands", price:"14,500", badge:"Best Value", featured:false, feats:[["1 Trade License Activity",true],["Virtual Office (UAE Address)",true],["1 Investor Visa",true],["Company Stamp & MOA",true],["Bank Account Assistance",false],["Dedicated Account Manager",false]] },
-            { name:"Business", tag:"Growing teams & consultancies", price:"19,900", badge:"Most Popular", featured:true, feats:[["3 Trade License Activities",true],["Flexi Desk Workspace",true],["3 Investor Visas",true],["Full Corporate Documents",true],["Bank Account Assistance",true],["Dedicated Account Manager",false]] },
-            { name:"Premium", tag:"Established businesses & brands", price:"27,500", badge:"Full Service", featured:false, feats:[["Unlimited Activities",true],["Serviced / Private Office",true],["5+ Investor Visas",true],["Full Corporate Documents",true],["Priority Bank Account Setup",true],["Dedicated Account Manager",true]] },
-          ].map((pkg, i) => (
-            <div className={`myd-pkg myd-reveal mr${i+1}${pkg.featured ? " featured" : ""}`} key={i}>
-              <div className="myd-pkg-badge">{pkg.badge}</div>
-              <div className="myd-pkg-name">{pkg.name}</div>
-              <p className="myd-pkg-tag">{pkg.tag}</p>
-              <div className="myd-pkg-price">
-                <div className="myd-pkg-amount">AED {pkg.price}</div>
-                <div className="myd-pkg-period">One-time setup · excludes annual renewal</div>
-              </div>
-              <ul className="myd-pkg-features">
-                {pkg.feats.map(([t, on], j) => (
-                  <li className="myd-pkg-feat" key={j}>
-                    <span className={on ? "myd-feat-on" : "myd-feat-off"}>{on ? "" : "×"}</span>
-                    <span className={on ? "myd-feat-label-on" : "myd-feat-label-off"}>{t}</span>
-                  </li>
-                ))}
-              </ul>
-              <button className="myd-pkg-btn">{pkg.featured ? "Select This Package →" : "Get Started →"}</button>
-            </div>
-          ))}
         </div>
       </div>
 
@@ -853,12 +755,6 @@ export default function MeydanPage({ onBack, onNavigate }) {
         </div>
       </div>
 
-      {/* ── CALCULATOR ── */}
-      <div className="myd-calc myd-section">
-        <span className="myd-section-label myd-reveal">Cost Estimator</span>
-        <Calculator />
-      </div>
-
       {/* ── FAQ ── */}
       <div className="myd-faq myd-section">
         <span className="myd-section-label myd-reveal" style={{ textAlign: "center", display: "block" }}>FAQ</span>
@@ -895,7 +791,7 @@ export default function MeydanPage({ onBack, onNavigate }) {
             {[
               { n:"01", t:"The Address Sells Itself", p:"Meydan's Nad Al Sheba address — associated with the Dubai World Cup — carries instant global prestige. We have seen clients win enterprise contracts on the strength of the address alone. It works in a way that most 'affordable' zone addresses simply don't." },
               { n:"02", t:"Start Virtual, Upgrade When Ready", p:"The virtual office package is an excellent starting point. As your business grows and you need more visas or a physical meeting space, upgrading is straightforward and cost-effective within Meydan's office tier structure." },
-              { n:"03", t:"No Capital Requirement", p:"With zero minimum share capital — vs DMCC's AED 50,000 declared requirement — your full investment is available as working capital from day one. This is a significant advantage for early-stage businesses." },
+              { n:"03", t:"No Capital Requirement", p:"With zero minimum share capital — vs DMCC's declared requirement — your full investment is available as working capital from day one. This is a significant advantage for early-stage businesses." },
               { n:"04", t:"Bank Account Is Getting Easier", p:"Meydan is now well-recognised by major UAE banks. Having your source-of-funds documentation prepared before approaching banks dramatically speeds up account opening. INCOZONE manages this process end-to-end." },
             ].map((tip, i) => (
               <div className={`myd-tip myd-reveal mr${(i%2)+1}`} key={i}>

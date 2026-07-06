@@ -322,35 +322,30 @@ const OFFICIAL_STEPS = [
     num: "01",
     title: "Submit Application + Pay Examination Fee",
     desc: "Complete the trademark application with your mark image (JPEG), trade license copy, and required documents. Submit via Ministry of Economy website or smart app — available 24/7.",
-    fee: "AED 750 (Regular) · AED 2,250 (Expedited — 1 Business Day)",
     time: "Day 1",
   },
   {
     num: "02",
     title: "Ministry Examination & Decision",
     desc: "The Ministry of Economy reviews your application to ensure the mark is not identical or similar to any previously registered trademark. You will be officially notified within 20 working days.",
-    fee: "No additional fee",
     time: "Up to 20 Working Days",
   },
   {
     num: "03",
     title: "Publication in Official Trademark Bulletin",
     desc: "Upon approval, pay the publication fee. Your trademark is published in the official UAE Trademark Bulletin — issued twice per month. A 30-day objection period begins from publication date.",
-    fee: "AED 750 Publication Fee",
     time: "Published within bulletin cycle",
   },
   {
     num: "04",
     title: "30-Day Objection Period",
     desc: "Any third party may lodge an objection within 30 days of the bulletin publication. INCOZONE monitors this period and responds to any objections on your behalf.",
-    fee: "No fee (unless objection response required)",
     time: "30 Days",
   },
   {
     num: "05",
     title: "Pay Registration Fee & Certificate Issued",
     desc: "After the objection period ends with no sustained objections, pay the final registration fee. Your Trademark Registration Certificate is issued within 30 days — valid for 10 years.",
-    fee: "AED 5,000 (Trademark) · AED 7,500 (Quality Mark)",
     time: "Within 30 days of payment",
   },
 ];
@@ -383,11 +378,11 @@ const FAQS = [
   },
   {
     q: "What is the total official cost for a UAE trademark?",
-    a: "The minimum official government fees for a standard trademark registration are: AED 750 (examination) + AED 750 (publication) + AED 5,000 (registration) = AED 6,500 in government fees. Expedited examination costs AED 2,250 instead of AED 750. INCOZONE's professional service fee is charged separately.",
+    a: "UAE trademark registration involves three government fee stages: examination, publication, and registration. Expedited examination is also available for a faster initial review. INCOZONE's professional service fee is charged separately — contact us for a full cost breakdown.",
   },
   {
     q: "How many classes should I register my trademark under?",
-    a: "The UAE follows the Nice Classification system with 45 international classes (34 goods classes + 11 service classes). You should register under every class relevant to your current business and planned expansion. Each additional class requires a separate fee. INCOZONE advises on optimal class selection to maximise protection without unnecessary cost.",
+    a: "The UAE follows the Nice Classification system with 45 international classes (34 goods classes + 11 service classes). You should register under every class relevant to your current business and planned expansion. Each additional class requires a separate registration fee. INCOZONE advises on optimal class selection to maximise protection without unnecessary cost.",
   },
   {
     q: "How long is a UAE trademark valid?",
@@ -502,35 +497,26 @@ export default function TrademarkRegistrationPage({ onBack, onNavigate }) {
           </div>
         </div>
 
-        {/* Official Fee Card */}
         <div className="tm-hero-right">
           <div className="tm-fee-card">
-            <div className="tm-fee-card-title">Official Government Fees</div>
+            <div className="tm-fee-card-title">Official Registration Process</div>
             <div className="tm-fee-rows">
               <div className="tm-fee-row">
-                <span className="tm-fee-row-label">Examination Fee (Regular)</span>
-                <span className="tm-fee-row-val">AED 750</span>
+                <span className="tm-fee-row-label">Application & Examination</span>
+                <span className="tm-fee-row-val" style={{fontSize:"0.85rem",color:"var(--w60)"}}>Regular or Expedited (1 day)</span>
               </div>
               <div className="tm-fee-row">
-                <span className="tm-fee-row-label">Examination Fee (Expedited — 1 Day)</span>
-                <span className="tm-fee-row-val">AED 2,250</span>
+                <span className="tm-fee-row-label">Publication in Trademark Bulletin</span>
+                <span className="tm-fee-row-val" style={{fontSize:"0.85rem",color:"var(--w60)"}}>Upon approval</span>
               </div>
               <div className="tm-fee-row">
-                <span className="tm-fee-row-label">Publication Fee</span>
-                <span className="tm-fee-row-val">AED 750</span>
+                <span className="tm-fee-row-label">30-Day Objection Period</span>
+                <span className="tm-fee-row-val" style={{fontSize:"0.85rem",color:"var(--w60)"}}>Monitored by INCOZONE</span>
               </div>
               <div className="tm-fee-row">
-                <span className="tm-fee-row-label">Registration Fee (Trademark)</span>
-                <span className="tm-fee-row-val">AED 5,000</span>
+                <span className="tm-fee-row-label">Certificate Issuance</span>
+                <span className="tm-fee-row-val" style={{fontSize:"0.85rem",color:"var(--w60)"}}>Valid 10 years</span>
               </div>
-              <div className="tm-fee-row">
-                <span className="tm-fee-row-label">Registration Fee (Quality Mark)</span>
-                <span className="tm-fee-row-val">AED 7,500</span>
-              </div>
-            </div>
-            <div className="tm-fee-total">
-              <span className="tm-fee-total-label">Total Govt. Fees (Standard)</span>
-              <span className="tm-fee-total-val">AED 6,500</span>
             </div>
             <div className="tm-fee-source">Source: UAE Ministry of Economy & Tourism · moet.gov.ae</div>
           </div>
@@ -539,7 +525,7 @@ export default function TrademarkRegistrationPage({ onBack, onNavigate }) {
 
       {/* STATS BAR */}
       <div className="tm-stats-bar">
-        {[{ val: "45", key: "Nice Classes" }, { val: "10 Yrs", key: "Validity" }, { val: "20 Days", key: "MoE Examination" }, { val: "24/7", key: "Online Filing" }, { val: "AED 6,500", key: "Govt. Fees" }].map((s, i) => (
+        {[{ val: "45", key: "Nice Classes" }, { val: "10 Yrs", key: "Validity" }, { val: "20 Days", key: "MoE Examination" }, { val: "24/7", key: "Online Filing" }, { val: "All UAE", key: "Coverage" }].map((s, i) => (
           <div className="tm-sbar" key={i}><span className="tm-sbar-val">{s.val}</span><span className="tm-sbar-key">{s.key}</span></div>
         ))}
       </div>
@@ -608,7 +594,6 @@ export default function TrademarkRegistrationPage({ onBack, onNavigate }) {
                 <div className="tm-step-body">
                   <div className="tm-step-title">{s.title}</div>
                   <p className="tm-step-desc">{s.desc}</p>
-                  <div className="tm-step-fee">{s.fee}</div>
                   <span className="tm-step-time">{s.time}</span>
                 </div>
               </div>
@@ -627,7 +612,7 @@ export default function TrademarkRegistrationPage({ onBack, onNavigate }) {
               The UAE uses the Nice Classification system — 45 international classes covering every type of goods and service. You register your trademark in the specific class or classes that cover your business activities. INCOZONE advises on optimal class selection to ensure maximum protection.
             </p>
             <div className="tm-class-note">
-              <strong>Important:</strong> Each class requires a separate registration fee of AED 5,000. INCOZONE recommends registering in all classes relevant to your current and future business activities to prevent brand squatting and competitor registration in adjacent classes.
+              <strong>Important:</strong> Each class requires a separate registration fee. INCOZONE recommends registering in all classes relevant to your current and future business activities to prevent brand squatting and competitor registration in adjacent classes.
             </div>
           </div>
           <div className="tm-reveal tm-d2">
@@ -757,7 +742,7 @@ export default function TrademarkRegistrationPage({ onBack, onNavigate }) {
           <span className="tm-cta-label tm-reveal">Protect Your Brand</span>
           <h2 className="tm-cta-h2 tm-reveal tm-d1">Register Your Trademark<br /><em>Before Someone Else Does.</em></h2>
           <div className="tm-cta-divider" />
-          <p className="tm-cta-p tm-reveal tm-d2">Brand squatting is real in the UAE. Once another party registers your name or logo — even if you have been using it — you lose legal rights. Act now. INCOZONE manages the complete process from AED 6,500 in government fees.</p>
+          <p className="tm-cta-p tm-reveal tm-d2">Brand squatting is real in the UAE. Once another party registers your name or logo — even if you have been using it — you lose legal rights. Act now. INCOZONE manages the complete process from application through to certificate delivery.</p>
           <div className="tm-cta-btns tm-reveal tm-d3">
             <button className="tm-btn-dark" onClick={() => go("schedule")}>Schedule Private Consultation</button>
             <button className="tm-btn-outline" onClick={() => onBack && onBack()}>← Back to Services</button>

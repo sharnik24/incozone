@@ -449,7 +449,7 @@ const CSS = `
 const STATS = [
   { v:"1,500+", k:"Registered Entities" }, { v:"10–20", k:"Setup Days" },
   { v:"100%", k:"Foreign Ownership" }, { v:"0%", k:"Personal Tax" },
-  { v:"AED 28.5K", k:"Starting Cost" }, { v:"Al Maryah", k:"Abu Dhabi Island" },
+  { v:"FSRA", k:"Financial Regulator" }, { v:"Al Maryah", k:"Abu Dhabi Island" },
 ];
 
 const ACTIVITIES = [
@@ -493,11 +493,9 @@ const FAQS = [
   { q:"What types of businesses are best suited to ADGM?", a:"ADGM is purpose-built for regulated financial services and sophisticated capital structures:", list:["Asset managers and investment advisors","Family offices (single and multi-family)","Private equity and venture capital funds","Digital assets and fintech companies","Corporate holding structures and SPVs","International law firms and professional services","Commodity traders and derivatives operators","Regional headquarters for financial institutions"] },
   { q:"Do I need FSRA regulation for every ADGM business?", a:"No. ADGM has two distinct regulatory tracks: FSRA-regulated (for financial services activities like asset management, dealing in securities, operating a fund) and non-regulated (for professional services, holding companies, SPVs, law firms, and consulting). Non-regulated businesses go through ADGM Registration Authority only — faster and less complex. INCOZONE determines your regulatory path in the initial consultation." },
   { q:"How does ADGM's legal framework compare to DIFC?", a:"Both operate under English common law, separate from UAE federal law. ADGM's courts are modelled on English commercial courts with English judges. For contractual disputes, both are equally credible internationally. ADGM's advantage is Abu Dhabi sovereign proximity and its digital assets framework — DIFC's advantage is the larger established financial ecosystem and proximity to Dubai's commercial base." },
-  { q:"What is the cost difference between ADGM and DIFC?", a:"Both are premium-tier financial centres with comparable cost structures — significantly more expensive than general free zones. ADGM starts from AED 28,500 for non-regulated setups; FSRA-regulated setups involve additional regulatory fees, minimum capital requirements, and compliance costs that can range from AED 50,000 to several hundred thousand dirhams depending on the activity. INCOZONE provides precise cost breakdowns in consultation." },
   { q:"Can I get a UAE residence visa through ADGM?", a:"Yes — ADGM investor and employee visas are full UAE Abu Dhabi residence visas. Emirates ID and residency rights are identical to any other UAE free zone visa.", list:["Full UAE residence visa (Abu Dhabi)","Same Emirates ID as any UAE resident","Access to UAE banking system","UAE residency duration: 2–3 years renewable"] },
   { q:"Is ADGM suitable for digital assets and crypto businesses?", a:"Yes — ADGM's FSRA has developed one of the most comprehensive and progressive digital assets regulatory frameworks in the world. It explicitly licenses virtual asset service providers, digital securities exchanges, and crypto custody operations. For regulated crypto businesses seeking a credible UAE licence, ADGM is the premier choice." },
   { q:"How long does ADGM setup take?", a:"Non-regulated ADGM setups typically take 10–20 working days. FSRA-regulated setups involve a more thorough review and can take 3–6 months depending on the activity category, application quality, and FSRA's current workload. INCOZONE prepares applications to the highest standard to minimise review time." },
-  { q:"What are the minimum capital requirements for ADGM?", a:"Non-regulated businesses: no minimum capital requirement. FSRA-regulated businesses: minimum capital requirements vary significantly by activity — from AED 1 million for some advisory licences to AED 10 million+ for fund management permissions. INCOZONE provides precise capital requirement guidance before you commit to the application." },
   { q:"Can ADGM companies do business across the UAE?", a:"ADGM entities can provide services to clients across all UAE emirates. For retail financial services, regulations may require specific licensing. For professional and corporate services, there are no geographic restrictions. ADGM's Abu Dhabi address carries significant weight with Abu Dhabi government entities, sovereign wealth funds, and regional institutional investors." },
 ];
 
@@ -562,71 +560,6 @@ function useReveal() {
     els.forEach(el => obs.observe(el));
     return () => obs.disconnect();
   });
-}
-
-// ── CALCULATOR ────────────────────────────────────────────────
-function Calculator() {
-  const [pkg, setPkg] = useState("non_reg");
-  const [off, setOff] = useState("serviced");
-  const [vis, setVis] = useState("2");
-  const [fsra, setFsra] = useState(false);
-  const [bnk, setBnk] = useState(false);
-  const pkgC = { non_reg: 28500, advisory: 55000, fund: 95000 };
-  const offC = { virtual: 0, serviced: 12000, private: 28000, premium: 55000 };
-  const visC = { "0": 0, "2": 0, "5": 8500, "10": 18000 };
-  const total = (pkgC[pkg] || 0) + (offC[off] || 0) + (visC[vis] || 0) + (fsra ? 22000 : 0) + (bnk ? 5000 : 0);
-  const f = n => "AED " + n.toLocaleString();
-  return (
-    <div className="adg-calc-inner">
-      <div>
-        <h2 className="adg-h2 adg-reveal">Build Your <em>Custom Package</em></h2>
-        <p className="adg-reveal agr1" style={{ fontSize: "0.84rem", color: "var(--w60)", margin: "12px 0 36px" }}>Configure your ADGM setup and get an indicative cost breakdown. Final costs depend on regulatory requirements.</p>
-        <div className="adg-calc-form">
-          {[
-            { l: "Entity / Licence Type", id: "pkg", val: pkg, set: setPkg, opts: [["non_reg","Non-Regulated (AED 28,500)"],["advisory","Advisory / Professional (AED 55,000)"],["fund","Fund / Asset Management (AED 95,000)"]] },
-            { l: "Office / Workspace", id: "off", val: off, set: setOff, opts: [["virtual","Virtual Office (AED 0)"],["serviced","Serviced Office (+AED 12,000/yr)"],["private","Private Office (+AED 28,000/yr)"],["premium","Premium Suite (+AED 55,000/yr)"]] },
-            { l: "Visa Allocation", id: "vis", val: vis, set: setVis, opts: [["0","No Visas"],["2","2 Visas (Included)"],["5","5 Visas (+AED 8,500)"],["10","10 Visas (+AED 18,000)"]] },
-          ].map(({ l, id, val, set, opts }) => (
-            <div className="adg-calc-field adg-reveal" key={id}>
-              <label className="adg-calc-label">{l}</label>
-              <select className="adg-calc-select" value={val} onChange={e => set(e.target.value)}>
-                {opts.map(([v, lab]) => <option key={v} value={v}>{lab}</option>)}
-              </select>
-            </div>
-          ))}
-          <div className="adg-calc-field adg-reveal">
-            <label className="adg-calc-label">FSRA Regulatory Application Support</label>
-            <div className="adg-toggle-row">
-              <button className={`adg-toggle${!fsra ? " on" : ""}`} onClick={() => setFsra(false)}>Not Required</button>
-              <button className={`adg-toggle${fsra ? " on" : ""}`} onClick={() => setFsra(true)}>Add FSRA Support (+AED 22,000)</button>
-            </div>
-          </div>
-          <div className="adg-calc-field adg-reveal">
-            <label className="adg-calc-label">Banking & Private Banking Assistance</label>
-            <div className="adg-toggle-row">
-              <button className={`adg-toggle${!bnk ? " on" : ""}`} onClick={() => setBnk(false)}>Not Required</button>
-              <button className={`adg-toggle${bnk ? " on" : ""}`} onClick={() => setBnk(true)}>Add Banking (+AED 5,000)</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="adg-result adg-reveal">
-        <span className="adg-result-tag">Indicative Total</span>
-        <div className="adg-result-amount"><span className="adg-result-currency">AED </span>{total.toLocaleString()}</div>
-        <div className="adg-result-note">Indicative cost · excludes annual renewal & capital requirements</div>
-        <div className="adg-result-lines">
-          <div className="adg-result-line"><span className="adg-result-line-lbl">Base Licence Fee</span><span className="adg-result-line-val">{f(pkgC[pkg])}</span></div>
-          {offC[off] > 0 && <div className="adg-result-line"><span className="adg-result-line-lbl">Office (Annual)</span><span className="adg-result-line-val">+{f(offC[off])}</span></div>}
-          {visC[vis] > 0 && <div className="adg-result-line"><span className="adg-result-line-lbl">Visa Processing</span><span className="adg-result-line-val">+{f(visC[vis])}</span></div>}
-          {fsra && <div className="adg-result-line"><span className="adg-result-line-lbl">FSRA Application Support</span><span className="adg-result-line-val">+{f(22000)}</span></div>}
-          {bnk && <div className="adg-result-line"><span className="adg-result-line-lbl">Banking Assistance</span><span className="adg-result-line-val">+{f(5000)}</span></div>}
-        </div>
-        <div className="adg-result-total-row"><span style={{ color: "var(--w)", fontWeight: 500 }}>Total Estimate</span><span style={{ color: "var(--g400)", fontWeight: 600 }}>{f(total)}</span></div>
-        <p className="adg-result-disclaimer">Indicative only. FSRA-regulated setups have additional regulatory fees and minimum capital requirements. Exact figures provided in consultation.</p>
-        <button className="adg-btn-gold" style={{ width: "100%" }}>Get Exact Quote →</button>
-      </div>
-    </div>
-  );
 }
 
 // ── MAIN PAGE ──────────────────────────────────────────────────
@@ -703,7 +636,7 @@ export default function ADGMPage({ onBack, onNavigate }) {
           <h1 className="adg-hero-h1">ADGM<em>Free Zone</em></h1>
           <div className="adg-hero-fullname">Abu Dhabi Global Market — International Financial Centre</div>
           <p className="adg-hero-desc">
-            Abu Dhabi's premier international financial centre — common law jurisdiction, sovereign backing, and the UAE's most progressive digital assets regulatory framework. The address of choice for asset managers, family offices, and sophisticated capital structures. Starting from <strong style={{ color: "var(--g300)" }}>AED 28,500.</strong>
+            Abu Dhabi's premier international financial centre — common law jurisdiction, sovereign backing, and the UAE's most progressive digital assets regulatory framework. The address of choice for asset managers, family offices, and sophisticated capital structures.
           </p>
           <div className="adg-hero-actions">
             <button className="adg-btn-gold">Start ADGM Setup →</button>
@@ -715,10 +648,10 @@ export default function ADGMPage({ onBack, onNavigate }) {
           <div className="adg-hero-card">
             <span className="adg-hero-card-label">Quick Reference</span>
             {[
-              ["Location","Al Maryah Island, Abu Dhabi"], ["Setup From","AED 28,500","gold"],
+              ["Location","Al Maryah Island, Abu Dhabi"],
               ["Setup Time","10–20 Days","gold"], ["Legal Framework","English Common Law"],
               ["Ownership","100% Foreign","gold"], ["Regulator","FSRA (Financial)"],
-              ["Annual Renewal","AED 20–50K+"], ["Tax","0% Personal"],
+              ["Tax","0% Personal"],
             ].map(([l, v, cls]) => (
               <div className="adg-hero-card-row" key={l}>
                 <span>{l}</span><span className={cls || ""}>{v}</span>
@@ -767,39 +700,6 @@ export default function ADGMPage({ onBack, onNavigate }) {
               ))}
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* ── PACKAGES ── */}
-      <div className="adg-packages adg-section">
-        <span className="adg-section-label adg-reveal">Setup Packages</span>
-        <h2 className="adg-h2 adg-reveal agr1">Choose Your <em>ADGM Package</em></h2>
-        <p className="adg-reveal agr2" style={{ fontSize: "0.84rem", color: "var(--cream-ink3)", marginTop: "10px", maxWidth: "560px" }}>Packages reflect entity type and regulatory track. FSRA-regulated businesses require additional regulatory fees and minimum capital requirements beyond these setup costs.</p>
-        <div className="adg-pkg-grid">
-          {[
-            { name:"Holding", tag:"SPVs, holding companies & non-regulated", price:"28,500", badge:"Non-Regulated", featured:false, feats:[["ADGM RA Incorporation",true],["Corporate SPV / Holding Co",true],["2 Investor Visas",true],["Certificate of Incorporation",true],["FSRA Licensing",false],["Dedicated Account Manager",false]] },
-            { name:"Advisory", tag:"Professional & advisory services", price:"55,000", badge:"Most Popular", featured:true, feats:[["ADGM Commercial Licence",true],["Serviced Office Access",true],["5 Investor Visas",true],["Full Corporate Documents",true],["FSRA Advisory Licence",true],["Dedicated Account Manager",false]] },
-            { name:"Fund", tag:"Asset management & fund structures", price:"95,000", badge:"Regulated Entity", featured:false, feats:[["FSRA Full Authorisation",true],["Private Office / Suite",true],["10 Investor Visas",true],["Full Regulatory Documents",true],["Compliance Framework Setup",true],["Dedicated Account Manager",true]] },
-          ].map((pkg, i) => (
-            <div className={`adg-pkg adg-reveal agr${i+1}${pkg.featured ? " featured" : ""}`} key={i}>
-              <div className="adg-pkg-badge">{pkg.badge}</div>
-              <div className="adg-pkg-name">{pkg.name}</div>
-              <p className="adg-pkg-tag">{pkg.tag}</p>
-              <div className="adg-pkg-price">
-                <div className="adg-pkg-amount">AED {pkg.price}</div>
-                <div className="adg-pkg-period">Setup cost · excludes renewal, office & capital requirements</div>
-              </div>
-              <ul className="adg-pkg-features">
-                {pkg.feats.map(([t, on], j) => (
-                  <li className="adg-pkg-feat" key={j}>
-                    <span className={on ? "adg-feat-on" : "adg-feat-off"}>{on ? "" : "×"}</span>
-                    <span className={on ? "adg-feat-label-on" : "adg-feat-label-off"}>{t}</span>
-                  </li>
-                ))}
-              </ul>
-              <button className="adg-pkg-btn">{pkg.featured ? "Select This Package →" : "Get Started →"}</button>
-            </div>
-          ))}
         </div>
       </div>
 
@@ -853,12 +753,6 @@ export default function ADGMPage({ onBack, onNavigate }) {
         </div>
       </div>
 
-      {/* ── CALCULATOR ── */}
-      <div className="adg-calc adg-section">
-        <span className="adg-section-label adg-reveal">Cost Estimator</span>
-        <Calculator />
-      </div>
-
       {/* ── FAQ ── */}
       <div className="adg-faq adg-section">
         <span className="adg-section-label adg-reveal" style={{ textAlign: "center", display: "block" }}>FAQ</span>
@@ -894,7 +788,7 @@ export default function ADGMPage({ onBack, onNavigate }) {
           <div className="adg-advisory-tips">
             {[
               { n:"01", t:"FSRA vs Non-Regulated — The Critical First Decision", p:"The most important choice in any ADGM setup is whether you need FSRA regulation. Many businesses assume they do — and pay significantly more than necessary. Holding companies, law firms, consulting practices, and corporate treasury structures often qualify as non-regulated. INCOZONE determines this in the first consultation, saving clients significant cost and time." },
-              { n:"02", t:"Capital Requirements Are Real", p:"FSRA-regulated businesses face genuine minimum capital requirements — not just licence fees. These range from AED 1 million for some advisory categories to AED 10 million+ for full asset management permissions. Plan your capital structure before you begin. INCOZONE maps this precisely for your specific activity category upfront." },
+              { n:"02", t:"Capital Requirements Are Real", p:"FSRA-regulated businesses face genuine minimum capital requirements — not just licence fees. Requirements vary significantly by activity category. Plan your capital structure before you begin. INCOZONE maps this precisely for your specific activity category upfront." },
               { n:"03", t:"Abu Dhabi's Sovereign Proximity", p:"ADGM's single greatest advantage over DIFC is physical and relational proximity to Abu Dhabi's sovereign capital — ADIA, Mubadala, ADQ. For fund managers and investment firms seeking LP relationships with sovereign wealth funds, this proximity has real commercial value that no Dubai address can replicate." },
               { n:"04", t:"Banking at the Premium Tier", p:"ADGM entities are served by UAE's top-tier private banks and international institutions — FAB, ADCB, Citibank, HSBC Private Banking, UBS, and others. For family offices and investment managers, ADGM unlocks banking relationships and private banking services that are materially different from what general free zone entities can access." },
             ].map((tip, i) => (
@@ -907,7 +801,7 @@ export default function ADGMPage({ onBack, onNavigate }) {
           </div>
           <div className="adg-advisory-warning adg-reveal">
             <h4> When ADGM Might Not Be the Best Fit</h4>
-            <p>Consider alternatives if: your business is in trading, logistics, or manufacturing — JAFZA, RAKEZ, or DMCC are more appropriate · you are an early-stage business where ADGM's cost cannot be justified yet — IFZA or Meydan offer credible UAE setups at a fraction of the cost · your primary market is Dubai rather than Abu Dhabi — DIFC or DMCC provide stronger Dubai ecosystem access · you need retail financial services rather than institutional — DIFC has deeper retail infrastructure · or your business is in media or creative services — SHAMS is purpose-built for that sector. ADGM is a precision instrument — INCOZONE will tell you clearly whether your situation calls for it.</p>
+            <p>Consider alternatives if: your business is in trading, logistics, or manufacturing — JAFZA, RAKEZ, or DMCC are more appropriate · you are an early-stage business where ADGM's regulatory complexity cannot be justified yet — IFZA or Meydan offer credible UAE setups with lower overhead · your primary market is Dubai rather than Abu Dhabi — DIFC or DMCC provide stronger Dubai ecosystem access · you need retail financial services rather than institutional — DIFC has deeper retail infrastructure · or your business is in media or creative services — SHAMS is purpose-built for that sector. ADGM is a precision instrument — INCOZONE will tell you clearly whether your situation calls for it.</p>
           </div>
         </div>
       </div>

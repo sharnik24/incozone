@@ -356,9 +356,9 @@ const CATEGORIES = [
     icon: IBuilding,
     num: "01",
     title: "Real Estate Investor",
-    desc: "Own UAE property worth AED 2 million or more — whether purchased outright or with a mortgage from an approved UAE bank.",
+    desc: "Own qualifying UAE property — whether purchased outright or with a mortgage from an approved UAE bank.",
     reqs: [
-      "Property value AED 2M+ (single or multiple properties)",
+      "Property value meets the minimum threshold (single or multiple properties)",
       "Title deed in applicant's name",
       "Mortgage properties accepted (from approved UAE banks)",
       "Off-plan properties accepted from approved developers",
@@ -368,10 +368,10 @@ const CATEGORIES = [
     icon: ITrendingUp,
     num: "02",
     title: "Business Owner / Investor",
-    desc: "Entrepreneurs and investors who own a business with a minimum capital investment or who have established a company in the UAE.",
+    desc: "Entrepreneurs and investors who own a business with a qualifying capital investment or who have established a company in the UAE.",
     reqs: [
-      "Minimum AED 2M capital investment in a UAE company",
-      "OR own a business with AED 500K+ annual revenue",
+      "Minimum capital investment in a UAE company",
+      "OR own a business with qualifying annual revenue",
       "Approvals from Ministry of Economy or local economic departments",
       "Existing free zone or mainland company owners may qualify",
     ],
@@ -394,7 +394,7 @@ const CATEGORIES = [
     title: "Outstanding Students",
     desc: "High-achieving students from UAE universities or top-ranked international institutions who demonstrate academic excellence.",
     reqs: [
-      "GPA of 3.75 or above from a UAE university",
+      "High GPA from a UAE university",
       "Students from top 100 globally ranked universities",
       "Secondary school students with exceptional grades",
       "Ministry of Education endorsement required",
@@ -406,7 +406,7 @@ const CATEGORIES = [
     title: "Skilled Professional",
     desc: "Professionals in priority sectors who meet the UAE's criteria for skills and salary thresholds in high-demand industries.",
     reqs: [
-      "Monthly salary of AED 30,000 or more",
+      "Qualifying monthly salary threshold",
       "Employment in a UAE-registered company",
       "Priority sectors: tech, healthcare, STEM, finance",
       "Valid UAE work permit and residency",
@@ -490,7 +490,7 @@ const FAQS = [
   },
   {
     q: "Does my UAE-registered company qualify me for the Golden Visa?",
-    a: "Potentially yes. If your company has a minimum capital of AED 2 million or generates AED 500,000+ in annual revenue, you may qualify under the investor/entrepreneur category. We conduct a detailed assessment before advising.",
+    a: "Potentially yes. If your company meets the minimum capital or annual revenue thresholds for the investor/entrepreneur category, you may qualify. We conduct a detailed assessment before advising.",
   },
   {
     q: "What happens if I sell my property after getting the Golden Visa?",
@@ -669,7 +669,7 @@ export default function GoldenVisaPage({ onBack, onNavigate }) {
         {[
           { val: "10 Yrs", key: "Visa Duration" },
           { val: "100%", key: "Self-Sponsored" },
-          { val: "AED 2M", key: "Min. Investment" },
+          { val: "6+", key: "Visa Categories" },
           { val: "30 Days", key: "Avg. Processing" },
           { val: "All 7", key: "Emirates Valid" },
         ].map((s, i) => (

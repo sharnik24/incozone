@@ -485,8 +485,9 @@ const LICENSES = [
   },
 ];
 
+
 const SPONSOR_TYPES = [
-  { num: "01", title: "Local Service Agent (LSA)", desc: "Used for professional licenses and branch offices. The LSA has no ownership or profit-sharing rights — they simply represent the business with government authorities. Fee-based arrangement, typically AED 5,000–12,000 annually.", badge: "Professional License" },
+  { num: "01", title: "Local Service Agent (LSA)", desc: "Used for professional licenses and branch offices. The LSA has no ownership or profit-sharing rights — they simply represent the business with government authorities. Annual fee-based arrangement.", badge: "Professional License" },
   { num: "02", title: "UAE National Sponsor (LLC)", desc: "Holds the nominal 51% shareholding required by DED for LLC formation. A side agreement (Nominee Agreement) legally documents that 100% of economic benefits belong to the foreign investor. INCOZONE uses ADGM-registered legal frameworks for maximum protection.", badge: "LLC Formation" },
   { num: "03", title: "Corporate Sponsor", desc: "For larger transactions or investors requiring an additional layer of institutional credibility, a corporate UAE entity can act as sponsor. Adds cost but enhances counterparty perception for certain industries.", badge: "Premium Option" },
   { num: "04", title: "100% Foreign Ownership Activities", desc: "Since 2021, UAE Federal Law permits 100% foreign ownership for a growing list of mainland activities — no sponsor required. INCOZONE assesses whether your activity qualifies before recommending any sponsor arrangement.", badge: "No Sponsor Needed" },
@@ -526,7 +527,7 @@ const FAQS = [
   { q: "Can a mainland company operate anywhere in the UAE?", a: "Yes — a UAE mainland trade license (DED or equivalent) permits you to conduct business anywhere in the UAE: all seven emirates, all free zones, and internationally. Unlike free zone companies, mainland entities face no restriction on where they operate or who they serve within the UAE domestic market." },
   { q: "Is a physical office address required for mainland setup?", a: "Yes — all UAE mainland licenses require a physical office address with an Ejari (registered tenancy contract). INCOZONE advises on cost-efficient flexi-desk and serviced office options that satisfy the requirement without committing to expensive long-term leases before the business is established." },
   { q: "How does the 2021 Foreign Ownership Law work in practice?", a: "The UAE's amended Commercial Companies Law (2021) removed the mandatory 51% UAE national shareholding requirement for a list of eligible activities. If your business activity appears on the eligible list, you can own 100% of a mainland LLC without any local partner. Activities not on the list still require the traditional sponsor structure. INCOZONE verifies your activity's eligibility in the initial consultation." },
-  { q: "What are the annual renewal costs for a mainland company?", a: "UAE mainland license renewals typically range from AED 8,000 to AED 18,000 depending on the license type, number of activities, office arrangement, and emirate. Visa renewals are separate — approximately AED 3,500–5,500 per visa. INCOZONE manages all renewals proactively with advance reminders." },
+  { q: "What are the annual renewal costs for a mainland company?", a: "UAE mainland license renewals vary depending on the license type, number of activities, office arrangement, and emirate. Visa renewals are managed separately. INCOZONE manages all renewals proactively with advance reminders and provides exact costs upon consultation." },
   { q: "Can I have both a mainland license and a free zone license?", a: "Yes — having both structures is common and strategically sensible. The free zone entity handles international operations and provides visa-efficient residency; the mainland entity handles UAE domestic sales and operations. INCOZONE advises on dual-entity structures regularly and can manage both simultaneously." },
 ];
 
@@ -595,77 +596,6 @@ function useReveal() {
   });
 }
 
-// ── CALCULATOR ────────────────────────────────────────────────
-function Calculator() {
-  const [type, setType] = useState("llc");
-  const [emirate, setEmirate] = useState("dubai");
-  const [activities, setActivities] = useState("1");
-  const [sponsor, setSponsor] = useState(true);
-  const [visas, setVisas] = useState("2");
-  const [pro, setPro] = useState(false);
-
-  const typeC = { llc: 18500, sole: 12500, branch: 22000 };
-  const emirateC = { dubai: 0, abudhabi: 2500, sharjah: -3000, ajman: -4500 };
-  const actC = { "1": 0, "3": 2800, "5": 5200 };
-  const visaC = { "0": 0, "2": 0, "5": 5500, "10": 12000 };
-
-  const total = (typeC[type] || 0) + (emirateC[emirate] || 0) + (actC[activities] || 0) + (sponsor ? 4500 : 0) + (visaC[visas] || 0) + (pro ? 3800 : 0);
-  const f = n => "AED " + n.toLocaleString();
-
-  return (
-    <div className="mnl-calc-layout">
-      <div>
-        <h2 className="mnl-h2 mnl-reveal">Estimate Your <em>Mainland Cost</em></h2>
-        <p className="mnl-reveal md1" style={{ fontSize: "0.84rem", color: "var(--w60)", margin: "12px 0 36px", lineHeight: 1.8 }}>Configure your mainland requirements and get an indicative setup cost.</p>
-        <div className="mnl-calc-form">
-          {[
-            { l: "License Type", id: "type", val: type, set: setType, opts: [["llc","LLC — Limited Liability Company (AED 18,500)"],["sole","Sole Establishment (AED 12,500)"],["branch","Foreign Branch (AED 22,000)"]] },
-            { l: "Emirate", id: "em", val: emirate, set: setEmirate, opts: [["dubai","Dubai (DED)"],["abudhabi","Abu Dhabi (+AED 2,500)"],["sharjah","Sharjah (−AED 3,000)"],["ajman","Ajman (−AED 4,500)"]] },
-            { l: "Business Activities", id: "act", val: activities, set: setActivities, opts: [["1","1 Activity (Included)"],["3","3 Activities (+AED 2,800)"],["5","5 Activities (+AED 5,200)"]] },
-            { l: "Visa Allocation", id: "vis", val: visas, set: setVisas, opts: [["0","No Visas"],["2","2 Visas (Included)"],["5","5 Visas (+AED 5,500)"],["10","10 Visas (+AED 12,000)"]] },
-          ].map(({ l, id, val, set, opts }) => (
-            <div className="mnl-calc-field mnl-reveal" key={id}>
-              <label className="mnl-calc-lbl">{l}</label>
-              <select className="mnl-calc-select" value={val} onChange={e => set(e.target.value)}>
-                {opts.map(([v, lab]) => <option key={v} value={v}>{lab}</option>)}
-              </select>
-            </div>
-          ))}
-          <div className="mnl-calc-field mnl-reveal">
-            <label className="mnl-calc-lbl">Local Sponsor / LSA Arrangement</label>
-            <div className="mnl-toggle-row">
-              <button className={`mnl-toggle${!sponsor ? " on" : ""}`} onClick={() => setSponsor(false)}>100% Foreign Ownership</button>
-              <button className={`mnl-toggle${sponsor ? " on" : ""}`} onClick={() => setSponsor(true)}>Sponsor Required (+AED 4,500)</button>
-            </div>
-          </div>
-          <div className="mnl-calc-field mnl-reveal">
-            <label className="mnl-calc-lbl">PRO & Government Services</label>
-            <div className="mnl-toggle-row">
-              <button className={`mnl-toggle${!pro ? " on" : ""}`} onClick={() => setPro(false)}>Not Required</button>
-              <button className={`mnl-toggle${pro ? " on" : ""}`} onClick={() => setPro(true)}>Add PRO (+AED 3,800)</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="mnl-result mnl-reveal">
-        <span className="mnl-result-tag">Estimated Total</span>
-        <div className="mnl-result-amount"><span className="mnl-result-currency">AED </span>{total.toLocaleString()}</div>
-        <div className="mnl-result-note">One-time setup · excludes annual renewal & office lease</div>
-        <div className="mnl-result-lines">
-          <div className="mnl-result-line"><span className="mnl-result-line-lbl">Base License Fee</span><span className="mnl-result-line-val">{f(typeC[type])}</span></div>
-          {emirateC[emirate] !== 0 && <div className="mnl-result-line"><span className="mnl-result-line-lbl">Emirate Adjustment</span><span className="mnl-result-line-val">{emirateC[emirate] > 0 ? "+" : ""}{f(emirateC[emirate])}</span></div>}
-          {actC[activities] > 0 && <div className="mnl-result-line"><span className="mnl-result-line-lbl">Additional Activities</span><span className="mnl-result-line-val">+{f(actC[activities])}</span></div>}
-          {sponsor && <div className="mnl-result-line"><span className="mnl-result-line-lbl">Sponsor Arrangement</span><span className="mnl-result-line-val">+{f(4500)}</span></div>}
-          {visaC[visas] > 0 && <div className="mnl-result-line"><span className="mnl-result-line-lbl">Visa Processing</span><span className="mnl-result-line-val">+{f(visaC[visas])}</span></div>}
-          {pro && <div className="mnl-result-line"><span className="mnl-result-line-lbl">PRO Services</span><span className="mnl-result-line-val">+{f(3800)}</span></div>}
-        </div>
-        <div className="mnl-result-total"><span style={{ color: "var(--w)", fontWeight: 500 }}>Total Estimate</span><span style={{ color: "var(--g400)", fontWeight: 600 }}>{f(total)}</span></div>
-        <p className="mnl-result-disclaimer">Estimate only. Final costs depend on current DED authority fees, office lease, and specific activity requirements.</p>
-        <button className="mnl-btn-gold" style={{ width: "100%" }}>Get Exact Quote →</button>
-      </div>
-    </div>
-  );
-}
 
 // ── MAIN PAGE ──────────────────────────────────────────────────
 export default function MainlandPage({ onBack, onNavigate }) {
@@ -751,11 +681,9 @@ export default function MainlandPage({ onBack, onNavigate }) {
 
         <div className="mnl-hero-right">
           {[
-            { eyebrow: "License From", val: "AED 12,500", sub: "Sole Establishment — lowest entry" },
             { eyebrow: "Setup Timeline", val: "4–6 Wks", sub: "License to visa to bank account" },
             { eyebrow: "Market Access", val: "100%", sub: "UAE domestic market — all 7 emirates" },
             { eyebrow: "Foreign Ownership", val: "Up to 100%", sub: "For eligible activity categories" },
-            { eyebrow: "Annual Renewal", val: "AED 8–18K", sub: "Depending on emirate and activity" },
           ].map((s, i) => (
             <div className="mnl-hero-stat-item" key={i}>
               <div className="mnl-hero-stat-eyebrow">{s.eyebrow}</div>
@@ -900,12 +828,6 @@ export default function MainlandPage({ onBack, onNavigate }) {
         </div>
       </section>
 
-      {/* ── CALCULATOR ── */}
-      <section className="mnl-calc">
-        <span className="mnl-section-label mnl-reveal">Cost Estimator</span>
-        <Calculator />
-      </section>
-
       {/* ── FAQ ── */}
       <section className="mnl-faq">
         <span className="mnl-section-label mnl-reveal" style={{ textAlign: "center", display: "block" }}>FAQ</span>
@@ -940,7 +862,7 @@ export default function MainlandPage({ onBack, onNavigate }) {
             {[
               { n: "01", t: "Mainland or Free Zone — The Real Question", p: "The choice comes down to one question: do you need to sell directly to UAE consumers and businesses, or bid on government contracts? If yes — you need a mainland license. No free zone address can substitute. If you operate internationally and don't need UAE domestic market access, a free zone is more efficient. INCOZONE helps you answer this honestly." },
               { n: "02", t: "Dubai vs Other Emirates", p: "Dubai DED licenses are the most commercially credible — clients, partners, and banks respond best to a Dubai address. However, Abu Dhabi offers stronger access to government entity contracts; Sharjah and Ajman are meaningfully cheaper. INCOZONE recommends the emirate that matches your commercial objectives, not just the cheapest option." },
-              { n: "03", t: "The Physical Office Requirement", p: "Mainland licenses require a real, physical office address registered under Ejari. This adds ongoing cost. INCOZONE has established relationships with affordable flexi-desk and serviced office providers across Dubai and Abu Dhabi that satisfy the DED requirement at the lowest possible annual cost — typically AED 8,000–18,000." },
+              { n: "03", t: "The Physical Office Requirement", p: "Mainland licenses require a real, physical office address registered under Ejari. This adds ongoing cost. INCOZONE has established relationships with affordable flexi-desk and serviced office providers across Dubai and Abu Dhabi that satisfy the DED requirement at the most cost-efficient rates available." },
               { n: "04", t: "100% Ownership Activities — Check First", p: "Since 2021, over 1,000 business activities qualify for 100% foreign ownership on the UAE mainland. Before any sponsor arrangement is recommended or signed, INCOZONE verifies whether your specific activity is on the eligible list. Many clients are surprised to discover they don't need a sponsor at all." },
             ].map((tip, i) => (
               <div className={`mnl-tip mnl-reveal md${(i % 2) + 1}`} key={i}>

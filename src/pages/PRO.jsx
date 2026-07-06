@@ -735,7 +735,7 @@ const VISA_TYPES = [
       { text:"Residence visa stamping in passport", time:"2–3 days" },
       { text:"Emirates ID application & collection", time:"5–7 days" },
     ],
-    timeline:"10–15 working days",cost:"AED 4,200–6,500",
+    timeline:"10–15 working days",
   },
   {
     tag:"Employment Visa",title:"Employee &\nStaff Visa",subtitle:"For hired employees under your license",
@@ -746,7 +746,7 @@ const VISA_TYPES = [
       { text:"Medical fitness & biometrics", time:"1–2 days" },
       { text:"Residence visa & Emirates ID", time:"7–10 days" },
     ],
-    timeline:"15–20 working days",cost:"AED 5,500–8,000",
+    timeline:"15–20 working days",
   },
   {
     tag:"Dependent Visa",title:"Family\nDependant Visa",subtitle:"Spouse, children & parents",
@@ -757,13 +757,13 @@ const VISA_TYPES = [
       { text:"Medical fitness & biometrics", time:"1–2 days" },
       { text:"Residence visa & Emirates ID", time:"7–10 days" },
     ],
-    timeline:"12–18 working days",cost:"AED 3,800–5,500",
+    timeline:"12–18 working days",
   },
 ];
 
 const PLANS = [
   {
-    name:"Essential",sub:"Annual license & visa renewals",amount:"AED 3,500",period:"per year · up to 3 visas",featured:false,
+    name:"Essential",sub:"Annual license & visa renewals",featured:false,
     badge:"Entry",
     feats:[
       ["Annual license renewal management",true],
@@ -778,7 +778,7 @@ const PLANS = [
     ],
   },
   {
-    name:"Advisory",sub:"Full PRO + amendment coverage",amount:"AED 7,200",period:"per year · up to 8 visas",featured:true,
+    name:"Advisory",sub:"Full PRO + amendment coverage",featured:true,
     badge:"Most Popular",
     feats:[
       ["Annual license renewal management",true],
@@ -793,7 +793,7 @@ const PLANS = [
     ],
   },
   {
-    name:"Corporate",sub:"Full-scope ongoing management",amount:"AED 14,500",period:"per year · unlimited visas",featured:false,
+    name:"Corporate",sub:"Full-scope ongoing management",featured:false,
     badge:"Full Service",
     feats:[
       ["Unlimited visa renewals",true],
@@ -811,8 +811,8 @@ const PLANS = [
 
 const FAQS = [
   { q:"What is a PRO service and why do I need one?", a:"PRO stands for Public Relations Officer — in UAE corporate context, it refers to professional government liaison services. A PRO handles all physical interactions with government authorities on your behalf: DED, GDRFA, ICA, MOFA, MOHRE, and free zone authorities. Without a PRO, company owners must personally attend government offices — often requiring pre-booked appointments, Arabic-language interaction, and knowledge of specific procedures. INCOZONE's PRO team eliminates this entirely." },
-  { q:"Can I handle my own license renewal without INCOZONE?", a:"Technically yes — but in practice, UAE license renewals involve multiple interconnected steps: confirming visa validity for all shareholders, clearing any outstanding fines, obtaining the correct renewal forms, making the right fee payment, and collecting the renewed license. A single missed step can result in a grace period lapse, which carries AED 500–1,000 per month in penalties. INCOZONE's 60-day advance renewal system means this risk is eliminated." },
-  { q:"How does a share transfer work in a UAE free zone?", a:"A share transfer in a UAE free zone requires: a Share Purchase Agreement signed by buyer and seller, a Board Resolution authorising the transfer, updated corporate documents (MOA amendment), KYC documents for the new shareholder, and authority approval from the relevant free zone. Some free zones also require a No Objection Certificate from any UAE bank holding the company's account.", list:["Average timeline: 7–15 business days","Authority fees: AED 1,500–4,000 depending on zone","INCOZONE fee: disclosed upfront before engagement","Result: updated license, new share certificates, amended MOA"] },
+  { q:"Can I handle my own license renewal without INCOZONE?", a:"Technically yes — but in practice, UAE license renewals involve multiple interconnected steps: confirming visa validity for all shareholders, clearing any outstanding fines, obtaining the correct renewal forms, making the right fee payment, and collecting the renewed license. A single missed step can result in a grace period lapse and monthly penalties. INCOZONE's 60-day advance renewal system means this risk is eliminated." },
+  { q:"How does a share transfer work in a UAE free zone?", a:"A share transfer in a UAE free zone requires: a Share Purchase Agreement signed by buyer and seller, a Board Resolution authorising the transfer, updated corporate documents (MOA amendment), KYC documents for the new shareholder, and authority approval from the relevant free zone. Some free zones also require a No Objection Certificate from any UAE bank holding the company's account.", list:["Average timeline: 7–15 business days","Authority fees vary depending on zone","INCOZONE fee: disclosed upfront before engagement","Result: updated license, new share certificates, amended MOA"] },
   { q:"What documents do I need to renew my UAE investor visa?", a:"For a standard investor visa renewal: current passport (minimum 6 months validity), existing Emirates ID, company license copy, establishment card copy, and entry permit if the current visa has expired. If you are outside the UAE when your visa expires, re-entry requires a new entry permit before renewal can proceed. INCOZONE tracks all of this proactively." },
   { q:"What is an Establishment Card and do I need one?", a:"An Establishment Card (also called a Company Immigration Card) is a mandatory document for all UAE companies wishing to sponsor employee visas. It is issued by GDRFA (General Directorate of Residency and Foreigners Affairs) and must be renewed annually alongside the trade license. Without a current Establishment Card, no new employee visa applications can be processed." },
   { q:"How long does it take to add a new activity to my license?", a:"Adding a new licensed activity typically takes 2–5 business days for most free zones and DED. Some activities require additional regulatory approvals — healthcare, education, financial services, food — which can extend the timeline to 2–4 weeks. INCOZONE identifies any additional approval requirements upfront so there are no timeline surprises." },
@@ -1163,7 +1163,6 @@ export default function PROPage({ onBack, onNavigate }) {
               </div>
               <div className="pro-visa-card-meta">
                 <div className="pro-visa-card-meta-timeline">{v.timeline}</div>
-                <div className="pro-visa-card-cost">{v.cost}</div>
               </div>
             </div>
           ))}
@@ -1183,10 +1182,6 @@ export default function PROPage({ onBack, onNavigate }) {
               <div className="pro-plan-badge">{p.badge}</div>
               <div className="pro-plan-name">{p.name}</div>
               <p className="pro-plan-sub">{p.sub}</p>
-              <div className="pro-plan-price">
-                <div className="pro-plan-amount">{p.amount}</div>
-                <div className="pro-plan-period">{p.period}</div>
-              </div>
               <ul className="pro-plan-features">
                 {p.feats.map(([t,on],j)=>(
                   <li className="pro-plan-feat" key={j}>

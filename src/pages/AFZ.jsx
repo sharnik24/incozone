@@ -449,7 +449,7 @@ const CSS = `
 const STATS = [
   { v:"10,000+", k:"Companies" }, { v:"3–5", k:"Setup Days" },
   { v:"100%", k:"Foreign Ownership" }, { v:"0%", k:"Income Tax" },
-  { v:"AED 5,500", k:"Starting Cost" }, { v:"Ajman", k:"Northern Emirates" },
+  { v:"Fast Setup", k:"Starting Cost" }, { v:"Ajman", k:"Northern Emirates" },
 ];
 
 const ACTIVITIES = [
@@ -489,13 +489,13 @@ const DOCUMENTS = [
 ];
 
 const FAQS = [
-  { q:"What is AFZ and why is it the most affordable UAE free zone?", a:"AFZ (Ajman Free Zone) is one of the UAE's oldest and most established free zones, founded in 1988 in the Emirate of Ajman. Its pricing is the most competitive in the UAE — starting from AED 5,500 — because Ajman's lower cost base allows AFZ to offer the same legal structure, 100% foreign ownership, and UAE residency rights as Dubai zones at a fraction of the cost." },
+  { q:"What is AFZ and why is it the most affordable UAE free zone?", a:"AFZ (Ajman Free Zone) is one of the UAE's oldest and most established free zones, founded in 1988 in the Emirate of Ajman. Its pricing is the most competitive in the UAE because Ajman's lower cost base allows AFZ to offer the same legal structure, 100% foreign ownership, and UAE residency rights as Dubai zones at a fraction of the cost." },
   { q:"Do I get a real UAE residence visa through AFZ?", a:"Yes — your AFZ investor visa is a full UAE residence visa. Emirates ID, residency stamp, UAE residency rights, and banking access are identical to a visa issued through DMCC, IFZA, or any Dubai free zone. The Ajman location has zero effect on the validity or recognition of your UAE residency.", list:["Same Emirates ID as any UAE resident","Same bank account opening rights","Same UAE residency duration (2–3 years)","Same travel and re-entry rights"] },
   { q:"Can I open a UAE bank account with an AFZ company?", a:"Yes. AFZ companies can open accounts at all major UAE banks including Emirates NBD, Mashreq, FAB, ADCB, and RAKBank. The key factors are your source of funds documentation, business plan, and personal banking history — not the free zone. INCOZONE prepares a complete banking package tailored to your business model." },
-  { q:"How does AFZ compare to RAKEZ for budget-conscious setups?", a:"Both are highly affordable. AFZ starts lower (AED 5,500 vs RAKEZ AED 8,500) but RAKEZ offers stronger industrial infrastructure — warehouses, port access at Saqr Port, and manufacturing facilities. For pure service businesses, consulting, trading, and tech companies, AFZ's lower cost is the decisive advantage. For businesses needing physical industrial space, RAKEZ adds more value." },
+  { q:"How does AFZ compare to RAKEZ for budget-conscious setups?", a:"Both are highly affordable, with AFZ being the lower-cost option. RAKEZ offers stronger industrial infrastructure — warehouses, port access at Saqr Port, and manufacturing facilities. For pure service businesses, consulting, trading, and tech companies, AFZ's lower cost is the decisive advantage. For businesses needing physical industrial space, RAKEZ adds more value." },
   { q:"Can AFZ companies do business in Dubai and Abu Dhabi?", a:"Yes — AFZ companies can provide services to clients across all UAE emirates including Dubai, Abu Dhabi, and Sharjah. There are no restrictions on who you can serve. The only limitation is physically operating a retail or consumer-facing establishment on the mainland, which requires a mainland license." },
   { q:"Is AFZ suitable for e-commerce and online businesses?", a:"Yes — AFZ explicitly licenses e-commerce and digital commerce activities. For online businesses operating from the UAE, AFZ is one of the most cost-effective options available. Combined with a UAE residence visa and bank account, it provides everything needed to operate a legitimate online business." },
-  { q:"What is the annual renewal cost for AFZ?", a:"AFZ annual renewal typically ranges from AED 4,500 to AED 8,000 depending on your license type, activities, and office arrangement — the lowest annual renewal of any UAE free zone. This makes AFZ particularly attractive for businesses watching ongoing operational costs, not just setup fees." },
+  { q:"What is the annual renewal cost for AFZ?", a:"AFZ annual renewal is among the lowest of any UAE free zone, depending on your license type, activities, and office arrangement. This makes AFZ particularly attractive for businesses watching ongoing operational costs, not just setup fees." },
   { q:"How long does AFZ setup actually take?", a:"AFZ is one of the fastest free zones in the UAE — license issuance typically within 3–5 working days. Combined with INCOZONE's preparation, most clients receive their full corporate documents within one week of starting the process. Visa and bank account steps follow sequentially." },
   { q:"Can I set up AFZ remotely without visiting the UAE?", a:"Yes — AFZ license formation can be completed remotely. Visa biometric registration and bank account opening require a UAE visit. INCOZONE coordinates a single efficient visit to complete both steps simultaneously, minimising your time in the UAE." },
   { q:"What are the most popular business activities on an AFZ license?", a:"The most commonly licensed activities at AFZ include:", list:["General Trading (multi-commodity)","IT & Software Consulting","Business & Management Consulting","E-Commerce & Online Retail","Marketing & Digital Services","Construction Materials Trading","Food & Agricultural Trading","Healthcare & Medical Equipment"] },
@@ -562,71 +562,6 @@ function useReveal() {
     els.forEach(el => obs.observe(el));
     return () => obs.disconnect();
   });
-}
-
-// ── CALCULATOR ────────────────────────────────────────────────
-function Calculator() {
-  const [pkg, setPkg] = useState("starter");
-  const [off, setOff] = useState("virtual");
-  const [vis, setVis] = useState("1");
-  const [pro, setPro] = useState(false);
-  const [bnk, setBnk] = useState(false);
-  const pkgC = { starter: 5500, business: 9900, pro_pkg: 15500 };
-  const offC = { virtual: 0, flexi: 1800, office: 4500, warehouse: 9000 };
-  const visC = { "0": 0, "1": 0, "3": 2200, "5": 4000 };
-  const total = (pkgC[pkg] || 0) + (offC[off] || 0) + (visC[vis] || 0) + (pro ? 2500 : 0) + (bnk ? 2000 : 0);
-  const f = n => "AED " + n.toLocaleString();
-  return (
-    <div className="afz-calc-inner">
-      <div>
-        <h2 className="afz-h2 afz-reveal">Build Your <em>Custom Package</em></h2>
-        <p className="afz-reveal ar1" style={{ fontSize: "0.84rem", color: "var(--w60)", margin: "12px 0 36px" }}>Configure your AFZ requirements and get an instant cost breakdown.</p>
-        <div className="afz-calc-form">
-          {[
-            { l: "License Package", id: "pkg", val: pkg, set: setPkg, opts: [["starter","Starter (AED 5,500)"],["business","Business (AED 9,900)"],["pro_pkg","Pro (AED 15,500)"]] },
-            { l: "Office / Workspace", id: "off", val: off, set: setOff, opts: [["virtual","Virtual Office (Included)"],["flexi","Flexi Desk (+AED 1,800/yr)"],["office","Private Office (+AED 4,500/yr)"],["warehouse","Warehouse (+AED 9,000/yr)"]] },
-            { l: "Visa Allocation", id: "vis", val: vis, set: setVis, opts: [["0","No Visas"],["1","1 Visa (Included)"],["3","3 Visas (+AED 2,200)"],["5","5 Visas (+AED 4,000)"]] },
-          ].map(({ l, id, val, set, opts }) => (
-            <div className="afz-calc-field afz-reveal" key={id}>
-              <label className="afz-calc-label">{l}</label>
-              <select className="afz-calc-select" value={val} onChange={e => set(e.target.value)}>
-                {opts.map(([v, lab]) => <option key={v} value={v}>{lab}</option>)}
-              </select>
-            </div>
-          ))}
-          <div className="afz-calc-field afz-reveal">
-            <label className="afz-calc-label">PRO & Government Services</label>
-            <div className="afz-toggle-row">
-              <button className={`afz-toggle${!pro ? " on" : ""}`} onClick={() => setPro(false)}>Not Required</button>
-              <button className={`afz-toggle${pro ? " on" : ""}`} onClick={() => setPro(true)}>Add PRO (+AED 2,500)</button>
-            </div>
-          </div>
-          <div className="afz-calc-field afz-reveal">
-            <label className="afz-calc-label">Banking Assistance</label>
-            <div className="afz-toggle-row">
-              <button className={`afz-toggle${!bnk ? " on" : ""}`} onClick={() => setBnk(false)}>Not Required</button>
-              <button className={`afz-toggle${bnk ? " on" : ""}`} onClick={() => setBnk(true)}>Add Banking (+AED 2,000)</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="afz-result afz-reveal">
-        <span className="afz-result-tag">Estimated Total</span>
-        <div className="afz-result-amount"><span className="afz-result-currency">AED </span>{total.toLocaleString()}</div>
-        <div className="afz-result-note">One-time cost · excludes annual renewal</div>
-        <div className="afz-result-lines">
-          <div className="afz-result-line"><span className="afz-result-line-lbl">Base License Fee</span><span className="afz-result-line-val">{f(pkgC[pkg])}</span></div>
-          {offC[off] > 0 && <div className="afz-result-line"><span className="afz-result-line-lbl">Office (Annual)</span><span className="afz-result-line-val">+{f(offC[off])}</span></div>}
-          {visC[vis] > 0 && <div className="afz-result-line"><span className="afz-result-line-lbl">Visa Processing</span><span className="afz-result-line-val">+{f(visC[vis])}</span></div>}
-          {pro && <div className="afz-result-line"><span className="afz-result-line-lbl">PRO Services</span><span className="afz-result-line-val">+{f(2500)}</span></div>}
-          {bnk && <div className="afz-result-line"><span className="afz-result-line-lbl">Banking Assistance</span><span className="afz-result-line-val">+{f(2000)}</span></div>}
-        </div>
-        <div className="afz-result-total-row"><span style={{ color: "var(--w)", fontWeight: 500 }}>Total Estimate</span><span style={{ color: "var(--g400)", fontWeight: 600 }}>{f(total)}</span></div>
-        <p className="afz-result-disclaimer">Estimate only. Final costs depend on current authority fees and specific requirements.</p>
-        <button className="afz-btn-gold" style={{ width: "100%" }}>Get Exact Quote →</button>
-      </div>
-    </div>
-  );
 }
 
 // ── MAIN PAGE ──────────────────────────────────────────────────
@@ -703,7 +638,7 @@ export default function AFZPage({ onBack, onNavigate }) {
           <h1 className="afz-hero-h1">AFZ<em>Free Zone</em></h1>
           <div className="afz-hero-fullname">Ajman Free Zone — UAE's Most Affordable Setup</div>
           <p className="afz-hero-desc">
-            The UAE's lowest-cost free zone — full legal standing, 100% foreign ownership, and a genuine UAE residence visa starting from just <strong style={{ color: "var(--g300)" }}>AED 5,500.</strong> Everything you need, nothing you don't.
+            The UAE's lowest-cost free zone — full legal standing, 100% foreign ownership, and a genuine UAE residence visa. Everything you need, nothing you don't.
           </p>
           <div className="afz-hero-actions">
             <button className="afz-btn-gold">Start AFZ Setup →</button>
@@ -715,10 +650,10 @@ export default function AFZPage({ onBack, onNavigate }) {
           <div className="afz-hero-card">
             <span className="afz-hero-card-label">Quick Reference</span>
             {[
-              ["Location","Ajman, UAE"], ["Setup From","AED 5,500","gold"],
+              ["Location","Ajman, UAE"],
               ["Setup Time","3–5 Days","gold"], ["Min. Capital","Not Required"],
               ["Ownership","100% Foreign","gold"], ["Visa Quota","Up to 5"],
-              ["Annual Renewal","AED 4.5–8K"], ["Tax","0% Personal"],
+              ["Tax","0% Personal"],
             ].map(([l, v, cls]) => (
               <div className="afz-hero-card-row" key={l}>
                 <span>{l}</span><span className={cls || ""}>{v}</span>
@@ -754,7 +689,7 @@ export default function AFZPage({ onBack, onNavigate }) {
           <div className="afz-reveal ar2">
             <div className="afz-pillars">
               {[
-                { i:ITag, h:"UAE's Lowest Setup Cost", p:"Starting from AED 5,500 — the most affordable legitimate free zone setup in the UAE. Annual renewal from AED 4,500 keeps your ongoing costs minimal. Full legal standing, same tax benefits, same ownership rights." },
+                { i:ITag, h:"UAE's Lowest Setup Cost", p:"The most affordable legitimate free zone setup in the UAE. Low annual renewal keeps your ongoing costs minimal. Full legal standing, same tax benefits, same ownership rights." },
                 { i:IClock, h:"3 to 5 Day Setup", p:"Among the fastest free zone setups in the UAE. AFZ's streamlined digital process means license issuance within 3–5 working days from document submission — one of the quickest turnarounds available." },
                 { i:IIdCard, h:"Full UAE Residence Visa", p:"Your AFZ investor visa is a genuine UAE residence visa — Emirates ID, residency rights, and banking access identical to any Dubai free zone visa. The Ajman location does not affect visa quality or recognition." },
                 { i:ILaptop, h:"Flexible Workspace Options", p:"Virtual offices for remote businesses, flexi desks for occasional use, private offices for established teams, and warehouse units for businesses with physical inventory needs." },
@@ -767,39 +702,6 @@ export default function AFZPage({ onBack, onNavigate }) {
               ))}
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* ── PACKAGES ── */}
-      <div className="afz-packages afz-section">
-        <span className="afz-section-label afz-reveal">Setup Packages</span>
-        <h2 className="afz-h2 afz-reveal ar1">Choose Your <em>AFZ Package</em></h2>
-        <p className="afz-reveal ar2" style={{ fontSize: "0.84rem", color: "var(--cream-ink3)", marginTop: "10px", maxWidth: "520px" }}>All packages include full company incorporation, trade license, and corporate documents. The UAE's most affordable all-inclusive packages.</p>
-        <div className="afz-pkg-grid">
-          {[
-            { name:"Starter", tag:"Solo operators & freelancers", price:"5,500", badge:"Lowest in UAE", featured:false, feats:[["1 Business Activity",true],["Virtual Office (UAE Address)",true],["1 Investor Visa",true],["Company Stamp & MOA",true],["Bank Account Assistance",false],["Dedicated Account Manager",false]] },
-            { name:"Business", tag:"SMEs, traders & consultants", price:"9,900", badge:"Most Popular", featured:true, feats:[["3 Business Activities",true],["Flexi Desk / Office Access",true],["3 Investor Visas",true],["Full Corporate Documents",true],["Bank Account Assistance",true],["Dedicated Account Manager",false]] },
-            { name:"Pro", tag:"Established businesses & teams", price:"15,500", badge:"Full Service", featured:false, feats:[["Unlimited Activities",true],["Private Office",true],["5 Investor Visas",true],["Full Corporate Documents",true],["Priority Bank Account Setup",true],["Dedicated Account Manager",true]] },
-          ].map((pkg, i) => (
-            <div className={`afz-pkg afz-reveal ar${i+1}${pkg.featured ? " featured" : ""}`} key={i}>
-              <div className="afz-pkg-badge">{pkg.badge}</div>
-              <div className="afz-pkg-name">{pkg.name}</div>
-              <p className="afz-pkg-tag">{pkg.tag}</p>
-              <div className="afz-pkg-price">
-                <div className="afz-pkg-amount">AED {pkg.price}</div>
-                <div className="afz-pkg-period">One-time setup · excludes annual renewal</div>
-              </div>
-              <ul className="afz-pkg-features">
-                {pkg.feats.map(([t, on], j) => (
-                  <li className="afz-pkg-feat" key={j}>
-                    <span className={on ? "afz-feat-on" : "afz-feat-off"}>{on ? "" : "×"}</span>
-                    <span className={on ? "afz-feat-label-on" : "afz-feat-label-off"}>{t}</span>
-                  </li>
-                ))}
-              </ul>
-              <button className="afz-pkg-btn">{pkg.featured ? "Select This Package →" : "Get Started →"}</button>
-            </div>
-          ))}
         </div>
       </div>
 
@@ -853,12 +755,6 @@ export default function AFZPage({ onBack, onNavigate }) {
         </div>
       </div>
 
-      {/* ── CALCULATOR ── */}
-      <div className="afz-calc afz-section">
-        <span className="afz-section-label afz-reveal">Cost Estimator</span>
-        <Calculator />
-      </div>
-
       {/* ── FAQ ── */}
       <div className="afz-faq afz-section">
         <span className="afz-section-label afz-reveal" style={{ textAlign: "center", display: "block" }}>FAQ</span>
@@ -887,7 +783,7 @@ export default function AFZPage({ onBack, onNavigate }) {
         <h2 className="afz-h2 afz-reveal ar1" style={{ textAlign: "center" }}>Expert Advice Before <em>You Decide</em></h2>
         <div className="afz-advisory-inner">
           <div className="afz-advisory-quote afz-reveal ar2">
-            "AFZ is the answer we give clients who ask: do I really need to spend AED 18,000 on a DMCC license?{" "}
+            "AFZ is the answer we give clients who ask: do I really need a premium DMCC license?{" "}
             <strong>For many businesses — consultants, freelancers, e-commerce operators, small traders — the honest answer is no. AFZ gives you everything that legally and practically matters: a UAE company, a UAE residence visa, and a UAE bank account. At the lowest cost available anywhere in the UAE.</strong>"
             <div className="afz-advisory-quote-attr">— INCOZONE Advisory Team</div>
           </div>

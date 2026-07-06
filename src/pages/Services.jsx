@@ -517,7 +517,7 @@ const SERVICES = [
     num: "04",
     category: "Prestige Residency",
     title: "UAE Golden\nVisa",
-    desc: "The UAE Golden Visa grants <strong>10-year renewable residency</strong> for investors, entrepreneurs, exceptional talent, and qualified professionals. No employer sponsorship needed — full independence. We manage the complete qualification assessment, application, and approval process. Applicable for real estate investors (AED 2M+), business owners, and high-net-worth individuals.",
+    desc: "The UAE Golden Visa grants <strong>10-year renewable residency</strong> for investors, entrepreneurs, exceptional talent, and qualified professionals. No employer sponsorship needed — full independence. We manage the complete qualification assessment, application, and approval process. Applicable for real estate investors, business owners, and high-net-worth individuals.",
     tags: ["10-Year Residency", "Investor Category", "Entrepreneur Route", "Talent Category", "Real Estate", "Self-Sponsored", "Family Inclusion"],
     stat: "10",
     statLabel: "Year Visa",

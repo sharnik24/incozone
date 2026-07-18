@@ -780,6 +780,29 @@
       "kicker": "Open business in UAE",
       "imageUrl": "https://raw.githubusercontent.com/sharnik24/incozone/main/public/images/cms/1778504109703.jpg",
       "imgLabel": "Business Setup in UAE – Complete Guide for Entrepreneurs in 2026"
+    },
+    {
+      "id": 12,
+      "cat": "Company Formation",
+      "title": "New Article",
+      "excerpt": "Excerpt.",
+      "author": "Yash Kathekar ",
+      "date": "18 July 2026",
+      "status": "draft",
+      "featured": false,
+      "readTime": "10 min "
+    },
+    {
+      "id": 13,
+      "cat": "General",
+      "title": "How to Choose the Right UAE Business Activity | Complete Guide 2026 | IncoZone\n\n",
+      "excerpt": "Excerpt.",
+      "author": "Yash Kathekar ",
+      "date": "18 July 2026",
+      "status": "draft",
+      "featured": false,
+      "readTime": "10 min ",
+      "kicker": "A Complete Guide 2026"
     }
   ]
 }

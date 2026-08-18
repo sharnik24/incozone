@@ -1721,6 +1721,16 @@ export default function BlogPage({ onBack, onNavigate, initialSlug }) {
     if (!initialSlug) setActiveArt(null);
   }, [initialSlug]);
 
+  // Handle browser back button when article is open (we manage URL directly, not via App routing)
+  useEffect(() => {
+    const onPop = () => {
+      const path = window.location.pathname.replace(/^\//, "");
+      if (path === "blog" || path === "") setActiveArt(null);
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
   // Build category list dynamically from actual articles so the filter always matches
   const cats = allArticles.reduce((acc, art) => {
     if (art.cat && !acc.includes(art.cat)) acc.push(art.cat);
@@ -1749,14 +1759,15 @@ export default function BlogPage({ onBack, onNavigate, initialSlug }) {
   const openArticle = (art) => {
     playPageFlip();
     setActiveArt(art);
-    if (onNavigate) onNavigate("blog/" + toSlug(art.title));
+    // Update URL without triggering App re-render (avoids prop/state race)
+    window.history.pushState({ page: "blog/" + toSlug(art.title) }, "", "/blog/" + toSlug(art.title));
   };
 
   const closeArticle = useCallback(() => {
     setActiveArt(null);
     window.scrollTo(0, 0);
-    if (onNavigate) onNavigate("blog");
-  }, [onNavigate]);
+    window.history.pushState({ page: "blog" }, "", "/blog");
+  }, []);
 
   const today = new Date().toLocaleDateString("en-GB", { weekday:"long", day:"numeric", month:"long", year:"numeric" });
 

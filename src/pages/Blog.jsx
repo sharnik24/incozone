@@ -1,5 +1,15 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { Helmet } from "react-helmet-async";
 import { useContent } from "../context/ContentContext";
+
+// ─── SLUG HELPER ─────────────────────────────────────────────
+export function toSlug(title) {
+  return String(title).toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
 
 // ═══════════════════════════════════════════════════════════════
 //  INCOZONE — The UAE Business Gazette  (Blog Page)
@@ -391,6 +401,53 @@ const CSS = `
 }
 .bg-art-subhead { font-family:var(--fd); font-size:1.1rem; font-weight:700; color:var(--ink); margin:1.5em 0 .5em; column-span:all; }
 
+/* ─── RICH ARTICLE SECTIONS ─────────────────────────────────── */
+.bg-art-section-h {
+  font-family:var(--fd); font-size:1.25rem; font-weight:700; color:var(--ink);
+  margin:2em 0 .6em; column-span:all;
+  border-bottom:2px solid var(--ink); padding-bottom:8px; display:block;
+}
+.bg-art-step-num {
+  font-family:var(--fd); font-size:1.8rem; font-weight:700; color:var(--paper3);
+  line-height:1; margin-right:8px; display:inline;
+}
+.bg-art-list { list-style:none; padding:0; margin:0 0 1.2em; column-span:all; }
+.bg-art-list li {
+  font-family:var(--fb); font-size:.86rem; color:var(--ink2);
+  line-height:1.7; padding:6px 0 6px 22px;
+  border-bottom:1px solid var(--rule2); position:relative;
+}
+.bg-art-list li:last-child { border-bottom:none; }
+.bg-art-list li::before { content:'—'; position:absolute; left:0; color:var(--gold); font-weight:700; }
+.bg-art-checklist { list-style:none; padding:0; margin:0 0 1.2em; column-span:all; }
+.bg-art-checklist li {
+  font-family:var(--fb); font-size:.86rem; color:var(--ink2);
+  line-height:1.7; padding:8px 0 8px 32px;
+  border-bottom:1px solid var(--rule2); position:relative;
+  counter-increment:checklist;
+}
+.bg-art-checklist { counter-reset:checklist; }
+.bg-art-checklist li::before {
+  content:counter(checklist) '.';
+  position:absolute; left:0; color:var(--red);
+  font-family:var(--fs); font-size:.72rem; font-weight:700; top:10px;
+}
+.bg-art-faq { column-span:all; margin:0; }
+.bg-art-faq-item { padding:16px 0; border-bottom:1px solid var(--rule); }
+.bg-art-faq-item:last-child { border-bottom:none; }
+.bg-art-faq-q { font-family:var(--fd); font-size:1.05rem; font-weight:700; color:var(--ink); margin-bottom:8px; }
+.bg-art-faq-a { font-family:var(--fb); font-size:.86rem; color:var(--ink2); line-height:1.75; }
+.bg-art-disclaimer { column-span:all; margin-top:24px; padding:14px 18px; background:var(--paper2); border-left:3px solid var(--rule); font-family:var(--fs); font-size:.65rem; color:var(--ink4); line-height:1.6; font-style:italic; }
+.bg-art-services-grid { column-span:all; display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin:12px 0 24px; border:1px solid var(--rule); }
+.bg-art-svc { padding:10px 14px; border-right:1px solid var(--rule); border-bottom:1px solid var(--rule); font-family:var(--fs); font-size:.65rem; color:var(--ink3); letter-spacing:.05em; }
+.bg-art-svc:nth-child(3n) { border-right:none; }
+.bg-art-svc::before { content:'·  '; color:var(--gold); }
+@media(max-width:700px){
+  .bg-art-services-grid { grid-template-columns:repeat(2,1fr); }
+  .bg-art-svc:nth-child(3n) { border-right:1px solid var(--rule); }
+  .bg-art-svc:nth-child(2n) { border-right:none; }
+}
+
 /* ─── FOOTER BAR ─────────────────────────────────────────────── */
 .bg-footer {
   background:var(--ink); padding:44px 60px; margin-top:0;
@@ -636,6 +693,524 @@ html { scroll-behavior:auto; }
 // ─── BLOG DATA ────────────────────────────────────────────────
 const ARTICLES = [
   {
+    id:13, cat:"PRO Services", kicker:"COMPLIANCE GUIDE",
+    title:"Ultimate Beneficial Owner (UBO) Compliance in the UAE: Who Must Report, Deadlines & Penalties",
+    deck:"A Complete Guide to UAE UBO Regulations for Businesses in 2026",
+    author:"INCOZONE Advisory Team", authorInitial:"I",
+    date:"August 18, 2026", readTime:"9 min read",
+    featured:true,
+    imageUrl:"/images/blog-ubo-compliance.png",
+    imgLabel:"UAE UBO Compliance · AML Framework · Corporate Transparency",
+    body:[
+      "Setting up a company in the UAE is only the beginning of your compliance journey. Businesses must also comply with a range of ongoing regulatory obligations, including Ultimate Beneficial Owner (UBO) reporting, which forms a key part of the UAE's Anti-Money Laundering (AML) and Counter-Terrorist Financing (CTF) framework.",
+      "UBO regulations are designed to increase corporate transparency by identifying the natural person(s) who ultimately own or control a company. Banks, licensing authorities, auditors, and regulators rely on this information when conducting Know Your Customer (KYC) and compliance checks.",
+      "Providing inaccurate or outdated UBO information can result in administrative penalties, licensing issues, and delays during banking or regulatory reviews. This guide explains who must report, how a UBO is identified, what records businesses must maintain, key update deadlines, and the consequences of non-compliance.",
+    ],
+    pullQuote:"UBO compliance is not a one-time filing — it is an ongoing obligation that must be updated whenever ownership or control changes.",
+    subhead:"What Is an Ultimate Beneficial Owner (UBO)?",
+    body2:[
+      "An Ultimate Beneficial Owner (UBO) is the natural person who ultimately owns or exercises effective control over a company, whether directly or indirectly. UBO identification is based on ownership and control rather than simply whose name appears on incorporation documents.",
+      "In many cases, the UBO is an individual who ultimately owns a significant ownership interest in the company, a person who exercises effective control through voting rights or other means, or the individual who ultimately controls the company through a chain of ownership if shares are held by another legal entity.",
+    ],
+    sections:[
+      {
+        heading:"Who Must Comply?",
+        body:["UBO requirements generally apply to most legal entities established in the UAE. Certain entities may be exempt under the applicable legislation and regulator-specific rules — businesses should confirm their status with the relevant licensing authority."],
+        list:["Mainland companies","Many Free Zone companies","Companies with individual shareholders","Companies owned by other companies","Businesses with multiple ownership layers"],
+      },
+      {
+        heading:"What Information Must Be Maintained?",
+        body:["Businesses are generally required to maintain accurate and up-to-date records relating to their ownership structure. The following registers and documentation are commonly required:"],
+        list:["UBO Register","Shareholder or Partner Register","Nominee Director Register (where applicable)","Supporting ownership documentation"],
+      },
+      {
+        heading:"Typical UBO Record Details",
+        body:["Each UBO entry must generally capture the following information:"],
+        list:["Full name and nationality","Date of birth","Residential address","Passport or identification details","Nature of ownership or control","Date the individual became a UBO"],
+      },
+      {
+        heading:"When Should UBO Information Be Updated?",
+        body:["UBO compliance is not a one-time filing. Businesses should review and update their records whenever there is a material change. Current regulations generally require updates to be submitted within the prescribed regulatory timeframe after a reportable change."],
+        list:["Share transfers","Addition or removal of shareholders","Change in ownership percentages","Corporate restructuring","Changes in control or voting rights","Appointment or removal of nominee directors"],
+      },
+      {
+        heading:"Why UBO Compliance Matters",
+        body:["UBO information is frequently reviewed at critical stages of your business's lifecycle. Outdated or inconsistent ownership information can delay banking applications, raise compliance concerns, and create unnecessary regulatory issues."],
+        list:["Corporate bank account opening","KYC verification and AML due diligence","Licence renewals","Regulatory inspections","Investor due diligence"],
+      },
+      {
+        heading:"What Are the Penalties for Non-Compliance?",
+        body:["Failure to comply with UAE UBO regulations may lead to administrative actions depending on the nature of the breach. Businesses should avoid relying on outdated guidance and ensure their records remain accurate and current."],
+        list:["Written warnings","Administrative financial penalties","Requirements to rectify non-compliance within specified periods","Suspension or restrictions relating to trade licence services for repeated or serious breaches"],
+      },
+      {
+        heading:"Best Practices for Staying Compliant",
+        body:["Businesses should adopt a proactive approach to UBO compliance. A well-maintained compliance framework reduces regulatory risk and supports smoother banking and licensing processes."],
+        list:["Review ownership structures annually","Update UBO records immediately after ownership changes","Keep shareholder, nominee director, and UBO registers consistent","Retain supporting documentation","Ensure bank KYC information matches regulatory filings","Conduct periodic compliance reviews with experienced advisors"],
+      },
+    ],
+    mistakesTitle:"Common UBO Compliance Mistakes",
+    mistakes:[
+      "Failing to identify the actual individual behind a corporate shareholder.",
+      "Recording only immediate shareholders instead of the ultimate natural person.",
+      "Not updating UBO records after ownership changes.",
+      "Maintaining inconsistent ownership information across banks, licensing authorities, and internal records.",
+      "Failing to maintain supporting documentation.",
+      "Assuming UBO filing is a one-time task rather than an ongoing obligation.",
+    ],
+    servicesTitle:"How IncoZone Can Help",
+    servicesIntro:"At IncoZone, we help businesses across the UAE stay fully compliant with corporate regulatory requirements. Our compliance specialists assist companies in identifying Ultimate Beneficial Owners, preparing and maintaining statutory registers, reviewing ownership structures, and ensuring that UBO records remain accurate and aligned with licensing authority and banking requirements.",
+    services:[
+      "UBO Compliance Review","UBO Register Preparation & Updates",
+      "AML & KYC Compliance Support","Corporate Governance Advisory",
+      "Corporate Tax Registration & Compliance","VAT Registration & Return Filing",
+      "Accounting & Bookkeeping Services","Company Compliance Health Checks",
+    ],
+    faqTitle:"Frequently Asked Questions",
+    faqs:[
+      { q:"What is a UBO?", a:"A UBO (Ultimate Beneficial Owner) is the natural person who ultimately owns or exercises effective control over a company, directly or indirectly." },
+      { q:"Do all UAE companies need to maintain UBO records?", a:"Most Mainland and many Free Zone companies are required to maintain UBO information, although certain entities may be exempt under applicable regulations." },
+      { q:"When should UBO information be updated?", a:"UBO records should be updated whenever there is a reportable change in ownership or control, within the timeframe required by the relevant regulations and licensing authority." },
+      { q:"Why do banks ask for UBO information?", a:"Banks use UBO information as part of their KYC and AML procedures to verify who ultimately owns or controls the business before opening or maintaining corporate accounts." },
+      { q:"What happens if a business does not comply?", a:"Depending on the violation, businesses may face warnings, administrative penalties, requirements to rectify the issue, or other regulatory actions under the applicable UAE legislation." },
+    ],
+    disclaimer:"This article is intended for general informational purposes only and should not be considered legal, regulatory, or compliance advice. UBO obligations, exemptions, filing procedures, and enforcement measures may vary depending on the company's legal structure, licensing authority, and applicable UAE legislation. Businesses should consult a qualified compliance advisor or the relevant authority before making regulatory filings or compliance decisions.",
+  },
+  {
+    id:12, cat:"Company Formation", kicker:"SETUP TIMELINE",
+    title:"UAE Business Setup Timeline 2026: Step-by-Step Guide from Trade Name to Visa Issuance",
+    deck:"A Complete Timeline for Entrepreneurs and Investors Starting a Business in the UAE",
+    author:"INCOZONE Advisory Team", authorInitial:"I",
+    date:"August 18, 2026", readTime:"10 min read",
+    featured:true,
+    imageUrl:"/images/blog-business-setup-timeline.jpg",
+    imgLabel:"UAE Company Formation · Trade Licence · Visa Issuance",
+    body:[
+      "The UAE remains one of the world's most attractive destinations for entrepreneurs, startups, SMEs, and international investors. With its strategic location, tax-friendly environment, world-class infrastructure, and streamlined government services, establishing a business has become faster and more efficient than ever.",
+      "However, many first-time investors believe obtaining a trade licence is the final step. In reality, company formation involves several stages — from selecting the right business activity and legal structure to securing a corporate bank account and obtaining residency visas.",
+      "Understanding the complete business setup timeline helps businesses plan budgets, avoid unnecessary delays, and launch operations more efficiently. According to the UAE Ministry of Economy & Tourism and the UAE Government Portal, company formation can be completed through digital platforms or the traditional process, depending on the chosen jurisdiction and business activity.",
+    ],
+    pullQuote:"Successful company formation requires more than simply obtaining a trade licence — investors should understand the complete journey from activity selection to visa issuance.",
+    subhead:"Where Most First-Time Investors Go Wrong",
+    body2:[
+      "Many businesses experience unnecessary delays because of avoidable mistakes: choosing the wrong business activity, submitting incomplete documentation, selecting an unsuitable jurisdiction, delaying corporate bank account preparation, or failing to address tax registration obligations early.",
+      "Planning each stage carefully — and understanding what comes after the trade licence — can significantly reduce your total setup time and ensure a smoother launch.",
+    ],
+    sections:[
+      {
+        heading:"Step 1: Choose Your Business Activity",
+        body:["Every company starts with selecting the correct business activity. The UAE offers more than 2,000 licensed business activities, and businesses may be permitted to include multiple activities depending on licensing rules. Choosing the wrong activity can result in licence amendments, additional costs, or operational restrictions later."],
+        list:["Type of trade licence issued","Legal structure available","Regulatory approvals required","Eligible jurisdictions","Banking profile and account approval chances"],
+      },
+      {
+        heading:"Step 2: Select the Right Jurisdiction",
+        body:["Your choice of jurisdiction should align with your target customers, growth plans, visa requirements, and operational needs — not setup cost alone."],
+        list:["Mainland — ideal for businesses serving UAE customers and bidding for government projects","Free Zone — suited to startups, consultants, technology companies, and international trading businesses"],
+      },
+      {
+        heading:"Step 3: Reserve Your Trade Name",
+        body:["After choosing the business activity, the next step is reserving a company name. A properly selected trade name helps prevent delays during licensing."],
+        list:["Must be unique and not conflict with existing registered businesses","Must match the legal structure","Must comply with UAE naming rules","Must be compatible with the chosen business activity"],
+      },
+      {
+        heading:"Step 4: Obtain Initial Approval",
+        body:["Initial Approval is the government's confirmation that it has no objection to establishing the business. It does not authorise the company to begin trading, but allows investors to proceed with the next steps."],
+        list:["Continue with company documentation","Arrange office or flexi-desk","Submit licence application","Obtain additional authority approvals where required"],
+      },
+      {
+        heading:"Step 5: Prepare Company Documents",
+        body:["Accurate documentation helps reduce processing delays. Depending on the legal structure, documentation may include:"],
+        list:["Memorandum of Association (MOA)","Shareholder documents and passport copies","Business plan (where applicable)","Lease agreement or Flexi-desk documentation","Additional regulatory approvals for specialised activities"],
+      },
+      {
+        heading:"Step 6: Secure Business Premises",
+        body:["Every UAE company must have an approved business address that complies with the relevant licensing authority's requirements. Office requirements vary between Mainland and Free Zone jurisdictions."],
+        list:["Physical office or executive office","Warehouse or retail premises","Flexi-desk or co-working solution (where permitted by the jurisdiction)"],
+      },
+      {
+        heading:"Step 7: Receive Your Trade Licence",
+        body:["Once documents are approved and government fees are paid, the licensing authority issues the company's trade licence. At this stage, your business is officially incorporated and can begin preparing for:"],
+        list:["Corporate banking applications","Tax registration","Hiring employees","Signing commercial contracts"],
+      },
+      {
+        heading:"Step 8: Open a Corporate Bank Account",
+        body:["Opening a corporate bank account is one of the most important post-incorporation steps. Preparing complete documentation and a clear business profile significantly improves approval chances. Banks conduct detailed due diligence covering:"],
+        list:["Business activity and source of funds","Shareholder information and ownership structure","Expected transaction volumes and customer profile","KYC and AML compliance documentation"],
+      },
+      {
+        heading:"Step 9: Register for Corporate Tax (If Applicable)",
+        body:[
+          "Following company incorporation, businesses should assess their Corporate Tax registration obligations and complete registration within the applicable deadlines through the EmaraTax platform. Early registration helps businesses remain compliant and avoid administrative issues later.",
+          "Businesses should also assess whether VAT registration applies based on their activities and turnover.",
+        ],
+        list:[],
+      },
+      {
+        heading:"Step 10: Apply for Your UAE Residency Visa",
+        body:["Once the company is operational and eligible to sponsor visas, investors can begin the residency process. Additional employee and dependent visas can be processed based on licence eligibility and immigration requirements."],
+        list:["Entry permit (where applicable)","Medical fitness examination","Emirates ID application","Residency visa issuance"],
+      },
+    ],
+    mistakesTitle:"Common Delays to Avoid",
+    mistakes:[
+      "Choosing the wrong business activity at the outset.",
+      "Submitting incomplete or inaccurate documentation.",
+      "Selecting an unsuitable jurisdiction for your business model.",
+      "Delaying corporate bank account preparation until after licence issuance.",
+      "Waiting too long to address Corporate Tax and VAT registration obligations.",
+      "Failing to obtain additional approvals for regulated activities in advance.",
+    ],
+    servicesTitle:"How IncoZone Can Help",
+    servicesIntro:"At IncoZone, we provide comprehensive business setup solutions for entrepreneurs, startups, SMEs, and international investors looking to establish a presence in the UAE. From selecting the right business activity to obtaining your trade licence, opening a corporate bank account, and ensuring ongoing tax compliance, our experts manage the process from start to finish.",
+    services:[
+      "Mainland Company Formation","Free Zone Company Setup",
+      "Business Activity Selection","Trade Licence Processing",
+      "Corporate Bank Account Assistance","Corporate Tax Registration",
+      "VAT Registration & Compliance","PRO & Visa Services",
+      "Accounting & Bookkeeping Support",
+    ],
+    faqTitle:"Frequently Asked Questions",
+    faqs:[
+      { q:"How long does it take to set up a company in the UAE?", a:"The timeline depends on the jurisdiction, business activity, and approvals required. Many straightforward applications can be completed within days, while more complex structures may take longer." },
+      { q:"What comes after receiving the trade licence?", a:"Typically, the next steps include opening a corporate bank account, assessing Corporate Tax and VAT obligations, and applying for investor or employee visas." },
+      { q:"Can foreign investors own 100% of a UAE company?", a:"Yes. Many Mainland and Free Zone business activities permit 100% foreign ownership, subject to the applicable regulations." },
+      { q:"Is a physical office always required?", a:"Office requirements depend on the chosen jurisdiction and licence type. Some Free Zones offer Flexi-desk or shared office solutions where permitted." },
+      { q:"Why is choosing the correct business activity important?", a:"Your business activity determines the type of licence, legal structure, regulatory approvals, banking profile, and future operational flexibility." },
+    ],
+    disclaimer:"This article is for general informational purposes only and should not be considered legal, tax, or immigration advice. Business setup requirements, timelines, costs, and approvals vary depending on the emirate, jurisdiction, legal structure, and business activity. Businesses should seek professional advice before proceeding with company incorporation in the UAE.",
+  },
+  {
+    id:11, cat:"Company Structure", kicker:"STRUCTURE GUIDE",
+    title:"Expanding to the UAE: Mainland vs. Free Zone vs. Branch Office — Which Structure Fits Your Business?",
+    deck:"A Complete Guide for Entrepreneurs and International Businesses Entering the UAE Market",
+    author:"INCOZONE Advisory Team", authorInitial:"I",
+    date:"August 18, 2026", readTime:"9 min read",
+    featured:true,
+    imageUrl:"/images/blog-mainland-freezone-branch.png",
+    imgLabel:"UAE Business Structures · Mainland · Free Zone · Branch Office",
+    body:[
+      "The UAE continues to attract entrepreneurs, startups, SMEs, and multinational corporations looking to establish a presence in one of the world's fastest-growing business hubs. Its strategic location, investor-friendly policies, modern infrastructure, and access to international markets make it an ideal destination for companies seeking regional or global expansion.",
+      "However, one of the first and most important decisions investors must make is choosing the right legal structure. In the UAE, businesses generally have three primary options: Mainland Company, Free Zone Company, or Branch Office. While each structure allows businesses to operate legally, they differ significantly in terms of ownership, market access, licensing, operational flexibility, and regulatory requirements.",
+      "Selecting the wrong structure can lead to unnecessary licensing amendments, operational restrictions, higher costs, or future restructuring. Choosing the right one from the beginning ensures your business is positioned for sustainable growth and long-term success.",
+    ],
+    pullQuote:"Your company structure affects almost every aspect of your business — from where you can trade and whom you can serve, to visa eligibility, office requirements, and future expansion plans.",
+    subhead:"Why Choosing the Right Business Structure Matters",
+    body2:[
+      "Making the right decision at the beginning helps avoid unnecessary costs, licensing amendments, and operational limitations later. For example, a trading company targeting customers throughout the UAE may benefit from a Mainland licence, while an international consultancy serving overseas clients may find a Free Zone more suitable. Similarly, an established foreign company may prefer opening a Branch Office to extend its existing operations rather than creating a separate legal entity.",
+    ],
+    sections:[
+      {
+        heading:"Mainland Company — Best for Businesses Targeting the UAE Market",
+        body:[
+          "A Mainland company is licensed by the relevant Department of Economy and Tourism (DET) or equivalent authority in the respective emirate. This structure is ideal for businesses planning to operate directly within the UAE market and work with both government and private-sector clients.",
+          "One of the biggest advantages of a Mainland company is its operational flexibility. Businesses can establish offices anywhere in the UAE, expand without Free Zone restrictions, and conduct business across all Emirates.",
+          "Mainland companies are commonly chosen by construction firms, retail businesses, restaurants, healthcare providers, logistics companies, consultancies, and professional service providers that require unrestricted access to the local market. If your long-term goal is nationwide growth within the UAE, a Mainland structure is often the most suitable option.",
+        ],
+        list:[],
+      },
+      {
+        heading:"Free Zone Company — Ideal for International Business and Startups",
+        body:[
+          "Free Zones were established to attract foreign investment by offering streamlined company formation, sector-specific business ecosystems, and simplified administrative procedures. A Free Zone company is generally well suited to businesses that focus on international trade, exports, digital services, technology, e-commerce, consulting, media, and professional services.",
+          "Many entrepreneurs choose Free Zones because they offer efficient incorporation processes, modern business infrastructure, flexible office solutions, and access to specialised industry communities.",
+          "However, businesses should understand that a Free Zone licence may not automatically permit direct commercial activities in the UAE Mainland without meeting applicable regulatory requirements. For companies primarily serving international clients or operating regionally, a Free Zone often provides an efficient and scalable business environment.",
+        ],
+        list:[],
+      },
+      {
+        heading:"Branch Office — Expanding an Existing Foreign Business",
+        body:[
+          "A Branch Office allows an existing foreign company to establish a presence in the UAE without creating a completely separate legal entity. Unlike a subsidiary, a Branch Office operates as an extension of the parent company and generally carries out the same activities as the overseas business.",
+          "This structure is particularly attractive for international companies looking to explore the UAE market while maintaining unified ownership, branding, and operational control. Branch Offices are commonly used by engineering firms, consulting companies, technology providers, financial service firms, and multinational corporations seeking regional expansion.",
+          "For businesses with an established international reputation, opening a Branch Office can strengthen market presence while leveraging the credibility of the parent company.",
+        ],
+        list:[],
+      },
+      {
+        heading:"Which Business Structure Is Right for You?",
+        body:[
+          "There is no universal answer because the ideal structure depends on your business goals. If your objective is to sell products or services directly throughout the UAE and participate in government projects, a Mainland company generally offers the greatest operational flexibility.",
+          "If your focus is international business, exports, digital services, or serving overseas clients, a Free Zone company may provide the most efficient setup. If your organisation already operates successfully overseas and simply wants to establish a UAE presence while maintaining the same corporate identity, a Branch Office can be an effective expansion strategy.",
+          "Before making a decision, investors should carefully consider factors such as target markets, business activities, licensing requirements, future hiring plans, visa needs, office requirements, compliance obligations, and long-term growth strategy. Professional guidance during the planning stage can prevent costly restructuring later.",
+        ],
+        list:[],
+      },
+      {
+        heading:"Common Mistakes Investors Make",
+        body:[
+          "Many businesses choose a company structure based solely on initial setup costs instead of long-term operational needs. Others select an incorrect business activity, misunderstand licensing restrictions, or fail to consider future expansion plans.",
+          "Another common mistake is assuming that every Free Zone offers identical benefits. In reality, each Free Zone has its own licensing options, regulations, permitted business activities, and operational requirements. Taking time to evaluate your business model before incorporation helps reduce future amendments and ensures your company starts on the right foundation.",
+        ],
+        list:[],
+      },
+    ],
+    servicesTitle:"How IncoZone Can Help",
+    servicesIntro:"Choosing the right business structure is one of the most important decisions when expanding into the UAE. At IncoZone, we help entrepreneurs, startups, SMEs, and international investors evaluate their business objectives and identify the setup option that best supports their long-term goals. Our experienced consultants provide end-to-end assistance from the initial consultation to post-incorporation support.",
+    services:[
+      "Mainland Company Formation","Free Zone Company Registration","Branch Office Setup",
+      "Business Activity Selection","Trade Licence Applications","Visa Processing",
+      "PRO Services","Corporate Bank Account Assistance","Corporate Tax Registration",
+      "VAT Registration & Compliance","Accounting & Bookkeeping","Ongoing Compliance Support",
+    ],
+    faqTitle:"Frequently Asked Questions",
+    faqs:[
+      { q:"What is the main difference between a Mainland company and a Free Zone company?", a:"A Mainland company is generally suited for businesses intending to operate across the UAE market, while a Free Zone company is often preferred for international trade, exports, and businesses serving overseas clients." },
+      { q:"Can a foreign company open a Branch Office in the UAE?", a:"Yes. A foreign company can establish a Branch Office in the UAE, subject to the applicable legal and licensing requirements. The Branch Office typically carries out activities similar to those of the parent company." },
+      { q:"Which structure is best for startups?", a:"The answer depends on the business model. Startups targeting international markets often choose Free Zones, while businesses planning to operate extensively within the UAE may find a Mainland company more suitable." },
+      { q:"Can I change my business structure later?", a:"Yes, but changing structures may involve additional approvals, documentation, licensing amendments, and costs. Choosing the right structure at the outset is generally more efficient." },
+      { q:"How do I know which structure is right for my business?", a:"The right choice depends on factors such as your business activity, target market, ownership preferences, operational plans, compliance requirements, and future expansion goals. Seeking professional advice before incorporation can help ensure you choose the most suitable structure." },
+    ],
+    disclaimer:"This article is intended for general informational purposes only and should not be considered legal, tax, or business advice. The most appropriate business structure depends on your specific activities, commercial objectives, licensing requirements, and applicable UAE regulations. Investors should seek professional advice before making incorporation decisions.",
+  },
+  {
+    id:10, cat:"HR & Employment", kicker:"EMPLOYER GUIDE",
+    title:"Hiring Your First Employee in the UAE: Employer Responsibilities, Work Permits & Compliance Checklist",
+    deck:"A Complete Guide for UAE Startups and First-Time Employers",
+    author:"INCOZONE Advisory Team", authorInitial:"I",
+    date:"August 18, 2026", readTime:"10 min read",
+    featured:true,
+    imageUrl:"/images/blog-hiring-first-employee.jpg",
+    imgLabel:"UAE Workforce · Ministry of Human Resources · MOHRE",
+    body:[
+      "Hiring your first employee is an important milestone for any UAE business. It means your company is moving from simply being incorporated to building an operational team. However, hiring an employee in the UAE involves more than agreeing on a salary and giving someone a job.",
+      "Employers must follow applicable labour regulations, obtain the appropriate work permit, complete employment documentation, arrange residency formalities where required, and establish compliant payroll processes.",
+      "For private-sector employers, employment relationships are primarily governed by Federal Decree-Law No. 33 of 2021 on the Regulation of Labour Relations and its amendments. The law establishes the rights and obligations of employers and employees and covers areas such as employment contracts, working arrangements, leave, termination and end-of-service benefits.",
+      "For a first-time employer, understanding the process before making an offer can prevent costly mistakes. This guide explains the major steps involved in hiring your first employee in the UAE and the responsibilities that continue after the employee joins.",
+    ],
+    pullQuote:"The most effective approach is to build compliance into your hiring process from the beginning — not as an afterthought once the employee has already started.",
+    subhead:"Key Facts at a Glance",
+    body2:[
+      "Hiring an employee in the UAE generally involves preparing a compliant job offer, obtaining the appropriate work permit, completing the employment contract and, where applicable, processing the employee's work and residence visa formalities. Employers must also establish a compliant payroll process and meet applicable WPS requirements.",
+      "The exact procedure can vary depending on whether the company is Mainland or Free Zone, the employee's nationality and status, the business activity, and the relevant licensing or immigration authority. Financial Free Zones such as DIFC and ADGM have their own employment frameworks, so employers operating there should follow the applicable regulations.",
+    ],
+    sections:[
+      {
+        heading:"Step 1: Make Sure Your Company Is Ready to Hire",
+        body:[
+          "Before recruiting your first employee, confirm that your company has a valid licence and is properly established with the relevant authorities.",
+          "For a Mainland business, the employer must have the necessary company and labour-related registrations to recruit employees. The company's licence should be valid and free of relevant violations — MOHRE considers the establishment's status when processing work-permit applications.",
+          "If your company operates in a Free Zone, the recruitment process may be handled through the relevant Free Zone authority. DIFC and ADGM operate under separate employment frameworks.",
+        ],
+        list:[],
+      },
+      {
+        heading:"Step 2: Define the Position and Salary",
+        body:[
+          "Before advertising the position, clearly define the employee's role, responsibilities, workplace, working arrangements and proposed compensation. The position should be consistent with your company's licensed business activity — MOHRE specifically requires the occupation assigned to a worker to be aligned with the establishment's business activity.",
+          "Specialised professions may require additional qualifications or professional licences. A clear job description also makes it easier to prepare a compliant offer and employment contract.",
+        ],
+        list:[],
+      },
+      {
+        heading:"Step 3: Issue a Formal Job Offer",
+        body:[
+          "Once you select a candidate, the employer should provide a formal employment offer outlining the key terms of the proposed employment relationship. According to the UAE Government, the job offer should detail the rights and obligations of both parties and comply with UAE Labour Law.",
+          "The offer must be provided in Arabic and English, as well as a third language understood by the worker where applicable. Employers should avoid making informal promises that differ from the documented employment terms — the final employment contract should correspond with the agreed offer.",
+        ],
+        list:[],
+      },
+      {
+        heading:"Step 4: Apply for the Work Permit",
+        body:[
+          "A person cannot legally work in the UAE without the appropriate work permit, and employers cannot recruit or employ a worker without obtaining the required permit through the applicable procedures.",
+          "For a typical private-sector employee, the employer submits the required application and supporting documentation. Requirements can vary depending on the type of work permit and the employee's circumstances. Importantly, UAE Labour Law prohibits employers from charging workers, directly or indirectly, for recruitment and employment fees and costs.",
+        ],
+        list:[],
+      },
+      {
+        heading:"Step 5: Complete the Employment Contract",
+        body:[
+          "After the offer is accepted, the employment contract must be completed in accordance with the applicable requirements. The contract should specify important information such as the employee's start date, type of work, workplace, terms and conditions, duration and salary.",
+          "The UAE Government states that the employment contract should be based on the signed job offer and submitted to MOHRE within the prescribed timeframe. Keeping the offer letter and employment contract consistent is important because discrepancies can create disputes later.",
+        ],
+        list:[],
+      },
+      {
+        heading:"Step 6: Process the Employee's Visa and Emirates ID",
+        body:[
+          "For an expatriate employee who requires UAE residency, the employer must complete the relevant immigration and residency procedures after the work-permit stage.",
+          "Depending on the employee's circumstances, this can involve entry-permit or status-change procedures, medical fitness testing, Emirates ID application and residency formalities. The exact process depends on whether the employee is already inside the UAE, is entering from overseas, or is transferring from another employer.",
+        ],
+        list:[],
+      },
+      {
+        heading:"Step 7: Set Up WPS Payroll",
+        body:[
+          "Hiring an employee also means establishing a compliant salary-payment process. The Wage Protection System (WPS) is designed to ensure workers receive their wages electronically through approved financial institutions. MOHRE describes WPS as a mechanism that helps ensure employees receive their contractual wages accurately and on time.",
+          "Employers should establish payroll procedures before the first salary becomes due. Payroll records should accurately reflect the employee's contractual salary and authorised adjustments. New employees may have specific WPS treatment during an initial period, so employers should verify the current requirements rather than assuming every employee is treated identically from day one.",
+        ],
+        list:[],
+      },
+      {
+        heading:"Step 8: Understand Ongoing Employer Responsibilities",
+        body:[
+          "Hiring an employee creates continuing responsibilities. Employers should maintain accurate employee records, pay salaries correctly and on time, follow applicable working-time and leave requirements, and comply with rules concerning termination and end-of-service benefits.",
+          "If the company grows, additional requirements such as applicable Emiratisation obligations may become relevant depending on the company's classification and employee headcount. These requirements should be reviewed as the workforce expands.",
+        ],
+        list:[],
+      },
+    ],
+    mistakesTitle:"Common Mistakes First-Time Employers Should Avoid",
+    mistakes:[
+      "Hiring someone before obtaining the required work permit.",
+      "Using an incorrect job title that doesn't align with the licensed business activity.",
+      "Offering employment terms that differ from the final contract.",
+      "Delaying payroll and WPS setup until after the employee starts.",
+      "Failing to maintain organised employee records.",
+      "Misunderstanding Free Zone-specific procedures vs. Mainland requirements.",
+      "Assuming employer responsibilities end once the employee receives a visa.",
+    ],
+    checklistTitle:"First Employee Compliance Checklist",
+    checklist:[
+      "Confirm your company has a valid licence and necessary employer registration.",
+      "Finalise the job description, salary and employment terms.",
+      "Issue the appropriate formal job offer (Arabic + English).",
+      "Obtain the required work permit before the employee starts.",
+      "Complete the employment contract aligned with the job offer.",
+      "Process residency formalities where applicable (visa, Emirates ID).",
+      "Establish your payroll system before the first salary cycle.",
+      "Verify employee bank information for WPS compliance.",
+      "Understand the applicable WPS requirements for your establishment.",
+      "Maintain accurate records: salary, leave, attendance, and employment documentation.",
+      "Review obligations regularly as your company grows.",
+    ],
+    servicesTitle:"How IncoZone Can Help",
+    servicesIntro:"At IncoZone, we help UAE businesses manage the practical requirements involved in establishing and expanding their workforce. For entrepreneurs hiring their first employee, our team can provide support with company setup, employment-related processes, visa assistance and ongoing business compliance.",
+    services:[
+      "Company Formation","Business Licensing","Employee Visa Assistance",
+      "Work Permit Support","PRO Services","Corporate Tax Registration",
+      "VAT Registration & Compliance","Accounting & Bookkeeping",
+      "Payroll & WPS Support","Ongoing Business Compliance",
+    ],
+    faqTitle:"Frequently Asked Questions",
+    faqs:[
+      { q:"Can I hire an employee without a UAE work permit?", a:"No. UAE Labour Law generally prohibits a person from working without the required work permit, and employers cannot employ workers without obtaining the appropriate permit." },
+      { q:"What should a UAE employment contract include?", a:"The contract should cover important terms including the start date, type of work, workplace, employment conditions, duration and salary." },
+      { q:"Does every Free Zone follow the same hiring procedure?", a:"No. Free Zones can have different recruitment, visa and quota procedures. DIFC and ADGM also operate under their own employment frameworks." },
+      { q:"Does my first employee need to be paid through WPS?", a:"WPS requirements depend on the employee and establishment's applicable status and the relevant regulations. Employers should verify the current requirements before processing payroll." },
+      { q:"Can an employer charge an employee for recruitment costs?", a:"UAE Labour Law prohibits employers from charging workers, directly or indirectly, for recruitment and employment fees or costs." },
+    ],
+    disclaimer:"This article is intended for general informational purposes only and should not be considered legal, employment, immigration, or business advice. Employment procedures, work permit requirements, visa eligibility, WPS obligations, and labour law provisions vary depending on the jurisdiction, business activity, establishment classification, and individual circumstances. Employers should seek professional advice before making decisions related to hiring employees in the UAE.",
+  },
+  {
+    id:9, cat:"Business Relocation", kicker:"COMPLETE GUIDE",
+    title:"Business Relocation to the UAE: Complete Checklist for Entrepreneurs Moving from Europe, India, or Africa",
+    deck:"A Step-by-Step Guide to Successfully Relocating and Establishing Your Business in the UAE",
+    author:"INCOZONE Advisory Team", authorInitial:"I",
+    date:"August 18, 2026", readTime:"12 min read",
+    featured:true,
+    imageUrl:"/images/blog-business-relocation.jpg",
+    imgLabel:"Dubai Skyline · UAE Business Hub · INCOZONE",
+    body:[
+      "The United Arab Emirates has become one of the world's most attractive destinations for entrepreneurs, startups, SMEs, and multinational companies seeking regional or global expansion. With its strategic location between Europe, Asia, and Africa, world-class infrastructure, business-friendly regulations, and modern digital government services, the UAE offers an ideal environment for companies looking to establish a long-term presence in the Middle East.",
+      "In recent years, an increasing number of entrepreneurs from Europe, India, and Africa have chosen the UAE as their regional headquarters or expansion hub. Some are looking to access new markets, while others want to benefit from the UAE's stable economy, investor-friendly policies, modern banking system, and extensive network of double taxation agreements.",
+      "However, relocating a business involves much more than obtaining a trade licence. Entrepreneurs must carefully plan their legal structure, choose the right business activity, understand regulatory requirements, secure banking facilities, obtain residency visas, and ensure ongoing compliance with Corporate Tax, VAT, AML, and other legal obligations.",
+      "This comprehensive guide walks you through every major stage of relocating your business to the UAE and highlights the practical considerations entrepreneurs should address before making the move.",
+    ],
+    pullQuote:"Successful relocation requires more than a trade licence — it demands strategic planning, the right structure, and professional guidance at every stage.",
+    subhead:"Why Are Entrepreneurs Relocating to the UAE?",
+    body2:[
+      "Business relocation is no longer driven solely by tax considerations. Today's entrepreneurs are looking for stability, global connectivity, investor confidence, and opportunities for international expansion.",
+      "The UAE offers a central geographic location connecting Europe, Asia, and Africa; modern airports, seaports, and logistics infrastructure; access to international investors and financial institutions; a diversified and innovation-driven economy; advanced digital government services; a transparent regulatory framework; a highly skilled international workforce; and numerous Free Zones designed for specific industries.",
+      "For entrepreneurs from Europe, India, and Africa, the UAE often serves as an ideal gateway to GCC markets, the wider Middle East, and emerging economies across Africa and South Asia.",
+    ],
+    sections:[
+      {
+        heading:"Step 1: Define Your Expansion Strategy",
+        body:["Before beginning the incorporation process, entrepreneurs should clearly define why they are relocating. A clear business strategy makes it easier to select the most appropriate company structure and licensing option."],
+        list:["Expanding into GCC markets","Serving international customers more efficiently","Establishing a regional headquarters","Improving logistics and distribution","Attracting international investors","Protecting intellectual property","Diversifying business operations"],
+      },
+      {
+        heading:"Step 2: Choose the Right Business Structure",
+        body:["One of the most important decisions involves selecting the legal structure that best supports your business goals. Selecting the wrong structure may lead to unnecessary operational restrictions or additional restructuring costs in the future."],
+        list:["Mainland Company — for UAE-wide operations, government tenders, and broad commercial presence","Free Zone Company — preferred by consultants, tech firms, e-commerce, and international service providers","Branch Office — for established foreign companies extending existing operations into the UAE"],
+      },
+      {
+        heading:"Step 3: Select the Correct Business Activity",
+        body:["Every UAE trade licence is linked to one or more approved business activities. This decision affects licence type, regulatory approvals, banking profile, visa eligibility, and future expansion opportunities. For regulated industries — healthcare, education, financial services, legal consultancy — additional approvals from competent authorities may also be required."],
+        list:["Consider current and future services when selecting activities","Regulated sectors require additional authority approvals","Wrong activity selection can restrict banking and visa eligibility"],
+      },
+      {
+        heading:"Step 4: Understand Local Regulatory Requirements",
+        body:["Each jurisdiction has its own incorporation procedures, documentation requirements, and compliance obligations. Preparing complete documentation before incorporation significantly reduces delays."],
+        list:["Passport verification and shareholder documentation","Company constitutional documents","Office lease requirements","Beneficial ownership declarations","Licensing authority approvals"],
+      },
+      {
+        heading:"Step 5: Plan Your Corporate Banking Early",
+        body:["One of the most underestimated aspects of relocation is corporate bank account opening. UAE banks conduct detailed KYC and AML reviews before approving new business accounts. Entrepreneurs should prepare detailed business information well before submitting banking applications."],
+        list:["Business model and shareholder background","Source of funds and expected turnover","Customer profile and international transactions","Ownership structure documentation"],
+      },
+      {
+        heading:"Step 6: Understand Tax and Compliance Requirements",
+        body:["Relocating your business to the UAE means understanding your ongoing tax and regulatory obligations. Rather than treating compliance as an annual task, entrepreneurs should establish proper accounting systems from the beginning."],
+        list:["Corporate Tax registration and annual return filing","VAT registration if above mandatory threshold","Accounting and bookkeeping per applicable regulations","Ultimate Beneficial Owner (UBO) reporting where required","AML and KYC compliance for regulated businesses"],
+      },
+      {
+        heading:"Step 7: Obtain Investor and Employee Visas",
+        body:["Once your company has been incorporated, the next step is obtaining residency visas for shareholders, directors, employees, and eligible family members. Having UAE residency also makes it easier to access banking services, lease commercial property, and conduct business."],
+        list:["Entry permit (where applicable)","Medical fitness examination","Emirates ID registration","Biometric verification","Residency visa stamping"],
+      },
+      {
+        heading:"Step 8: Establish Your Business Operations",
+        body:["Receiving your trade licence is only the beginning. Entrepreneurs should focus on building an efficient operational structure that supports long-term growth."],
+        list:["Opening a corporate bank account","Implementing accounting software","Hiring qualified employees","Setting up payroll systems","Developing internal compliance procedures","Purchasing appropriate business insurance","Establishing supplier and customer agreements"],
+      },
+      {
+        heading:"Step 9: Build Strong Financial Systems",
+        body:["Many entrepreneurs underestimate the importance of financial management during relocation. Keeping accurate financial records from day one reduces compliance risks and provides valuable insights for business growth."],
+        list:["Cash flow management and performance analysis","VAT reporting and Corporate Tax calculations","Investor reporting and loan applications","Banking relationship documentation"],
+      },
+    ],
+    checklistTitle:"A Practical Business Relocation Checklist",
+    checklist:[
+      "Define your business expansion strategy.",
+      "Choose the appropriate legal structure.",
+      "Select the correct business activity.",
+      "Reserve an approved trade name.",
+      "Prepare shareholder and incorporation documents.",
+      "Obtain initial approvals.",
+      "Secure office space where required.",
+      "Apply for your trade licence.",
+      "Open a corporate bank account.",
+      "Assess Corporate Tax and VAT obligations.",
+      "Establish accounting and bookkeeping systems.",
+      "Complete UBO declarations where applicable.",
+      "Apply for investor and employee visas.",
+      "Develop HR and payroll processes.",
+      "Create internal compliance procedures.",
+      "Review insurance requirements.",
+      "Plan for future business growth.",
+    ],
+    mistakesTitle:"Common Mistakes Entrepreneurs Make",
+    mistakes:[
+      "Choosing a licence based solely on the lowest cost rather than business needs.",
+      "Selecting incorrect business activities.",
+      "Underestimating corporate banking requirements.",
+      "Delaying accounting and bookkeeping implementation.",
+      "Ignoring Corporate Tax and VAT obligations.",
+      "Failing to maintain updated UBO records.",
+      "Submitting incomplete incorporation documentation.",
+      "Not seeking professional guidance before incorporation.",
+    ],
+    servicesTitle:"How IncoZone Can Help",
+    servicesIntro:"At IncoZone, we specialise in helping entrepreneurs, startups, SMEs, and international businesses establish and grow their presence in the UAE. Whether you're relocating from Europe, India, Africa, or any other region, our experienced consultants provide end-to-end support throughout your business setup journey.",
+    services:[
+      "Mainland Company Formation","Free Zone Company Setup","Offshore Company Formation",
+      "Business Activity Selection","Trade Licence Processing","Corporate Bank Account Assistance",
+      "Investor & Employment Visa Services","Corporate Tax Registration","VAT Registration & Compliance",
+      "Accounting & Bookkeeping Services","PRO Services","Business Advisory & Compliance Support",
+    ],
+    faqTitle:"Frequently Asked Questions",
+    faqs:[
+      { q:"Can foreign entrepreneurs own 100% of a company in the UAE?", a:"Yes. Many Mainland and Free Zone business activities now allow 100% foreign ownership, subject to the applicable laws and regulations." },
+      { q:"Should I choose a Mainland or Free Zone company?", a:"The right choice depends on your business model, target customers, operational requirements, and future expansion plans. A professional business setup consultation can help determine the most suitable option." },
+      { q:"How long does business relocation to the UAE take?", a:"The timeline varies depending on the jurisdiction, business activity, documentation, and regulatory approvals. Many straightforward company formations can be completed within days, while more complex cases may require additional time." },
+      { q:"Do I need accounting services after setting up my company?", a:"Yes. Proper bookkeeping, financial reporting, Corporate Tax compliance, and VAT management are essential for maintaining regulatory compliance and supporting informed business decisions." },
+      { q:"Can IncoZone help with the complete relocation process?", a:"Yes. IncoZone offers end-to-end business relocation services, including company formation, licensing, visa processing, corporate banking assistance, tax registration, accounting, and ongoing compliance support." },
+    ],
+    disclaimer:"This article is intended for general informational purposes only and should not be considered legal, tax, immigration, or business advice. Company formation procedures, licensing requirements, tax obligations, visa eligibility, banking policies, and compliance requirements vary depending on the jurisdiction, business activity, and individual circumstances. Businesses should seek professional advice before making decisions related to relocating or establishing operations in the UAE.",
+  },
+  {
     id:1, cat:"Free Zone Guide", kicker:"EXCLUSIVE ANALYSIS",
     title:"Why DMCC Remains the UAE's Most Coveted Business Address",
     deck:"Despite the proliferation of cheaper alternatives, Dubai Multi Commodities Centre continues to command a premium — and for institutional founders, the reasons run deeper than prestige.",
@@ -848,6 +1423,7 @@ function useReveal() {
 
 // ─── ARTICLE PAGE (full page replace — normal window scroll) ───
 function ArticlePage({ article, onClose, onNavigate }) {
+  const BASE_URL = "https://www.incozone.com";
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
   const [_artOpen, setArtOpen] = useState(false);
@@ -864,8 +1440,36 @@ function ArticlePage({ article, onClose, onNavigate }) {
     if (onNavigate) { onNavigate(page); window.scrollTo(0, 0); }
   }, [onNavigate]);
 
+  const artSlug = toSlug(article.title);
+  const artCanonical = `${BASE_URL}/blog/${artSlug}`;
+  const artDesc = article.deck || (article.body?.[0] || "").slice(0, 160);
+
   return (
     <div className="bg-root" data-lenis-prevent style={{overflow:"visible"}}>
+      <Helmet>
+        <title>{article.title} | INCOZONE UAE Business Gazette</title>
+        <meta name="description" content={artDesc} />
+        <link rel="canonical" href={artCanonical} />
+        <meta property="og:title" content={article.title} />
+        <meta property="og:description" content={artDesc} />
+        <meta property="og:url" content={artCanonical} />
+        <meta property="og:type" content="article" />
+        {article.imageUrl && <meta property="og:image" content={article.imageUrl} />}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={article.title} />
+        <meta name="twitter:description" content={artDesc} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": article.title,
+          "description": artDesc,
+          "author": { "@type": "Organization", "name": article.author || "INCOZONE" },
+          "publisher": { "@type": "Organization", "name": "INCOZONE", "url": BASE_URL },
+          "url": artCanonical,
+          "datePublished": article.date,
+          ...(article.imageUrl ? { "image": article.imageUrl } : {}),
+        })}</script>
+      </Helmet>
       <style>{CSS}</style>
 
       {/* NAV */}
@@ -925,6 +1529,70 @@ function ArticlePage({ article, onClose, onNavigate }) {
             <blockquote className="bg-art-pull">"{article.pullQuote}"</blockquote>
             {article.subhead && <h3 className="bg-art-subhead">{article.subhead}</h3>}
             {article.body2?.map((p, i) => <p key={i}>{p}</p>)}
+
+            {/* Rich sections: steps, lists */}
+            {article.sections?.map((sec, si) => (
+              <div key={si} style={{columnSpan:"all"}}>
+                <span className="bg-art-section-h">{sec.heading}</span>
+                {sec.body?.map((p, pi) => <p key={pi}>{p}</p>)}
+                {sec.list?.length > 0 && (
+                  <ul className="bg-art-list">
+                    {sec.list.map((item, li) => <li key={li}>{item}</li>)}
+                  </ul>
+                )}
+              </div>
+            ))}
+
+            {/* Checklist */}
+            {article.checklist?.length > 0 && (
+              <div style={{columnSpan:"all"}}>
+                <span className="bg-art-section-h">{article.checklistTitle || "Relocation Checklist"}</span>
+                <ol className="bg-art-checklist">
+                  {article.checklist.map((item, i) => <li key={i}>{item}</li>)}
+                </ol>
+              </div>
+            )}
+
+            {/* Common mistakes */}
+            {article.mistakes?.length > 0 && (
+              <div style={{columnSpan:"all"}}>
+                <span className="bg-art-section-h">{article.mistakesTitle || "Common Mistakes to Avoid"}</span>
+                <ul className="bg-art-list">
+                  {article.mistakes.map((item, i) => <li key={i}>{item}</li>)}
+                </ul>
+              </div>
+            )}
+
+            {/* Services */}
+            {article.services?.length > 0 && (
+              <div style={{columnSpan:"all"}}>
+                <span className="bg-art-section-h">{article.servicesTitle || "How IncoZone Can Help"}</span>
+                {article.servicesIntro && <p>{article.servicesIntro}</p>}
+                <div className="bg-art-services-grid">
+                  {article.services.map((svc, i) => <div key={i} className="bg-art-svc">{svc}</div>)}
+                </div>
+              </div>
+            )}
+
+            {/* FAQ */}
+            {article.faqs?.length > 0 && (
+              <div style={{columnSpan:"all"}}>
+                <span className="bg-art-section-h">{article.faqTitle || "Frequently Asked Questions"}</span>
+                <div className="bg-art-faq">
+                  {article.faqs.map((faq, i) => (
+                    <div key={i} className="bg-art-faq-item">
+                      <div className="bg-art-faq-q">{i + 1}. {faq.q}</div>
+                      <div className="bg-art-faq-a">{faq.a}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Disclaimer */}
+            {article.disclaimer && (
+              <div className="bg-art-disclaimer">{article.disclaimer}</div>
+            )}
           </div>
 
           {/* Footer */}
@@ -943,7 +1611,7 @@ function ArticlePage({ article, onClose, onNavigate }) {
 }
 
 // ─── MAIN ──────────────────────────────────────────────────────
-export default function BlogPage({ onBack, onNavigate }) {
+export default function BlogPage({ onBack, onNavigate, initialSlug }) {
   const [_bgOpen, setbgOpen] = useState(false);
   const { blogPosts } = useContent();
 
@@ -1020,8 +1688,38 @@ export default function BlogPage({ onBack, onNavigate }) {
     pullQuote:    p.pullQuote || "",
     subhead:      p.subhead || "",
     body2:        p.body2 || [],
+    // Rich editorial fields (used by hardcoded PERMANENT articles)
+    sections:         p.sections || [],
+    checklistTitle:   p.checklistTitle || "",
+    checklist:        p.checklist || [],
+    mistakesTitle:    p.mistakesTitle || "",
+    mistakes:         p.mistakes || [],
+    servicesTitle:    p.servicesTitle || "",
+    servicesIntro:    p.servicesIntro || "",
+    services:         p.services || [],
+    faqTitle:         p.faqTitle || "",
+    faqs:             p.faqs || [],
+    disclaimer:       p.disclaimer || "",
   });
-  const allArticles = blogPosts.length > 0 ? blogPosts.map(mapPost) : ARTICLES;
+  // PERMANENT = hardcoded editorial articles (id >= 9), always shown first so they
+  // appear at the top of the listing and carousel regardless of CMS state.
+  // CMS posts are reversed (newest first) and appended after.
+  const PERMANENT = ARTICLES.filter(a => a.id >= 9);
+  const allArticles = blogPosts.length > 0
+    ? [...PERMANENT, ...[...blogPosts.map(mapPost)].reverse()]
+    : ARTICLES;
+
+  // Auto-open article when arriving via direct URL (e.g. /blog/my-article-slug)
+  useEffect(() => {
+    if (!initialSlug || activeArt) return;
+    const found = allArticles.find(a => toSlug(a.title) === initialSlug);
+    if (found) { playPageFlip(); setActiveArt(found); }
+  }, [initialSlug, blogPosts.length]); // eslint-disable-line
+
+  // Reset article when navigating back to /blog (initialSlug becomes undefined)
+  useEffect(() => {
+    if (!initialSlug) setActiveArt(null);
+  }, [initialSlug]);
 
   // Build category list dynamically from actual articles so the filter always matches
   const cats = allArticles.reduce((acc, art) => {
@@ -1036,12 +1734,10 @@ export default function BlogPage({ onBack, onNavigate }) {
     return catMatch && searchMatch;
   });
 
-  // Carousel only rotates through admin-marked featured posts.
-  // If none are marked featured, fall back to rotating all posts.
-  const featuredPool = filtered.filter(a => a.featured);
-  const carouselPool = featuredPool.length > 0 ? featuredPool : filtered;
-  const carouselMax  = Math.min(5, carouselPool.length);
-  const featured     = carouselPool[featuredIdx % Math.max(1, carouselMax)] || carouselPool[0];
+  // "Today's Lead FEATURED" carousel: first 5 of allArticles (PERMANENT always come first).
+  const latestFive  = allArticles.slice(0, 5);
+  const carouselMax = Math.min(5, latestFive.length);
+  const featured    = latestFive[featuredIdx % Math.max(1, carouselMax)] || latestFive[0];
   const sideLeft   = filtered.slice(1, 3);
   const sideRight  = filtered.slice(3, 5);
   const belowFold  = filtered.slice(1, 5);
@@ -1050,12 +1746,17 @@ export default function BlogPage({ onBack, onNavigate }) {
   const digest     = filtered.slice(5, 9).length >= 3 ? filtered.slice(5, 9) : filtered.slice(0, 4);
   const specialArt = filtered[7] || filtered[6] || filtered[0];
 
-  const openArticle = (art) => { playPageFlip(); setActiveArt(art); };
+  const openArticle = (art) => {
+    playPageFlip();
+    setActiveArt(art);
+    if (onNavigate) onNavigate("blog/" + toSlug(art.title));
+  };
 
   const closeArticle = useCallback(() => {
     setActiveArt(null);
     window.scrollTo(0, 0);
-  }, []);
+    if (onNavigate) onNavigate("blog");
+  }, [onNavigate]);
 
   const today = new Date().toLocaleDateString("en-GB", { weekday:"long", day:"numeric", month:"long", year:"numeric" });
 

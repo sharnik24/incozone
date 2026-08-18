@@ -1752,6 +1752,8 @@ function GlobalNav({ onNavigate, scrolled }) {
 function resolveInitialState() {
   const path = window.location.pathname.replace(/^\//, "").toLowerCase().trim();
   if (!path || path === "home") return { page: "home", zone: null };
+  // Handle /blog/article-slug — keep page as "blog/slug" for slug extraction
+  if (path.startsWith("blog/")) return { page: path, zone: null };
   const zone = ZONES.find(z => z.id === path);
   if (zone) return { page: "home", zone };
   return { page: path, zone: null };
@@ -1898,7 +1900,10 @@ export default function App() {
 
   // Other pages
   if (currentPage === "about")    return withHelmet("about",    <AboutPage    onBack={() => goPage("home")}  onNavigate={goPage} />);
-  if (currentPage === "blog")     return withHelmet("blog",     <BlogPage     onBack={() => goPage("home")}  onNavigate={goPage} />);
+  if (currentPage === "blog" || currentPage.startsWith("blog/")) {
+    const blogSlug = currentPage.startsWith("blog/") ? currentPage.slice(5) : undefined;
+    return withHelmet("blog", <BlogPage onBack={() => goPage("home")} onNavigate={goPage} initialSlug={blogSlug} />);
+  }
   if (currentPage === "contact")  return withHelmet("contact",  <ContactPage  onBack={() => goPage("home")}  onNavigate={goPage} onSchedule={() => goPage("schedule")} />);
   if (currentPage === "schedule") return withHelmet("schedule", <SchedulePage onBack={() => goPage("home")}  onNavigate={goPage} />);
   if (currentPage === "admin")    return <AdminPage />;
